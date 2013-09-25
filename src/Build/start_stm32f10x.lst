@@ -1,0 +1,1492 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 18, 4
+  12              		.thumb
+  13              		.file	"Ap_RadioMenu.c"
+  21              	.Ltext0:
+  22              		.cfi_sections	.debug_frame
+  23              		.section	.text.TimerDebug_Tick,"ax",%progbits
+  24              		.align	2
+  25              		.global	TimerDebug_Tick
+  26              		.thumb
+  27              		.thumb_func
+  29              	TimerDebug_Tick:
+  30              	.LFB0:
+  31              		.file 1 "../LIB_AP/Ap_RadioMenu.c"
+   1:../LIB_AP/Ap_RadioMenu.c **** //----------------------------------------------------------------------------
+   2:../LIB_AP/Ap_RadioMenu.c **** //    프로그램명 	: Radio Menu 관련 함수
+   3:../LIB_AP/Ap_RadioMenu.c **** //
+   4:../LIB_AP/Ap_RadioMenu.c **** //    만든이     	: 
+   5:../LIB_AP/Ap_RadioMenu.c **** //
+   6:../LIB_AP/Ap_RadioMenu.c **** //    날  짜     	: 
+   7:../LIB_AP/Ap_RadioMenu.c **** //    
+   8:../LIB_AP/Ap_RadioMenu.c **** //    최종 수정  	: 
+   9:../LIB_AP/Ap_RadioMenu.c **** //
+  10:../LIB_AP/Ap_RadioMenu.c **** //    MPU_Type		:
+  11:../LIB_AP/Ap_RadioMenu.c **** //
+  12:../LIB_AP/Ap_RadioMenu.c **** //    파일명     	: Ap_UartMenu.h
+  13:../LIB_AP/Ap_RadioMenu.c **** //----------------------------------------------------------------------------
+  14:../LIB_AP/Ap_RadioMenu.c **** 
+  15:../LIB_AP/Ap_RadioMenu.c **** 
+  16:../LIB_AP/Ap_RadioMenu.c **** 
+  17:../LIB_AP/Ap_RadioMenu.c **** //----- 헤더파일 열기
+  18:../LIB_AP/Ap_RadioMenu.c **** //
+  19:../LIB_AP/Ap_RadioMenu.c **** #define  AP_RADIOMENU_LOCAL
+  20:../LIB_AP/Ap_RadioMenu.c **** 
+  21:../LIB_AP/Ap_RadioMenu.c **** #include "Ap_RadioMenu.h"
+  22:../LIB_AP/Ap_RadioMenu.c **** 
+  23:../LIB_AP/Ap_RadioMenu.c **** 
+  24:../LIB_AP/Ap_RadioMenu.c **** 
+  25:../LIB_AP/Ap_RadioMenu.c **** //-- 내부 선언
+  26:../LIB_AP/Ap_RadioMenu.c **** //
+  27:../LIB_AP/Ap_RadioMenu.c **** 
+  28:../LIB_AP/Ap_RadioMenu.c **** 
+  29:../LIB_AP/Ap_RadioMenu.c **** 
+  30:../LIB_AP/Ap_RadioMenu.c **** //-- 내부 변수
+  31:../LIB_AP/Ap_RadioMenu.c **** //
+  32:../LIB_AP/Ap_RadioMenu.c **** 
+  33:../LIB_AP/Ap_RadioMenu.c **** 
+  34:../LIB_AP/Ap_RadioMenu.c **** 
+  35:../LIB_AP/Ap_RadioMenu.c **** //-- 내부 함수
+  36:../LIB_AP/Ap_RadioMenu.c **** //
+  37:../LIB_AP/Ap_RadioMenu.c **** void Ap_RadioMenu_ShowMenu(void);
+  38:../LIB_AP/Ap_RadioMenu.c **** 
+  39:../LIB_AP/Ap_RadioMenu.c **** 
+  40:../LIB_AP/Ap_RadioMenu.c **** 
+  41:../LIB_AP/Ap_RadioMenu.c **** void TimerDebug_Tick( void )
+  42:../LIB_AP/Ap_RadioMenu.c **** {
+  32              		.loc 1 42 0
+  33              		.cfi_startproc
+  34              		@ args = 0, pretend = 0, frame = 0
+  35              		@ frame_needed = 0, uses_anonymous_args = 0
+  36 0000 08B5     		push	{r3, lr}
+  37              	.LCFI0:
+  38              		.cfi_def_cfa_offset 8
+  43:../LIB_AP/Ap_RadioMenu.c **** 	static u32 Cnt = 0;
+  44:../LIB_AP/Ap_RadioMenu.c **** 	
+  45:../LIB_AP/Ap_RadioMenu.c **** 	printf("Timer Tick\n");
+  39              		.loc 1 45 0
+  40 0002 0248     		ldr	r0, .L2
+  41 0004 024B     		ldr	r3, .L2+4
+  42              		.cfi_offset 14, -4
+  43              		.cfi_offset 3, -8
+  44 0006 9847     		blx	r3
+  46:../LIB_AP/Ap_RadioMenu.c **** }
+  45              		.loc 1 46 0
+  46 0008 08BD     		pop	{r3, pc}
+  47              	.L3:
+  48 000a 00BF     		.align	2
+  49              	.L2:
+  50 000c 00000000 		.word	.LC0
+  51 0010 00000000 		.word	printf
+  52              		.cfi_endproc
+  53              	.LFE0:
+  55              		.section	.text.Ap_RadioMenu_ShowMenu,"ax",%progbits
+  56              		.align	2
+  57              		.global	Ap_RadioMenu_ShowMenu
+  58              		.thumb
+  59              		.thumb_func
+  61              	Ap_RadioMenu_ShowMenu:
+  62              	.LFB1:
+  47:../LIB_AP/Ap_RadioMenu.c **** 
+  48:../LIB_AP/Ap_RadioMenu.c **** 
+  49:../LIB_AP/Ap_RadioMenu.c **** 
+  50:../LIB_AP/Ap_RadioMenu.c **** /*---------------------------------------------------------------------------
+  51:../LIB_AP/Ap_RadioMenu.c ****      TITLE   : Ap_RadioMenu_ShowMenu
+  52:../LIB_AP/Ap_RadioMenu.c ****      WORK    : 
+  53:../LIB_AP/Ap_RadioMenu.c ****      ARG     : void
+  54:../LIB_AP/Ap_RadioMenu.c ****      RET     : void
+  55:../LIB_AP/Ap_RadioMenu.c **** ---------------------------------------------------------------------------*/
+  56:../LIB_AP/Ap_RadioMenu.c **** void Ap_RadioMenu_ShowMenu(void)
+  57:../LIB_AP/Ap_RadioMenu.c **** {
+  63              		.loc 1 57 0
+  64              		.cfi_startproc
+  65              		@ args = 0, pretend = 0, frame = 0
+  66              		@ frame_needed = 0, uses_anonymous_args = 0
+  67 0000 38B5     		push	{r3, r4, r5, lr}
+  68              	.LCFI1:
+  69              		.cfi_def_cfa_offset 16
+  58:../LIB_AP/Ap_RadioMenu.c **** 	u8 key;
+  59:../LIB_AP/Ap_RadioMenu.c **** 
+  60:../LIB_AP/Ap_RadioMenu.c **** 	printf("\n\n");
+  61:../LIB_AP/Ap_RadioMenu.c **** 	printf("*******************************************************\n");
+  70              		.loc 1 61 0
+  71 0002 114D     		ldr	r5, .L5
+  72              		.cfi_offset 14, -4
+  73              		.cfi_offset 5, -8
+  74              		.cfi_offset 4, -12
+  75              		.cfi_offset 3, -16
+  60:../LIB_AP/Ap_RadioMenu.c **** 	printf("\n\n");
+  76              		.loc 1 60 0
+  77 0004 114C     		ldr	r4, .L5+4
+  78 0006 1248     		ldr	r0, .L5+8
+  79 0008 A047     		blx	r4
+  80              		.loc 1 61 0
+  81 000a 2846     		mov	r0, r5
+  82 000c A047     		blx	r4
+  62:../LIB_AP/Ap_RadioMenu.c **** 	printf("                      Radio V0.3                       \n");
+  83              		.loc 1 62 0
+  84 000e 1148     		ldr	r0, .L5+12
+  85 0010 A047     		blx	r4
+  63:../LIB_AP/Ap_RadioMenu.c **** 	printf("*******************************************************\n");
+  86              		.loc 1 63 0
+  87 0012 2846     		mov	r0, r5
+  88 0014 A047     		blx	r4
+  64:../LIB_AP/Ap_RadioMenu.c **** 	printf("* 1.  Band Select                                     *\n");
+  89              		.loc 1 64 0
+  90 0016 1048     		ldr	r0, .L5+16
+  91 0018 A047     		blx	r4
+  65:../LIB_AP/Ap_RadioMenu.c **** 	printf("* 2.  CH ++                                           *\n");
+  92              		.loc 1 65 0
+  93 001a 1048     		ldr	r0, .L5+20
+  94 001c A047     		blx	r4
+  66:../LIB_AP/Ap_RadioMenu.c **** 	printf("* 3.  CH --                                           *\n");
+  95              		.loc 1 66 0
+  96 001e 1048     		ldr	r0, .L5+24
+  97 0020 A047     		blx	r4
+  67:../LIB_AP/Ap_RadioMenu.c **** 	printf("* 4.  Seek +                                          *\n");
+  98              		.loc 1 67 0
+  99 0022 1048     		ldr	r0, .L5+28
+ 100 0024 A047     		blx	r4
+  68:../LIB_AP/Ap_RadioMenu.c **** 	printf("* 5.  Seek -                                          *\n");
+ 101              		.loc 1 68 0
+ 102 0026 1048     		ldr	r0, .L5+32
+ 103 0028 A047     		blx	r4
+  69:../LIB_AP/Ap_RadioMenu.c **** 	printf("* 6.  Volume +                                        *\n");
+ 104              		.loc 1 69 0
+ 105 002a 1048     		ldr	r0, .L5+36
+ 106 002c A047     		blx	r4
+  70:../LIB_AP/Ap_RadioMenu.c **** 	printf("* 7.  Volume -                                        *\n");
+ 107              		.loc 1 70 0
+ 108 002e 1048     		ldr	r0, .L5+40
+ 109 0030 A047     		blx	r4
+  71:../LIB_AP/Ap_RadioMenu.c **** 	printf("* 8.  Korea Ch ++                                     *\n");
+ 110              		.loc 1 71 0
+ 111 0032 1048     		ldr	r0, .L5+44
+ 112 0034 A047     		blx	r4
+  72:../LIB_AP/Ap_RadioMenu.c **** 	printf("* 9.  Korea Ch --                                     *\n");
+ 113              		.loc 1 72 0
+ 114 0036 1048     		ldr	r0, .L5+48
+ 115 0038 A047     		blx	r4
+  73:../LIB_AP/Ap_RadioMenu.c **** 	printf("* m.  Menu                                            *\n");
+ 116              		.loc 1 73 0
+ 117 003a 1048     		ldr	r0, .L5+52
+ 118 003c A047     		blx	r4
+  74:../LIB_AP/Ap_RadioMenu.c **** 	printf("*******************************************************\n");
+ 119              		.loc 1 74 0
+ 120 003e 2846     		mov	r0, r5
+ 121 0040 A047     		blx	r4
+  75:../LIB_AP/Ap_RadioMenu.c **** 	printf("\n");
+ 122              		.loc 1 75 0
+ 123 0042 0F48     		ldr	r0, .L5+56
+ 124 0044 A047     		blx	r4
+  76:../LIB_AP/Ap_RadioMenu.c **** }
+ 125              		.loc 1 76 0
+ 126 0046 38BD     		pop	{r3, r4, r5, pc}
+ 127              	.L6:
+ 128              		.align	2
+ 129              	.L5:
+ 130 0048 10000000 		.word	.LC2
+ 131 004c 00000000 		.word	printf
+ 132 0050 0C000000 		.word	.LC1
+ 133 0054 4C000000 		.word	.LC3
+ 134 0058 88000000 		.word	.LC4
+ 135 005c C4000000 		.word	.LC5
+ 136 0060 00010000 		.word	.LC6
+ 137 0064 3C010000 		.word	.LC7
+ 138 0068 78010000 		.word	.LC8
+ 139 006c B4010000 		.word	.LC9
+ 140 0070 F0010000 		.word	.LC10
+ 141 0074 2C020000 		.word	.LC11
+ 142 0078 68020000 		.word	.LC12
+ 143 007c A4020000 		.word	.LC13
+ 144 0080 E0020000 		.word	.LC14
+ 145              		.cfi_endproc
+ 146              	.LFE1:
+ 148              		.section	.text.Ap_RadioMenu_GetCmd,"ax",%progbits
+ 149              		.align	2
+ 150              		.global	Ap_RadioMenu_GetCmd
+ 151              		.thumb
+ 152              		.thumb_func
+ 154              	Ap_RadioMenu_GetCmd:
+ 155              	.LFB2:
+  77:../LIB_AP/Ap_RadioMenu.c **** 
+  78:../LIB_AP/Ap_RadioMenu.c **** 
+  79:../LIB_AP/Ap_RadioMenu.c **** 
+  80:../LIB_AP/Ap_RadioMenu.c **** 
+  81:../LIB_AP/Ap_RadioMenu.c **** 
+  82:../LIB_AP/Ap_RadioMenu.c **** /*---------------------------------------------------------------------------
+  83:../LIB_AP/Ap_RadioMenu.c ****      TITLE   : Ap_RadioMenu_GetCmd
+  84:../LIB_AP/Ap_RadioMenu.c ****      WORK    : 
+  85:../LIB_AP/Ap_RadioMenu.c ****      ARG     : void
+  86:../LIB_AP/Ap_RadioMenu.c ****      RET     : 
+  87:../LIB_AP/Ap_RadioMenu.c **** 				u8 : 눌려진 메뉴키 데이터 
+  88:../LIB_AP/Ap_RadioMenu.c **** ---------------------------------------------------------------------------*/
+  89:../LIB_AP/Ap_RadioMenu.c **** u8 Ap_RadioMenu_GetCmd(void)
+  90:../LIB_AP/Ap_RadioMenu.c **** {
+ 156              		.loc 1 90 0
+ 157              		.cfi_startproc
+ 158              		@ args = 0, pretend = 0, frame = 8
+ 159              		@ frame_needed = 0, uses_anonymous_args = 0
+ 160 0000 30B5     		push	{r4, r5, lr}
+ 161              	.LCFI2:
+ 162              		.cfi_def_cfa_offset 12
+  91:../LIB_AP/Ap_RadioMenu.c **** 	u8  key;
+  92:../LIB_AP/Ap_RadioMenu.c **** 	u16 Volume;
+  93:../LIB_AP/Ap_RadioMenu.c **** 	u16 Channel;
+  94:../LIB_AP/Ap_RadioMenu.c **** 	
+  95:../LIB_AP/Ap_RadioMenu.c **** 	
+  96:../LIB_AP/Ap_RadioMenu.c **** 	if( Ap_Radio_BandGet() == MODE_RADIO_BAND_FM )
+ 163              		.loc 1 96 0
+ 164 0002 1E4C     		ldr	r4, .L15
+ 165              		.cfi_offset 14, -4
+ 166              		.cfi_offset 5, -8
+ 167              		.cfi_offset 4, -12
+  90:../LIB_AP/Ap_RadioMenu.c **** {
+ 168              		.loc 1 90 0
+ 169 0004 83B0     		sub	sp, sp, #12
+ 170              	.LCFI3:
+ 171              		.cfi_def_cfa_offset 24
+ 172              		.loc 1 96 0
+ 173 0006 A047     		blx	r4
+ 174 0008 0128     		cmp	r0, #1
+ 175 000a 0DD0     		beq	.L13
+  97:../LIB_AP/Ap_RadioMenu.c **** 	{
+  98:../LIB_AP/Ap_RadioMenu.c **** 		Ap_Radio_VolumeGet( &Volume );
+  99:../LIB_AP/Ap_RadioMenu.c **** 		Ap_Radio_ChannelGet( &Channel );
+ 100:../LIB_AP/Ap_RadioMenu.c **** 		
+ 101:../LIB_AP/Ap_RadioMenu.c **** 		printf("FM %d %d%% : ", Channel, Volume*100/63 );
+ 102:../LIB_AP/Ap_RadioMenu.c **** 	}
+ 103:../LIB_AP/Ap_RadioMenu.c **** 	else
+ 104:../LIB_AP/Ap_RadioMenu.c **** 	if( Ap_Radio_BandGet() == MODE_RADIO_BAND_AM )	
+ 176              		.loc 1 104 0
+ 177 000c A047     		blx	r4
+ 178 000e 0228     		cmp	r0, #2
+ 179 0010 25D0     		beq	.L14
+ 105:../LIB_AP/Ap_RadioMenu.c **** 	{
+ 106:../LIB_AP/Ap_RadioMenu.c **** 		Ap_Radio_VolumeGet( &Volume );
+ 107:../LIB_AP/Ap_RadioMenu.c **** 		Ap_Radio_ChannelGet( &Channel );
+ 108:../LIB_AP/Ap_RadioMenu.c **** 		
+ 109:../LIB_AP/Ap_RadioMenu.c **** 		printf("AM %d %d%% : ", Channel, Volume*100/63 );		
+ 110:../LIB_AP/Ap_RadioMenu.c **** 	}
+ 111:../LIB_AP/Ap_RadioMenu.c **** 	else
+ 112:../LIB_AP/Ap_RadioMenu.c **** 	{
+ 113:../LIB_AP/Ap_RadioMenu.c **** 		printf("BAND ERROR : ");
+ 180              		.loc 1 113 0
+ 181 0012 1B48     		ldr	r0, .L15+4
+ 182 0014 1B4C     		ldr	r4, .L15+8
+ 183 0016 A047     		blx	r4
+ 184              	.LVL0:
+ 185              	.L9:
+ 114:../LIB_AP/Ap_RadioMenu.c **** 	}
+ 115:../LIB_AP/Ap_RadioMenu.c ****     key=get_byte();
+ 186              		.loc 1 115 0
+ 187 0018 1B4A     		ldr	r2, .L15+12
+ 188 001a 9047     		blx	r2
+ 189 001c 0546     		mov	r5, r0
+ 190              	.LVL1:
+ 116:../LIB_AP/Ap_RadioMenu.c **** 	
+ 117:../LIB_AP/Ap_RadioMenu.c **** 	printf("\n");
+ 191              		.loc 1 117 0
+ 192 001e 1B48     		ldr	r0, .L15+16
+ 193              	.LVL2:
+ 194 0020 A047     		blx	r4
+ 118:../LIB_AP/Ap_RadioMenu.c **** 	
+ 119:../LIB_AP/Ap_RadioMenu.c ****     return key;
+ 120:../LIB_AP/Ap_RadioMenu.c **** }
+ 195              		.loc 1 120 0
+ 196 0022 2846     		mov	r0, r5
+ 197 0024 03B0     		add	sp, sp, #12
+ 198 0026 30BD     		pop	{r4, r5, pc}
+ 199              	.LVL3:
+ 200              	.L13:
+  98:../LIB_AP/Ap_RadioMenu.c **** 		Ap_Radio_VolumeGet( &Volume );
+ 201              		.loc 1 98 0
+ 202 0028 194A     		ldr	r2, .L15+20
+ 203 002a 0DF10600 		add	r0, sp, #6
+ 204 002e 9047     		blx	r2
+  99:../LIB_AP/Ap_RadioMenu.c **** 		Ap_Radio_ChannelGet( &Channel );
+ 205              		.loc 1 99 0
+ 206 0030 01A8     		add	r0, sp, #4
+ 207 0032 1849     		ldr	r1, .L15+24
+ 208 0034 8847     		blx	r1
+ 209              	.LVL4:
+ 101:../LIB_AP/Ap_RadioMenu.c **** 		printf("FM %d %d%% : ", Channel, Volume*100/63 );
+ 210              		.loc 1 101 0
+ 211 0036 BDF80630 		ldrh	r3, [sp, #6]
+ 212              	.LVL5:
+ 213 003a 6422     		movs	r2, #100
+ 214 003c 02FB03F3 		mul	r3, r2, r3
+ 215              	.LVL6:
+ 216 0040 1548     		ldr	r0, .L15+28
+ 217              	.L11:
+ 109:../LIB_AP/Ap_RadioMenu.c **** 		printf("AM %d %d%% : ", Channel, Volume*100/63 );		
+ 218              		.loc 1 109 0
+ 219 0042 02F1024E 		add	lr, r2, #-2113929216
+ 220 0046 0EF50221 		add	r1, lr, #532480
+ 221 004a 1F31     		adds	r1, r1, #31
+ 222 004c 81FB031C 		smull	r1, ip, r1, r3
+ 223 0050 6344     		add	r3, ip, r3
+ 224              	.LVL7:
+ 225 0052 BDF80410 		ldrh	r1, [sp, #4]
+ 226 0056 5A11     		asrs	r2, r3, #5
+ 227 0058 0A4C     		ldr	r4, .L15+8
+ 228 005a A047     		blx	r4
+ 229 005c DCE7     		b	.L9
+ 230              	.LVL8:
+ 231              	.L14:
+ 106:../LIB_AP/Ap_RadioMenu.c **** 		Ap_Radio_VolumeGet( &Volume );
+ 232              		.loc 1 106 0
+ 233 005e 0DF10600 		add	r0, sp, #6
+ 234 0062 0B4D     		ldr	r5, .L15+20
+ 235 0064 A847     		blx	r5
+ 107:../LIB_AP/Ap_RadioMenu.c **** 		Ap_Radio_ChannelGet( &Channel );
+ 236              		.loc 1 107 0
+ 237 0066 0B4C     		ldr	r4, .L15+24
+ 238 0068 01A8     		add	r0, sp, #4
+ 239 006a A047     		blx	r4
+ 240              	.LVL9:
+ 109:../LIB_AP/Ap_RadioMenu.c **** 		printf("AM %d %d%% : ", Channel, Volume*100/63 );		
+ 241              		.loc 1 109 0
+ 242 006c BDF80600 		ldrh	r0, [sp, #6]
+ 243              	.LVL10:
+ 244 0070 6422     		movs	r2, #100
+ 245 0072 02FB00F3 		mul	r3, r2, r0
+ 246              	.LVL11:
+ 247 0076 0948     		ldr	r0, .L15+32
+ 248              	.LVL12:
+ 249 0078 E3E7     		b	.L11
+ 250              	.L16:
+ 251 007a 00BF     		.align	2
+ 252              	.L15:
+ 253 007c 00000000 		.word	Ap_Radio_BandGet
+ 254 0080 04030000 		.word	.LC17
+ 255 0084 00000000 		.word	printf
+ 256 0088 00000000 		.word	get_byte
+ 257 008c E0020000 		.word	.LC14
+ 258 0090 00000000 		.word	Ap_Radio_VolumeGet
+ 259 0094 00000000 		.word	Ap_Radio_ChannelGet
+ 260 0098 E4020000 		.word	.LC15
+ 261 009c F4020000 		.word	.LC16
+ 262              		.cfi_endproc
+ 263              	.LFE2:
+ 265              		.section	.text.Ap_RadioMenu_ExeCmd,"ax",%progbits
+ 266              		.align	2
+ 267              		.global	Ap_RadioMenu_ExeCmd
+ 268              		.thumb
+ 269              		.thumb_func
+ 271              	Ap_RadioMenu_ExeCmd:
+ 272              	.LFB3:
+ 121:../LIB_AP/Ap_RadioMenu.c **** 
+ 122:../LIB_AP/Ap_RadioMenu.c **** 
+ 123:../LIB_AP/Ap_RadioMenu.c **** 
+ 124:../LIB_AP/Ap_RadioMenu.c **** 
+ 125:../LIB_AP/Ap_RadioMenu.c **** /*---------------------------------------------------------------------------
+ 126:../LIB_AP/Ap_RadioMenu.c ****      TITLE   : Ap_RadioMenu_ShowMenu
+ 127:../LIB_AP/Ap_RadioMenu.c ****      WORK    : 
+ 128:../LIB_AP/Ap_RadioMenu.c ****      ARG     : void
+ 129:../LIB_AP/Ap_RadioMenu.c ****      RET     : 
+ 130:../LIB_AP/Ap_RadioMenu.c **** 				u8 : 눌려진 메뉴키 데이터 
+ 131:../LIB_AP/Ap_RadioMenu.c **** ---------------------------------------------------------------------------*/
+ 132:../LIB_AP/Ap_RadioMenu.c **** u8 Ap_RadioMenu_ExeCmd(void)
+ 133:../LIB_AP/Ap_RadioMenu.c **** {
+ 273              		.loc 1 133 0
+ 274              		.cfi_startproc
+ 275              		@ args = 0, pretend = 0, frame = 8
+ 276              		@ frame_needed = 0, uses_anonymous_args = 0
+ 277 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ 278              	.LCFI4:
+ 279              		.cfi_def_cfa_offset 36
+ 134:../LIB_AP/Ap_RadioMenu.c **** 	u8 key;
+ 135:../LIB_AP/Ap_RadioMenu.c **** 	u8 Status;
+ 136:../LIB_AP/Ap_RadioMenu.c **** 	static u8 ExeFirst = TRUE;
+ 137:../LIB_AP/Ap_RadioMenu.c **** 	u16 Ret;
+ 138:../LIB_AP/Ap_RadioMenu.c **** 	u16 Channel;
+ 139:../LIB_AP/Ap_RadioMenu.c **** 	u16 ChannelGap;
+ 140:../LIB_AP/Ap_RadioMenu.c **** 	u8  FreqValid;
+ 141:../LIB_AP/Ap_RadioMenu.c **** 	static u8  Band_Mode = 0;
+ 142:../LIB_AP/Ap_RadioMenu.c **** 	static u16 FM_Freq_Index = 0;
+ 143:../LIB_AP/Ap_RadioMenu.c **** 	static u16 FM_Freq[] = 
+ 144:../LIB_AP/Ap_RadioMenu.c **** 			{
+ 145:../LIB_AP/Ap_RadioMenu.c **** 				8775,
+ 146:../LIB_AP/Ap_RadioMenu.c **** 				8910,
+ 147:../LIB_AP/Ap_RadioMenu.c **** 				8970,
+ 148:../LIB_AP/Ap_RadioMenu.c **** 				9070,
+ 149:../LIB_AP/Ap_RadioMenu.c **** 				9190,
+ 150:../LIB_AP/Ap_RadioMenu.c **** 				9310,
+ 151:../LIB_AP/Ap_RadioMenu.c **** 				9390,
+ 152:../LIB_AP/Ap_RadioMenu.c **** 				9450,
+ 153:../LIB_AP/Ap_RadioMenu.c **** 				9510,
+ 154:../LIB_AP/Ap_RadioMenu.c **** 				9590,
+ 155:../LIB_AP/Ap_RadioMenu.c **** 				9670,
+ 156:../LIB_AP/Ap_RadioMenu.c **** 				9730,
+ 157:../LIB_AP/Ap_RadioMenu.c **** 				9810,
+ 158:../LIB_AP/Ap_RadioMenu.c **** 				9910,
+ 159:../LIB_AP/Ap_RadioMenu.c **** 				9990,
+ 160:../LIB_AP/Ap_RadioMenu.c **** 				10050,
+ 161:../LIB_AP/Ap_RadioMenu.c **** 				10130,
+ 162:../LIB_AP/Ap_RadioMenu.c **** 				10190,
+ 163:../LIB_AP/Ap_RadioMenu.c **** 				10270,
+ 164:../LIB_AP/Ap_RadioMenu.c **** 				10350,
+ 165:../LIB_AP/Ap_RadioMenu.c **** 				10450,
+ 166:../LIB_AP/Ap_RadioMenu.c **** 				10490,
+ 167:../LIB_AP/Ap_RadioMenu.c **** 				10530,
+ 168:../LIB_AP/Ap_RadioMenu.c **** 				10610,
+ 169:../LIB_AP/Ap_RadioMenu.c **** 				10690,
+ 170:../LIB_AP/Ap_RadioMenu.c **** 				10770,
+ 171:../LIB_AP/Ap_RadioMenu.c **** 				0 };
+ 172:../LIB_AP/Ap_RadioMenu.c **** 				
+ 173:../LIB_AP/Ap_RadioMenu.c **** 	static u16 AM_Freq_Index = 0;
+ 174:../LIB_AP/Ap_RadioMenu.c **** 	static u16 AM_Freq[] = 
+ 175:../LIB_AP/Ap_RadioMenu.c **** 			{
+ 176:../LIB_AP/Ap_RadioMenu.c **** 				603,
+ 177:../LIB_AP/Ap_RadioMenu.c **** 				639,
+ 178:../LIB_AP/Ap_RadioMenu.c **** 				711,
+ 179:../LIB_AP/Ap_RadioMenu.c **** 				792,
+ 180:../LIB_AP/Ap_RadioMenu.c **** 				837,
+ 181:../LIB_AP/Ap_RadioMenu.c **** 				900,
+ 182:../LIB_AP/Ap_RadioMenu.c **** 				972,
+ 183:../LIB_AP/Ap_RadioMenu.c **** 				1134,
+ 184:../LIB_AP/Ap_RadioMenu.c **** 				1188,
+ 185:../LIB_AP/Ap_RadioMenu.c **** 				0 };				
+ 186:../LIB_AP/Ap_RadioMenu.c **** 				
+ 187:../LIB_AP/Ap_RadioMenu.c **** 	
+ 188:../LIB_AP/Ap_RadioMenu.c **** 	if( ExeFirst == TRUE )
+ 189:../LIB_AP/Ap_RadioMenu.c **** 	{
+ 190:../LIB_AP/Ap_RadioMenu.c **** 		Ap_RadioMenu_ShowMenu();	
+ 280              		.loc 1 190 0
+ 281 0004 DFF82483 		ldr	r8, .L57+108
+ 282              		.cfi_offset 14, -4
+ 283              		.cfi_offset 11, -8
+ 284              		.cfi_offset 10, -12
+ 285              		.cfi_offset 9, -16
+ 286              		.cfi_offset 8, -20
+ 287              		.cfi_offset 7, -24
+ 288              		.cfi_offset 6, -28
+ 289              		.cfi_offset 5, -32
+ 290              		.cfi_offset 4, -36
+ 133:../LIB_AP/Ap_RadioMenu.c **** {
+ 291              		.loc 1 133 0
+ 292 0008 83B0     		sub	sp, sp, #12
+ 293              	.LCFI5:
+ 294              		.cfi_def_cfa_offset 48
+ 295              		.loc 1 190 0
+ 296 000a C047     		blx	r8
+ 297 000c AC4C     		ldr	r4, .L57
+ 191:../LIB_AP/Ap_RadioMenu.c **** 	}
+ 192:../LIB_AP/Ap_RadioMenu.c **** 
+ 193:../LIB_AP/Ap_RadioMenu.c ****     while( (key = Ap_RadioMenu_GetCmd()) != 0 )
+ 194:../LIB_AP/Ap_RadioMenu.c ****     {
+ 195:../LIB_AP/Ap_RadioMenu.c ****         switch(key)
+ 196:../LIB_AP/Ap_RadioMenu.c ****         {
+ 197:../LIB_AP/Ap_RadioMenu.c ****            case '1':
+ 198:../LIB_AP/Ap_RadioMenu.c ****            		if( Band_Mode == 0 )
+ 199:../LIB_AP/Ap_RadioMenu.c ****            		{
+ 200:../LIB_AP/Ap_RadioMenu.c ****                		printf("FM Config : %x \n", Ap_Radio_BandSetFM());     
+ 201:../LIB_AP/Ap_RadioMenu.c ****                		Ap_Radio_ChannelSetFirst();      
+ 202:../LIB_AP/Ap_RadioMenu.c ****                	}
+ 203:../LIB_AP/Ap_RadioMenu.c ****                	else
+ 204:../LIB_AP/Ap_RadioMenu.c ****                	{
+ 205:../LIB_AP/Ap_RadioMenu.c ****                		printf("AM Config : %x \n", Ap_Radio_BandSetAM());           
+ 206:../LIB_AP/Ap_RadioMenu.c ****                		Ap_Radio_ChannelSetFirst();
+ 207:../LIB_AP/Ap_RadioMenu.c ****                	}
+ 208:../LIB_AP/Ap_RadioMenu.c ****                	Band_Mode ^= 1;
+ 209:../LIB_AP/Ap_RadioMenu.c ****                	break;
+ 210:../LIB_AP/Ap_RadioMenu.c **** 
+ 211:../LIB_AP/Ap_RadioMenu.c ****            case '2':
+ 212:../LIB_AP/Ap_RadioMenu.c ****            		if( Ap_Radio_BandGet() == MODE_RADIO_BAND_FM )	ChannelGap = 10;
+ 213:../LIB_AP/Ap_RadioMenu.c ****            		else											ChannelGap = 1;
+ 214:../LIB_AP/Ap_RadioMenu.c ****            		Ret  = Ap_Radio_ChannelSetNext( ChannelGap );
+ 215:../LIB_AP/Ap_RadioMenu.c ****            		Ret |= Ap_Radio_ChannelGet( &Channel );
+ 216:../LIB_AP/Ap_RadioMenu.c **** 				printf("Freq : %d  Ret : %d\n", Channel, Ret );
+ 217:../LIB_AP/Ap_RadioMenu.c **** 					         	
+ 218:../LIB_AP/Ap_RadioMenu.c ****                break;
+ 219:../LIB_AP/Ap_RadioMenu.c **** 
+ 220:../LIB_AP/Ap_RadioMenu.c ****            case '3':
+ 221:../LIB_AP/Ap_RadioMenu.c ****            		if( Ap_Radio_BandGet() == MODE_RADIO_BAND_FM )	ChannelGap = 10;
+ 222:../LIB_AP/Ap_RadioMenu.c ****            		else											ChannelGap = 1;
+ 223:../LIB_AP/Ap_RadioMenu.c ****            		Ret  = Ap_Radio_ChannelSetPrev( 10 );
+ 224:../LIB_AP/Ap_RadioMenu.c ****            		Ret |= Ap_Radio_ChannelGet( &Channel );
+ 225:../LIB_AP/Ap_RadioMenu.c **** 				printf("Freq : %d  Ret : %d\n", Channel, Ret );
+ 226:../LIB_AP/Ap_RadioMenu.c ****                break; 
+ 227:../LIB_AP/Ap_RadioMenu.c **** 
+ 228:../LIB_AP/Ap_RadioMenu.c ****            case '4':
+ 229:../LIB_AP/Ap_RadioMenu.c **** 				Ret = Ap_Radio_SeekToLast( &FreqValid );
+ 230:../LIB_AP/Ap_RadioMenu.c **** 				
+ 231:../LIB_AP/Ap_RadioMenu.c **** 				if( Ret == ERR_NONE )
+ 232:../LIB_AP/Ap_RadioMenu.c **** 				{
+ 233:../LIB_AP/Ap_RadioMenu.c **** 					if( FreqValid == 1 )
+ 234:../LIB_AP/Ap_RadioMenu.c **** 					{
+ 235:../LIB_AP/Ap_RadioMenu.c ****            				Ret = Ap_Radio_ChannelGet( &Channel );
+ 236:../LIB_AP/Ap_RadioMenu.c **** 						printf("Found Freq : %d  Ret : %d\n", Channel, Ret );
+ 237:../LIB_AP/Ap_RadioMenu.c **** 					}
+ 238:../LIB_AP/Ap_RadioMenu.c **** 					else
+ 239:../LIB_AP/Ap_RadioMenu.c **** 					{
+ 240:../LIB_AP/Ap_RadioMenu.c **** 						printf("Not Found\n");
+ 241:../LIB_AP/Ap_RadioMenu.c **** 					}
+ 242:../LIB_AP/Ap_RadioMenu.c **** 				}
+ 243:../LIB_AP/Ap_RadioMenu.c **** 				else
+ 244:../LIB_AP/Ap_RadioMenu.c **** 				{
+ 245:../LIB_AP/Ap_RadioMenu.c **** 					printf("ErrCode  Ret : %d\n", Ret );
+ 246:../LIB_AP/Ap_RadioMenu.c **** 				}
+ 247:../LIB_AP/Ap_RadioMenu.c **** 				
+ 248:../LIB_AP/Ap_RadioMenu.c ****                break;  
+ 249:../LIB_AP/Ap_RadioMenu.c **** 
+ 250:../LIB_AP/Ap_RadioMenu.c ****            case '5':
+ 251:../LIB_AP/Ap_RadioMenu.c **** 				Ret = Ap_Radio_SeekToFirst( &FreqValid );
+ 252:../LIB_AP/Ap_RadioMenu.c **** 				
+ 253:../LIB_AP/Ap_RadioMenu.c **** 				if( Ret == ERR_NONE )
+ 254:../LIB_AP/Ap_RadioMenu.c **** 				{
+ 255:../LIB_AP/Ap_RadioMenu.c **** 					if( FreqValid == 1 )
+ 256:../LIB_AP/Ap_RadioMenu.c **** 					{
+ 257:../LIB_AP/Ap_RadioMenu.c ****            				Ret = Ap_Radio_ChannelGet( &Channel );
+ 258:../LIB_AP/Ap_RadioMenu.c **** 						printf("Found Freq : %d  Ret : %d\n", Channel, Ret );
+ 259:../LIB_AP/Ap_RadioMenu.c **** 					}
+ 260:../LIB_AP/Ap_RadioMenu.c **** 					else
+ 261:../LIB_AP/Ap_RadioMenu.c **** 					{
+ 262:../LIB_AP/Ap_RadioMenu.c **** 						printf("Not Found\n");
+ 263:../LIB_AP/Ap_RadioMenu.c **** 					}
+ 264:../LIB_AP/Ap_RadioMenu.c **** 				}
+ 265:../LIB_AP/Ap_RadioMenu.c **** 				else
+ 266:../LIB_AP/Ap_RadioMenu.c **** 				{
+ 267:../LIB_AP/Ap_RadioMenu.c **** 					printf("ErrCode  Ret : %d\n", Ret );
+ 268:../LIB_AP/Ap_RadioMenu.c **** 				}    
+ 269:../LIB_AP/Ap_RadioMenu.c **** 
+ 270:../LIB_AP/Ap_RadioMenu.c ****                break;  
+ 271:../LIB_AP/Ap_RadioMenu.c **** 
+ 272:../LIB_AP/Ap_RadioMenu.c ****            case '6':
+ 273:../LIB_AP/Ap_RadioMenu.c ****                printf("Volume Up : %d \n", Ap_Radio_VolumeSetUp(10));               
+ 274:../LIB_AP/Ap_RadioMenu.c ****                break;  
+ 275:../LIB_AP/Ap_RadioMenu.c **** 
+ 276:../LIB_AP/Ap_RadioMenu.c ****            case '7':
+ 277:../LIB_AP/Ap_RadioMenu.c ****                printf("Volume Down : %d \n", Ap_Radio_VolumeSetDown(10));               
+ 278:../LIB_AP/Ap_RadioMenu.c ****                break;  
+ 279:../LIB_AP/Ap_RadioMenu.c **** 
+ 280:../LIB_AP/Ap_RadioMenu.c ****            case '8':           		
+ 281:../LIB_AP/Ap_RadioMenu.c ****            		if( Ap_Radio_BandGet() == MODE_RADIO_BAND_FM )
+ 282:../LIB_AP/Ap_RadioMenu.c ****            		{
+ 283:../LIB_AP/Ap_RadioMenu.c **** 	        		Ret  = Ap_Radio_ChannelSet( FM_Freq[FM_Freq_Index] );
+ 284:../LIB_AP/Ap_RadioMenu.c **** 	           		Ret |= Ap_Radio_ChannelGet( &Channel );
+ 285:../LIB_AP/Ap_RadioMenu.c **** 					printf("Korea FM Freq : %d  Ret : %d\n", Channel, Ret );				
+ 286:../LIB_AP/Ap_RadioMenu.c **** 					
+ 287:../LIB_AP/Ap_RadioMenu.c **** 	           		FM_Freq_Index++;
+ 288:../LIB_AP/Ap_RadioMenu.c **** 	           		
+ 289:../LIB_AP/Ap_RadioMenu.c **** 	           		if( FM_Freq[FM_Freq_Index] == 0 )
+ 290:../LIB_AP/Ap_RadioMenu.c **** 	           		{
+ 291:../LIB_AP/Ap_RadioMenu.c **** 	           			FM_Freq_Index--;
+ 292:../LIB_AP/Ap_RadioMenu.c **** 	           		}				
+ 293:../LIB_AP/Ap_RadioMenu.c **** 	           	}
+ 294:../LIB_AP/Ap_RadioMenu.c **** 	           	else
+ 295:../LIB_AP/Ap_RadioMenu.c **** 	           	{
+ 296:../LIB_AP/Ap_RadioMenu.c **** 	        		Ret  = Ap_Radio_ChannelSet( AM_Freq[AM_Freq_Index] );
+ 297:../LIB_AP/Ap_RadioMenu.c **** 	           		Ret |= Ap_Radio_ChannelGet( &Channel );
+ 298:../LIB_AP/Ap_RadioMenu.c **** 					printf("Korea AM Freq : %d  Ret : %d\n", Channel, Ret );				
+ 299:../LIB_AP/Ap_RadioMenu.c **** 					
+ 300:../LIB_AP/Ap_RadioMenu.c **** 	           		AM_Freq_Index++;
+ 301:../LIB_AP/Ap_RadioMenu.c **** 	           		
+ 302:../LIB_AP/Ap_RadioMenu.c **** 	           		if( AM_Freq[AM_Freq_Index] == 0 )
+ 303:../LIB_AP/Ap_RadioMenu.c **** 	           		{
+ 304:../LIB_AP/Ap_RadioMenu.c **** 	           			AM_Freq_Index--;
+ 305:../LIB_AP/Ap_RadioMenu.c **** 	           		}					           		
+ 306:../LIB_AP/Ap_RadioMenu.c **** 	           	}
+ 307:../LIB_AP/Ap_RadioMenu.c ****                break;
+ 308:../LIB_AP/Ap_RadioMenu.c **** 
+ 309:../LIB_AP/Ap_RadioMenu.c ****            case '9': 
+ 310:../LIB_AP/Ap_RadioMenu.c ****            		if( Ap_Radio_BandGet() == MODE_RADIO_BAND_FM )
+ 311:../LIB_AP/Ap_RadioMenu.c ****            		{				           		           		
+ 312:../LIB_AP/Ap_RadioMenu.c **** 	        		Ret  = Ap_Radio_ChannelSet( FM_Freq[FM_Freq_Index] );
+ 313:../LIB_AP/Ap_RadioMenu.c **** 	           		Ret |= Ap_Radio_ChannelGet( &Channel );
+ 314:../LIB_AP/Ap_RadioMenu.c **** 					printf("Korea FM Freq : %d  Ret : %d\n", Channel, Ret );
+ 315:../LIB_AP/Ap_RadioMenu.c **** 					
+ 316:../LIB_AP/Ap_RadioMenu.c **** 	           		if( FM_Freq_Index > 0 )
+ 317:../LIB_AP/Ap_RadioMenu.c **** 	           			FM_Freq_Index--;
+ 318:../LIB_AP/Ap_RadioMenu.c **** 				}
+ 319:../LIB_AP/Ap_RadioMenu.c **** 				else
+ 320:../LIB_AP/Ap_RadioMenu.c **** 				{
+ 321:../LIB_AP/Ap_RadioMenu.c **** 	        		Ret  = Ap_Radio_ChannelSet( AM_Freq[AM_Freq_Index] );
+ 322:../LIB_AP/Ap_RadioMenu.c **** 	           		Ret |= Ap_Radio_ChannelGet( &Channel );
+ 323:../LIB_AP/Ap_RadioMenu.c **** 					printf("Korea AM Freq : %d  Ret : %d\n", Channel, Ret );
+ 324:../LIB_AP/Ap_RadioMenu.c **** 					
+ 325:../LIB_AP/Ap_RadioMenu.c **** 	           		if( AM_Freq_Index > 0 )
+ 326:../LIB_AP/Ap_RadioMenu.c **** 	           			AM_Freq_Index--;
+ 327:../LIB_AP/Ap_RadioMenu.c **** 				}				
+ 328:../LIB_AP/Ap_RadioMenu.c ****                break;
+ 329:../LIB_AP/Ap_RadioMenu.c **** 
+ 330:../LIB_AP/Ap_RadioMenu.c ****            case '0':
+ 331:../LIB_AP/Ap_RadioMenu.c ****                printf("No.0\n");
+ 298              		.loc 1 331 0
+ 299 000e AD4D     		ldr	r5, .L57+4
+ 310:../LIB_AP/Ap_RadioMenu.c ****            		if( Ap_Radio_BandGet() == MODE_RADIO_BAND_FM )
+ 300              		.loc 1 310 0
+ 301 0010 AD4E     		ldr	r6, .L57+8
+ 321:../LIB_AP/Ap_RadioMenu.c **** 	        		Ret  = Ap_Radio_ChannelSet( AM_Freq[AM_Freq_Index] );
+ 302              		.loc 1 321 0
+ 303 0012 AE4F     		ldr	r7, .L57+12
+ 304              	.LVL13:
+ 305              	.L46:
+ 193:../LIB_AP/Ap_RadioMenu.c ****     while( (key = Ap_RadioMenu_GetCmd()) != 0 )
+ 306              		.loc 1 193 0 discriminator 1
+ 307 0014 A047     		blx	r4
+ 308              	.LVL14:
+ 309 0016 0346     		mov	r3, r0
+ 310 0018 0028     		cmp	r0, #0
+ 311 001a 00F08980 		beq	.L53
+ 312              	.L42:
+ 195:../LIB_AP/Ap_RadioMenu.c ****         switch(key)
+ 313              		.loc 1 195 0
+ 314 001e 303B     		subs	r3, r3, #48
+ 315 0020 3D2B     		cmp	r3, #61
+ 316 0022 F7D8     		bhi	.L46
+ 317 0024 01A2     		adr	r2, .L31
+ 318 0026 52F823F0 		ldr	pc, [r2, r3, lsl #2]
+ 319 002a 00BF     		.align	2
+ 320              	.L31:
+ 321 002c 61020000 		.word	.L20+1
+ 322 0030 3B020000 		.word	.L21+1
+ 323 0034 2D020000 		.word	.L22+1
+ 324 0038 0D020000 		.word	.L23+1
+ 325 003c F9010000 		.word	.L24+1
+ 326 0040 DF010000 		.word	.L25+1
+ 327 0044 D1010000 		.word	.L26+1
+ 328 0048 C3010000 		.word	.L27+1
+ 329 004c 77010000 		.word	.L28+1
+ 330 0050 37010000 		.word	.L29+1
+ 331 0054 15000000 		.word	.L46+1
+ 332 0058 15000000 		.word	.L46+1
+ 333 005c 15000000 		.word	.L46+1
+ 334 0060 15000000 		.word	.L46+1
+ 335 0064 15000000 		.word	.L46+1
+ 336 0068 15000000 		.word	.L46+1
+ 337 006c 15000000 		.word	.L46+1
+ 338 0070 15000000 		.word	.L46+1
+ 339 0074 15000000 		.word	.L46+1
+ 340 0078 15000000 		.word	.L46+1
+ 341 007c 15000000 		.word	.L46+1
+ 342 0080 15000000 		.word	.L46+1
+ 343 0084 15000000 		.word	.L46+1
+ 344 0088 15000000 		.word	.L46+1
+ 345 008c 15000000 		.word	.L46+1
+ 346 0090 15000000 		.word	.L46+1
+ 347 0094 15000000 		.word	.L46+1
+ 348 0098 15000000 		.word	.L46+1
+ 349 009c 15000000 		.word	.L46+1
+ 350 00a0 25010000 		.word	.L30+1
+ 351 00a4 15000000 		.word	.L46+1
+ 352 00a8 15000000 		.word	.L46+1
+ 353 00ac 15000000 		.word	.L46+1
+ 354 00b0 15000000 		.word	.L46+1
+ 355 00b4 15000000 		.word	.L46+1
+ 356 00b8 15000000 		.word	.L46+1
+ 357 00bc 15000000 		.word	.L46+1
+ 358 00c0 15000000 		.word	.L46+1
+ 359 00c4 15000000 		.word	.L46+1
+ 360 00c8 15000000 		.word	.L46+1
+ 361 00cc 15000000 		.word	.L46+1
+ 362 00d0 15000000 		.word	.L46+1
+ 363 00d4 15000000 		.word	.L46+1
+ 364 00d8 15000000 		.word	.L46+1
+ 365 00dc 15000000 		.word	.L46+1
+ 366 00e0 15000000 		.word	.L46+1
+ 367 00e4 15000000 		.word	.L46+1
+ 368 00e8 15000000 		.word	.L46+1
+ 369 00ec 15000000 		.word	.L46+1
+ 370 00f0 15000000 		.word	.L46+1
+ 371 00f4 15000000 		.word	.L46+1
+ 372 00f8 15000000 		.word	.L46+1
+ 373 00fc 15000000 		.word	.L46+1
+ 374 0100 15000000 		.word	.L46+1
+ 375 0104 15000000 		.word	.L46+1
+ 376 0108 15000000 		.word	.L46+1
+ 377 010c 15000000 		.word	.L46+1
+ 378 0110 15000000 		.word	.L46+1
+ 379 0114 15000000 		.word	.L46+1
+ 380 0118 15000000 		.word	.L46+1
+ 381 011c 15000000 		.word	.L46+1
+ 382 0120 25010000 		.word	.L30+1
+ 383              	.L30:
+ 332:../LIB_AP/Ap_RadioMenu.c ****                break;
+ 333:../LIB_AP/Ap_RadioMenu.c **** 
+ 334:../LIB_AP/Ap_RadioMenu.c **** 			case 'm':
+ 335:../LIB_AP/Ap_RadioMenu.c **** 			case 'M':
+ 336:../LIB_AP/Ap_RadioMenu.c **** 				Ap_RadioMenu_ShowMenu();
+ 384              		.loc 1 336 0
+ 385 0124 C047     		blx	r8
+ 386              	.LVL15:
+ 193:../LIB_AP/Ap_RadioMenu.c ****     while( (key = Ap_RadioMenu_GetCmd()) != 0 )
+ 387              		.loc 1 193 0
+ 388 0126 A047     		blx	r4
+ 389              	.LVL16:
+ 390 0128 0346     		mov	r3, r0
+ 391 012a 0028     		cmp	r0, #0
+ 392 012c 7FF477AF 		bne	.L42
+ 393              	.L53:
+ 337:../LIB_AP/Ap_RadioMenu.c **** 				break;
+ 338:../LIB_AP/Ap_RadioMenu.c **** 				
+ 339:../LIB_AP/Ap_RadioMenu.c ****            default :
+ 340:../LIB_AP/Ap_RadioMenu.c ****                break;
+ 341:../LIB_AP/Ap_RadioMenu.c ****         }
+ 342:../LIB_AP/Ap_RadioMenu.c ****     }
+ 343:../LIB_AP/Ap_RadioMenu.c ****     
+ 344:../LIB_AP/Ap_RadioMenu.c ****     return key;
+ 345:../LIB_AP/Ap_RadioMenu.c **** }
+ 394              		.loc 1 345 0
+ 395 0130 03B0     		add	sp, sp, #12
+ 396 0132 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 397              	.L29:
+ 310:../LIB_AP/Ap_RadioMenu.c ****            		if( Ap_Radio_BandGet() == MODE_RADIO_BAND_FM )
+ 398              		.loc 1 310 0
+ 399 0136 B047     		blx	r6
+ 400              	.LVL17:
+ 401 0138 0128     		cmp	r0, #1
+ 402 013a 00F0A580 		beq	.L54
+ 321:../LIB_AP/Ap_RadioMenu.c **** 	        		Ret  = Ap_Radio_ChannelSet( AM_Freq[AM_Freq_Index] );
+ 403              		.loc 1 321 0
+ 404 013e DFF8F091 		ldr	r9, .L57+112
+ 405 0142 6349     		ldr	r1, .L57+16
+ 406 0144 B9F800A0 		ldrh	sl, [r9, #0]
+ 407 0148 37F81A00 		ldrh	r0, [r7, sl, lsl #1]
+ 408 014c 8847     		blx	r1
+ 322:../LIB_AP/Ap_RadioMenu.c **** 	           		Ret |= Ap_Radio_ChannelGet( &Channel );
+ 409              		.loc 1 322 0
+ 410 014e 614A     		ldr	r2, .L57+20
+ 321:../LIB_AP/Ap_RadioMenu.c **** 	        		Ret  = Ap_Radio_ChannelSet( AM_Freq[AM_Freq_Index] );
+ 411              		.loc 1 321 0
+ 412 0150 8246     		mov	sl, r0
+ 413              	.LVL18:
+ 322:../LIB_AP/Ap_RadioMenu.c **** 	           		Ret |= Ap_Radio_ChannelGet( &Channel );
+ 414              		.loc 1 322 0
+ 415 0152 01A8     		add	r0, sp, #4
+ 416              	.LVL19:
+ 417 0154 9047     		blx	r2
+ 418              	.LVL20:
+ 419 0156 40EA0A03 		orr	r3, r0, sl
+ 323:../LIB_AP/Ap_RadioMenu.c **** 					printf("Korea AM Freq : %d  Ret : %d\n", Channel, Ret );
+ 420              		.loc 1 323 0
+ 421 015a 9AB2     		uxth	r2, r3
+ 422 015c BDF80410 		ldrh	r1, [sp, #4]
+ 423 0160 5D48     		ldr	r0, .L57+24
+ 424              	.LVL21:
+ 425 0162 A847     		blx	r5
+ 325:../LIB_AP/Ap_RadioMenu.c **** 	           		if( AM_Freq_Index > 0 )
+ 426              		.loc 1 325 0
+ 427 0164 B9F80030 		ldrh	r3, [r9, #0]
+ 428 0168 002B     		cmp	r3, #0
+ 429 016a 3FF453AF 		beq	.L46
+ 430              	.L49:
+ 326:../LIB_AP/Ap_RadioMenu.c **** 	           			AM_Freq_Index--;
+ 431              		.loc 1 326 0
+ 432 016e 581E     		subs	r0, r3, #1
+ 433 0170 A9F80000 		strh	r0, [r9, #0]	@ movhi
+ 434 0174 4EE7     		b	.L46
+ 435              	.LVL22:
+ 436              	.L28:
+ 281:../LIB_AP/Ap_RadioMenu.c ****            		if( Ap_Radio_BandGet() == MODE_RADIO_BAND_FM )
+ 437              		.loc 1 281 0
+ 438 0176 B047     		blx	r6
+ 439              	.LVL23:
+ 440 0178 0128     		cmp	r0, #1
+ 441 017a 00F0DF80 		beq	.L55
+ 296:../LIB_AP/Ap_RadioMenu.c **** 	        		Ret  = Ap_Radio_ChannelSet( AM_Freq[AM_Freq_Index] );
+ 442              		.loc 1 296 0
+ 443 017e DFF8B091 		ldr	r9, .L57+112
+ 444 0182 534B     		ldr	r3, .L57+16
+ 445 0184 B9F800A0 		ldrh	sl, [r9, #0]
+ 446 0188 37F81A00 		ldrh	r0, [r7, sl, lsl #1]
+ 447 018c 9847     		blx	r3
+ 297:../LIB_AP/Ap_RadioMenu.c **** 	           		Ret |= Ap_Radio_ChannelGet( &Channel );
+ 448              		.loc 1 297 0
+ 449 018e 5149     		ldr	r1, .L57+20
+ 296:../LIB_AP/Ap_RadioMenu.c **** 	        		Ret  = Ap_Radio_ChannelSet( AM_Freq[AM_Freq_Index] );
+ 450              		.loc 1 296 0
+ 451 0190 8246     		mov	sl, r0
+ 452              	.LVL24:
+ 297:../LIB_AP/Ap_RadioMenu.c **** 	           		Ret |= Ap_Radio_ChannelGet( &Channel );
+ 453              		.loc 1 297 0
+ 454 0192 01A8     		add	r0, sp, #4
+ 455              	.LVL25:
+ 456 0194 8847     		blx	r1
+ 457              	.LVL26:
+ 458 0196 40EA0A02 		orr	r2, r0, sl
+ 298:../LIB_AP/Ap_RadioMenu.c **** 					printf("Korea AM Freq : %d  Ret : %d\n", Channel, Ret );				
+ 459              		.loc 1 298 0
+ 460 019a 92B2     		uxth	r2, r2
+ 461 019c 4E48     		ldr	r0, .L57+24
+ 462              	.LVL27:
+ 463 019e BDF80410 		ldrh	r1, [sp, #4]
+ 464 01a2 A847     		blx	r5
+ 300:../LIB_AP/Ap_RadioMenu.c **** 	           		AM_Freq_Index++;
+ 465              		.loc 1 300 0
+ 466 01a4 B9F80020 		ldrh	r2, [r9, #0]
+ 467 01a8 531C     		adds	r3, r2, #1
+ 468 01aa 1FFA83FC 		uxth	ip, r3
+ 302:../LIB_AP/Ap_RadioMenu.c **** 	           		if( AM_Freq[AM_Freq_Index] == 0 )
+ 469              		.loc 1 302 0
+ 470 01ae 37F81C00 		ldrh	r0, [r7, ip, lsl #1]
+ 300:../LIB_AP/Ap_RadioMenu.c **** 	           		AM_Freq_Index++;
+ 471              		.loc 1 300 0
+ 472 01b2 A9F800C0 		strh	ip, [r9, #0]	@ movhi
+ 302:../LIB_AP/Ap_RadioMenu.c **** 	           		if( AM_Freq[AM_Freq_Index] == 0 )
+ 473              		.loc 1 302 0
+ 474 01b6 0028     		cmp	r0, #0
+ 475 01b8 7FF42CAF 		bne	.L46
+ 304:../LIB_AP/Ap_RadioMenu.c **** 	           			AM_Freq_Index--;
+ 476              		.loc 1 304 0
+ 477 01bc A9F80020 		strh	r2, [r9, #0]	@ movhi
+ 478 01c0 28E7     		b	.L46
+ 479              	.LVL28:
+ 480              	.L27:
+ 277:../LIB_AP/Ap_RadioMenu.c ****                printf("Volume Down : %d \n", Ap_Radio_VolumeSetDown(10));               
+ 481              		.loc 1 277 0
+ 482 01c2 0A20     		movs	r0, #10
+ 483              	.LVL29:
+ 484 01c4 454A     		ldr	r2, .L57+28
+ 485 01c6 9047     		blx	r2
+ 486 01c8 0146     		mov	r1, r0
+ 487 01ca 4548     		ldr	r0, .L57+32
+ 488 01cc A847     		blx	r5
+ 278:../LIB_AP/Ap_RadioMenu.c ****                break;  
+ 489              		.loc 1 278 0
+ 490 01ce 21E7     		b	.L46
+ 491              	.LVL30:
+ 492              	.L26:
+ 273:../LIB_AP/Ap_RadioMenu.c ****                printf("Volume Up : %d \n", Ap_Radio_VolumeSetUp(10));               
+ 493              		.loc 1 273 0
+ 494 01d0 0A20     		movs	r0, #10
+ 495              	.LVL31:
+ 496 01d2 444B     		ldr	r3, .L57+36
+ 497 01d4 9847     		blx	r3
+ 498 01d6 0146     		mov	r1, r0
+ 499 01d8 4348     		ldr	r0, .L57+40
+ 500 01da A847     		blx	r5
+ 274:../LIB_AP/Ap_RadioMenu.c ****                break;  
+ 501              		.loc 1 274 0
+ 502 01dc 1AE7     		b	.L46
+ 503              	.LVL32:
+ 504              	.L25:
+ 251:../LIB_AP/Ap_RadioMenu.c **** 				Ret = Ap_Radio_SeekToFirst( &FreqValid );
+ 505              		.loc 1 251 0
+ 506 01de 0DF10700 		add	r0, sp, #7
+ 507              	.LVL33:
+ 508 01e2 424A     		ldr	r2, .L57+44
+ 509 01e4 9047     		blx	r2
+ 510              	.LVL34:
+ 253:../LIB_AP/Ap_RadioMenu.c **** 				if( Ret == ERR_NONE )
+ 511              		.loc 1 253 0
+ 512 01e6 0146     		mov	r1, r0
+ 513 01e8 68B9     		cbnz	r0, .L38
+ 514              	.L52:
+ 515              	.LVL35:
+ 255:../LIB_AP/Ap_RadioMenu.c **** 					if( FreqValid == 1 )
+ 516              		.loc 1 255 0
+ 517 01ea 9DF80700 		ldrb	r0, [sp, #7]	@ zero_extendqisi2
+ 518              	.LVL36:
+ 519 01ee 0128     		cmp	r0, #1
+ 520              	.LVL37:
+ 521 01f0 41D0     		beq	.L56
+ 262:../LIB_AP/Ap_RadioMenu.c **** 						printf("Not Found\n");
+ 522              		.loc 1 262 0
+ 523 01f2 3F48     		ldr	r0, .L57+48
+ 524              	.LVL38:
+ 525 01f4 A847     		blx	r5
+ 526 01f6 0DE7     		b	.L46
+ 527              	.LVL39:
+ 528              	.L24:
+ 229:../LIB_AP/Ap_RadioMenu.c **** 				Ret = Ap_Radio_SeekToLast( &FreqValid );
+ 529              		.loc 1 229 0
+ 530 01f8 0DF10700 		add	r0, sp, #7
+ 531              	.LVL40:
+ 532 01fc 3D4B     		ldr	r3, .L57+52
+ 533 01fe 9847     		blx	r3
+ 534              	.LVL41:
+ 231:../LIB_AP/Ap_RadioMenu.c **** 				if( Ret == ERR_NONE )
+ 535              		.loc 1 231 0
+ 536 0200 0146     		mov	r1, r0
+ 537 0202 0028     		cmp	r0, #0
+ 538 0204 F1D0     		beq	.L52
+ 539              	.L38:
+ 267:../LIB_AP/Ap_RadioMenu.c **** 					printf("ErrCode  Ret : %d\n", Ret );
+ 540              		.loc 1 267 0
+ 541 0206 3C48     		ldr	r0, .L57+56
+ 542              	.LVL42:
+ 543 0208 A847     		blx	r5
+ 544 020a 03E7     		b	.L46
+ 545              	.LVL43:
+ 546              	.L23:
+ 221:../LIB_AP/Ap_RadioMenu.c ****            		if( Ap_Radio_BandGet() == MODE_RADIO_BAND_FM )	ChannelGap = 10;
+ 547              		.loc 1 221 0
+ 548 020c B047     		blx	r6
+ 549              	.LVL44:
+ 223:../LIB_AP/Ap_RadioMenu.c ****            		Ret  = Ap_Radio_ChannelSetPrev( 10 );
+ 550              		.loc 1 223 0
+ 551 020e 3B4B     		ldr	r3, .L57+60
+ 552 0210 0A20     		movs	r0, #10
+ 553              	.L47:
+ 554 0212 9847     		blx	r3
+ 224:../LIB_AP/Ap_RadioMenu.c ****            		Ret |= Ap_Radio_ChannelGet( &Channel );
+ 555              		.loc 1 224 0
+ 556 0214 2F49     		ldr	r1, .L57+20
+ 223:../LIB_AP/Ap_RadioMenu.c ****            		Ret  = Ap_Radio_ChannelSetPrev( 10 );
+ 557              		.loc 1 223 0
+ 558 0216 8146     		mov	r9, r0
+ 559              	.LVL45:
+ 224:../LIB_AP/Ap_RadioMenu.c ****            		Ret |= Ap_Radio_ChannelGet( &Channel );
+ 560              		.loc 1 224 0
+ 561 0218 01A8     		add	r0, sp, #4
+ 562              	.LVL46:
+ 563 021a 8847     		blx	r1
+ 564              	.LVL47:
+ 565 021c 40EA0902 		orr	r2, r0, r9
+ 225:../LIB_AP/Ap_RadioMenu.c **** 				printf("Freq : %d  Ret : %d\n", Channel, Ret );
+ 566              		.loc 1 225 0
+ 567 0220 BDF80410 		ldrh	r1, [sp, #4]
+ 568 0224 3648     		ldr	r0, .L57+64
+ 569              	.LVL48:
+ 570 0226 92B2     		uxth	r2, r2
+ 571 0228 A847     		blx	r5
+ 226:../LIB_AP/Ap_RadioMenu.c ****                break; 
+ 572              		.loc 1 226 0
+ 573 022a F3E6     		b	.L46
+ 574              	.LVL49:
+ 575              	.L22:
+ 212:../LIB_AP/Ap_RadioMenu.c ****            		if( Ap_Radio_BandGet() == MODE_RADIO_BAND_FM )	ChannelGap = 10;
+ 576              		.loc 1 212 0
+ 577 022c B047     		blx	r6
+ 578              	.LVL50:
+ 214:../LIB_AP/Ap_RadioMenu.c ****            		Ret  = Ap_Radio_ChannelSetNext( ChannelGap );
+ 579              		.loc 1 214 0
+ 580 022e 354B     		ldr	r3, .L57+68
+ 581 0230 0128     		cmp	r0, #1
+ 582 0232 14BF     		ite	ne
+ 583 0234 0120     		movne	r0, #1
+ 584 0236 0A20     		moveq	r0, #10
+ 585              	.LVL51:
+ 586 0238 EBE7     		b	.L47
+ 587              	.LVL52:
+ 588              	.L21:
+ 198:../LIB_AP/Ap_RadioMenu.c ****            		if( Band_Mode == 0 )
+ 589              		.loc 1 198 0
+ 590 023a DFF8F890 		ldr	r9, .L57+116
+ 591 023e 99F80030 		ldrb	r3, [r9, #0]	@ zero_extendqisi2
+ 592 0242 83B9     		cbnz	r3, .L32
+ 200:../LIB_AP/Ap_RadioMenu.c ****                		printf("FM Config : %x \n", Ap_Radio_BandSetFM());     
+ 593              		.loc 1 200 0
+ 594 0244 3049     		ldr	r1, .L57+72
+ 595 0246 8847     		blx	r1
+ 596              	.LVL53:
+ 597 0248 0146     		mov	r1, r0
+ 598 024a 3048     		ldr	r0, .L57+76
+ 599 024c A847     		blx	r5
+ 201:../LIB_AP/Ap_RadioMenu.c ****                		Ap_Radio_ChannelSetFirst();      
+ 600              		.loc 1 201 0
+ 601 024e 3048     		ldr	r0, .L57+80
+ 602 0250 8047     		blx	r0
+ 603              	.L33:
+ 208:../LIB_AP/Ap_RadioMenu.c ****                	Band_Mode ^= 1;
+ 604              		.loc 1 208 0
+ 605 0252 99F800E0 		ldrb	lr, [r9, #0]	@ zero_extendqisi2
+ 606 0256 8EF0010C 		eor	ip, lr, #1
+ 607 025a 89F800C0 		strb	ip, [r9, #0]
+ 209:../LIB_AP/Ap_RadioMenu.c ****                	break;
+ 608              		.loc 1 209 0
+ 609 025e D9E6     		b	.L46
+ 610              	.LVL54:
+ 611              	.L20:
+ 331:../LIB_AP/Ap_RadioMenu.c ****                printf("No.0\n");
+ 612              		.loc 1 331 0
+ 613 0260 2C48     		ldr	r0, .L57+84
+ 614              	.LVL55:
+ 615 0262 A847     		blx	r5
+ 332:../LIB_AP/Ap_RadioMenu.c ****                break;
+ 616              		.loc 1 332 0
+ 617 0264 D6E6     		b	.L46
+ 618              	.LVL56:
+ 619              	.L32:
+ 205:../LIB_AP/Ap_RadioMenu.c ****                		printf("AM Config : %x \n", Ap_Radio_BandSetAM());           
+ 620              		.loc 1 205 0
+ 621 0266 2C4B     		ldr	r3, .L57+88
+ 622 0268 9847     		blx	r3
+ 623              	.LVL57:
+ 624 026a 0146     		mov	r1, r0
+ 625 026c 2B48     		ldr	r0, .L57+92
+ 626 026e A847     		blx	r5
+ 206:../LIB_AP/Ap_RadioMenu.c ****                		Ap_Radio_ChannelSetFirst();
+ 627              		.loc 1 206 0
+ 628 0270 274A     		ldr	r2, .L57+80
+ 629 0272 9047     		blx	r2
+ 630 0274 EDE7     		b	.L33
+ 631              	.LVL58:
+ 632              	.L56:
+ 257:../LIB_AP/Ap_RadioMenu.c ****            				Ret = Ap_Radio_ChannelGet( &Channel );
+ 633              		.loc 1 257 0
+ 634 0276 01A8     		add	r0, sp, #4
+ 635              	.LVL59:
+ 636 0278 1649     		ldr	r1, .L57+20
+ 637 027a 8847     		blx	r1
+ 258:../LIB_AP/Ap_RadioMenu.c **** 						printf("Found Freq : %d  Ret : %d\n", Channel, Ret );
+ 638              		.loc 1 258 0
+ 639 027c BDF80410 		ldrh	r1, [sp, #4]
+ 257:../LIB_AP/Ap_RadioMenu.c ****            				Ret = Ap_Radio_ChannelGet( &Channel );
+ 640              		.loc 1 257 0
+ 641 0280 0246     		mov	r2, r0
+ 642              	.LVL60:
+ 258:../LIB_AP/Ap_RadioMenu.c **** 						printf("Found Freq : %d  Ret : %d\n", Channel, Ret );
+ 643              		.loc 1 258 0
+ 644 0282 2748     		ldr	r0, .L57+96
+ 645              	.LVL61:
+ 646 0284 A847     		blx	r5
+ 647              	.LVL62:
+ 648 0286 C5E6     		b	.L46
+ 649              	.L54:
+ 312:../LIB_AP/Ap_RadioMenu.c **** 	        		Ret  = Ap_Radio_ChannelSet( FM_Freq[FM_Freq_Index] );
+ 650              		.loc 1 312 0
+ 651 0288 DFF8AC90 		ldr	r9, .L57+120
+ 652 028c 2548     		ldr	r0, .L57+100
+ 653 028e B9F800E0 		ldrh	lr, [r9, #0]
+ 654 0292 0F49     		ldr	r1, .L57+16
+ 655 0294 30F81E00 		ldrh	r0, [r0, lr, lsl #1]
+ 656 0298 8847     		blx	r1
+ 313:../LIB_AP/Ap_RadioMenu.c **** 	           		Ret |= Ap_Radio_ChannelGet( &Channel );
+ 657              		.loc 1 313 0
+ 658 029a 0E4A     		ldr	r2, .L57+20
+ 312:../LIB_AP/Ap_RadioMenu.c **** 	        		Ret  = Ap_Radio_ChannelSet( FM_Freq[FM_Freq_Index] );
+ 659              		.loc 1 312 0
+ 660 029c 8246     		mov	sl, r0
+ 661              	.LVL63:
+ 313:../LIB_AP/Ap_RadioMenu.c **** 	           		Ret |= Ap_Radio_ChannelGet( &Channel );
+ 662              		.loc 1 313 0
+ 663 029e 01A8     		add	r0, sp, #4
+ 664              	.LVL64:
+ 665 02a0 9047     		blx	r2
+ 666              	.LVL65:
+ 667 02a2 40EA0A0C 		orr	ip, r0, sl
+ 314:../LIB_AP/Ap_RadioMenu.c **** 					printf("Korea FM Freq : %d  Ret : %d\n", Channel, Ret );
+ 668              		.loc 1 314 0
+ 669 02a6 BDF80410 		ldrh	r1, [sp, #4]
+ 670 02aa 1F48     		ldr	r0, .L57+104
+ 671              	.LVL66:
+ 672 02ac 1FFA8CF2 		uxth	r2, ip
+ 673 02b0 A847     		blx	r5
+ 316:../LIB_AP/Ap_RadioMenu.c **** 	           		if( FM_Freq_Index > 0 )
+ 674              		.loc 1 316 0
+ 675 02b2 B9F80030 		ldrh	r3, [r9, #0]
+ 676 02b6 002B     		cmp	r3, #0
+ 677 02b8 3FF4ACAE 		beq	.L46
+ 678 02bc 57E7     		b	.L49
+ 679              	.L58:
+ 680 02be 00BF     		.align	2
+ 681              	.L57:
+ 682 02c0 00000000 		.word	Ap_RadioMenu_GetCmd
+ 683 02c4 00000000 		.word	printf
+ 684 02c8 00000000 		.word	Ap_Radio_BandGet
+ 685 02cc 00000000 		.word	.LANCHOR3
+ 686 02d0 00000000 		.word	Ap_Radio_ChannelSet
+ 687 02d4 00000000 		.word	Ap_Radio_ChannelGet
+ 688 02d8 D8030000 		.word	.LC27
+ 689 02dc 00000000 		.word	Ap_Radio_VolumeSetDown
+ 690 02e0 A4030000 		.word	.LC25
+ 691 02e4 00000000 		.word	Ap_Radio_VolumeSetUp
+ 692 02e8 90030000 		.word	.LC24
+ 693 02ec 00000000 		.word	Ap_Radio_SeekToFirst
+ 694 02f0 70030000 		.word	.LC22
+ 695 02f4 00000000 		.word	Ap_Radio_SeekToLast
+ 696 02f8 7C030000 		.word	.LC23
+ 697 02fc 00000000 		.word	Ap_Radio_ChannelSetPrev
+ 698 0300 3C030000 		.word	.LC20
+ 699 0304 00000000 		.word	Ap_Radio_ChannelSetNext
+ 700 0308 00000000 		.word	Ap_Radio_BandSetFM
+ 701 030c 14030000 		.word	.LC18
+ 702 0310 00000000 		.word	Ap_Radio_ChannelSetFirst
+ 703 0314 F8030000 		.word	.LC28
+ 704 0318 00000000 		.word	Ap_Radio_BandSetAM
+ 705 031c 28030000 		.word	.LC19
+ 706 0320 54030000 		.word	.LC21
+ 707 0324 00000000 		.word	.LANCHOR1
+ 708 0328 B8030000 		.word	.LC26
+ 709 032c 00000000 		.word	Ap_RadioMenu_ShowMenu
+ 710 0330 00000000 		.word	.LANCHOR4
+ 711 0334 00000000 		.word	.LANCHOR0
+ 712 0338 00000000 		.word	.LANCHOR2
+ 713              	.L55:
+ 283:../LIB_AP/Ap_RadioMenu.c **** 	        		Ret  = Ap_Radio_ChannelSet( FM_Freq[FM_Freq_Index] );
+ 714              		.loc 1 283 0
+ 715 033c DFF85090 		ldr	r9, .L59+12
+ 716 0340 DFF850A0 		ldr	sl, .L59+16
+ 717 0344 B9F800B0 		ldrh	fp, [r9, #0]
+ 718 0348 0E49     		ldr	r1, .L59
+ 719 034a 3AF81B00 		ldrh	r0, [sl, fp, lsl #1]
+ 720 034e 8847     		blx	r1
+ 284:../LIB_AP/Ap_RadioMenu.c **** 	           		Ret |= Ap_Radio_ChannelGet( &Channel );
+ 721              		.loc 1 284 0
+ 722 0350 0D4A     		ldr	r2, .L59+4
+ 283:../LIB_AP/Ap_RadioMenu.c **** 	        		Ret  = Ap_Radio_ChannelSet( FM_Freq[FM_Freq_Index] );
+ 723              		.loc 1 283 0
+ 724 0352 8346     		mov	fp, r0
+ 725              	.LVL67:
+ 284:../LIB_AP/Ap_RadioMenu.c **** 	           		Ret |= Ap_Radio_ChannelGet( &Channel );
+ 726              		.loc 1 284 0
+ 727 0354 01A8     		add	r0, sp, #4
+ 728              	.LVL68:
+ 729 0356 9047     		blx	r2
+ 730              	.LVL69:
+ 731 0358 40EA0B03 		orr	r3, r0, fp
+ 285:../LIB_AP/Ap_RadioMenu.c **** 					printf("Korea FM Freq : %d  Ret : %d\n", Channel, Ret );				
+ 732              		.loc 1 285 0
+ 733 035c BDF80410 		ldrh	r1, [sp, #4]
+ 734 0360 0A48     		ldr	r0, .L59+8
+ 735              	.LVL70:
+ 736 0362 9AB2     		uxth	r2, r3
+ 737 0364 A847     		blx	r5
+ 287:../LIB_AP/Ap_RadioMenu.c **** 	           		FM_Freq_Index++;
+ 738              		.loc 1 287 0
+ 739 0366 B9F80020 		ldrh	r2, [r9, #0]
+ 740 036a 511C     		adds	r1, r2, #1
+ 741 036c 1FFA81FC 		uxth	ip, r1
+ 289:../LIB_AP/Ap_RadioMenu.c **** 	           		if( FM_Freq[FM_Freq_Index] == 0 )
+ 742              		.loc 1 289 0
+ 743 0370 3AF81C00 		ldrh	r0, [sl, ip, lsl #1]
+ 287:../LIB_AP/Ap_RadioMenu.c **** 	           		FM_Freq_Index++;
+ 744              		.loc 1 287 0
+ 745 0374 A9F800C0 		strh	ip, [r9, #0]	@ movhi
+ 289:../LIB_AP/Ap_RadioMenu.c **** 	           		if( FM_Freq[FM_Freq_Index] == 0 )
+ 746              		.loc 1 289 0
+ 747 0378 0028     		cmp	r0, #0
+ 748 037a 7FF44BAE 		bne	.L46
+ 304:../LIB_AP/Ap_RadioMenu.c **** 	           			AM_Freq_Index--;
+ 749              		.loc 1 304 0
+ 750 037e A9F80020 		strh	r2, [r9, #0]	@ movhi
+ 751 0382 47E6     		b	.L46
+ 752              	.L60:
+ 753              		.align	2
+ 754              	.L59:
+ 755 0384 00000000 		.word	Ap_Radio_ChannelSet
+ 756 0388 00000000 		.word	Ap_Radio_ChannelGet
+ 757 038c B8030000 		.word	.LC26
+ 758 0390 00000000 		.word	.LANCHOR2
+ 759 0394 00000000 		.word	.LANCHOR1
+ 760              		.cfi_endproc
+ 761              	.LFE3:
+ 763              		.section	.rodata.FM_Freq.4173,"a",%progbits
+ 764              		.align	2
+ 765              		.set	.LANCHOR1,. + 0
+ 768              	FM_Freq.4173:
+ 769 0000 4722     		.short	8775
+ 770 0002 CE22     		.short	8910
+ 771 0004 0A23     		.short	8970
+ 772 0006 6E23     		.short	9070
+ 773 0008 E623     		.short	9190
+ 774 000a 5E24     		.short	9310
+ 775 000c AE24     		.short	9390
+ 776 000e EA24     		.short	9450
+ 777 0010 2625     		.short	9510
+ 778 0012 7625     		.short	9590
+ 779 0014 C625     		.short	9670
+ 780 0016 0226     		.short	9730
+ 781 0018 5226     		.short	9810
+ 782 001a B626     		.short	9910
+ 783 001c 0627     		.short	9990
+ 784 001e 4227     		.short	10050
+ 785 0020 9227     		.short	10130
+ 786 0022 CE27     		.short	10190
+ 787 0024 1E28     		.short	10270
+ 788 0026 6E28     		.short	10350
+ 789 0028 D228     		.short	10450
+ 790 002a FA28     		.short	10490
+ 791 002c 2229     		.short	10530
+ 792 002e 7229     		.short	10610
+ 793 0030 C229     		.short	10690
+ 794 0032 122A     		.short	10770
+ 795 0034 0000     		.short	0
+ 796 0036 0000     		.section	.bss.AM_Freq_Index.4174,"aw",%nobits
+ 797              		.align	1
+ 798              		.set	.LANCHOR4,. + 0
+ 801              	AM_Freq_Index.4174:
+ 802 0000 0000     		.space	2
+ 803              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 804              		.align	2
+ 805              	.LC0:
+ 806 0000 54696D65 		.ascii	"Timer Tick\012\000"
+ 806      72205469 
+ 806      636B0A00 
+ 807              	.LC1:
+ 808 000c 0A0A00   		.ascii	"\012\012\000"
+ 809 000f 00       		.space	1
+ 810              	.LC2:
+ 811 0010 2A2A2A2A 		.ascii	"***************************************************"
+ 811      2A2A2A2A 
+ 811      2A2A2A2A 
+ 811      2A2A2A2A 
+ 811      2A2A2A2A 
+ 812 0043 2A2A2A2A 		.ascii	"****\012\000"
+ 812      0A00
+ 813 0049 000000   		.space	3
+ 814              	.LC3:
+ 815 004c 20202020 		.ascii	"                      Radio V0.3                   "
+ 815      20202020 
+ 815      20202020 
+ 815      20202020 
+ 815      20202020 
+ 816 007f 20202020 		.ascii	"    \012\000"
+ 816      0A00
+ 817 0085 000000   		.space	3
+ 818              	.LC4:
+ 819 0088 2A20312E 		.ascii	"* 1.  Band Select                                  "
+ 819      20204261 
+ 819      6E642053 
+ 819      656C6563 
+ 819      74202020 
+ 820 00bb 2020202A 		.ascii	"   *\012\000"
+ 820      0A00
+ 821 00c1 000000   		.space	3
+ 822              	.LC5:
+ 823 00c4 2A20322E 		.ascii	"* 2.  CH ++                                        "
+ 823      20204348 
+ 823      202B2B20 
+ 823      20202020 
+ 823      20202020 
+ 824 00f7 2020202A 		.ascii	"   *\012\000"
+ 824      0A00
+ 825 00fd 000000   		.space	3
+ 826              	.LC6:
+ 827 0100 2A20332E 		.ascii	"* 3.  CH --                                        "
+ 827      20204348 
+ 827      202D2D20 
+ 827      20202020 
+ 827      20202020 
+ 828 0133 2020202A 		.ascii	"   *\012\000"
+ 828      0A00
+ 829 0139 000000   		.space	3
+ 830              	.LC7:
+ 831 013c 2A20342E 		.ascii	"* 4.  Seek +                                       "
+ 831      20205365 
+ 831      656B202B 
+ 831      20202020 
+ 831      20202020 
+ 832 016f 2020202A 		.ascii	"   *\012\000"
+ 832      0A00
+ 833 0175 000000   		.space	3
+ 834              	.LC8:
+ 835 0178 2A20352E 		.ascii	"* 5.  Seek -                                       "
+ 835      20205365 
+ 835      656B202D 
+ 835      20202020 
+ 835      20202020 
+ 836 01ab 2020202A 		.ascii	"   *\012\000"
+ 836      0A00
+ 837 01b1 000000   		.space	3
+ 838              	.LC9:
+ 839 01b4 2A20362E 		.ascii	"* 6.  Volume +                                     "
+ 839      2020566F 
+ 839      6C756D65 
+ 839      202B2020 
+ 839      20202020 
+ 840 01e7 2020202A 		.ascii	"   *\012\000"
+ 840      0A00
+ 841 01ed 000000   		.space	3
+ 842              	.LC10:
+ 843 01f0 2A20372E 		.ascii	"* 7.  Volume -                                     "
+ 843      2020566F 
+ 843      6C756D65 
+ 843      202D2020 
+ 843      20202020 
+ 844 0223 2020202A 		.ascii	"   *\012\000"
+ 844      0A00
+ 845 0229 000000   		.space	3
+ 846              	.LC11:
+ 847 022c 2A20382E 		.ascii	"* 8.  Korea Ch ++                                  "
+ 847      20204B6F 
+ 847      72656120 
+ 847      4368202B 
+ 847      2B202020 
+ 848 025f 2020202A 		.ascii	"   *\012\000"
+ 848      0A00
+ 849 0265 000000   		.space	3
+ 850              	.LC12:
+ 851 0268 2A20392E 		.ascii	"* 9.  Korea Ch --                                  "
+ 851      20204B6F 
+ 851      72656120 
+ 851      4368202D 
+ 851      2D202020 
+ 852 029b 2020202A 		.ascii	"   *\012\000"
+ 852      0A00
+ 853 02a1 000000   		.space	3
+ 854              	.LC13:
+ 855 02a4 2A206D2E 		.ascii	"* m.  Menu                                         "
+ 855      20204D65 
+ 855      6E752020 
+ 855      20202020 
+ 855      20202020 
+ 856 02d7 2020202A 		.ascii	"   *\012\000"
+ 856      0A00
+ 857 02dd 000000   		.space	3
+ 858              	.LC14:
+ 859 02e0 0A00     		.ascii	"\012\000"
+ 860 02e2 0000     		.space	2
+ 861              	.LC15:
+ 862 02e4 464D2025 		.ascii	"FM %d %d%% : \000"
+ 862      64202564 
+ 862      2525203A 
+ 862      2000
+ 863 02f2 0000     		.space	2
+ 864              	.LC16:
+ 865 02f4 414D2025 		.ascii	"AM %d %d%% : \000"
+ 865      64202564 
+ 865      2525203A 
+ 865      2000
+ 866 0302 0000     		.space	2
+ 867              	.LC17:
+ 868 0304 42414E44 		.ascii	"BAND ERROR : \000"
+ 868      20455252 
+ 868      4F52203A 
+ 868      2000
+ 869 0312 0000     		.space	2
+ 870              	.LC18:
+ 871 0314 464D2043 		.ascii	"FM Config : %x \012\000"
+ 871      6F6E6669 
+ 871      67203A20 
+ 871      2578200A 
+ 871      00
+ 872 0325 000000   		.space	3
+ 873              	.LC19:
+ 874 0328 414D2043 		.ascii	"AM Config : %x \012\000"
+ 874      6F6E6669 
+ 874      67203A20 
+ 874      2578200A 
+ 874      00
+ 875 0339 000000   		.space	3
+ 876              	.LC20:
+ 877 033c 46726571 		.ascii	"Freq : %d  Ret : %d\012\000"
+ 877      203A2025 
+ 877      64202052 
+ 877      6574203A 
+ 877      2025640A 
+ 878 0351 000000   		.space	3
+ 879              	.LC21:
+ 880 0354 466F756E 		.ascii	"Found Freq : %d  Ret : %d\012\000"
+ 880      64204672 
+ 880      6571203A 
+ 880      20256420 
+ 880      20526574 
+ 881 036f 00       		.space	1
+ 882              	.LC22:
+ 883 0370 4E6F7420 		.ascii	"Not Found\012\000"
+ 883      466F756E 
+ 883      640A00
+ 884 037b 00       		.space	1
+ 885              	.LC23:
+ 886 037c 45727243 		.ascii	"ErrCode  Ret : %d\012\000"
+ 886      6F646520 
+ 886      20526574 
+ 886      203A2025 
+ 886      640A00
+ 887 038f 00       		.space	1
+ 888              	.LC24:
+ 889 0390 566F6C75 		.ascii	"Volume Up : %d \012\000"
+ 889      6D652055 
+ 889      70203A20 
+ 889      2564200A 
+ 889      00
+ 890 03a1 000000   		.space	3
+ 891              	.LC25:
+ 892 03a4 566F6C75 		.ascii	"Volume Down : %d \012\000"
+ 892      6D652044 
+ 892      6F776E20 
+ 892      3A202564 
+ 892      200A00
+ 893 03b7 00       		.space	1
+ 894              	.LC26:
+ 895 03b8 4B6F7265 		.ascii	"Korea FM Freq : %d  Ret : %d\012\000"
+ 895      6120464D 
+ 895      20467265 
+ 895      71203A20 
+ 895      25642020 
+ 896 03d6 0000     		.space	2
+ 897              	.LC27:
+ 898 03d8 4B6F7265 		.ascii	"Korea AM Freq : %d  Ret : %d\012\000"
+ 898      6120414D 
+ 898      20467265 
+ 898      71203A20 
+ 898      25642020 
+ 899 03f6 0000     		.space	2
+ 900              	.LC28:
+ 901 03f8 4E6F2E30 		.ascii	"No.0\012\000"
+ 901      0A00
+ 902 03fe 0000     		.section	.bss.FM_Freq_Index.4172,"aw",%nobits
+ 903              		.align	1
+ 904              		.set	.LANCHOR2,. + 0
+ 907              	FM_Freq_Index.4172:
+ 908 0000 0000     		.space	2
+ 909              		.section	.bss.Band_Mode.4171,"aw",%nobits
+ 910              		.set	.LANCHOR0,. + 0
+ 913              	Band_Mode.4171:
+ 914 0000 00       		.space	1
+ 915              		.section	.rodata.AM_Freq.4175,"a",%progbits
+ 916              		.align	2
+ 917              		.set	.LANCHOR3,. + 0
+ 920              	AM_Freq.4175:
+ 921 0000 5B02     		.short	603
+ 922 0002 7F02     		.short	639
+ 923 0004 C702     		.short	711
+ 924 0006 1803     		.short	792
+ 925 0008 4503     		.short	837
+ 926 000a 8403     		.short	900
+ 927 000c CC03     		.short	972
+ 928 000e 6E04     		.short	1134
+ 929 0010 A404     		.short	1188
+ 930 0012 0000     		.short	0
+ 931              		.text
+ 932              	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 Ap_RadioMenu.c
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:24     .text.TimerDebug_Tick:00000000 $t
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:29     .text.TimerDebug_Tick:00000000 TimerDebug_Tick
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:50     .text.TimerDebug_Tick:0000000c $d
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:56     .text.Ap_RadioMenu_ShowMenu:00000000 $t
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:61     .text.Ap_RadioMenu_ShowMenu:00000000 Ap_RadioMenu_ShowMenu
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:130    .text.Ap_RadioMenu_ShowMenu:00000048 $d
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:149    .text.Ap_RadioMenu_GetCmd:00000000 $t
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:154    .text.Ap_RadioMenu_GetCmd:00000000 Ap_RadioMenu_GetCmd
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:253    .text.Ap_RadioMenu_GetCmd:0000007c $d
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:266    .text.Ap_RadioMenu_ExeCmd:00000000 $t
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:271    .text.Ap_RadioMenu_ExeCmd:00000000 Ap_RadioMenu_ExeCmd
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:321    .text.Ap_RadioMenu_ExeCmd:0000002c $d
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:385    .text.Ap_RadioMenu_ExeCmd:00000124 $t
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:682    .text.Ap_RadioMenu_ExeCmd:000002c0 $d
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:715    .text.Ap_RadioMenu_ExeCmd:0000033c $t
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:755    .text.Ap_RadioMenu_ExeCmd:00000384 $d
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:764    .rodata.FM_Freq.4173:00000000 $d
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:768    .rodata.FM_Freq.4173:00000000 FM_Freq.4173
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:797    .bss.AM_Freq_Index.4174:00000000 $d
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:801    .bss.AM_Freq_Index.4174:00000000 AM_Freq_Index.4174
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:804    .rodata.str1.4:00000000 $d
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:903    .bss.FM_Freq_Index.4172:00000000 $d
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:907    .bss.FM_Freq_Index.4172:00000000 FM_Freq_Index.4172
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:913    .bss.Band_Mode.4171:00000000 Band_Mode.4171
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:914    .bss.Band_Mode.4171:00000000 $d
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:916    .rodata.AM_Freq.4175:00000000 $d
+C:\Users\CHOHAN~1\AppData\Local\Temp\cc2lYSYM.s:920    .rodata.AM_Freq.4175:00000000 AM_Freq.4175
+                     .debug_frame:00000010 $d
+
+UNDEFINED SYMBOLS
+printf
+Ap_Radio_BandGet
+get_byte
+Ap_Radio_VolumeGet
+Ap_Radio_ChannelGet
+Ap_Radio_ChannelSet
+Ap_Radio_VolumeSetDown
+Ap_Radio_VolumeSetUp
+Ap_Radio_SeekToFirst
+Ap_Radio_SeekToLast
+Ap_Radio_ChannelSetPrev
+Ap_Radio_ChannelSetNext
+Ap_Radio_BandSetFM
+Ap_Radio_ChannelSetFirst
+Ap_Radio_BandSetAM
