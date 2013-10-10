@@ -71,7 +71,7 @@ void Ap_EduMenu_ShowMenu(void)
 
 	Lb_printf("\n\n");
 	Lb_printf("*******************************************************\n");
-	Lb_printf("                      Edu V0.3                         \n");
+	Lb_printf("                      Edu V0.4                         \n");
 	Lb_printf("*******************************************************\n");
 	Lb_printf("* 1. LED Test                                         *\n");
 	Lb_printf("* 2. KeyPad Test                                      *\n");
