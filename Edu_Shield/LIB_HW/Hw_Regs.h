@@ -57,7 +57,7 @@
 
 
 
-//-- USART
+//-- USART1
 //
 #define REG_USART1_BASE					0x40013800
 #define REG_USART1_SR					(*(volatile unsigned long *)(REG_USART1_BASE + 0x0000))
@@ -67,6 +67,19 @@
 #define REG_USART1_CR2					(*(volatile unsigned long *)(REG_USART1_BASE + 0x0010))
 #define REG_USART1_CR3					(*(volatile unsigned long *)(REG_USART1_BASE + 0x0014))
 #define REG_USART1_GTPR					(*(volatile unsigned long *)(REG_USART1_BASE + 0x0018))
+
+
+
+//-- USART2
+//
+#define REG_USART2_BASE					0x40004400
+#define REG_USART2_SR					(*(volatile unsigned long *)(REG_USART2_BASE + 0x0000))
+#define REG_USART2_DR					(*(volatile unsigned long *)(REG_USART2_BASE + 0x0004))
+#define REG_USART2_BRR					(*(volatile unsigned long *)(REG_USART2_BASE + 0x0008))
+#define REG_USART2_CR1					(*(volatile unsigned long *)(REG_USART2_BASE + 0x000C))
+#define REG_USART2_CR2					(*(volatile unsigned long *)(REG_USART2_BASE + 0x0010))
+#define REG_USART2_CR3					(*(volatile unsigned long *)(REG_USART2_BASE + 0x0014))
+#define REG_USART2_GTPR					(*(volatile unsigned long *)(REG_USART2_BASE + 0x0018))
 
 
 

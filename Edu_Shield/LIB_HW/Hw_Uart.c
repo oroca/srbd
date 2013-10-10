@@ -40,6 +40,7 @@ HW_UART_OBJ Hw_Uart_Ch[HW_UART_MAX_CH];
 //-- 내부 함수
 //
 void Hw_Uart_Open_COM1( u32 BaudData, void (*ISR_FuncPtr)(char Ch) );
+void Hw_Uart_Open_COM2( u32 BaudData, void (*ISR_FuncPtr)(char Ch) );
 
 
 
@@ -53,8 +54,30 @@ void Hw_ISR_UART1_Handler(void)
 	UartData = REG_USART1_DR;
 	
 	Hw_Uart_Q_Push( 0, &UartData );
+
+	if( Hw_Uart_Ch[HW_UART_COM1].ISR_FuncPtr != NULL )
+	{
+		(*Hw_Uart_Ch[HW_UART_COM1].ISR_FuncPtr)(UartData);	
+	} 
 }
 
+
+//-- UART2 ISR
+//
+void Hw_ISR_UART2_Handler(void)
+{
+	u8 UartData;
+				
+	UartData = REG_USART2_DR;
+	
+
+	Hw_Uart_Q_Push( 1, &UartData );
+
+	if( Hw_Uart_Ch[HW_UART_COM2].ISR_FuncPtr != NULL )
+	{
+		(*Hw_Uart_Ch[HW_UART_COM2].ISR_FuncPtr)(UartData);	
+	} 
+}
 
 
 
@@ -79,6 +102,7 @@ void Hw_Uart_Init( void )
 	
 	
 	Hw_Uart_Open( HW_UART_COM1, 115200, NULL );
+	Hw_Uart_Open( HW_UART_COM2, 115200, NULL );	
 }
 
 
@@ -100,6 +124,7 @@ void Hw_Uart_Open( u8 Ch, u32 BaudData, void (*ISR_FuncPtr)(char Ch) )
 			break;
 			
 		case HW_UART_COM2:
+			Hw_Uart_Open_COM2( BaudData, ISR_FuncPtr );
 			break;
 			
 		case HW_UART_COM3:
@@ -172,6 +197,86 @@ void Hw_Uart_Open_COM1( u32 BaudData, void (*ISR_FuncPtr)(char Ch) )
 
 
 /*---------------------------------------------------------------------------
+     TITLE   : Hw_Uart_Open_COM2
+     WORK    :
+     ARG     : void
+     RET     : void
+---------------------------------------------------------------------------*/
+void Hw_Uart_Open_COM2( u32 BaudData, void (*ISR_FuncPtr)(char Ch) )
+{	
+
+	Hw_Uart_Ch[HW_UART_COM2].Baud 		 = BaudData;
+	Hw_Uart_Ch[HW_UART_COM2].ISR_FuncPtr = ISR_FuncPtr;
+	
+	
+	//-- Clock Enable
+	//
+	SET_BIT( REG_RCC_APB1ENR, 17 );		// USART2 Clock Enable	PCLK2 = 72Mhz
+	
+	
+	//-- I/O Port 설정
+	//
+	
+	// PA2 - TX
+	REG_GPIOA_CRL &= ~(0x0F << ( 8));	// Clear
+	REG_GPIOA_CRL |=  (0x03 << ( 8));	// MODE   - Output mode, max speed 50Mhz
+	REG_GPIOA_CRL |=  (0x02 << (10));	// CNF    - Alternate function output Push-pull
+										     	    	
+	// PA3 - RX
+	REG_GPIOA_CRL &= ~(0x0F << (12));	// Clear
+	REG_GPIOA_CRL |=  (0x00 << (12));	// MODE   - Input mode
+	REG_GPIOA_CRL |=  (0x01 << (14));	// CNF    - Floating input	
+	
+
+	//-- USART2 설정
+	//	
+	REG_USART2_CR1  = 0 
+					| ( 0 << 12 )		// 1 Start bit, 8 Data bits, n Stop bit
+					| ( 0 << 10 )		// Parity control disabled
+					| ( 1 <<  3 )		// Transmitter Enable
+					| ( 1 <<  2 );		// Receiver Enable					
+	REG_USART2_CR2  = ( 0 << 12 );		// 1 stop bit	
+	REG_USART2_CR3  = 0;
+	
+	
+	//-- 115200bps로 통신 속도 설정
+	//
+	REG_USART2_BRR  = 0
+					| ( 19 << 4 )		// DIV_Mantissa
+					| (  8 << 0 );		// DIV Fraction
+	
+
+	//-- 인터럽트 설정
+	//
+	SET_BIT( REG_NVIC_ISER( 38/32 ), 38%32 );	// NVIC 37번 USART1 인터럽트 활성화
+	SET_BIT( REG_USART2_CR1, 5 );				// RX 인터럽트 활성화
+	
+	Hw_ISR_SetIRQFunc( 38, (u32)Hw_ISR_UART2_Handler, 0 );
+	
+	REG_USART2_CR1 |= ( 1 << 13 );	    // USART Enable
+}
+
+
+
+
+
+/*---------------------------------------------------------------------------
+     TITLE	: Hw_Uart_SetReceiveFuncISR
+     WORK
+			: 시리얼 포트에서 데이터 수신시 실행할 함수 설정 .
+     ARG
+     RET
+---------------------------------------------------------------------------*/
+void Hw_Uart_SetReceiveFuncISR( u8 Ch, void (*ISR_FuncPtr)(char Ch) )
+{
+	Hw_Uart_Ch[Ch].ISR_FuncPtr = ISR_FuncPtr;	
+}
+
+
+
+
+
+/*---------------------------------------------------------------------------
      TITLE	: Uart_Getch
      WORK
 			: 시리얼 포트에서 문자 1바이트 읽는다.
@@ -206,9 +311,27 @@ u8 Hw_Uart_Getch( u8 Ch )
 ---------------------------------------------------------------------------*/
 void Hw_Uart_Putch( u8 Ch,  char Uart_PutData )
 {
-    while( !(REG_USART1_SR & 0x80) );
-    
-    REG_USART1_DR = Uart_PutData;
+	switch( Ch )
+	{
+		case HW_UART_COM1:
+		    while( !(REG_USART1_SR & 0x80) );
+    		REG_USART1_DR = Uart_PutData;
+			break;
+			
+		case HW_UART_COM2:
+		    while( !(REG_USART2_SR & 0x80) );
+    		REG_USART2_DR = Uart_PutData;
+			break;
+			
+		case HW_UART_COM3:
+			break;
+
+		case HW_UART_COM4:
+			break;
+
+		case HW_UART_COM5:
+			break;			
+	}	
 }
 
 
@@ -296,7 +419,7 @@ void print_byte(unsigned int c)
     
     Hw_VCom_Putch(c);
 #else	
-	if (c == '\n') Hw_Uart_Putch(HW_UART_COM1, '\r');
+	if (c == '\n') Hw_Uart_Putch(HW_USE_UART_CH_MENU, '\r');
     
     Hw_Uart_Putch(HW_UART_COM1, c);
 #endif    
@@ -310,7 +433,7 @@ char get_byte(void)
 #if HW_USE_USB_VCOM == 1	
 	Ch = Hw_VCom_Getch();
 #else	
-	Ch = Hw_Uart_Getch(HW_UART_COM1);
+	Ch = Hw_Uart_Getch(HW_USE_UART_CH_MENU);
 #endif
 	
 	return Ch;

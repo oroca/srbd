@@ -21,6 +21,18 @@
 
 
 
+#define  HW_UART_COM1   0
+#define  HW_UART_COM2   1
+#define  HW_UART_COM3   2
+#define  HW_UART_COM4   3
+#define  HW_UART_COM5   4
+
+
+#define HW_UART_MAX_CH  5
+
+
+
+
 #include "Hw.h"
 
 
@@ -31,15 +43,6 @@
 #define  EXT_HW_UART_DEF     extern
 #endif
 
-
-#define  HW_UART_COM1   0
-#define  HW_UART_COM2   1
-#define  HW_UART_COM3   2
-#define  HW_UART_COM4   3
-#define  HW_UART_COM5   4
-
-
-#define HW_UART_MAX_CH  5
 
 
 
@@ -61,6 +64,7 @@ EXT_HW_UART_DEF u8   Hw_Uart_Getch( u8 Ch );
 EXT_HW_UART_DEF void Hw_Uart_Putch( u8 Ch,  char Uart_PutData );
 EXT_HW_UART_DEF void Hw_Uart_Print( u8 Ch, char *UartPrintData, ... );
 EXT_HW_UART_DEF u8   Hw_Uart_GetchNoWait( u8 Ch, u8 *cReturn );
+EXT_HW_UART_DEF void Hw_Uart_SetReceiveFuncISR( u8 Ch, void (*ISR_FuncPtr)(char Ch) );
 
 EXT_HW_UART_DEF char get_byte(void);                                            
 

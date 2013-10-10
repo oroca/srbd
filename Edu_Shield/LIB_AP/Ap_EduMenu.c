@@ -71,13 +71,13 @@ void Ap_EduMenu_ShowMenu(void)
 
 	Lb_printf("\n\n");
 	Lb_printf("*******************************************************\n");
-	Lb_printf("                      Edu V0.4                         \n");
+	Lb_printf("                      Edu V0.5                         \n");
 	Lb_printf("*******************************************************\n");
 	Lb_printf("* 1. LED Test                                         *\n");
 	Lb_printf("* 2. KeyPad Test                                      *\n");
 	Lb_printf("* 3. 7Seg Test                                        *\n");
 	Lb_printf("* 4. CLcd Test                                        *\n");
-	Lb_printf("* 5.                                                  *\n");
+	Lb_printf("* 5. BT Test                                          *\n");
 	Lb_printf("* 6.                                                  *\n");
 	Lb_printf("* 7.                                                  *\n");
 	Lb_printf("* 8.                                                  *\n");
@@ -125,6 +125,7 @@ u8 Ap_EduMenu_GetCmd(void)
 u8 Ap_EduMenu_ExeCmd(void)
 {
 	u8  key;
+	u8  UartData;
 	u8  i;
 	u32 KeyPressedCnt;
 	u32 KeyEvent;
@@ -200,7 +201,31 @@ u8 Ap_EduMenu_ExeCmd(void)
 				break;  
 
            case '5':
-               break; 
+           		Lb_printf("BT Test Start, press x to exit\n");
+
+           		while(1)
+           		{
+           			if( Hw_Uart_GetchNoWait( HW_USE_UART_CH_BT, &UartData) == TRUE )
+           			{
+           				Lb_printf( "BT Rxd : %c \n", UartData );
+           			}
+
+           			if( Hw_Uart_GetchNoWait( HW_USE_UART_CH_MENU, &UartData ) == TRUE )
+           			{
+           				if( UartData == 'x' )
+           				{
+           					break;
+           				}
+           				else
+           				{
+           					Hw_Uart_Print( HW_USE_UART_CH_BT, "Menu:Send : %c\r\n",UartData );
+           				}
+           			}
+
+				}
+				
+				Lb_printf("BT Test Exit\n");
+				break; 
 
            case '6':
                break;  

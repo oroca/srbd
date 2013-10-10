@@ -26,7 +26,9 @@
 //-- 기능 설정
 //
 #define HW_USE_USB_VCOM					0
-#define HW_USE_USB_SMARTROBOT_BD		1	// 내가 현재 가지고 있는 보드와 스마트로봇 보드가 USB Enable 핀이 다름
+#define HW_USE_USB_SMARTROBOT_BD		1				// 내가 현재 가지고 있는 보드와 스마트로봇 보드가 USB Enable 핀이 다름
+#define HW_USE_UART_CH_MENU				HW_UART_COM1
+#define HW_USE_UART_CH_BT				HW_UART_COM2
 
 
 
