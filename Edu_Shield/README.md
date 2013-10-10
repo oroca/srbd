@@ -1,5 +1,6 @@
 Edu_Shield
 ====
 
-- Edu_Ex03_7Seg V0.3
-- Edu_Ex04_CLcd V0.4 - branch exam
+- Edu_V0.3_7Seg
+- Edu_V0.4_CLcd
+- Edu_V0.5_BT    13/10/10
