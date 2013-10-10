@@ -76,7 +76,7 @@ void Ap_EduMenu_ShowMenu(void)
 	Lb_printf("* 1. LED Test                                         *\n");
 	Lb_printf("* 2. KeyPad Test                                      *\n");
 	Lb_printf("* 3. 7Seg Test                                        *\n");
-	Lb_printf("* 4.                                                  *\n");
+	Lb_printf("* 4. CLcd Test                                        *\n");
 	Lb_printf("* 5.                                                  *\n");
 	Lb_printf("* 6.                                                  *\n");
 	Lb_printf("* 7.                                                  *\n");
@@ -196,7 +196,8 @@ u8 Ap_EduMenu_ExeCmd(void)
                break; 
 
            case '4':
-               break;  
+           		Hw_CLcd_Print( 0, 1, "Cnt : %d", Seg_Count++);
+				break;  
 
            case '5':
                break; 

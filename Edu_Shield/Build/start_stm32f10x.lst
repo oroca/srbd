@@ -11,676 +11,1079 @@
   11              		.eabi_attribute 34, 1
   12              		.eabi_attribute 18, 4
   13              		.thumb
-  14              		.file	"usb_int.c"
+  14              		.file	"Ap_EduMenu.c"
   15              		.text
   16              	.Ltext0:
   17              		.cfi_sections	.debug_frame
-  18              		.section	.text.CTR_LP,"ax",%progbits
+  18              		.section	.text.KeyPad_DownKeyEvent,"ax",%progbits
   19              		.align	2
-  20              		.global	CTR_LP
+  20              		.global	KeyPad_DownKeyEvent
   21              		.thumb
   22              		.thumb_func
-  24              	CTR_LP:
-  25              	.LFB0:
-  26              		.file 1 "../LIB_USB/DRV/usb_int.c"
-   1:../LIB_USB/DRV/usb_int.c **** /**
-   2:../LIB_USB/DRV/usb_int.c ****   ******************************************************************************
-   3:../LIB_USB/DRV/usb_int.c ****   * @file    usb_int.c
-   4:../LIB_USB/DRV/usb_int.c ****   * @author  MCD Application Team
-   5:../LIB_USB/DRV/usb_int.c ****   * @version V4.0.0
-   6:../LIB_USB/DRV/usb_int.c ****   * @date    28-August-2012
-   7:../LIB_USB/DRV/usb_int.c ****   * @brief   Endpoint CTR (Low and High) interrupt's service routines
-   8:../LIB_USB/DRV/usb_int.c ****   ******************************************************************************
-   9:../LIB_USB/DRV/usb_int.c ****   * @attention
-  10:../LIB_USB/DRV/usb_int.c ****   *
-  11:../LIB_USB/DRV/usb_int.c ****   * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
-  12:../LIB_USB/DRV/usb_int.c ****   *
-  13:../LIB_USB/DRV/usb_int.c ****   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
-  14:../LIB_USB/DRV/usb_int.c ****   * You may not use this file except in compliance with the License.
-  15:../LIB_USB/DRV/usb_int.c ****   * You may obtain a copy of the License at:
-  16:../LIB_USB/DRV/usb_int.c ****   *
-  17:../LIB_USB/DRV/usb_int.c ****   *        http://www.st.com/software_license_agreement_liberty_v2
-  18:../LIB_USB/DRV/usb_int.c ****   *
-  19:../LIB_USB/DRV/usb_int.c ****   * Unless required by applicable law or agreed to in writing, software 
-  20:../LIB_USB/DRV/usb_int.c ****   * distributed under the License is distributed on an "AS IS" BASIS, 
-  21:../LIB_USB/DRV/usb_int.c ****   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  22:../LIB_USB/DRV/usb_int.c ****   * See the License for the specific language governing permissions and
-  23:../LIB_USB/DRV/usb_int.c ****   * limitations under the License.
-  24:../LIB_USB/DRV/usb_int.c ****   *
-  25:../LIB_USB/DRV/usb_int.c ****   ******************************************************************************
-  26:../LIB_USB/DRV/usb_int.c ****   */
-  27:../LIB_USB/DRV/usb_int.c **** 
-  28:../LIB_USB/DRV/usb_int.c **** /* Includes ------------------------------------------------------------------*/
-  29:../LIB_USB/DRV/usb_int.c **** #include "usb_lib.h"
-  30:../LIB_USB/DRV/usb_int.c **** 
-  31:../LIB_USB/DRV/usb_int.c **** /* Private typedef -----------------------------------------------------------*/
-  32:../LIB_USB/DRV/usb_int.c **** /* Private define ------------------------------------------------------------*/
-  33:../LIB_USB/DRV/usb_int.c **** /* Private macro -------------------------------------------------------------*/
-  34:../LIB_USB/DRV/usb_int.c **** /* Private variables ---------------------------------------------------------*/
-  35:../LIB_USB/DRV/usb_int.c **** __IO uint16_t SaveRState;
-  36:../LIB_USB/DRV/usb_int.c **** __IO uint16_t SaveTState;
-  37:../LIB_USB/DRV/usb_int.c **** 
-  38:../LIB_USB/DRV/usb_int.c **** /* Extern variables ----------------------------------------------------------*/
-  39:../LIB_USB/DRV/usb_int.c **** extern void (*pEpInt_IN[7])(void);    /*  Handles IN  interrupts   */
-  40:../LIB_USB/DRV/usb_int.c **** extern void (*pEpInt_OUT[7])(void);   /*  Handles OUT interrupts   */
-  41:../LIB_USB/DRV/usb_int.c **** 
-  42:../LIB_USB/DRV/usb_int.c **** /* Private function prototypes -----------------------------------------------*/
-  43:../LIB_USB/DRV/usb_int.c **** /* Private functions ---------------------------------------------------------*/
-  44:../LIB_USB/DRV/usb_int.c **** 
-  45:../LIB_USB/DRV/usb_int.c **** /*******************************************************************************
-  46:../LIB_USB/DRV/usb_int.c **** * Function Name  : CTR_LP.
-  47:../LIB_USB/DRV/usb_int.c **** * Description    : Low priority Endpoint Correct Transfer interrupt's service
-  48:../LIB_USB/DRV/usb_int.c **** *                  routine.
-  49:../LIB_USB/DRV/usb_int.c **** * Input          : None.
-  50:../LIB_USB/DRV/usb_int.c **** * Output         : None.
-  51:../LIB_USB/DRV/usb_int.c **** * Return         : None.
-  52:../LIB_USB/DRV/usb_int.c **** *******************************************************************************/
-  53:../LIB_USB/DRV/usb_int.c **** void CTR_LP(void)
-  54:../LIB_USB/DRV/usb_int.c **** {
-  27              		.loc 1 54 0
+  24              	KeyPad_DownKeyEvent:
+  25              	.LFB1:
+  26              		.file 1 "../LIB_AP/Ap_EduMenu.c"
+   1:../LIB_AP/Ap_EduMenu.c **** //----------------------------------------------------------------------------
+   2:../LIB_AP/Ap_EduMenu.c **** //    프로그램명 	: Edu Menu 관련 함수
+   3:../LIB_AP/Ap_EduMenu.c **** //
+   4:../LIB_AP/Ap_EduMenu.c **** //    만든이     	: Cho Han Cheol
+   5:../LIB_AP/Ap_EduMenu.c **** //
+   6:../LIB_AP/Ap_EduMenu.c **** //    날  짜     	: 
+   7:../LIB_AP/Ap_EduMenu.c **** //    
+   8:../LIB_AP/Ap_EduMenu.c **** //    최종 수정  	: 
+   9:../LIB_AP/Ap_EduMenu.c **** //
+  10:../LIB_AP/Ap_EduMenu.c **** //    MPU_Type		:
+  11:../LIB_AP/Ap_EduMenu.c **** //
+  12:../LIB_AP/Ap_EduMenu.c **** //    파일명     	: Ap_EduMenu.h
+  13:../LIB_AP/Ap_EduMenu.c **** //----------------------------------------------------------------------------
+  14:../LIB_AP/Ap_EduMenu.c **** 
+  15:../LIB_AP/Ap_EduMenu.c **** 
+  16:../LIB_AP/Ap_EduMenu.c **** 
+  17:../LIB_AP/Ap_EduMenu.c **** //----- 헤더파일 열기
+  18:../LIB_AP/Ap_EduMenu.c **** //
+  19:../LIB_AP/Ap_EduMenu.c **** #define  AP_EDUMENU_LOCAL
+  20:../LIB_AP/Ap_EduMenu.c **** 
+  21:../LIB_AP/Ap_EduMenu.c **** #include "Ap_EduMenu.h"
+  22:../LIB_AP/Ap_EduMenu.c **** 
+  23:../LIB_AP/Ap_EduMenu.c **** 
+  24:../LIB_AP/Ap_EduMenu.c **** 
+  25:../LIB_AP/Ap_EduMenu.c **** //-- 내부 선언
+  26:../LIB_AP/Ap_EduMenu.c **** //
+  27:../LIB_AP/Ap_EduMenu.c **** 
+  28:../LIB_AP/Ap_EduMenu.c **** 
+  29:../LIB_AP/Ap_EduMenu.c **** 
+  30:../LIB_AP/Ap_EduMenu.c **** //-- 내부 변수
+  31:../LIB_AP/Ap_EduMenu.c **** //
+  32:../LIB_AP/Ap_EduMenu.c **** u16 Seg_Count = 0;
+  33:../LIB_AP/Ap_EduMenu.c **** 
+  34:../LIB_AP/Ap_EduMenu.c **** 
+  35:../LIB_AP/Ap_EduMenu.c **** //-- 내부 함수
+  36:../LIB_AP/Ap_EduMenu.c **** //
+  37:../LIB_AP/Ap_EduMenu.c **** void Ap_EduMenu_ShowMenu(void);
+  38:../LIB_AP/Ap_EduMenu.c **** 
+  39:../LIB_AP/Ap_EduMenu.c **** 
+  40:../LIB_AP/Ap_EduMenu.c **** 
+  41:../LIB_AP/Ap_EduMenu.c **** void KeyPad_UpKeyEvent( u32 Event )
+  42:../LIB_AP/Ap_EduMenu.c **** {
+  43:../LIB_AP/Ap_EduMenu.c **** 	if( Event == HW_KEYPAD_EVENT_RELEASED || Event == HW_KEYPAD_EVENT_REPEAT )
+  44:../LIB_AP/Ap_EduMenu.c **** 	{
+  45:../LIB_AP/Ap_EduMenu.c **** 		Hw_7Seg_Print( 0, "%d", Seg_Count++ );
+  46:../LIB_AP/Ap_EduMenu.c **** 	}
+  47:../LIB_AP/Ap_EduMenu.c **** }
+  48:../LIB_AP/Ap_EduMenu.c **** 
+  49:../LIB_AP/Ap_EduMenu.c **** void KeyPad_DownKeyEvent( u32 Event )
+  50:../LIB_AP/Ap_EduMenu.c **** {
+  27              		.loc 1 50 0
   28              		.cfi_startproc
-  29              		@ args = 0, pretend = 0, frame = 8
+  29              		@ args = 0, pretend = 0, frame = 0
   30              		@ frame_needed = 0, uses_anonymous_args = 0
-  31 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
-  32              	.LCFI0:
-  33              		.cfi_def_cfa_offset 36
-  34              		.cfi_offset 4, -36
-  35              		.cfi_offset 5, -32
-  36              		.cfi_offset 6, -28
-  37              		.cfi_offset 7, -24
-  38              		.cfi_offset 8, -20
-  39              		.cfi_offset 9, -16
-  40              		.cfi_offset 10, -12
-  41              		.cfi_offset 11, -8
-  42              		.cfi_offset 14, -4
-  43 0004 DFF8ACA1 		ldr	sl, .L83+20
-  44 0008 83B0     		sub	sp, sp, #12
-  45              	.LCFI1:
-  46              		.cfi_def_cfa_offset 48
-  55:../LIB_USB/DRV/usb_int.c ****   __IO uint16_t wEPVal = 0;
-  56:../LIB_USB/DRV/usb_int.c ****   /* stay in loop while pending interrupts */
-  57:../LIB_USB/DRV/usb_int.c ****   while (((wIstr = _GetISTR()) & ISTR_CTR) != 0)
-  47              		.loc 1 57 0
-  48 000a 45F6444B 		movw	fp, #23620
-  55:../LIB_USB/DRV/usb_int.c ****   __IO uint16_t wEPVal = 0;
-  49              		.loc 1 55 0
-  50 000e 0023     		movs	r3, #0
-  58:../LIB_USB/DRV/usb_int.c ****   {
-  59:../LIB_USB/DRV/usb_int.c ****     /* extract highest priority endpoint number */
-  60:../LIB_USB/DRV/usb_int.c ****     EPindex = (uint8_t)(wIstr & ISTR_EP_ID);
-  51              		.loc 1 60 0
-  52 0010 DFF8A491 		ldr	r9, .L83+24
-  61:../LIB_USB/DRV/usb_int.c ****     if (EPindex == 0)
-  62:../LIB_USB/DRV/usb_int.c ****     {
-  63:../LIB_USB/DRV/usb_int.c ****       /* Decode and service control endpoint interrupt */
-  64:../LIB_USB/DRV/usb_int.c ****       /* calling related service routine */
-  65:../LIB_USB/DRV/usb_int.c ****       /* (Setup0_Process, In0_Process, Out0_Process) */
-  66:../LIB_USB/DRV/usb_int.c **** 
-  67:../LIB_USB/DRV/usb_int.c ****       /* save RX & TX status */
-  68:../LIB_USB/DRV/usb_int.c ****       /* and set both to NAK */
-  69:../LIB_USB/DRV/usb_int.c ****       
-  70:../LIB_USB/DRV/usb_int.c **** 	    SaveRState = _GetENDPOINT(ENDP0);
-  53              		.loc 1 70 0
-  54 0014 624D     		ldr	r5, .L83
-  55:../LIB_USB/DRV/usb_int.c ****   __IO uint16_t wEPVal = 0;
-  55              		.loc 1 55 0
-  56 0016 ADF80630 		strh	r3, [sp, #6]	@ movhi
-  57              	.LVL0:
-  57:../LIB_USB/DRV/usb_int.c ****   while (((wIstr = _GetISTR()) & ISTR_CTR) != 0)
-  58              		.loc 1 57 0
-  59 001a C4F2000B 		movt	fp, 16384
-  60 001e D046     		mov	r8, sl
-  61              	.LVL1:
-  62              	.L65:
-  57:../LIB_USB/DRV/usb_int.c ****   while (((wIstr = _GetISTR()) & ISTR_CTR) != 0)
-  63              		.loc 1 57 0 is_stmt 0 discriminator 1
-  64 0020 DBF80030 		ldr	r3, [fp, #0]
-  65              		.loc 1 70 0 is_stmt 1 discriminator 1
-  66 0024 4FF4B844 		mov	r4, #23552
-  57:../LIB_USB/DRV/usb_int.c ****   while (((wIstr = _GetISTR()) & ISTR_CTR) != 0)
-  67              		.loc 1 57 0 discriminator 1
-  68 0028 9AB2     		uxth	r2, r3
-  69              	.LVL2:
-  70 002a 1B04     		lsls	r3, r3, #16
-  71 002c AAF80020 		strh	r2, [sl, #0]	@ movhi
-  72 0030 40F1AB80 		bpl	.L1
-  60:../LIB_USB/DRV/usb_int.c ****     EPindex = (uint8_t)(wIstr & ISTR_EP_ID);
-  73              		.loc 1 60 0
-  74 0034 B8F80020 		ldrh	r2, [r8, #0]
-  75              		.loc 1 70 0
-  76 0038 C4F20004 		movt	r4, 16384
-  60:../LIB_USB/DRV/usb_int.c ****     EPindex = (uint8_t)(wIstr & ISTR_EP_ID);
-  77              		.loc 1 60 0
-  78 003c 02F00F02 		and	r2, r2, #15
-  71:../LIB_USB/DRV/usb_int.c **** 	    SaveTState = SaveRState & EPTX_STAT;
-  72:../LIB_USB/DRV/usb_int.c **** 	    SaveRState &=  EPRX_STAT;	
-  73:../LIB_USB/DRV/usb_int.c **** 
-  74:../LIB_USB/DRV/usb_int.c **** 	    _SetEPRxTxStatus(ENDP0,EP_RX_NAK,EP_TX_NAK);
-  75:../LIB_USB/DRV/usb_int.c **** 
-  76:../LIB_USB/DRV/usb_int.c ****       /* DIR bit = origin of the interrupt */
-  77:../LIB_USB/DRV/usb_int.c **** 
-  78:../LIB_USB/DRV/usb_int.c ****       if ((wIstr & ISTR_DIR) == 0)
-  79:../LIB_USB/DRV/usb_int.c ****       {
-  80:../LIB_USB/DRV/usb_int.c ****         /* DIR = 0 */
-  81:../LIB_USB/DRV/usb_int.c **** 
-  82:../LIB_USB/DRV/usb_int.c ****         /* DIR = 0      => IN  int */
-  83:../LIB_USB/DRV/usb_int.c ****         /* DIR = 0 implies that (EP_CTR_TX = 1) always  */
-  84:../LIB_USB/DRV/usb_int.c **** 
-  85:../LIB_USB/DRV/usb_int.c ****         _ClearEP_CTR_TX(ENDP0);
-  86:../LIB_USB/DRV/usb_int.c ****         In0_Process();
-  87:../LIB_USB/DRV/usb_int.c **** 
-  88:../LIB_USB/DRV/usb_int.c ****            /* before terminate set Tx & Rx status */
-  89:../LIB_USB/DRV/usb_int.c **** 
-  90:../LIB_USB/DRV/usb_int.c ****             _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
-  91:../LIB_USB/DRV/usb_int.c **** 		  return;
-  92:../LIB_USB/DRV/usb_int.c ****       }
-  93:../LIB_USB/DRV/usb_int.c ****       else
-  94:../LIB_USB/DRV/usb_int.c ****       {
-  95:../LIB_USB/DRV/usb_int.c ****         /* DIR = 1 */
-  96:../LIB_USB/DRV/usb_int.c **** 
-  97:../LIB_USB/DRV/usb_int.c ****         /* DIR = 1 & CTR_RX       => SETUP or OUT int */
-  98:../LIB_USB/DRV/usb_int.c ****         /* DIR = 1 & (CTR_TX | CTR_RX) => 2 int pending */
-  99:../LIB_USB/DRV/usb_int.c **** 
- 100:../LIB_USB/DRV/usb_int.c ****         wEPVal = _GetENDPOINT(ENDP0);
- 101:../LIB_USB/DRV/usb_int.c ****         
- 102:../LIB_USB/DRV/usb_int.c ****         if ((wEPVal &EP_SETUP) != 0)
- 103:../LIB_USB/DRV/usb_int.c ****         {
- 104:../LIB_USB/DRV/usb_int.c ****           _ClearEP_CTR_RX(ENDP0); /* SETUP bit kept frozen while CTR_RX = 1 */
- 105:../LIB_USB/DRV/usb_int.c ****           Setup0_Process();
- 106:../LIB_USB/DRV/usb_int.c ****           /* before terminate set Tx & Rx status */
- 107:../LIB_USB/DRV/usb_int.c **** 
- 108:../LIB_USB/DRV/usb_int.c **** 		      _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
- 109:../LIB_USB/DRV/usb_int.c ****           return;
- 110:../LIB_USB/DRV/usb_int.c ****         }
- 111:../LIB_USB/DRV/usb_int.c **** 
- 112:../LIB_USB/DRV/usb_int.c ****         else if ((wEPVal & EP_CTR_RX) != 0)
- 113:../LIB_USB/DRV/usb_int.c ****         {
- 114:../LIB_USB/DRV/usb_int.c ****           _ClearEP_CTR_RX(ENDP0);
- 115:../LIB_USB/DRV/usb_int.c ****           Out0_Process();
- 116:../LIB_USB/DRV/usb_int.c ****           /* before terminate set Tx & Rx status */
- 117:../LIB_USB/DRV/usb_int.c ****      
- 118:../LIB_USB/DRV/usb_int.c **** 		     _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
- 119:../LIB_USB/DRV/usb_int.c ****           return;
- 120:../LIB_USB/DRV/usb_int.c ****         }
- 121:../LIB_USB/DRV/usb_int.c ****       }
- 122:../LIB_USB/DRV/usb_int.c ****     }/* if(EPindex == 0) */
- 123:../LIB_USB/DRV/usb_int.c ****     else
- 124:../LIB_USB/DRV/usb_int.c ****     {
- 125:../LIB_USB/DRV/usb_int.c ****       /* Decode and service non control endpoints interrupt  */
- 126:../LIB_USB/DRV/usb_int.c **** 
- 127:../LIB_USB/DRV/usb_int.c ****       /* process related endpoint register */
- 128:../LIB_USB/DRV/usb_int.c ****       wEPVal = _GetENDPOINT(EPindex);
-  79              		.loc 1 128 0
-  80 0040 9000     		lsls	r0, r2, #2
-  81              	.LVL3:
-  82 0042 00F18040 		add	r0, r0, #1073741824
-  71:../LIB_USB/DRV/usb_int.c **** 	    SaveTState = SaveRState & EPTX_STAT;
-  83              		.loc 1 71 0
-  84 0046 574E     		ldr	r6, .L83+4
-  85              	.LBB2:
-  74:../LIB_USB/DRV/usb_int.c **** 	    _SetEPRxTxStatus(ENDP0,EP_RX_NAK,EP_TX_NAK);
-  86              		.loc 1 74 0
-  87 0048 4BF6BF71 		movw	r1, #49087
-  88              	.LBE2:
-  70:../LIB_USB/DRV/usb_int.c **** 	    SaveRState = _GetENDPOINT(ENDP0);
-  89              		.loc 1 70 0
-  90 004c 544F     		ldr	r7, .L83
-  61:../LIB_USB/DRV/usb_int.c ****     if (EPindex == 0)
-  91              		.loc 1 61 0
-  92 004e 1346     		mov	r3, r2
-  93              	.LVL4:
-  94              		.loc 1 128 0
-  95 0050 00F5B840 		add	r0, r0, #23552
-  60:../LIB_USB/DRV/usb_int.c ****     EPindex = (uint8_t)(wIstr & ISTR_EP_ID);
-  96              		.loc 1 60 0
-  97 0054 89F80020 		strb	r2, [r9, #0]
-  61:../LIB_USB/DRV/usb_int.c ****     if (EPindex == 0)
-  98              		.loc 1 61 0
-  99 0058 002A     		cmp	r2, #0
- 100 005a 33D1     		bne	.L3
- 101              	.LVL5:
-  70:../LIB_USB/DRV/usb_int.c **** 	    SaveRState = _GetENDPOINT(ENDP0);
- 102              		.loc 1 70 0
- 103 005c 2368     		ldr	r3, [r4, #0]
- 104 005e 9BB2     		uxth	r3, r3
- 105 0060 2B80     		strh	r3, [r5, #0]	@ movhi
-  71:../LIB_USB/DRV/usb_int.c **** 	    SaveTState = SaveRState & EPTX_STAT;
- 106              		.loc 1 71 0
- 107 0062 2B88     		ldrh	r3, [r5, #0]
- 108 0064 03F03003 		and	r3, r3, #48
- 109 0068 3380     		strh	r3, [r6, #0]	@ movhi
-  72:../LIB_USB/DRV/usb_int.c **** 	    SaveRState &=  EPRX_STAT;	
- 110              		.loc 1 72 0
- 111 006a 2B88     		ldrh	r3, [r5, #0]
- 112 006c 03F44053 		and	r3, r3, #12288
- 113 0070 2B80     		strh	r3, [r5, #0]	@ movhi
- 114              	.LBB3:
-  74:../LIB_USB/DRV/usb_int.c **** 	    _SetEPRxTxStatus(ENDP0,EP_RX_NAK,EP_TX_NAK);
- 115              		.loc 1 74 0
- 116 0072 2368     		ldr	r3, [r4, #0]
- 117 0074 1940     		ands	r1, r1, r3
- 118              	.LVL6:
- 119 0076 81F40051 		eor	r1, r1, #8192
- 120              	.LVL7:
- 121 007a 81F02001 		eor	r1, r1, #32
- 122              	.LVL8:
- 123 007e 41F40041 		orr	r1, r1, #32768
- 124              	.LVL9:
- 125 0082 41F08001 		orr	r1, r1, #128
- 126 0086 2160     		str	r1, [r4, #0]
- 127              	.LBE3:
-  78:../LIB_USB/DRV/usb_int.c ****       if ((wIstr & ISTR_DIR) == 0)
- 128              		.loc 1 78 0
- 129 0088 B8F80030 		ldrh	r3, [r8, #0]
- 130              	.LVL10:
- 131 008c 03F01003 		and	r3, r3, #16
- 132 0090 9BB2     		uxth	r3, r3
- 133 0092 002B     		cmp	r3, #0
- 134 0094 49D0     		beq	.L80
- 100:../LIB_USB/DRV/usb_int.c ****         wEPVal = _GetENDPOINT(ENDP0);
- 135              		.loc 1 100 0
- 136 0096 2368     		ldr	r3, [r4, #0]
- 137 0098 9BB2     		uxth	r3, r3
- 138              	.LVL11:
- 139 009a ADF80630 		strh	r3, [sp, #6]	@ movhi
- 102:../LIB_USB/DRV/usb_int.c ****         if ((wEPVal &EP_SETUP) != 0)
- 140              		.loc 1 102 0
- 141 009e BDF80630 		ldrh	r3, [sp, #6]
- 142              	.LVL12:
- 143 00a2 03F40063 		and	r3, r3, #2048
- 144 00a6 9BB2     		uxth	r3, r3
- 145 00a8 002B     		cmp	r3, #0
- 146 00aa 71D1     		bne	.L81
- 112:../LIB_USB/DRV/usb_int.c ****         else if ((wEPVal & EP_CTR_RX) != 0)
- 147              		.loc 1 112 0
- 148 00ac BDF80630 		ldrh	r3, [sp, #6]
- 149              	.LVL13:
- 150 00b0 1BB2     		sxth	r3, r3
- 151              	.LVL14:
- 152 00b2 002B     		cmp	r3, #0
- 153 00b4 B4DA     		bge	.L65
- 114:../LIB_USB/DRV/usb_int.c ****           _ClearEP_CTR_RX(ENDP0);
- 154              		.loc 1 114 0
- 155 00b6 2268     		ldr	r2, [r4, #0]
- 156              	.LVL15:
- 157 00b8 40F68F73 		movw	r3, #3983
- 158 00bc 1340     		ands	r3, r3, r2
- 159 00be 2360     		str	r3, [r4, #0]
- 115:../LIB_USB/DRV/usb_int.c ****           Out0_Process();
- 160              		.loc 1 115 0
- 161 00c0 394B     		ldr	r3, .L83+8
- 162 00c2 38E0     		b	.L77
- 163              	.LVL16:
- 164              	.L3:
- 165              		.loc 1 128 0
- 166 00c4 0268     		ldr	r2, [r0, #0]
- 167              	.LVL17:
- 168 00c6 92B2     		uxth	r2, r2
- 169              	.LVL18:
- 170 00c8 ADF80620 		strh	r2, [sp, #6]	@ movhi
- 129:../LIB_USB/DRV/usb_int.c ****       if ((wEPVal & EP_CTR_RX) != 0)
- 171              		.loc 1 129 0
- 172 00cc BDF80620 		ldrh	r2, [sp, #6]
- 173              	.LVL19:
- 174 00d0 12B2     		sxth	r2, r2
- 175 00d2 002A     		cmp	r2, #0
- 176 00d4 1BDB     		blt	.L82
- 177              	.L21:
- 130:../LIB_USB/DRV/usb_int.c ****       {
- 131:../LIB_USB/DRV/usb_int.c ****         /* clear int flag */
- 132:../LIB_USB/DRV/usb_int.c ****         _ClearEP_CTR_RX(EPindex);
- 133:../LIB_USB/DRV/usb_int.c **** 
- 134:../LIB_USB/DRV/usb_int.c ****         /* call OUT service function */
- 135:../LIB_USB/DRV/usb_int.c ****         (*pEpInt_OUT[EPindex-1])();
- 136:../LIB_USB/DRV/usb_int.c **** 
- 137:../LIB_USB/DRV/usb_int.c ****       } /* if((wEPVal & EP_CTR_RX) */
- 138:../LIB_USB/DRV/usb_int.c **** 
- 139:../LIB_USB/DRV/usb_int.c ****       if ((wEPVal & EP_CTR_TX) != 0)
- 178              		.loc 1 139 0
- 179 00d6 BDF80630 		ldrh	r3, [sp, #6]
- 180              	.LVL20:
- 181 00da 03F08003 		and	r3, r3, #128
- 182              	.LVL21:
- 183 00de 9BB2     		uxth	r3, r3
- 184 00e0 002B     		cmp	r3, #0
- 185 00e2 9DD0     		beq	.L65
- 140:../LIB_USB/DRV/usb_int.c ****       {
- 141:../LIB_USB/DRV/usb_int.c ****         /* clear int flag */
- 142:../LIB_USB/DRV/usb_int.c ****         _ClearEP_CTR_TX(EPindex);
- 186              		.loc 1 142 0
- 187 00e4 99F80010 		ldrb	r1, [r9, #0]	@ zero_extendqisi2
- 188 00e8 48F60F73 		movw	r3, #36623
- 189 00ec 8A00     		lsls	r2, r1, #2
- 190 00ee 02F18042 		add	r2, r2, #1073741824
- 191 00f2 02F5B842 		add	r2, r2, #23552
- 192 00f6 1068     		ldr	r0, [r2, #0]
- 143:../LIB_USB/DRV/usb_int.c **** 
- 144:../LIB_USB/DRV/usb_int.c ****         /* call IN service function */
- 145:../LIB_USB/DRV/usb_int.c ****         (*pEpInt_IN[EPindex-1])();
- 193              		.loc 1 145 0
- 194 00f8 0139     		subs	r1, r1, #1
- 142:../LIB_USB/DRV/usb_int.c ****         _ClearEP_CTR_TX(EPindex);
- 195              		.loc 1 142 0
- 196 00fa 0340     		ands	r3, r3, r0
- 197 00fc 1360     		str	r3, [r2, #0]
- 198              		.loc 1 145 0
- 199 00fe 40F20002 		movw	r2, #:lower16:pEpInt_IN
- 200 0102 C0F20002 		movt	r2, #:upper16:pEpInt_IN
- 201 0106 52F82130 		ldr	r3, [r2, r1, lsl #2]
- 202 010a 9847     		blx	r3
- 203              	.LVL22:
- 204 010c 88E7     		b	.L65
- 205              	.L82:
- 132:../LIB_USB/DRV/usb_int.c ****         _ClearEP_CTR_RX(EPindex);
- 206              		.loc 1 132 0
- 207 010e 0168     		ldr	r1, [r0, #0]
- 208 0110 40F68F72 		movw	r2, #3983
- 209 0114 0A40     		ands	r2, r2, r1
- 210 0116 0260     		str	r2, [r0, #0]
- 135:../LIB_USB/DRV/usb_int.c ****         (*pEpInt_OUT[EPindex-1])();
- 211              		.loc 1 135 0
- 212 0118 40F20002 		movw	r2, #:lower16:pEpInt_OUT
- 213              	.LVL23:
- 214 011c 013B     		subs	r3, r3, #1
- 215              	.LVL24:
- 216 011e C0F20002 		movt	r2, #:upper16:pEpInt_OUT
- 217 0122 52F82330 		ldr	r3, [r2, r3, lsl #2]
- 218 0126 9847     		blx	r3
- 219              	.LVL25:
- 220 0128 D5E7     		b	.L21
- 221              	.LVL26:
- 222              	.L80:
-  85:../LIB_USB/DRV/usb_int.c ****         _ClearEP_CTR_TX(ENDP0);
- 223              		.loc 1 85 0
- 224 012a 2268     		ldr	r2, [r4, #0]
- 225              	.LVL27:
- 226 012c 48F60F73 		movw	r3, #36623
- 227 0130 1340     		ands	r3, r3, r2
- 228 0132 2360     		str	r3, [r4, #0]
-  86:../LIB_USB/DRV/usb_int.c ****         In0_Process();
- 229              		.loc 1 86 0
- 230 0134 1D4B     		ldr	r3, .L83+12
- 231              	.L77:
- 115:../LIB_USB/DRV/usb_int.c ****           Out0_Process();
- 232              		.loc 1 115 0
- 233 0136 9847     		blx	r3
- 234              	.LVL28:
- 235              	.LBB4:
- 118:../LIB_USB/DRV/usb_int.c **** 		     _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
- 236              		.loc 1 118 0
- 237 0138 2168     		ldr	r1, [r4, #0]
- 238 013a 3A88     		ldrh	r2, [r7, #0]
- 239 013c 4BF6BF73 		movw	r3, #49087
- 240 0140 02F48052 		and	r2, r2, #4096
- 241 0144 92B2     		uxth	r2, r2
- 242 0146 0B40     		ands	r3, r3, r1
- 243              	.LVL29:
- 244 0148 0AB1     		cbz	r2, .L17
- 118:../LIB_USB/DRV/usb_int.c **** 		     _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
- 245              		.loc 1 118 0 is_stmt 0 discriminator 1
- 246 014a 83F48053 		eor	r3, r3, #4096
- 247              	.LVL30:
- 248              	.L17:
- 118:../LIB_USB/DRV/usb_int.c **** 		     _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
- 249              		.loc 1 118 0 discriminator 2
- 250 014e 3A88     		ldrh	r2, [r7, #0]
- 251 0150 02F40052 		and	r2, r2, #8192
- 252 0154 92B2     		uxth	r2, r2
- 253 0156 0AB1     		cbz	r2, .L18
- 118:../LIB_USB/DRV/usb_int.c **** 		     _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
- 254              		.loc 1 118 0 discriminator 3
- 255 0158 83F40053 		eor	r3, r3, #8192
- 256              	.LVL31:
- 257              	.L18:
- 118:../LIB_USB/DRV/usb_int.c **** 		     _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
- 258              		.loc 1 118 0 discriminator 4
- 259 015c 3288     		ldrh	r2, [r6, #0]
- 260 015e 02F01002 		and	r2, r2, #16
- 261 0162 92B2     		uxth	r2, r2
- 262 0164 0AB1     		cbz	r2, .L19
- 118:../LIB_USB/DRV/usb_int.c **** 		     _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
- 263              		.loc 1 118 0 discriminator 5
- 264 0166 83F01003 		eor	r3, r3, #16
- 265              	.LVL32:
- 266              	.L19:
- 118:../LIB_USB/DRV/usb_int.c **** 		     _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
- 267              		.loc 1 118 0 discriminator 6
- 268 016a 3288     		ldrh	r2, [r6, #0]
- 269 016c 02F02002 		and	r2, r2, #32
- 270 0170 92B2     		uxth	r2, r2
- 271 0172 0AB1     		cbz	r2, .L20
- 118:../LIB_USB/DRV/usb_int.c **** 		     _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
- 272              		.loc 1 118 0 discriminator 7
- 273 0174 83F02003 		eor	r3, r3, #32
- 274              	.LVL33:
- 275              	.L20:
- 118:../LIB_USB/DRV/usb_int.c **** 		     _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
- 276              		.loc 1 118 0 discriminator 8
- 277 0178 43F40043 		orr	r3, r3, #32768
- 278              	.LVL34:
- 279 017c 4FF4B842 		mov	r2, #23552
- 280 0180 43F08003 		orr	r3, r3, #128
- 281 0184 C4F20002 		movt	r2, 16384
- 282 0188 1360     		str	r3, [r2, #0]
- 283              	.L1:
- 284              	.LBE4:
- 146:../LIB_USB/DRV/usb_int.c ****       } /* if((wEPVal & EP_CTR_TX) != 0) */
- 147:../LIB_USB/DRV/usb_int.c **** 
- 148:../LIB_USB/DRV/usb_int.c ****     }/* if(EPindex == 0) else */
- 149:../LIB_USB/DRV/usb_int.c **** 
- 150:../LIB_USB/DRV/usb_int.c ****   }/* while(...) */
- 151:../LIB_USB/DRV/usb_int.c **** }
- 285              		.loc 1 151 0 is_stmt 1
- 286 018a 03B0     		add	sp, sp, #12
- 287 018c BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
- 288              	.LVL35:
- 289              	.L81:
- 104:../LIB_USB/DRV/usb_int.c ****           _ClearEP_CTR_RX(ENDP0); /* SETUP bit kept frozen while CTR_RX = 1 */
- 290              		.loc 1 104 0
- 291 0190 2268     		ldr	r2, [r4, #0]
- 292              	.LVL36:
- 293 0192 40F68F73 		movw	r3, #3983
- 294 0196 1340     		ands	r3, r3, r2
- 295 0198 2360     		str	r3, [r4, #0]
- 105:../LIB_USB/DRV/usb_int.c ****           Setup0_Process();
- 296              		.loc 1 105 0
- 297 019a 054B     		ldr	r3, .L83+16
- 298 019c CBE7     		b	.L77
- 299              	.L84:
- 300 019e 00BF     		.align	2
- 301              	.L83:
- 302 01a0 00000000 		.word	SaveRState
- 303 01a4 00000000 		.word	SaveTState
- 304 01a8 00000000 		.word	Out0_Process
- 305 01ac 00000000 		.word	In0_Process
- 306 01b0 00000000 		.word	Setup0_Process
- 307 01b4 00000000 		.word	wIstr
- 308 01b8 00000000 		.word	EPindex
- 309              		.cfi_endproc
- 310              	.LFE0:
- 312              		.section	.text.CTR_HP,"ax",%progbits
- 313              		.align	2
- 314              		.global	CTR_HP
- 315              		.thumb
- 316              		.thumb_func
- 318              	CTR_HP:
- 319              	.LFB1:
- 152:../LIB_USB/DRV/usb_int.c **** 
- 153:../LIB_USB/DRV/usb_int.c **** /*******************************************************************************
- 154:../LIB_USB/DRV/usb_int.c **** * Function Name  : CTR_HP.
- 155:../LIB_USB/DRV/usb_int.c **** * Description    : High Priority Endpoint Correct Transfer interrupt's service 
- 156:../LIB_USB/DRV/usb_int.c **** *                  routine.
- 157:../LIB_USB/DRV/usb_int.c **** * Input          : None.
- 158:../LIB_USB/DRV/usb_int.c **** * Output         : None.
- 159:../LIB_USB/DRV/usb_int.c **** * Return         : None.
- 160:../LIB_USB/DRV/usb_int.c **** *******************************************************************************/
- 161:../LIB_USB/DRV/usb_int.c **** void CTR_HP(void)
- 162:../LIB_USB/DRV/usb_int.c **** {
- 320              		.loc 1 162 0
- 321              		.cfi_startproc
- 322              		@ args = 0, pretend = 0, frame = 0
- 323              		@ frame_needed = 0, uses_anonymous_args = 0
- 324 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, sl, lr}
- 325              	.LCFI2:
- 326              		.cfi_def_cfa_offset 32
- 327              		.cfi_offset 4, -32
- 328              		.cfi_offset 5, -28
- 329              		.cfi_offset 6, -24
- 330              		.cfi_offset 7, -20
- 331              		.cfi_offset 8, -16
- 332              		.cfi_offset 9, -12
- 333              		.cfi_offset 10, -8
- 334              		.cfi_offset 14, -4
- 335 0004 1C4F     		ldr	r7, .L97
- 163:../LIB_USB/DRV/usb_int.c ****   uint32_t wEPVal = 0;
- 164:../LIB_USB/DRV/usb_int.c **** 
- 165:../LIB_USB/DRV/usb_int.c ****   while (((wIstr = _GetISTR()) & ISTR_CTR) != 0)
- 336              		.loc 1 165 0
- 337 0006 45F64444 		movw	r4, #23620
- 166:../LIB_USB/DRV/usb_int.c ****   {
- 167:../LIB_USB/DRV/usb_int.c ****     _SetISTR((uint16_t)CLR_CTR); /* clear CTR flag */
- 168:../LIB_USB/DRV/usb_int.c ****     /* extract highest priority endpoint number */
- 169:../LIB_USB/DRV/usb_int.c ****     EPindex = (uint8_t)(wIstr & ISTR_EP_ID);
- 338              		.loc 1 169 0
- 339 000a DFF878A0 		ldr	sl, .L97+12
- 170:../LIB_USB/DRV/usb_int.c ****     /* process related endpoint register */
- 171:../LIB_USB/DRV/usb_int.c ****     wEPVal = _GetENDPOINT(EPindex);
- 172:../LIB_USB/DRV/usb_int.c ****     if ((wEPVal & EP_CTR_RX) != 0)
- 173:../LIB_USB/DRV/usb_int.c ****     {
- 174:../LIB_USB/DRV/usb_int.c ****       /* clear int flag */
- 175:../LIB_USB/DRV/usb_int.c ****       _ClearEP_CTR_RX(EPindex);
- 176:../LIB_USB/DRV/usb_int.c **** 
- 177:../LIB_USB/DRV/usb_int.c ****       /* call OUT service function */
- 178:../LIB_USB/DRV/usb_int.c ****       (*pEpInt_OUT[EPindex-1])();
- 179:../LIB_USB/DRV/usb_int.c **** 
- 180:../LIB_USB/DRV/usb_int.c ****     } /* if((wEPVal & EP_CTR_RX) */
- 181:../LIB_USB/DRV/usb_int.c ****     else if ((wEPVal & EP_CTR_TX) != 0)
- 182:../LIB_USB/DRV/usb_int.c ****     {
- 183:../LIB_USB/DRV/usb_int.c ****       /* clear int flag */
- 184:../LIB_USB/DRV/usb_int.c ****       _ClearEP_CTR_TX(EPindex);
- 185:../LIB_USB/DRV/usb_int.c **** 
- 186:../LIB_USB/DRV/usb_int.c ****       /* call IN service function */
- 187:../LIB_USB/DRV/usb_int.c ****       (*pEpInt_IN[EPindex-1])();
- 340              		.loc 1 187 0
- 341 000e 1B4E     		ldr	r6, .L97+4
- 178:../LIB_USB/DRV/usb_int.c ****       (*pEpInt_OUT[EPindex-1])();
- 342              		.loc 1 178 0
- 343 0010 1B4D     		ldr	r5, .L97+8
- 165:../LIB_USB/DRV/usb_int.c ****   while (((wIstr = _GetISTR()) & ISTR_CTR) != 0)
- 344              		.loc 1 165 0
- 345 0012 C4F20004 		movt	r4, 16384
- 346 0016 B946     		mov	r9, r7
- 167:../LIB_USB/DRV/usb_int.c ****     _SetISTR((uint16_t)CLR_CTR); /* clear CTR flag */
- 347              		.loc 1 167 0
- 348 0018 47F6FF78 		movw	r8, #32767
- 349              	.L95:
- 350              	.LVL37:
- 165:../LIB_USB/DRV/usb_int.c ****   while (((wIstr = _GetISTR()) & ISTR_CTR) != 0)
- 351              		.loc 1 165 0
- 352 001c 2368     		ldr	r3, [r4, #0]
- 353 001e 9AB2     		uxth	r2, r3
- 354 0020 1B04     		lsls	r3, r3, #16
- 355 0022 3A80     		strh	r2, [r7, #0]	@ movhi
- 356 0024 25D5     		bpl	.L85
- 167:../LIB_USB/DRV/usb_int.c ****     _SetISTR((uint16_t)CLR_CTR); /* clear CTR flag */
- 357              		.loc 1 167 0
- 358 0026 C4F80080 		str	r8, [r4, #0]
- 169:../LIB_USB/DRV/usb_int.c ****     EPindex = (uint8_t)(wIstr & ISTR_EP_ID);
- 359              		.loc 1 169 0
- 360 002a B9F80030 		ldrh	r3, [r9, #0]
- 361 002e 03F00F03 		and	r3, r3, #15
- 171:../LIB_USB/DRV/usb_int.c ****     wEPVal = _GetENDPOINT(EPindex);
- 362              		.loc 1 171 0
- 363 0032 9A00     		lsls	r2, r3, #2
- 364 0034 02F18042 		add	r2, r2, #1073741824
- 169:../LIB_USB/DRV/usb_int.c ****     EPindex = (uint8_t)(wIstr & ISTR_EP_ID);
- 365              		.loc 1 169 0
- 366 0038 8AF80030 		strb	r3, [sl, #0]
- 171:../LIB_USB/DRV/usb_int.c ****     wEPVal = _GetENDPOINT(EPindex);
- 367              		.loc 1 171 0
- 368 003c 02F5B842 		add	r2, r2, #23552
- 369 0040 1168     		ldr	r1, [r2, #0]
- 370              	.LVL38:
- 172:../LIB_USB/DRV/usb_int.c ****     if ((wEPVal & EP_CTR_RX) != 0)
- 371              		.loc 1 172 0
- 372 0042 0804     		lsls	r0, r1, #16
- 373 0044 0BD4     		bmi	.L96
- 181:../LIB_USB/DRV/usb_int.c ****     else if ((wEPVal & EP_CTR_TX) != 0)
- 374              		.loc 1 181 0
- 375 0046 0906     		lsls	r1, r1, #24
- 376              	.LVL39:
- 377 0048 E8D5     		bpl	.L95
- 184:../LIB_USB/DRV/usb_int.c ****       _ClearEP_CTR_TX(EPindex);
- 378              		.loc 1 184 0
- 379 004a 1068     		ldr	r0, [r2, #0]
- 380 004c 48F60F71 		movw	r1, #36623
- 381 0050 0140     		ands	r1, r1, r0
- 382              		.loc 1 187 0
- 383 0052 013B     		subs	r3, r3, #1
- 184:../LIB_USB/DRV/usb_int.c ****       _ClearEP_CTR_TX(EPindex);
- 384              		.loc 1 184 0
- 385 0054 1160     		str	r1, [r2, #0]
- 386              		.loc 1 187 0
- 387 0056 56F82330 		ldr	r3, [r6, r3, lsl #2]
- 388 005a 9847     		blx	r3
- 389              	.LVL40:
- 390 005c DEE7     		b	.L95
- 391              	.LVL41:
- 392              	.L96:
- 175:../LIB_USB/DRV/usb_int.c ****       _ClearEP_CTR_RX(EPindex);
- 393              		.loc 1 175 0
- 394 005e 1068     		ldr	r0, [r2, #0]
- 395 0060 40F68F71 		movw	r1, #3983
- 396              	.LVL42:
- 397 0064 0140     		ands	r1, r1, r0
- 178:../LIB_USB/DRV/usb_int.c ****       (*pEpInt_OUT[EPindex-1])();
- 398              		.loc 1 178 0
- 399 0066 013B     		subs	r3, r3, #1
- 175:../LIB_USB/DRV/usb_int.c ****       _ClearEP_CTR_RX(EPindex);
- 400              		.loc 1 175 0
- 401 0068 1160     		str	r1, [r2, #0]
- 178:../LIB_USB/DRV/usb_int.c ****       (*pEpInt_OUT[EPindex-1])();
- 402              		.loc 1 178 0
- 403 006a 55F82330 		ldr	r3, [r5, r3, lsl #2]
- 404 006e 9847     		blx	r3
- 405              	.LVL43:
- 406 0070 D4E7     		b	.L95
- 407              	.LVL44:
- 408              	.L85:
- 409 0072 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, sl, pc}
- 410              	.L98:
- 411 0076 00BF     		.align	2
- 412              	.L97:
- 413 0078 00000000 		.word	wIstr
- 414 007c 00000000 		.word	pEpInt_IN
- 415 0080 00000000 		.word	pEpInt_OUT
- 416 0084 00000000 		.word	EPindex
- 417              		.cfi_endproc
- 418              	.LFE1:
- 420              		.comm	SaveTState,2,2
- 421              		.comm	SaveRState,2,2
- 422              		.text
- 423              	.Letext0:
- 424              		.file 2 "../LIB_HW/Hw_Define.h"
- 425              		.file 3 "../LIB_USB/DRV/usb_regs.h"
- 426              		.file 4 "../LIB_USB/DRV/usb_init.h"
+  31              	.LVL0:
+  51:../LIB_AP/Ap_EduMenu.c **** 	if( Event == HW_KEYPAD_EVENT_RELEASED || Event == HW_KEYPAD_EVENT_REPEAT )
+  32              		.loc 1 51 0
+  33 0000 0138     		subs	r0, r0, #1
+  34              	.LVL1:
+  35 0002 0128     		cmp	r0, #1
+  50:../LIB_AP/Ap_EduMenu.c **** {
+  36              		.loc 1 50 0
+  37 0004 10B5     		push	{r4, lr}
+  38              	.LCFI0:
+  39              		.cfi_def_cfa_offset 8
+  40              		.cfi_offset 4, -8
+  41              		.cfi_offset 14, -4
+  42              		.loc 1 51 0
+  43 0006 00D9     		bls	.L4
+  44 0008 10BD     		pop	{r4, pc}
+  45              	.L4:
+  46              	.LBB4:
+  47              	.LBB5:
+  52:../LIB_AP/Ap_EduMenu.c **** 	{
+  53:../LIB_AP/Ap_EduMenu.c **** 		Seg_Count -= 2;
+  48              		.loc 1 53 0
+  49 000a 054B     		ldr	r3, .L5
+  54:../LIB_AP/Ap_EduMenu.c **** 		
+  55:../LIB_AP/Ap_EduMenu.c **** 		
+  56:../LIB_AP/Ap_EduMenu.c **** 		Hw_7Seg_Print( 0, "%d", Seg_Count++ );
+  50              		.loc 1 56 0
+  51 000c 0020     		movs	r0, #0
+  52              	.LVL2:
+  53:../LIB_AP/Ap_EduMenu.c **** 		Seg_Count -= 2;
+  53              		.loc 1 53 0
+  54 000e 1C88     		ldrh	r4, [r3, #0]
+  55              		.loc 1 56 0
+  56 0010 0449     		ldr	r1, .L5+4
+  53:../LIB_AP/Ap_EduMenu.c **** 		Seg_Count -= 2;
+  57              		.loc 1 53 0
+  58 0012 A21E     		subs	r2, r4, #2
+  59              		.loc 1 56 0
+  60 0014 013C     		subs	r4, r4, #1
+  61 0016 1C80     		strh	r4, [r3, #0]	@ movhi
+  62 0018 92B2     		uxth	r2, r2
+  63 001a 034B     		ldr	r3, .L5+8
+  64 001c 9847     		blx	r3
+  65              	.LVL3:
+  66 001e 10BD     		pop	{r4, pc}
+  67              	.L6:
+  68              		.align	2
+  69              	.L5:
+  70 0020 00000000 		.word	.LANCHOR0
+  71 0024 00000000 		.word	.LC0
+  72 0028 00000000 		.word	Hw_7Seg_Print
+  73              	.LBE5:
+  74              	.LBE4:
+  75              		.cfi_endproc
+  76              	.LFE1:
+  78              		.section	.text.KeyPad_UpKeyEvent,"ax",%progbits
+  79              		.align	2
+  80              		.global	KeyPad_UpKeyEvent
+  81              		.thumb
+  82              		.thumb_func
+  84              	KeyPad_UpKeyEvent:
+  85              	.LFB0:
+  42:../LIB_AP/Ap_EduMenu.c **** {
+  86              		.loc 1 42 0
+  87              		.cfi_startproc
+  88              		@ args = 0, pretend = 0, frame = 0
+  89              		@ frame_needed = 0, uses_anonymous_args = 0
+  90              	.LVL4:
+  43:../LIB_AP/Ap_EduMenu.c **** 	if( Event == HW_KEYPAD_EVENT_RELEASED || Event == HW_KEYPAD_EVENT_REPEAT )
+  91              		.loc 1 43 0
+  92 0000 0138     		subs	r0, r0, #1
+  93              	.LVL5:
+  94 0002 0128     		cmp	r0, #1
+  42:../LIB_AP/Ap_EduMenu.c **** {
+  95              		.loc 1 42 0
+  96 0004 10B5     		push	{r4, lr}
+  97              	.LCFI1:
+  98              		.cfi_def_cfa_offset 8
+  99              		.cfi_offset 4, -8
+ 100              		.cfi_offset 14, -4
+  43:../LIB_AP/Ap_EduMenu.c **** 	if( Event == HW_KEYPAD_EVENT_RELEASED || Event == HW_KEYPAD_EVENT_REPEAT )
+ 101              		.loc 1 43 0
+ 102 0006 00D9     		bls	.L9
+ 103 0008 10BD     		pop	{r4, pc}
+ 104              	.L9:
+ 105              	.LBB8:
+ 106              	.LBB9:
+  45:../LIB_AP/Ap_EduMenu.c **** 		Hw_7Seg_Print( 0, "%d", Seg_Count++ );
+ 107              		.loc 1 45 0
+ 108 000a 044B     		ldr	r3, .L10
+ 109 000c 0020     		movs	r0, #0
+ 110              	.LVL6:
+ 111 000e 1A88     		ldrh	r2, [r3, #0]
+ 112 0010 0349     		ldr	r1, .L10+4
+ 113 0012 541C     		adds	r4, r2, #1
+ 114 0014 1C80     		strh	r4, [r3, #0]	@ movhi
+ 115 0016 034B     		ldr	r3, .L10+8
+ 116 0018 9847     		blx	r3
+ 117              	.LVL7:
+ 118 001a 10BD     		pop	{r4, pc}
+ 119              	.L11:
+ 120              		.align	2
+ 121              	.L10:
+ 122 001c 00000000 		.word	.LANCHOR0
+ 123 0020 00000000 		.word	.LC0
+ 124 0024 00000000 		.word	Hw_7Seg_Print
+ 125              	.LBE9:
+ 126              	.LBE8:
+ 127              		.cfi_endproc
+ 128              	.LFE0:
+ 130              		.section	.text.Ap_EduMenu_ShowMenu,"ax",%progbits
+ 131              		.align	2
+ 132              		.global	Ap_EduMenu_ShowMenu
+ 133              		.thumb
+ 134              		.thumb_func
+ 136              	Ap_EduMenu_ShowMenu:
+ 137              	.LFB2:
+  57:../LIB_AP/Ap_EduMenu.c **** 	}	
+  58:../LIB_AP/Ap_EduMenu.c **** }
+  59:../LIB_AP/Ap_EduMenu.c **** 
+  60:../LIB_AP/Ap_EduMenu.c **** 
+  61:../LIB_AP/Ap_EduMenu.c **** 
+  62:../LIB_AP/Ap_EduMenu.c **** /*---------------------------------------------------------------------------
+  63:../LIB_AP/Ap_EduMenu.c ****      TITLE   : Ap_EduMenu_ShowMenu
+  64:../LIB_AP/Ap_EduMenu.c ****      WORK    : 
+  65:../LIB_AP/Ap_EduMenu.c ****      ARG     : void
+  66:../LIB_AP/Ap_EduMenu.c ****      RET     : void
+  67:../LIB_AP/Ap_EduMenu.c **** ---------------------------------------------------------------------------*/
+  68:../LIB_AP/Ap_EduMenu.c **** void Ap_EduMenu_ShowMenu(void)
+  69:../LIB_AP/Ap_EduMenu.c **** {
+ 138              		.loc 1 69 0
+ 139              		.cfi_startproc
+ 140              		@ args = 0, pretend = 0, frame = 0
+ 141              		@ frame_needed = 0, uses_anonymous_args = 0
+ 142 0000 38B5     		push	{r3, r4, r5, lr}
+ 143              	.LCFI2:
+ 144              		.cfi_def_cfa_offset 16
+ 145              		.cfi_offset 3, -16
+ 146              		.cfi_offset 4, -12
+ 147              		.cfi_offset 5, -8
+ 148              		.cfi_offset 14, -4
+  70:../LIB_AP/Ap_EduMenu.c **** 	u8 key;
+  71:../LIB_AP/Ap_EduMenu.c **** 
+  72:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("\n\n");
+ 149              		.loc 1 72 0
+ 150 0002 40F20000 		movw	r0, #:lower16:.LC1
+ 151 0006 40F20004 		movw	r4, #:lower16:Lb_printf
+  73:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("*******************************************************\n");
+ 152              		.loc 1 73 0
+ 153 000a 40F20005 		movw	r5, #:lower16:.LC2
+  72:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("\n\n");
+ 154              		.loc 1 72 0
+ 155 000e C0F20004 		movt	r4, #:upper16:Lb_printf
+ 156              		.loc 1 73 0
+ 157 0012 C0F20005 		movt	r5, #:upper16:.LC2
+  72:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("\n\n");
+ 158              		.loc 1 72 0
+ 159 0016 C0F20000 		movt	r0, #:upper16:.LC1
+ 160 001a A047     		blx	r4
+ 161              	.LVL8:
+ 162              		.loc 1 73 0
+ 163 001c 2846     		mov	r0, r5
+ 164 001e A047     		blx	r4
+ 165              	.LVL9:
+  74:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("                      Edu V0.3                         \n");
+ 166              		.loc 1 74 0
+ 167 0020 40F20000 		movw	r0, #:lower16:.LC3
+ 168 0024 C0F20000 		movt	r0, #:upper16:.LC3
+ 169 0028 A047     		blx	r4
+ 170              	.LVL10:
+  75:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("*******************************************************\n");
+ 171              		.loc 1 75 0
+ 172 002a 2846     		mov	r0, r5
+ 173 002c A047     		blx	r4
+ 174              	.LVL11:
+  76:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("* 1. LED Test                                         *\n");
+ 175              		.loc 1 76 0
+ 176 002e 40F20000 		movw	r0, #:lower16:.LC4
+ 177 0032 C0F20000 		movt	r0, #:upper16:.LC4
+ 178 0036 A047     		blx	r4
+ 179              	.LVL12:
+  77:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("* 2. KeyPad Test                                      *\n");
+ 180              		.loc 1 77 0
+ 181 0038 40F20000 		movw	r0, #:lower16:.LC5
+ 182 003c C0F20000 		movt	r0, #:upper16:.LC5
+ 183 0040 A047     		blx	r4
+ 184              	.LVL13:
+  78:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("* 3. 7Seg Test                                        *\n");
+ 185              		.loc 1 78 0
+ 186 0042 40F20000 		movw	r0, #:lower16:.LC6
+ 187 0046 C0F20000 		movt	r0, #:upper16:.LC6
+ 188 004a A047     		blx	r4
+ 189              	.LVL14:
+  79:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("* 4. CLcd Test                                        *\n");
+ 190              		.loc 1 79 0
+ 191 004c 40F20000 		movw	r0, #:lower16:.LC7
+ 192 0050 C0F20000 		movt	r0, #:upper16:.LC7
+ 193 0054 A047     		blx	r4
+ 194              	.LVL15:
+  80:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("* 5.                                                  *\n");
+ 195              		.loc 1 80 0
+ 196 0056 40F20000 		movw	r0, #:lower16:.LC8
+ 197 005a C0F20000 		movt	r0, #:upper16:.LC8
+ 198 005e A047     		blx	r4
+ 199              	.LVL16:
+  81:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("* 6.                                                  *\n");
+ 200              		.loc 1 81 0
+ 201 0060 40F20000 		movw	r0, #:lower16:.LC9
+ 202 0064 C0F20000 		movt	r0, #:upper16:.LC9
+ 203 0068 A047     		blx	r4
+ 204              	.LVL17:
+  82:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("* 7.                                                  *\n");
+ 205              		.loc 1 82 0
+ 206 006a 40F20000 		movw	r0, #:lower16:.LC10
+ 207 006e C0F20000 		movt	r0, #:upper16:.LC10
+ 208 0072 A047     		blx	r4
+ 209              	.LVL18:
+  83:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("* 8.                                                  *\n");
+ 210              		.loc 1 83 0
+ 211 0074 40F20000 		movw	r0, #:lower16:.LC11
+ 212 0078 C0F20000 		movt	r0, #:upper16:.LC11
+ 213 007c A047     		blx	r4
+ 214              	.LVL19:
+  84:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("* 9.                                                  *\n");
+ 215              		.loc 1 84 0
+ 216 007e 40F20000 		movw	r0, #:lower16:.LC12
+ 217 0082 C0F20000 		movt	r0, #:upper16:.LC12
+ 218 0086 A047     		blx	r4
+ 219              	.LVL20:
+  85:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("* m.  Menu                                            *\n");
+ 220              		.loc 1 85 0
+ 221 0088 40F20000 		movw	r0, #:lower16:.LC13
+ 222 008c C0F20000 		movt	r0, #:upper16:.LC13
+ 223 0090 A047     		blx	r4
+ 224              	.LVL21:
+  86:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("*******************************************************\n");
+ 225              		.loc 1 86 0
+ 226 0092 2846     		mov	r0, r5
+ 227 0094 A047     		blx	r4
+ 228              	.LVL22:
+  87:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("\n");
+ 229              		.loc 1 87 0
+ 230 0096 40F20000 		movw	r0, #:lower16:.LC14
+ 231 009a C0F20000 		movt	r0, #:upper16:.LC14
+ 232 009e A047     		blx	r4
+ 233              	.LVL23:
+ 234 00a0 38BD     		pop	{r3, r4, r5, pc}
+ 235              		.cfi_endproc
+ 236              	.LFE2:
+ 238 00a2 00BF     		.section	.text.Ap_EduMenu_GetCmd,"ax",%progbits
+ 239              		.align	2
+ 240              		.global	Ap_EduMenu_GetCmd
+ 241              		.thumb
+ 242              		.thumb_func
+ 244              	Ap_EduMenu_GetCmd:
+ 245              	.LFB3:
+  88:../LIB_AP/Ap_EduMenu.c **** }
+  89:../LIB_AP/Ap_EduMenu.c **** 
+  90:../LIB_AP/Ap_EduMenu.c **** 
+  91:../LIB_AP/Ap_EduMenu.c **** 
+  92:../LIB_AP/Ap_EduMenu.c **** 
+  93:../LIB_AP/Ap_EduMenu.c **** 
+  94:../LIB_AP/Ap_EduMenu.c **** /*---------------------------------------------------------------------------
+  95:../LIB_AP/Ap_EduMenu.c ****      TITLE   : Ap_EduMenu_GetCmd
+  96:../LIB_AP/Ap_EduMenu.c ****      WORK    : 
+  97:../LIB_AP/Ap_EduMenu.c ****      ARG     : void
+  98:../LIB_AP/Ap_EduMenu.c ****      RET     : 
+  99:../LIB_AP/Ap_EduMenu.c **** 				u8 : 눌려진 메뉴키 데이터 
+ 100:../LIB_AP/Ap_EduMenu.c **** ---------------------------------------------------------------------------*/
+ 101:../LIB_AP/Ap_EduMenu.c **** u8 Ap_EduMenu_GetCmd(void)
+ 102:../LIB_AP/Ap_EduMenu.c **** {
+ 246              		.loc 1 102 0
+ 247              		.cfi_startproc
+ 248              		@ args = 0, pretend = 0, frame = 0
+ 249              		@ frame_needed = 0, uses_anonymous_args = 0
+ 250 0000 38B5     		push	{r3, r4, r5, lr}
+ 251              	.LCFI3:
+ 252              		.cfi_def_cfa_offset 16
+ 253              		.cfi_offset 3, -16
+ 254              		.cfi_offset 4, -12
+ 255              		.cfi_offset 5, -8
+ 256              		.cfi_offset 14, -4
+ 103:../LIB_AP/Ap_EduMenu.c **** 	u8  key;
+ 104:../LIB_AP/Ap_EduMenu.c **** 	
+ 105:../LIB_AP/Ap_EduMenu.c **** 
+ 106:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf(">> ");
+ 257              		.loc 1 106 0
+ 258 0002 40F20000 		movw	r0, #:lower16:.LC15
+ 259 0006 40F20004 		movw	r4, #:lower16:Lb_printf
+ 260 000a C0F20004 		movt	r4, #:upper16:Lb_printf
+ 261 000e C0F20000 		movt	r0, #:upper16:.LC15
+ 262 0012 A047     		blx	r4
+ 263              	.LVL24:
+ 107:../LIB_AP/Ap_EduMenu.c **** 
+ 108:../LIB_AP/Ap_EduMenu.c ****     key=get_byte();
+ 264              		.loc 1 108 0
+ 265 0014 40F20003 		movw	r3, #:lower16:get_byte
+ 266 0018 C0F20003 		movt	r3, #:upper16:get_byte
+ 267 001c 9847     		blx	r3
+ 268              	.LVL25:
+ 269 001e 0546     		mov	r5, r0
+ 270              	.LVL26:
+ 109:../LIB_AP/Ap_EduMenu.c **** 	
+ 110:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("\n");
+ 271              		.loc 1 110 0
+ 272 0020 40F20000 		movw	r0, #:lower16:.LC14
+ 273              	.LVL27:
+ 274 0024 C0F20000 		movt	r0, #:upper16:.LC14
+ 275 0028 A047     		blx	r4
+ 276              	.LVL28:
+ 111:../LIB_AP/Ap_EduMenu.c **** 	
+ 112:../LIB_AP/Ap_EduMenu.c ****     return key;
+ 113:../LIB_AP/Ap_EduMenu.c **** }
+ 277              		.loc 1 113 0
+ 278 002a 2846     		mov	r0, r5
+ 279 002c 38BD     		pop	{r3, r4, r5, pc}
+ 280              		.cfi_endproc
+ 281              	.LFE3:
+ 283 002e 00BF     		.section	.text.Ap_EduMenu_ExeCmd,"ax",%progbits
+ 284              		.align	2
+ 285              		.global	Ap_EduMenu_ExeCmd
+ 286              		.thumb
+ 287              		.thumb_func
+ 289              	Ap_EduMenu_ExeCmd:
+ 290              	.LFB4:
+ 114:../LIB_AP/Ap_EduMenu.c **** 
+ 115:../LIB_AP/Ap_EduMenu.c **** 
+ 116:../LIB_AP/Ap_EduMenu.c **** 
+ 117:../LIB_AP/Ap_EduMenu.c **** 
+ 118:../LIB_AP/Ap_EduMenu.c **** /*---------------------------------------------------------------------------
+ 119:../LIB_AP/Ap_EduMenu.c ****      TITLE   : Ap_EduMenu_ExeCmd
+ 120:../LIB_AP/Ap_EduMenu.c ****      WORK    : 
+ 121:../LIB_AP/Ap_EduMenu.c ****      ARG     : void
+ 122:../LIB_AP/Ap_EduMenu.c ****      RET     : 
+ 123:../LIB_AP/Ap_EduMenu.c **** 				u8 : 눌려진 메뉴키 데이터 
+ 124:../LIB_AP/Ap_EduMenu.c **** ---------------------------------------------------------------------------*/
+ 125:../LIB_AP/Ap_EduMenu.c **** u8 Ap_EduMenu_ExeCmd(void)
+ 126:../LIB_AP/Ap_EduMenu.c **** {
+ 291              		.loc 1 126 0
+ 292              		.cfi_startproc
+ 293              		@ args = 0, pretend = 0, frame = 0
+ 294              		@ frame_needed = 0, uses_anonymous_args = 0
+ 295              	.LVL29:
+ 296 0000 2DE9F84F 		push	{r3, r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ 297              	.LCFI4:
+ 298              		.cfi_def_cfa_offset 40
+ 299              		.cfi_offset 3, -40
+ 300              		.cfi_offset 4, -36
+ 301              		.cfi_offset 5, -32
+ 302              		.cfi_offset 6, -28
+ 303              		.cfi_offset 7, -24
+ 304              		.cfi_offset 8, -20
+ 305              		.cfi_offset 9, -16
+ 306              		.cfi_offset 10, -12
+ 307              		.cfi_offset 11, -8
+ 308              		.cfi_offset 14, -4
+ 127:../LIB_AP/Ap_EduMenu.c **** 	u8  key;
+ 128:../LIB_AP/Ap_EduMenu.c **** 	u8  i;
+ 129:../LIB_AP/Ap_EduMenu.c **** 	u32 KeyPressedCnt;
+ 130:../LIB_AP/Ap_EduMenu.c **** 	u32 KeyEvent;
+ 131:../LIB_AP/Ap_EduMenu.c **** 	u32 KeyNum;
+ 132:../LIB_AP/Ap_EduMenu.c **** 	u16 SegCnt = 0;
+ 133:../LIB_AP/Ap_EduMenu.c **** 	
+ 134:../LIB_AP/Ap_EduMenu.c **** 	static u8 ExeFirst = TRUE;
+ 135:../LIB_AP/Ap_EduMenu.c **** 	u16 Ret = ERR_NONE;
+ 136:../LIB_AP/Ap_EduMenu.c **** 			
+ 137:../LIB_AP/Ap_EduMenu.c **** 	
+ 138:../LIB_AP/Ap_EduMenu.c **** 	if( ExeFirst == TRUE )
+ 139:../LIB_AP/Ap_EduMenu.c **** 	{
+ 140:../LIB_AP/Ap_EduMenu.c **** 		Ap_EduMenu_ShowMenu();		
+ 309              		.loc 1 140 0
+ 310 0004 40F20003 		movw	r3, #:lower16:Ap_EduMenu_ShowMenu
+ 311 0008 C0F20003 		movt	r3, #:upper16:Ap_EduMenu_ShowMenu
+ 312 000c 9847     		blx	r3
+ 313              	.LVL30:
+ 141:../LIB_AP/Ap_EduMenu.c **** 		
+ 142:../LIB_AP/Ap_EduMenu.c **** 		Hw_KeyPad_SetEventFunc( 2, KeyPad_UpKeyEvent );
+ 314              		.loc 1 142 0
+ 315 000e 844C     		ldr	r4, .L40
+ 316 0010 0220     		movs	r0, #2
+ 317 0012 8449     		ldr	r1, .L40+4
+ 318 0014 A047     		blx	r4
+ 319              	.LVL31:
+ 143:../LIB_AP/Ap_EduMenu.c **** 		Hw_KeyPad_SetEventFunc( 0, KeyPad_DownKeyEvent );	
+ 320              		.loc 1 143 0
+ 321 0016 0020     		movs	r0, #0
+ 322 0018 8349     		ldr	r1, .L40+8
+ 323 001a A047     		blx	r4
+ 324              	.LVL32:
+ 325 001c DFF84082 		ldr	r8, .L40+64
+ 144:../LIB_AP/Ap_EduMenu.c **** 	}
+ 145:../LIB_AP/Ap_EduMenu.c **** 
+ 146:../LIB_AP/Ap_EduMenu.c ****     while( (key = Ap_EduMenu_GetCmd()) != 0 )
+ 147:../LIB_AP/Ap_EduMenu.c ****     {
+ 148:../LIB_AP/Ap_EduMenu.c ****         switch(key)
+ 149:../LIB_AP/Ap_EduMenu.c ****         {
+ 150:../LIB_AP/Ap_EduMenu.c ****            case '1':
+ 151:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 0 );
+ 152:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
+ 153:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 1 );
+ 154:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
+ 155:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 2 );;
+ 156:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
+ 157:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 3 );
+ 158:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
+ 159:../LIB_AP/Ap_EduMenu.c ****                	break;
+ 160:../LIB_AP/Ap_EduMenu.c **** 
+ 161:../LIB_AP/Ap_EduMenu.c ****            case '2':
+ 162:../LIB_AP/Ap_EduMenu.c ****            		Lb_printf("KeyPad Start : press two keys to exit\n");
+ 163:../LIB_AP/Ap_EduMenu.c ****            		while(1)
+ 164:../LIB_AP/Ap_EduMenu.c ****            		{
+ 165:../LIB_AP/Ap_EduMenu.c ****            			KeyEvent = Hw_KeyPad_WaitForEvent(1000);
+ 166:../LIB_AP/Ap_EduMenu.c ****            			 
+ 167:../LIB_AP/Ap_EduMenu.c ****            			if( IS_SET_BIT( KeyEvent, HW_KEYPAD_EVENT_PRESSED) )
+ 168:../LIB_AP/Ap_EduMenu.c ****            			{ 
+ 169:../LIB_AP/Ap_EduMenu.c ****            				Lb_printf("%x KeyPressed\n", Hw_KeyPad_GetEventKeyData(HW_KEYPAD_EVENT_PRESSED) );  
+ 170:../LIB_AP/Ap_EduMenu.c **** 					}										
+ 171:../LIB_AP/Ap_EduMenu.c **** 					else
+ 172:../LIB_AP/Ap_EduMenu.c **** 					if( IS_SET_BIT( KeyEvent, HW_KEYPAD_EVENT_RELEASED) )
+ 173:../LIB_AP/Ap_EduMenu.c **** 					{
+ 174:../LIB_AP/Ap_EduMenu.c **** 						Lb_printf("%x KeyReleased\n", Hw_KeyPad_GetEventKeyData(HW_KEYPAD_EVENT_RELEASED) );         
+ 175:../LIB_AP/Ap_EduMenu.c **** 					}
+ 176:../LIB_AP/Ap_EduMenu.c **** 					else
+ 177:../LIB_AP/Ap_EduMenu.c **** 					if( IS_SET_BIT( KeyEvent, HW_KEYPAD_EVENT_REPEAT) )
+ 178:../LIB_AP/Ap_EduMenu.c **** 					{
+ 179:../LIB_AP/Ap_EduMenu.c **** 						KeyNum = Hw_KeyPad_GetEventKeyNum(HW_KEYPAD_EVENT_REPEAT);
+ 180:../LIB_AP/Ap_EduMenu.c **** 						
+ 181:../LIB_AP/Ap_EduMenu.c **** 						Lb_printf("%x KeyRepeat Cnt : %d\n",Hw_KeyPad_GetEventKeyData(HW_KEYPAD_EVENT_REPEAT), Hw_Key
+ 182:../LIB_AP/Ap_EduMenu.c **** 					}
+ 183:../LIB_AP/Ap_EduMenu.c **** 					
+ 184:../LIB_AP/Ap_EduMenu.c **** 					KeyPressedCnt = Hw_KeyPad_GetPressedCnt();
+ 185:../LIB_AP/Ap_EduMenu.c **** 						
+ 186:../LIB_AP/Ap_EduMenu.c **** 					if( KeyPressedCnt >= 2 )
+ 187:../LIB_AP/Ap_EduMenu.c **** 					{
+ 188:../LIB_AP/Ap_EduMenu.c **** 						Lb_printf("Key Exit\n");
+ 189:../LIB_AP/Ap_EduMenu.c **** 						break;
+ 190:../LIB_AP/Ap_EduMenu.c **** 					}	
+ 191:../LIB_AP/Ap_EduMenu.c **** 				}
+ 192:../LIB_AP/Ap_EduMenu.c **** 				break;
+ 193:../LIB_AP/Ap_EduMenu.c **** 
+ 194:../LIB_AP/Ap_EduMenu.c ****            case '3':	
+ 195:../LIB_AP/Ap_EduMenu.c ****            		Hw_7Seg_Print( 0, "%d", Seg_Count++ );
+ 196:../LIB_AP/Ap_EduMenu.c ****                break; 
+ 197:../LIB_AP/Ap_EduMenu.c **** 
+ 198:../LIB_AP/Ap_EduMenu.c ****            case '4':
+ 199:../LIB_AP/Ap_EduMenu.c ****            		Hw_CLcd_Print( 0, 1, "Cnt : %d", Seg_Count++);
+ 326              		.loc 1 199 0
+ 327 0020 DFF84092 		ldr	r9, .L40+68
+ 328              	.L35:
+ 146:../LIB_AP/Ap_EduMenu.c ****     while( (key = Ap_EduMenu_GetCmd()) != 0 )
+ 329              		.loc 1 146 0 discriminator 1
+ 330 0024 C047     		blx	r8
+ 331              	.LVL33:
+ 332 0026 0346     		mov	r3, r0
+ 333 0028 0028     		cmp	r0, #0
+ 334 002a 00F09380 		beq	.L36
+ 335              	.L28:
+ 148:../LIB_AP/Ap_EduMenu.c ****         switch(key)
+ 336              		.loc 1 148 0
+ 337 002e A3F13100 		sub	r0, r3, #49
+ 338              	.LVL34:
+ 339 0032 3C28     		cmp	r0, #60
+ 340 0034 F6D8     		bhi	.L35
+ 341 0036 01A4     		adr	r4, .L22
+ 342 0038 54F820F0 		ldr	pc, [r4, r0, lsl #2]
+ 343              		.align	2
+ 344              	.L22:
+ 345 003c BB010000 		.word	.L17+1
+ 346 0040 73010000 		.word	.L18+1
+ 347 0044 59010000 		.word	.L19+1
+ 348 0048 31010000 		.word	.L20+1
+ 349 004c 25000000 		.word	.L35+1
+ 350 0050 25000000 		.word	.L35+1
+ 351 0054 25000000 		.word	.L35+1
+ 352 0058 25000000 		.word	.L35+1
+ 353 005c 25000000 		.word	.L35+1
+ 354 0060 25000000 		.word	.L35+1
+ 355 0064 25000000 		.word	.L35+1
+ 356 0068 25000000 		.word	.L35+1
+ 357 006c 25000000 		.word	.L35+1
+ 358 0070 25000000 		.word	.L35+1
+ 359 0074 25000000 		.word	.L35+1
+ 360 0078 25000000 		.word	.L35+1
+ 361 007c 25000000 		.word	.L35+1
+ 362 0080 25000000 		.word	.L35+1
+ 363 0084 25000000 		.word	.L35+1
+ 364 0088 25000000 		.word	.L35+1
+ 365 008c 25000000 		.word	.L35+1
+ 366 0090 25000000 		.word	.L35+1
+ 367 0094 25000000 		.word	.L35+1
+ 368 0098 25000000 		.word	.L35+1
+ 369 009c 25000000 		.word	.L35+1
+ 370 00a0 25000000 		.word	.L35+1
+ 371 00a4 25000000 		.word	.L35+1
+ 372 00a8 25000000 		.word	.L35+1
+ 373 00ac AF010000 		.word	.L21+1
+ 374 00b0 25000000 		.word	.L35+1
+ 375 00b4 25000000 		.word	.L35+1
+ 376 00b8 25000000 		.word	.L35+1
+ 377 00bc 25000000 		.word	.L35+1
+ 378 00c0 25000000 		.word	.L35+1
+ 379 00c4 25000000 		.word	.L35+1
+ 380 00c8 25000000 		.word	.L35+1
+ 381 00cc 25000000 		.word	.L35+1
+ 382 00d0 25000000 		.word	.L35+1
+ 383 00d4 25000000 		.word	.L35+1
+ 384 00d8 25000000 		.word	.L35+1
+ 385 00dc 25000000 		.word	.L35+1
+ 386 00e0 25000000 		.word	.L35+1
+ 387 00e4 25000000 		.word	.L35+1
+ 388 00e8 25000000 		.word	.L35+1
+ 389 00ec 25000000 		.word	.L35+1
+ 390 00f0 25000000 		.word	.L35+1
+ 391 00f4 25000000 		.word	.L35+1
+ 392 00f8 25000000 		.word	.L35+1
+ 393 00fc 25000000 		.word	.L35+1
+ 394 0100 25000000 		.word	.L35+1
+ 395 0104 25000000 		.word	.L35+1
+ 396 0108 25000000 		.word	.L35+1
+ 397 010c 25000000 		.word	.L35+1
+ 398 0110 25000000 		.word	.L35+1
+ 399 0114 25000000 		.word	.L35+1
+ 400 0118 25000000 		.word	.L35+1
+ 401 011c 25000000 		.word	.L35+1
+ 402 0120 25000000 		.word	.L35+1
+ 403 0124 25000000 		.word	.L35+1
+ 404 0128 25000000 		.word	.L35+1
+ 405 012c AF010000 		.word	.L21+1
+ 406              	.L20:
+ 407              		.loc 1 199 0
+ 408 0130 B9F80030 		ldrh	r3, [r9, #0]
+ 409 0134 0121     		movs	r1, #1
+ 410 0136 5C18     		adds	r4, r3, r1
+ 411 0138 A9F80040 		strh	r4, [r9, #0]	@ movhi
+ 412 013c 40F20004 		movw	r4, #:lower16:Hw_CLcd_Print
+ 413 0140 3A4A     		ldr	r2, .L40+12
+ 414 0142 0020     		movs	r0, #0
+ 415 0144 C0F20004 		movt	r4, #:upper16:Hw_CLcd_Print
+ 416 0148 A047     		blx	r4
+ 417              	.LVL35:
+ 146:../LIB_AP/Ap_EduMenu.c ****     while( (key = Ap_EduMenu_GetCmd()) != 0 )
+ 418              		.loc 1 146 0
+ 419 014a C047     		blx	r8
+ 420              	.LVL36:
+ 421 014c 0346     		mov	r3, r0
+ 422 014e 0028     		cmp	r0, #0
+ 423 0150 7FF46DAF 		bne	.L28
+ 424              	.L36:
+ 200:../LIB_AP/Ap_EduMenu.c **** 				break;  
+ 201:../LIB_AP/Ap_EduMenu.c **** 
+ 202:../LIB_AP/Ap_EduMenu.c ****            case '5':
+ 203:../LIB_AP/Ap_EduMenu.c ****                break; 
+ 204:../LIB_AP/Ap_EduMenu.c **** 
+ 205:../LIB_AP/Ap_EduMenu.c ****            case '6':
+ 206:../LIB_AP/Ap_EduMenu.c ****                break;  
+ 207:../LIB_AP/Ap_EduMenu.c **** 
+ 208:../LIB_AP/Ap_EduMenu.c ****            case '7':
+ 209:../LIB_AP/Ap_EduMenu.c ****                break;  
+ 210:../LIB_AP/Ap_EduMenu.c **** 
+ 211:../LIB_AP/Ap_EduMenu.c ****            case '8':           		
+ 212:../LIB_AP/Ap_EduMenu.c ****                break;
+ 213:../LIB_AP/Ap_EduMenu.c **** 
+ 214:../LIB_AP/Ap_EduMenu.c ****            case '9': 
+ 215:../LIB_AP/Ap_EduMenu.c ****                break;
+ 216:../LIB_AP/Ap_EduMenu.c **** 
+ 217:../LIB_AP/Ap_EduMenu.c ****            case '0':
+ 218:../LIB_AP/Ap_EduMenu.c ****                break;
+ 219:../LIB_AP/Ap_EduMenu.c **** 
+ 220:../LIB_AP/Ap_EduMenu.c **** 			case 'm':
+ 221:../LIB_AP/Ap_EduMenu.c **** 			case 'M':
+ 222:../LIB_AP/Ap_EduMenu.c **** 				Ap_EduMenu_ShowMenu();
+ 223:../LIB_AP/Ap_EduMenu.c **** 				break;
+ 224:../LIB_AP/Ap_EduMenu.c **** 				
+ 225:../LIB_AP/Ap_EduMenu.c ****            default :
+ 226:../LIB_AP/Ap_EduMenu.c ****                break;
+ 227:../LIB_AP/Ap_EduMenu.c ****         }
+ 228:../LIB_AP/Ap_EduMenu.c ****     }
+ 229:../LIB_AP/Ap_EduMenu.c ****     
+ 230:../LIB_AP/Ap_EduMenu.c ****     return Ret;
+ 231:../LIB_AP/Ap_EduMenu.c **** }
+ 425              		.loc 1 231 0
+ 426 0154 BDE8F88F 		pop	{r3, r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 427              	.LVL37:
+ 428              	.L19:
+ 195:../LIB_AP/Ap_EduMenu.c ****            		Hw_7Seg_Print( 0, "%d", Seg_Count++ );
+ 429              		.loc 1 195 0
+ 430 0158 B9F80020 		ldrh	r2, [r9, #0]
+ 431 015c 40F20004 		movw	r4, #:lower16:Hw_7Seg_Print
+ 432 0160 531C     		adds	r3, r2, #1
+ 433 0162 0020     		movs	r0, #0
+ 434 0164 3249     		ldr	r1, .L40+16
+ 435 0166 C0F20004 		movt	r4, #:upper16:Hw_7Seg_Print
+ 436 016a A9F80030 		strh	r3, [r9, #0]	@ movhi
+ 437 016e A047     		blx	r4
+ 438              	.LVL38:
+ 196:../LIB_AP/Ap_EduMenu.c ****                break; 
+ 439              		.loc 1 196 0
+ 440 0170 58E7     		b	.L35
+ 441              	.L18:
+ 162:../LIB_AP/Ap_EduMenu.c ****            		Lb_printf("KeyPad Start : press two keys to exit\n");
+ 442              		.loc 1 162 0
+ 443 0172 3048     		ldr	r0, .L40+20
+ 444 0174 304E     		ldr	r6, .L40+24
+ 445 0176 B047     		blx	r6
+ 446              	.LVL39:
+ 447 0178 304D     		ldr	r5, .L40+28
+ 448 017a 314C     		ldr	r4, .L40+32
+ 181:../LIB_AP/Ap_EduMenu.c **** 						Lb_printf("%x KeyRepeat Cnt : %d\n",Hw_KeyPad_GetEventKeyData(HW_KEYPAD_EVENT_REPEAT), Hw_Key
+ 449              		.loc 1 181 0
+ 450 017c 314F     		ldr	r7, .L40+36
+ 451 017e 06E0     		b	.L27
+ 452              	.LVL40:
+ 453              	.L24:
+ 172:../LIB_AP/Ap_EduMenu.c **** 					if( IS_SET_BIT( KeyEvent, HW_KEYPAD_EVENT_RELEASED) )
+ 454              		.loc 1 172 0
+ 455 0180 4207     		lsls	r2, r0, #29
+ 456 0182 31D4     		bmi	.L37
+ 177:../LIB_AP/Ap_EduMenu.c **** 					if( IS_SET_BIT( KeyEvent, HW_KEYPAD_EVENT_REPEAT) )
+ 457              		.loc 1 177 0
+ 458 0184 8307     		lsls	r3, r0, #30
+ 459 0186 35D4     		bmi	.L38
+ 460              	.LVL41:
+ 461              	.L25:
+ 184:../LIB_AP/Ap_EduMenu.c **** 					KeyPressedCnt = Hw_KeyPad_GetPressedCnt();
+ 462              		.loc 1 184 0
+ 463 0188 A047     		blx	r4
+ 464              	.LVL42:
+ 186:../LIB_AP/Ap_EduMenu.c **** 					if( KeyPressedCnt >= 2 )
+ 465              		.loc 1 186 0
+ 466 018a 0128     		cmp	r0, #1
+ 467 018c 0CD8     		bhi	.L39
+ 468              	.LVL43:
+ 469              	.L27:
+ 165:../LIB_AP/Ap_EduMenu.c ****            			KeyEvent = Hw_KeyPad_WaitForEvent(1000);
+ 470              		.loc 1 165 0
+ 471 018e 4FF47A70 		mov	r0, #1000
+ 472 0192 A847     		blx	r5
+ 473              	.LVL44:
+ 167:../LIB_AP/Ap_EduMenu.c ****            			if( IS_SET_BIT( KeyEvent, HW_KEYPAD_EVENT_PRESSED) )
+ 474              		.loc 1 167 0
+ 475 0194 C107     		lsls	r1, r0, #31
+ 476 0196 F3D5     		bpl	.L24
+ 169:../LIB_AP/Ap_EduMenu.c ****            				Lb_printf("%x KeyPressed\n", Hw_KeyPad_GetEventKeyData(HW_KEYPAD_EVENT_PRESSED) );  
+ 477              		.loc 1 169 0
+ 478 0198 0020     		movs	r0, #0
+ 479              	.LVL45:
+ 480 019a B847     		blx	r7
+ 481              	.LVL46:
+ 482 019c 0146     		mov	r1, r0
+ 483 019e 2A48     		ldr	r0, .L40+40
+ 484 01a0 B047     		blx	r6
+ 485              	.LVL47:
+ 184:../LIB_AP/Ap_EduMenu.c **** 					KeyPressedCnt = Hw_KeyPad_GetPressedCnt();
+ 486              		.loc 1 184 0
+ 487 01a2 A047     		blx	r4
+ 488              	.LVL48:
+ 186:../LIB_AP/Ap_EduMenu.c **** 					if( KeyPressedCnt >= 2 )
+ 489              		.loc 1 186 0
+ 490 01a4 0128     		cmp	r0, #1
+ 491 01a6 F2D9     		bls	.L27
+ 492              	.L39:
+ 188:../LIB_AP/Ap_EduMenu.c **** 						Lb_printf("Key Exit\n");
+ 493              		.loc 1 188 0
+ 494 01a8 2848     		ldr	r0, .L40+44
+ 495              	.LVL49:
+ 496 01aa B047     		blx	r6
+ 497              	.LVL50:
+ 192:../LIB_AP/Ap_EduMenu.c **** 				break;
+ 498              		.loc 1 192 0
+ 499 01ac 3AE7     		b	.L35
+ 500              	.L21:
+ 222:../LIB_AP/Ap_EduMenu.c **** 				Ap_EduMenu_ShowMenu();
+ 501              		.loc 1 222 0
+ 502 01ae 40F20003 		movw	r3, #:lower16:Ap_EduMenu_ShowMenu
+ 503 01b2 C0F20003 		movt	r3, #:upper16:Ap_EduMenu_ShowMenu
+ 504 01b6 9847     		blx	r3
+ 505              	.LVL51:
+ 223:../LIB_AP/Ap_EduMenu.c **** 				break;
+ 506              		.loc 1 223 0
+ 507 01b8 34E7     		b	.L35
+ 508              	.L17:
+ 151:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 0 );
+ 509              		.loc 1 151 0
+ 510 01ba 254D     		ldr	r5, .L40+48
+ 511 01bc 0020     		movs	r0, #0
+ 152:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
+ 512              		.loc 1 152 0
+ 513 01be 254C     		ldr	r4, .L40+52
+ 151:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 0 );
+ 514              		.loc 1 151 0
+ 515 01c0 A847     		blx	r5
+ 516              	.LVL52:
+ 152:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
+ 517              		.loc 1 152 0
+ 518 01c2 4FF4FA70 		mov	r0, #500
+ 519 01c6 A047     		blx	r4
+ 520              	.LVL53:
+ 153:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 1 );
+ 521              		.loc 1 153 0
+ 522 01c8 0120     		movs	r0, #1
+ 523 01ca A847     		blx	r5
+ 524              	.LVL54:
+ 154:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
+ 525              		.loc 1 154 0
+ 526 01cc 4FF4FA70 		mov	r0, #500
+ 527 01d0 A047     		blx	r4
+ 528              	.LVL55:
+ 155:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 2 );;
+ 529              		.loc 1 155 0
+ 530 01d2 0220     		movs	r0, #2
+ 531 01d4 A847     		blx	r5
+ 532              	.LVL56:
+ 156:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
+ 533              		.loc 1 156 0
+ 534 01d6 4FF4FA70 		mov	r0, #500
+ 535 01da A047     		blx	r4
+ 536              	.LVL57:
+ 157:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 3 );
+ 537              		.loc 1 157 0
+ 538 01dc 0320     		movs	r0, #3
+ 539 01de A847     		blx	r5
+ 540              	.LVL58:
+ 158:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
+ 541              		.loc 1 158 0
+ 542 01e0 4FF4FA70 		mov	r0, #500
+ 543 01e4 A047     		blx	r4
+ 544              	.LVL59:
+ 159:../LIB_AP/Ap_EduMenu.c ****                	break;
+ 545              		.loc 1 159 0
+ 546 01e6 1DE7     		b	.L35
+ 547              	.LVL60:
+ 548              	.L37:
+ 174:../LIB_AP/Ap_EduMenu.c **** 						Lb_printf("%x KeyReleased\n", Hw_KeyPad_GetEventKeyData(HW_KEYPAD_EVENT_RELEASED) );         
+ 549              		.loc 1 174 0
+ 550 01e8 0220     		movs	r0, #2
+ 551              	.LVL61:
+ 552 01ea B847     		blx	r7
+ 553              	.LVL62:
+ 554 01ec 0146     		mov	r1, r0
+ 555 01ee 1A48     		ldr	r0, .L40+56
+ 556 01f0 B047     		blx	r6
+ 557              	.LVL63:
+ 558 01f2 C9E7     		b	.L25
+ 559              	.LVL64:
+ 560              	.L38:
+ 179:../LIB_AP/Ap_EduMenu.c **** 						KeyNum = Hw_KeyPad_GetEventKeyNum(HW_KEYPAD_EVENT_REPEAT);
+ 561              		.loc 1 179 0
+ 562 01f4 40F20003 		movw	r3, #:lower16:Hw_KeyPad_GetEventKeyNum
+ 563 01f8 C0F20003 		movt	r3, #:upper16:Hw_KeyPad_GetEventKeyNum
+ 564 01fc 0120     		movs	r0, #1
+ 565              	.LVL65:
+ 566 01fe 9847     		blx	r3
+ 567              	.LVL66:
+ 568 0200 8346     		mov	fp, r0
+ 569              	.LVL67:
+ 181:../LIB_AP/Ap_EduMenu.c **** 						Lb_printf("%x KeyRepeat Cnt : %d\n",Hw_KeyPad_GetEventKeyData(HW_KEYPAD_EVENT_REPEAT), Hw_Key
+ 570              		.loc 1 181 0
+ 571 0202 0120     		movs	r0, #1
+ 572              	.LVL68:
+ 573 0204 B847     		blx	r7
+ 574              	.LVL69:
+ 575 0206 40F20003 		movw	r3, #:lower16:Hw_KeyPad_GetRepeatCnt
+ 576 020a 8246     		mov	sl, r0
+ 577 020c C0F20003 		movt	r3, #:upper16:Hw_KeyPad_GetRepeatCnt
+ 578 0210 5FFA8BF0 		uxtb	r0, fp
+ 579 0214 9847     		blx	r3
+ 580              	.LVL70:
+ 581 0216 5146     		mov	r1, sl
+ 582 0218 0246     		mov	r2, r0
+ 583 021a 1048     		ldr	r0, .L40+60
+ 584 021c B047     		blx	r6
+ 585              	.LVL71:
+ 586 021e B3E7     		b	.L25
+ 587              	.L41:
+ 588              		.align	2
+ 589              	.L40:
+ 590 0220 00000000 		.word	Hw_KeyPad_SetEventFunc
+ 591 0224 00000000 		.word	KeyPad_UpKeyEvent
+ 592 0228 00000000 		.word	KeyPad_DownKeyEvent
+ 593 022c 4C030000 		.word	.LC21
+ 594 0230 00000000 		.word	.LC0
+ 595 0234 E0020000 		.word	.LC16
+ 596 0238 00000000 		.word	Lb_printf
+ 597 023c 00000000 		.word	Hw_KeyPad_WaitForEvent
+ 598 0240 00000000 		.word	Hw_KeyPad_GetPressedCnt
+ 599 0244 00000000 		.word	Hw_KeyPad_GetEventKeyData
+ 600 0248 08030000 		.word	.LC17
+ 601 024c 40030000 		.word	.LC20
+ 602 0250 00000000 		.word	Hw_Led_Toggle
+ 603 0254 00000000 		.word	Hw_Timer_Delay_ms
+ 604 0258 18030000 		.word	.LC18
+ 605 025c 28030000 		.word	.LC19
+ 606 0260 00000000 		.word	Ap_EduMenu_GetCmd
+ 607 0264 00000000 		.word	.LANCHOR0
+ 608              		.cfi_endproc
+ 609              	.LFE4:
+ 611              		.global	Seg_Count
+ 612              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 613              		.align	2
+ 614              	.LC0:
+ 615 0000 256400   		.ascii	"%d\000"
+ 616 0003 00       		.space	1
+ 617              	.LC1:
+ 618 0004 0A0A00   		.ascii	"\012\012\000"
+ 619 0007 00       		.space	1
+ 620              	.LC2:
+ 621 0008 2A2A2A2A 		.ascii	"***************************************************"
+ 621      2A2A2A2A 
+ 621      2A2A2A2A 
+ 621      2A2A2A2A 
+ 621      2A2A2A2A 
+ 622 003b 2A2A2A2A 		.ascii	"****\012\000"
+ 622      0A00
+ 623 0041 000000   		.space	3
+ 624              	.LC3:
+ 625 0044 20202020 		.ascii	"                      Edu V0.3                     "
+ 625      20202020 
+ 625      20202020 
+ 625      20202020 
+ 625      20202020 
+ 626 0077 20202020 		.ascii	"    \012\000"
+ 626      0A00
+ 627 007d 000000   		.space	3
+ 628              	.LC4:
+ 629 0080 2A20312E 		.ascii	"* 1. LED Test                                      "
+ 629      204C4544 
+ 629      20546573 
+ 629      74202020 
+ 629      20202020 
+ 630 00b3 2020202A 		.ascii	"   *\012\000"
+ 630      0A00
+ 631 00b9 000000   		.space	3
+ 632              	.LC5:
+ 633 00bc 2A20322E 		.ascii	"* 2. KeyPad Test                                   "
+ 633      204B6579 
+ 633      50616420 
+ 633      54657374 
+ 633      20202020 
+ 634 00ef 2020202A 		.ascii	"   *\012\000"
+ 634      0A00
+ 635 00f5 000000   		.space	3
+ 636              	.LC6:
+ 637 00f8 2A20332E 		.ascii	"* 3. 7Seg Test                                     "
+ 637      20375365 
+ 637      67205465 
+ 637      73742020 
+ 637      20202020 
+ 638 012b 2020202A 		.ascii	"   *\012\000"
+ 638      0A00
+ 639 0131 000000   		.space	3
+ 640              	.LC7:
+ 641 0134 2A20342E 		.ascii	"* 4. CLcd Test                                     "
+ 641      20434C63 
+ 641      64205465 
+ 641      73742020 
+ 641      20202020 
+ 642 0167 2020202A 		.ascii	"   *\012\000"
+ 642      0A00
+ 643 016d 000000   		.space	3
+ 644              	.LC8:
+ 645 0170 2A20352E 		.ascii	"* 5.                                               "
+ 645      20202020 
+ 645      20202020 
+ 645      20202020 
+ 645      20202020 
+ 646 01a3 2020202A 		.ascii	"   *\012\000"
+ 646      0A00
+ 647 01a9 000000   		.space	3
+ 648              	.LC9:
+ 649 01ac 2A20362E 		.ascii	"* 6.                                               "
+ 649      20202020 
+ 649      20202020 
+ 649      20202020 
+ 649      20202020 
+ 650 01df 2020202A 		.ascii	"   *\012\000"
+ 650      0A00
+ 651 01e5 000000   		.space	3
+ 652              	.LC10:
+ 653 01e8 2A20372E 		.ascii	"* 7.                                               "
+ 653      20202020 
+ 653      20202020 
+ 653      20202020 
+ 653      20202020 
+ 654 021b 2020202A 		.ascii	"   *\012\000"
+ 654      0A00
+ 655 0221 000000   		.space	3
+ 656              	.LC11:
+ 657 0224 2A20382E 		.ascii	"* 8.                                               "
+ 657      20202020 
+ 657      20202020 
+ 657      20202020 
+ 657      20202020 
+ 658 0257 2020202A 		.ascii	"   *\012\000"
+ 658      0A00
+ 659 025d 000000   		.space	3
+ 660              	.LC12:
+ 661 0260 2A20392E 		.ascii	"* 9.                                               "
+ 661      20202020 
+ 661      20202020 
+ 661      20202020 
+ 661      20202020 
+ 662 0293 2020202A 		.ascii	"   *\012\000"
+ 662      0A00
+ 663 0299 000000   		.space	3
+ 664              	.LC13:
+ 665 029c 2A206D2E 		.ascii	"* m.  Menu                                         "
+ 665      20204D65 
+ 665      6E752020 
+ 665      20202020 
+ 665      20202020 
+ 666 02cf 2020202A 		.ascii	"   *\012\000"
+ 666      0A00
+ 667 02d5 000000   		.space	3
+ 668              	.LC14:
+ 669 02d8 0A00     		.ascii	"\012\000"
+ 670 02da 0000     		.space	2
+ 671              	.LC15:
+ 672 02dc 3E3E2000 		.ascii	">> \000"
+ 673              	.LC16:
+ 674 02e0 4B657950 		.ascii	"KeyPad Start : press two keys to exit\012\000"
+ 674      61642053 
+ 674      74617274 
+ 674      203A2070 
+ 674      72657373 
+ 675 0307 00       		.space	1
+ 676              	.LC17:
+ 677 0308 2578204B 		.ascii	"%x KeyPressed\012\000"
+ 677      65795072 
+ 677      65737365 
+ 677      640A00
+ 678 0317 00       		.space	1
+ 679              	.LC18:
+ 680 0318 2578204B 		.ascii	"%x KeyReleased\012\000"
+ 680      65795265 
+ 680      6C656173 
+ 680      65640A00 
+ 681              	.LC19:
+ 682 0328 2578204B 		.ascii	"%x KeyRepeat Cnt : %d\012\000"
+ 682      65795265 
+ 682      70656174 
+ 682      20436E74 
+ 682      203A2025 
+ 683 033f 00       		.space	1
+ 684              	.LC20:
+ 685 0340 4B657920 		.ascii	"Key Exit\012\000"
+ 685      45786974 
+ 685      0A00
+ 686 034a 0000     		.space	2
+ 687              	.LC21:
+ 688 034c 436E7420 		.ascii	"Cnt : %d\000"
+ 688      3A202564 
+ 688      00
+ 689 0355 000000   		.section	.bss.Seg_Count,"aw",%nobits
+ 690              		.align	1
+ 691              		.set	.LANCHOR0,. + 0
+ 694              	Seg_Count:
+ 695 0000 0000     		.space	2
+ 696              		.text
+ 697              	.Letext0:
+ 698              		.file 2 "../LIB_HW/Hw_Define.h"
 DEFINED SYMBOLS
-                            *ABS*:0000000000000000 usb_int.c
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc5ISc1x.s:19     .text.CTR_LP:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc5ISc1x.s:24     .text.CTR_LP:0000000000000000 CTR_LP
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc5ISc1x.s:302    .text.CTR_LP:00000000000001a0 $d
-                            *COM*:0000000000000002 SaveRState
-                            *COM*:0000000000000002 SaveTState
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc5ISc1x.s:313    .text.CTR_HP:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc5ISc1x.s:318    .text.CTR_HP:0000000000000000 CTR_HP
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc5ISc1x.s:413    .text.CTR_HP:0000000000000078 $d
+                            *ABS*:0000000000000000 Ap_EduMenu.c
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:19     .text.KeyPad_DownKeyEvent:0000000000000000 $t
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:24     .text.KeyPad_DownKeyEvent:0000000000000000 KeyPad_DownKeyEvent
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:70     .text.KeyPad_DownKeyEvent:0000000000000020 $d
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:79     .text.KeyPad_UpKeyEvent:0000000000000000 $t
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:84     .text.KeyPad_UpKeyEvent:0000000000000000 KeyPad_UpKeyEvent
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:122    .text.KeyPad_UpKeyEvent:000000000000001c $d
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:131    .text.Ap_EduMenu_ShowMenu:0000000000000000 $t
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:136    .text.Ap_EduMenu_ShowMenu:0000000000000000 Ap_EduMenu_ShowMenu
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:617    .rodata.str1.4:0000000000000004 .LC1
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:620    .rodata.str1.4:0000000000000008 .LC2
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:624    .rodata.str1.4:0000000000000044 .LC3
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:628    .rodata.str1.4:0000000000000080 .LC4
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:632    .rodata.str1.4:00000000000000bc .LC5
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:636    .rodata.str1.4:00000000000000f8 .LC6
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:640    .rodata.str1.4:0000000000000134 .LC7
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:644    .rodata.str1.4:0000000000000170 .LC8
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:648    .rodata.str1.4:00000000000001ac .LC9
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:652    .rodata.str1.4:00000000000001e8 .LC10
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:656    .rodata.str1.4:0000000000000224 .LC11
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:660    .rodata.str1.4:0000000000000260 .LC12
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:664    .rodata.str1.4:000000000000029c .LC13
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:668    .rodata.str1.4:00000000000002d8 .LC14
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:239    .text.Ap_EduMenu_GetCmd:0000000000000000 $t
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:244    .text.Ap_EduMenu_GetCmd:0000000000000000 Ap_EduMenu_GetCmd
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:671    .rodata.str1.4:00000000000002dc .LC15
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:284    .text.Ap_EduMenu_ExeCmd:0000000000000000 $t
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:289    .text.Ap_EduMenu_ExeCmd:0000000000000000 Ap_EduMenu_ExeCmd
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:345    .text.Ap_EduMenu_ExeCmd:000000000000003c $d
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:408    .text.Ap_EduMenu_ExeCmd:0000000000000130 $t
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:590    .text.Ap_EduMenu_ExeCmd:0000000000000220 $d
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:694    .bss.Seg_Count:0000000000000000 Seg_Count
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:613    .rodata.str1.4:0000000000000000 $d
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cc6c5LYW.s:690    .bss.Seg_Count:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
-pEpInt_IN
-pEpInt_OUT
-Out0_Process
-In0_Process
-Setup0_Process
-wIstr
-EPindex
+Hw_7Seg_Print
+Lb_printf
+get_byte
+Hw_CLcd_Print
+Hw_KeyPad_GetEventKeyNum
+Hw_KeyPad_GetRepeatCnt
+Hw_KeyPad_SetEventFunc
+Hw_KeyPad_WaitForEvent
+Hw_KeyPad_GetPressedCnt
+Hw_KeyPad_GetEventKeyData
+Hw_Led_Toggle
+Hw_Timer_Delay_ms
