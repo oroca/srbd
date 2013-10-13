@@ -252,37 +252,37 @@
  172 002a 2846     		mov	r0, r5
  173 002c A047     		blx	r4
  174              	.LVL11:
-  76:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("* 1. LED Test                                         *\n");
+  76:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("* 1. Test.. LED                                       *\n");
  175              		.loc 1 76 0
  176 002e 40F20000 		movw	r0, #:lower16:.LC4
  177 0032 C0F20000 		movt	r0, #:upper16:.LC4
  178 0036 A047     		blx	r4
  179              	.LVL12:
-  77:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("* 2. KeyPad Test                                      *\n");
+  77:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("* 2. Test.. KeyPad                                    *\n");
  180              		.loc 1 77 0
  181 0038 40F20000 		movw	r0, #:lower16:.LC5
  182 003c C0F20000 		movt	r0, #:upper16:.LC5
  183 0040 A047     		blx	r4
  184              	.LVL13:
-  78:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("* 3. 7Seg Test                                        *\n");
+  78:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("* 3. Test.. 7Seg                                      *\n");
  185              		.loc 1 78 0
  186 0042 40F20000 		movw	r0, #:lower16:.LC6
  187 0046 C0F20000 		movt	r0, #:upper16:.LC6
  188 004a A047     		blx	r4
  189              	.LVL14:
-  79:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("* 4. CLcd Test                                        *\n");
+  79:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("* 4. Test.. CLcd                                      *\n");
  190              		.loc 1 79 0
  191 004c 40F20000 		movw	r0, #:lower16:.LC7
  192 0050 C0F20000 		movt	r0, #:upper16:.LC7
  193 0054 A047     		blx	r4
  194              	.LVL15:
-  80:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("* 5. BT Test                                          *\n");
+  80:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("* 5. Test.. BT                                        *\n");
  195              		.loc 1 80 0
  196 0056 40F20000 		movw	r0, #:lower16:.LC8
  197 005a C0F20000 		movt	r0, #:upper16:.LC8
  198 005e A047     		blx	r4
  199              	.LVL16:
-  81:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("* 6.                                                  *\n");
+  81:../LIB_AP/Ap_EduMenu.c **** 	Lb_printf("* 6. Test.. Temperature                               *\n");
  200              		.loc 1 81 0
  201 0060 40F20000 		movw	r0, #:lower16:.LC9
  202 0064 C0F20000 		movt	r0, #:upper16:.LC9
@@ -439,785 +439,851 @@
  131:../LIB_AP/Ap_EduMenu.c **** 	u32 KeyEvent;
  132:../LIB_AP/Ap_EduMenu.c **** 	u32 KeyNum;
  133:../LIB_AP/Ap_EduMenu.c **** 	u16 SegCnt = 0;
- 134:../LIB_AP/Ap_EduMenu.c **** 	
- 135:../LIB_AP/Ap_EduMenu.c **** 	static u8 ExeFirst = TRUE;
- 136:../LIB_AP/Ap_EduMenu.c **** 	u16 Ret = ERR_NONE;
- 137:../LIB_AP/Ap_EduMenu.c **** 			
- 138:../LIB_AP/Ap_EduMenu.c **** 	
- 139:../LIB_AP/Ap_EduMenu.c **** 	if( ExeFirst == TRUE )
- 140:../LIB_AP/Ap_EduMenu.c **** 	{
- 141:../LIB_AP/Ap_EduMenu.c **** 		Ap_EduMenu_ShowMenu();		
- 308              		.loc 1 141 0
+ 134:../LIB_AP/Ap_EduMenu.c **** 	s16 Temp = 0;
+ 135:../LIB_AP/Ap_EduMenu.c **** 	
+ 136:../LIB_AP/Ap_EduMenu.c **** 	static u8 ExeFirst = TRUE;
+ 137:../LIB_AP/Ap_EduMenu.c **** 	u16 Ret = ERR_NONE;
+ 138:../LIB_AP/Ap_EduMenu.c **** 			
+ 139:../LIB_AP/Ap_EduMenu.c **** 	
+ 140:../LIB_AP/Ap_EduMenu.c **** 	if( ExeFirst == TRUE )
+ 141:../LIB_AP/Ap_EduMenu.c **** 	{
+ 142:../LIB_AP/Ap_EduMenu.c **** 		Ap_EduMenu_ShowMenu();		
+ 308              		.loc 1 142 0
  309 0004 40F20003 		movw	r3, #:lower16:Ap_EduMenu_ShowMenu
  126:../LIB_AP/Ap_EduMenu.c **** {
  310              		.loc 1 126 0
  311 0008 85B0     		sub	sp, sp, #20
  312              	.LCFI5:
  313              		.cfi_def_cfa_offset 56
- 314              		.loc 1 141 0
+ 314              		.loc 1 142 0
  315 000a C0F20003 		movt	r3, #:upper16:Ap_EduMenu_ShowMenu
  316 000e 9847     		blx	r3
  317              	.LVL30:
- 142:../LIB_AP/Ap_EduMenu.c **** 		
- 143:../LIB_AP/Ap_EduMenu.c **** 		Hw_KeyPad_SetEventFunc( 2, KeyPad_UpKeyEvent );
- 318              		.loc 1 143 0
- 319 0010 944C     		ldr	r4, .L49
+ 143:../LIB_AP/Ap_EduMenu.c **** 		
+ 144:../LIB_AP/Ap_EduMenu.c **** 		Hw_KeyPad_SetEventFunc( 2, KeyPad_UpKeyEvent );
+ 318              		.loc 1 144 0
+ 319 0010 A34C     		ldr	r4, .L50
  320 0012 0220     		movs	r0, #2
- 321 0014 9449     		ldr	r1, .L49+4
+ 321 0014 A349     		ldr	r1, .L50+4
  322 0016 A047     		blx	r4
  323              	.LVL31:
- 144:../LIB_AP/Ap_EduMenu.c **** 		Hw_KeyPad_SetEventFunc( 0, KeyPad_DownKeyEvent );	
- 324              		.loc 1 144 0
- 325 0018 0020     		movs	r0, #0
- 326 001a 9449     		ldr	r1, .L49+8
- 327 001c A047     		blx	r4
- 328              	.LVL32:
- 329 001e DFF8A0A2 		ldr	sl, .L49+92
- 145:../LIB_AP/Ap_EduMenu.c **** 	}
- 146:../LIB_AP/Ap_EduMenu.c **** 
- 147:../LIB_AP/Ap_EduMenu.c ****     while( (key = Ap_EduMenu_GetCmd()) != 0 )
- 148:../LIB_AP/Ap_EduMenu.c ****     {
- 149:../LIB_AP/Ap_EduMenu.c ****         switch(key)
- 150:../LIB_AP/Ap_EduMenu.c ****         {
- 151:../LIB_AP/Ap_EduMenu.c ****            case '1':
- 152:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 0 );
- 153:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
- 154:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 1 );
- 155:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
- 156:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 2 );;
- 157:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
- 158:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 3 );
- 159:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
- 160:../LIB_AP/Ap_EduMenu.c ****                	break;
- 161:../LIB_AP/Ap_EduMenu.c **** 
- 162:../LIB_AP/Ap_EduMenu.c ****            case '2':
- 163:../LIB_AP/Ap_EduMenu.c ****            		Lb_printf("KeyPad Start : press two keys to exit\n");
- 164:../LIB_AP/Ap_EduMenu.c ****            		while(1)
- 165:../LIB_AP/Ap_EduMenu.c ****            		{
- 166:../LIB_AP/Ap_EduMenu.c ****            			KeyEvent = Hw_KeyPad_WaitForEvent(1000);
- 167:../LIB_AP/Ap_EduMenu.c ****            			 
- 168:../LIB_AP/Ap_EduMenu.c ****            			if( IS_SET_BIT( KeyEvent, HW_KEYPAD_EVENT_PRESSED) )
- 169:../LIB_AP/Ap_EduMenu.c ****            			{ 
- 170:../LIB_AP/Ap_EduMenu.c ****            				Lb_printf("%x KeyPressed\n", Hw_KeyPad_GetEventKeyData(HW_KEYPAD_EVENT_PRESSED) );  
- 171:../LIB_AP/Ap_EduMenu.c **** 					}										
- 172:../LIB_AP/Ap_EduMenu.c **** 					else
- 173:../LIB_AP/Ap_EduMenu.c **** 					if( IS_SET_BIT( KeyEvent, HW_KEYPAD_EVENT_RELEASED) )
- 174:../LIB_AP/Ap_EduMenu.c **** 					{
- 175:../LIB_AP/Ap_EduMenu.c **** 						Lb_printf("%x KeyReleased\n", Hw_KeyPad_GetEventKeyData(HW_KEYPAD_EVENT_RELEASED) );         
- 176:../LIB_AP/Ap_EduMenu.c **** 					}
- 177:../LIB_AP/Ap_EduMenu.c **** 					else
- 178:../LIB_AP/Ap_EduMenu.c **** 					if( IS_SET_BIT( KeyEvent, HW_KEYPAD_EVENT_REPEAT) )
- 179:../LIB_AP/Ap_EduMenu.c **** 					{
- 180:../LIB_AP/Ap_EduMenu.c **** 						KeyNum = Hw_KeyPad_GetEventKeyNum(HW_KEYPAD_EVENT_REPEAT);
- 181:../LIB_AP/Ap_EduMenu.c **** 						
- 182:../LIB_AP/Ap_EduMenu.c **** 						Lb_printf("%x KeyRepeat Cnt : %d\n",Hw_KeyPad_GetEventKeyData(HW_KEYPAD_EVENT_REPEAT), Hw_Key
- 183:../LIB_AP/Ap_EduMenu.c **** 					}
- 184:../LIB_AP/Ap_EduMenu.c **** 					
- 185:../LIB_AP/Ap_EduMenu.c **** 					KeyPressedCnt = Hw_KeyPad_GetPressedCnt();
- 186:../LIB_AP/Ap_EduMenu.c **** 						
- 187:../LIB_AP/Ap_EduMenu.c **** 					if( KeyPressedCnt >= 2 )
- 188:../LIB_AP/Ap_EduMenu.c **** 					{
- 189:../LIB_AP/Ap_EduMenu.c **** 						Lb_printf("Key Exit\n");
- 190:../LIB_AP/Ap_EduMenu.c **** 						break;
- 191:../LIB_AP/Ap_EduMenu.c **** 					}	
- 192:../LIB_AP/Ap_EduMenu.c **** 				}
- 193:../LIB_AP/Ap_EduMenu.c **** 				break;
- 194:../LIB_AP/Ap_EduMenu.c **** 
- 195:../LIB_AP/Ap_EduMenu.c ****            case '3':	
- 196:../LIB_AP/Ap_EduMenu.c ****            		Hw_7Seg_Print( 0, "%d", Seg_Count++ );
- 197:../LIB_AP/Ap_EduMenu.c ****                break; 
- 198:../LIB_AP/Ap_EduMenu.c **** 
- 199:../LIB_AP/Ap_EduMenu.c ****            case '4':
- 200:../LIB_AP/Ap_EduMenu.c ****            		Hw_CLcd_Print( 0, 1, "Cnt : %d", Seg_Count++);
- 201:../LIB_AP/Ap_EduMenu.c **** 				break;  
- 202:../LIB_AP/Ap_EduMenu.c **** 
- 203:../LIB_AP/Ap_EduMenu.c ****            case '5':
- 204:../LIB_AP/Ap_EduMenu.c ****            		Lb_printf("BT Test Start, press x to exit\n");
- 330              		.loc 1 204 0
- 331 0022 934D     		ldr	r5, .L49+12
- 332 0024 934C     		ldr	r4, .L49+16
- 205:../LIB_AP/Ap_EduMenu.c **** 
- 206:../LIB_AP/Ap_EduMenu.c ****            		while(1)
- 207:../LIB_AP/Ap_EduMenu.c ****            		{
- 208:../LIB_AP/Ap_EduMenu.c ****            			if( Hw_Uart_GetchNoWait( HW_USE_UART_CH_BT, &UartData) == TRUE )
- 209:../LIB_AP/Ap_EduMenu.c ****            			{
- 210:../LIB_AP/Ap_EduMenu.c ****            				Lb_printf( "BT Rxd : %c \n", UartData );
- 211:../LIB_AP/Ap_EduMenu.c ****            			}
- 212:../LIB_AP/Ap_EduMenu.c **** 
- 213:../LIB_AP/Ap_EduMenu.c ****            			if( Hw_Uart_GetchNoWait( HW_USE_UART_CH_MENU, &UartData ) == TRUE )
- 214:../LIB_AP/Ap_EduMenu.c ****            			{
- 215:../LIB_AP/Ap_EduMenu.c ****            				if( UartData == 'x' )
- 216:../LIB_AP/Ap_EduMenu.c ****            				{
- 217:../LIB_AP/Ap_EduMenu.c ****            					break;
- 218:../LIB_AP/Ap_EduMenu.c ****            				}
- 219:../LIB_AP/Ap_EduMenu.c ****            				else
- 220:../LIB_AP/Ap_EduMenu.c ****            				{
- 221:../LIB_AP/Ap_EduMenu.c ****            					Hw_Uart_Print( HW_USE_UART_CH_BT, "Menu:Send : %c\r\n",UartData );
- 333              		.loc 1 221 0
- 334 0026 DFF89C82 		ldr	r8, .L49+96
- 335              	.LVL33:
- 336              	.L42:
- 147:../LIB_AP/Ap_EduMenu.c ****     while( (key = Ap_EduMenu_GetCmd()) != 0 )
- 337              		.loc 1 147 0 discriminator 1
- 338 002a D047     		blx	sl
- 339              	.LVL34:
- 340 002c 0346     		mov	r3, r0
- 341 002e 0028     		cmp	r0, #0
- 342 0030 00F0B080 		beq	.L44
- 343              	.L33:
- 149:../LIB_AP/Ap_EduMenu.c ****         switch(key)
- 344              		.loc 1 149 0
- 345 0034 A3F13100 		sub	r0, r3, #49
- 346              	.LVL35:
- 347 0038 3C28     		cmp	r0, #60
- 348 003a F6D8     		bhi	.L42
- 349 003c 01A3     		adr	r3, .L23
- 350 003e 53F820F0 		ldr	pc, [r3, r0, lsl #2]
- 351 0042 00BF     		.align	2
- 352              	.L23:
- 353 0044 E9010000 		.word	.L17+1
- 354 0048 AD010000 		.word	.L18+1
- 355 004c 9B010000 		.word	.L19+1
- 356 0050 79010000 		.word	.L20+1
- 357 0054 39010000 		.word	.L21+1
- 358 0058 2B000000 		.word	.L42+1
- 359 005c 2B000000 		.word	.L42+1
- 360 0060 2B000000 		.word	.L42+1
- 361 0064 2B000000 		.word	.L42+1
- 362 0068 2B000000 		.word	.L42+1
- 363 006c 2B000000 		.word	.L42+1
- 364 0070 2B000000 		.word	.L42+1
- 365 0074 2B000000 		.word	.L42+1
- 366 0078 2B000000 		.word	.L42+1
- 367 007c 2B000000 		.word	.L42+1
- 368 0080 2B000000 		.word	.L42+1
- 369 0084 2B000000 		.word	.L42+1
- 370 0088 2B000000 		.word	.L42+1
- 371 008c 2B000000 		.word	.L42+1
- 372 0090 2B000000 		.word	.L42+1
- 373 0094 2B000000 		.word	.L42+1
- 374 0098 2B000000 		.word	.L42+1
- 375 009c 2B000000 		.word	.L42+1
- 376 00a0 2B000000 		.word	.L42+1
- 377 00a4 2B000000 		.word	.L42+1
- 378 00a8 2B000000 		.word	.L42+1
- 379 00ac 2B000000 		.word	.L42+1
- 380 00b0 2B000000 		.word	.L42+1
- 381 00b4 17020000 		.word	.L22+1
- 382 00b8 2B000000 		.word	.L42+1
- 383 00bc 2B000000 		.word	.L42+1
- 384 00c0 2B000000 		.word	.L42+1
- 385 00c4 2B000000 		.word	.L42+1
- 386 00c8 2B000000 		.word	.L42+1
- 387 00cc 2B000000 		.word	.L42+1
- 388 00d0 2B000000 		.word	.L42+1
- 389 00d4 2B000000 		.word	.L42+1
- 390 00d8 2B000000 		.word	.L42+1
- 391 00dc 2B000000 		.word	.L42+1
- 392 00e0 2B000000 		.word	.L42+1
- 393 00e4 2B000000 		.word	.L42+1
- 394 00e8 2B000000 		.word	.L42+1
- 395 00ec 2B000000 		.word	.L42+1
- 396 00f0 2B000000 		.word	.L42+1
- 397 00f4 2B000000 		.word	.L42+1
- 398 00f8 2B000000 		.word	.L42+1
- 399 00fc 2B000000 		.word	.L42+1
- 400 0100 2B000000 		.word	.L42+1
- 401 0104 2B000000 		.word	.L42+1
- 402 0108 2B000000 		.word	.L42+1
- 403 010c 2B000000 		.word	.L42+1
- 404 0110 2B000000 		.word	.L42+1
- 405 0114 2B000000 		.word	.L42+1
- 406 0118 2B000000 		.word	.L42+1
- 407 011c 2B000000 		.word	.L42+1
- 408 0120 2B000000 		.word	.L42+1
- 409 0124 2B000000 		.word	.L42+1
- 410 0128 2B000000 		.word	.L42+1
- 411 012c 2B000000 		.word	.L42+1
- 412 0130 2B000000 		.word	.L42+1
- 413 0134 17020000 		.word	.L22+1
- 414              	.L21:
- 204:../LIB_AP/Ap_EduMenu.c ****            		Lb_printf("BT Test Start, press x to exit\n");
- 415              		.loc 1 204 0
- 416 0138 4F48     		ldr	r0, .L49+20
- 417 013a A847     		blx	r5
- 418              	.LVL36:
- 419 013c 05E0     		b	.L43
- 420              	.L29:
- 213:../LIB_AP/Ap_EduMenu.c ****            			if( Hw_Uart_GetchNoWait( HW_USE_UART_CH_MENU, &UartData ) == TRUE )
- 421              		.loc 1 213 0
- 422 013e 0020     		movs	r0, #0
- 423 0140 0DF10F01 		add	r1, sp, #15
- 424 0144 A047     		blx	r4
- 425              	.LVL37:
- 426 0146 0128     		cmp	r0, #1
- 427 0148 0FD0     		beq	.L45
- 428              	.L43:
- 208:../LIB_AP/Ap_EduMenu.c ****            			if( Hw_Uart_GetchNoWait( HW_USE_UART_CH_BT, &UartData) == TRUE )
- 429              		.loc 1 208 0
- 430 014a 0120     		movs	r0, #1
- 431 014c 0DF10F01 		add	r1, sp, #15
- 432 0150 A047     		blx	r4
- 433              	.LVL38:
- 434 0152 0128     		cmp	r0, #1
- 435 0154 F3D1     		bne	.L29
- 210:../LIB_AP/Ap_EduMenu.c ****            				Lb_printf( "BT Rxd : %c \n", UartData );
- 436              		.loc 1 210 0
- 437 0156 9DF80F10 		ldrb	r1, [sp, #15]	@ zero_extendqisi2
- 438 015a 4848     		ldr	r0, .L49+24
- 439 015c A847     		blx	r5
- 440              	.LVL39:
- 213:../LIB_AP/Ap_EduMenu.c ****            			if( Hw_Uart_GetchNoWait( HW_USE_UART_CH_MENU, &UartData ) == TRUE )
- 441              		.loc 1 213 0
- 442 015e 0020     		movs	r0, #0
- 443 0160 0DF10F01 		add	r1, sp, #15
- 444 0164 A047     		blx	r4
- 445              	.LVL40:
- 446 0166 0128     		cmp	r0, #1
- 447 0168 EFD1     		bne	.L43
- 448              	.L45:
- 215:../LIB_AP/Ap_EduMenu.c ****            				if( UartData == 'x' )
- 449              		.loc 1 215 0
- 450 016a 9DF80F20 		ldrb	r2, [sp, #15]	@ zero_extendqisi2
- 451              		.loc 1 221 0
- 452 016e 4449     		ldr	r1, .L49+28
- 215:../LIB_AP/Ap_EduMenu.c ****            				if( UartData == 'x' )
- 453              		.loc 1 215 0
- 454 0170 782A     		cmp	r2, #120
- 455 0172 73D0     		beq	.L31
- 456              		.loc 1 221 0
- 457 0174 C047     		blx	r8
- 458              	.LVL41:
- 459 0176 E8E7     		b	.L43
- 460              	.L20:
- 200:../LIB_AP/Ap_EduMenu.c ****            		Hw_CLcd_Print( 0, 1, "Cnt : %d", Seg_Count++);
- 461              		.loc 1 200 0
- 462 0178 424E     		ldr	r6, .L49+32
- 463 017a 0121     		movs	r1, #1
- 464 017c 3388     		ldrh	r3, [r6, #0]
- 465 017e 424A     		ldr	r2, .L49+36
- 466 0180 5F18     		adds	r7, r3, r1
- 467 0182 3780     		strh	r7, [r6, #0]	@ movhi
- 468 0184 0020     		movs	r0, #0
- 469 0186 414E     		ldr	r6, .L49+40
- 470 0188 B047     		blx	r6
- 471              	.LVL42:
- 147:../LIB_AP/Ap_EduMenu.c ****     while( (key = Ap_EduMenu_GetCmd()) != 0 )
- 472              		.loc 1 147 0
- 473 018a D047     		blx	sl
- 474              	.LVL43:
- 475 018c 0346     		mov	r3, r0
- 476 018e 0028     		cmp	r0, #0
- 477 0190 7FF450AF 		bne	.L33
- 478              	.L44:
- 222:../LIB_AP/Ap_EduMenu.c ****            				}
- 223:../LIB_AP/Ap_EduMenu.c ****            			}
- 224:../LIB_AP/Ap_EduMenu.c **** 
- 225:../LIB_AP/Ap_EduMenu.c **** 				}
- 226:../LIB_AP/Ap_EduMenu.c **** 				
- 227:../LIB_AP/Ap_EduMenu.c **** 				Lb_printf("BT Test Exit\n");
- 228:../LIB_AP/Ap_EduMenu.c **** 				break; 
- 229:../LIB_AP/Ap_EduMenu.c **** 
- 230:../LIB_AP/Ap_EduMenu.c ****            case '6':
- 231:../LIB_AP/Ap_EduMenu.c ****                break;  
- 232:../LIB_AP/Ap_EduMenu.c **** 
- 233:../LIB_AP/Ap_EduMenu.c ****            case '7':
+ 145:../LIB_AP/Ap_EduMenu.c **** 		Hw_KeyPad_SetEventFunc( 0, KeyPad_DownKeyEvent );	
+ 146:../LIB_AP/Ap_EduMenu.c **** 	}
+ 147:../LIB_AP/Ap_EduMenu.c **** 
+ 148:../LIB_AP/Ap_EduMenu.c ****     while( (key = Ap_EduMenu_GetCmd()) != 0 )
+ 149:../LIB_AP/Ap_EduMenu.c ****     {
+ 150:../LIB_AP/Ap_EduMenu.c ****         switch(key)
+ 151:../LIB_AP/Ap_EduMenu.c ****         {
+ 152:../LIB_AP/Ap_EduMenu.c ****            case '1':
+ 153:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 0 );
+ 154:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
+ 155:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 1 );
+ 156:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
+ 157:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 2 );;
+ 158:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
+ 159:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 3 );
+ 160:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
+ 161:../LIB_AP/Ap_EduMenu.c ****                	break;
+ 162:../LIB_AP/Ap_EduMenu.c **** 
+ 163:../LIB_AP/Ap_EduMenu.c ****            case '2':
+ 164:../LIB_AP/Ap_EduMenu.c ****            		Lb_printf("KeyPad Start : press two keys to exit\n");
+ 165:../LIB_AP/Ap_EduMenu.c ****            		while(1)
+ 166:../LIB_AP/Ap_EduMenu.c ****            		{
+ 167:../LIB_AP/Ap_EduMenu.c ****            			KeyEvent = Hw_KeyPad_WaitForEvent(1000);
+ 168:../LIB_AP/Ap_EduMenu.c ****            			 
+ 169:../LIB_AP/Ap_EduMenu.c ****            			if( IS_SET_BIT( KeyEvent, HW_KEYPAD_EVENT_PRESSED) )
+ 170:../LIB_AP/Ap_EduMenu.c ****            			{ 
+ 171:../LIB_AP/Ap_EduMenu.c ****            				Lb_printf("%x KeyPressed\n", Hw_KeyPad_GetEventKeyData(HW_KEYPAD_EVENT_PRESSED) );  
+ 172:../LIB_AP/Ap_EduMenu.c **** 					}										
+ 173:../LIB_AP/Ap_EduMenu.c **** 					else
+ 174:../LIB_AP/Ap_EduMenu.c **** 					if( IS_SET_BIT( KeyEvent, HW_KEYPAD_EVENT_RELEASED) )
+ 175:../LIB_AP/Ap_EduMenu.c **** 					{
+ 176:../LIB_AP/Ap_EduMenu.c **** 						Lb_printf("%x KeyReleased\n", Hw_KeyPad_GetEventKeyData(HW_KEYPAD_EVENT_RELEASED) );         
+ 177:../LIB_AP/Ap_EduMenu.c **** 					}
+ 178:../LIB_AP/Ap_EduMenu.c **** 					else
+ 179:../LIB_AP/Ap_EduMenu.c **** 					if( IS_SET_BIT( KeyEvent, HW_KEYPAD_EVENT_REPEAT) )
+ 180:../LIB_AP/Ap_EduMenu.c **** 					{
+ 181:../LIB_AP/Ap_EduMenu.c **** 						KeyNum = Hw_KeyPad_GetEventKeyNum(HW_KEYPAD_EVENT_REPEAT);
+ 182:../LIB_AP/Ap_EduMenu.c **** 						
+ 183:../LIB_AP/Ap_EduMenu.c **** 						Lb_printf("%x KeyRepeat Cnt : %d\n",Hw_KeyPad_GetEventKeyData(HW_KEYPAD_EVENT_REPEAT), Hw_Key
+ 184:../LIB_AP/Ap_EduMenu.c **** 					}
+ 185:../LIB_AP/Ap_EduMenu.c **** 					
+ 186:../LIB_AP/Ap_EduMenu.c **** 					KeyPressedCnt = Hw_KeyPad_GetPressedCnt();
+ 187:../LIB_AP/Ap_EduMenu.c **** 						
+ 188:../LIB_AP/Ap_EduMenu.c **** 					if( KeyPressedCnt >= 2 )
+ 189:../LIB_AP/Ap_EduMenu.c **** 					{
+ 190:../LIB_AP/Ap_EduMenu.c **** 						Lb_printf("Key Exit\n");
+ 191:../LIB_AP/Ap_EduMenu.c **** 						break;
+ 192:../LIB_AP/Ap_EduMenu.c **** 					}	
+ 193:../LIB_AP/Ap_EduMenu.c **** 				}
+ 194:../LIB_AP/Ap_EduMenu.c **** 				break;
+ 195:../LIB_AP/Ap_EduMenu.c **** 
+ 196:../LIB_AP/Ap_EduMenu.c ****            case '3':	
+ 197:../LIB_AP/Ap_EduMenu.c ****            		Hw_7Seg_Print( 0, "%d", Seg_Count++ );
+ 198:../LIB_AP/Ap_EduMenu.c ****                break; 
+ 199:../LIB_AP/Ap_EduMenu.c **** 
+ 200:../LIB_AP/Ap_EduMenu.c ****            case '4':
+ 201:../LIB_AP/Ap_EduMenu.c ****            		Hw_CLcd_Print( 0, 1, "Cnt : %d", Seg_Count++);
+ 202:../LIB_AP/Ap_EduMenu.c **** 				break;  
+ 203:../LIB_AP/Ap_EduMenu.c **** 
+ 204:../LIB_AP/Ap_EduMenu.c ****            case '5':
+ 205:../LIB_AP/Ap_EduMenu.c ****            		Lb_printf("BT Test Start, press x to exit\n");
+ 206:../LIB_AP/Ap_EduMenu.c **** 
+ 207:../LIB_AP/Ap_EduMenu.c ****            		while(1)
+ 208:../LIB_AP/Ap_EduMenu.c ****            		{
+ 209:../LIB_AP/Ap_EduMenu.c ****            			if( Hw_Uart_GetchNoWait( HW_USE_UART_CH_BT, &UartData) == TRUE )
+ 210:../LIB_AP/Ap_EduMenu.c ****            			{
+ 211:../LIB_AP/Ap_EduMenu.c ****            				Lb_printf( "BT Rxd : %c \n", UartData );
+ 212:../LIB_AP/Ap_EduMenu.c ****            			}
+ 213:../LIB_AP/Ap_EduMenu.c **** 
+ 214:../LIB_AP/Ap_EduMenu.c ****            			if( Hw_Uart_GetchNoWait( HW_USE_UART_CH_MENU, &UartData ) == TRUE )
+ 215:../LIB_AP/Ap_EduMenu.c ****            			{
+ 216:../LIB_AP/Ap_EduMenu.c ****            				if( UartData == 'x' )
+ 217:../LIB_AP/Ap_EduMenu.c ****            				{
+ 218:../LIB_AP/Ap_EduMenu.c ****            					break;
+ 219:../LIB_AP/Ap_EduMenu.c ****            				}
+ 220:../LIB_AP/Ap_EduMenu.c ****            				else
+ 221:../LIB_AP/Ap_EduMenu.c ****            				{
+ 222:../LIB_AP/Ap_EduMenu.c ****            					Hw_Uart_Print( HW_USE_UART_CH_BT, "Menu:Send : %c\r\n",UartData );
+ 223:../LIB_AP/Ap_EduMenu.c ****            				}
+ 224:../LIB_AP/Ap_EduMenu.c ****            			}
+ 225:../LIB_AP/Ap_EduMenu.c **** 
+ 226:../LIB_AP/Ap_EduMenu.c **** 				}
+ 227:../LIB_AP/Ap_EduMenu.c **** 				
+ 228:../LIB_AP/Ap_EduMenu.c **** 				Lb_printf("BT Test Exit\n");
+ 229:../LIB_AP/Ap_EduMenu.c **** 				break; 
+ 230:../LIB_AP/Ap_EduMenu.c **** 
+ 231:../LIB_AP/Ap_EduMenu.c ****            case '6':
+ 232:../LIB_AP/Ap_EduMenu.c ****            		Lb_printf("ADC 15 : %d\n", Hw_Adc_GetData(16));
+ 233:../LIB_AP/Ap_EduMenu.c ****            		Lb_printf("ADC 16 : %d\n", Hw_Adc_GetData(17)*330/4095);
+ 324              		.loc 1 233 0
+ 325 0018 8123     		movs	r3, #129
+ 145:../LIB_AP/Ap_EduMenu.c **** 		Hw_KeyPad_SetEventFunc( 0, KeyPad_DownKeyEvent );	
+ 326              		.loc 1 145 0
+ 327 001a 0020     		movs	r0, #0
+ 328 001c A249     		ldr	r1, .L50+8
+ 329              		.loc 1 233 0
+ 330 001e 0193     		str	r3, [sp, #4]
+ 145:../LIB_AP/Ap_EduMenu.c **** 		Hw_KeyPad_SetEventFunc( 0, KeyPad_DownKeyEvent );	
+ 331              		.loc 1 145 0
+ 332 0020 A047     		blx	r4
+ 333              	.LVL32:
+ 334              		.loc 1 233 0
+ 335 0022 019B     		ldr	r3, [sp, #4]
+ 336 0024 A14F     		ldr	r7, .L50+12
+ 337 0026 C8F20803 		movt	r3, 32776
+ 232:../LIB_AP/Ap_EduMenu.c ****            		Lb_printf("ADC 15 : %d\n", Hw_Adc_GetData(16));
+ 338              		.loc 1 232 0
+ 339 002a A14C     		ldr	r4, .L50+16
+ 340              		.loc 1 233 0
+ 341 002c 0193     		str	r3, [sp, #4]
+ 342              	.LVL33:
+ 343              	.L43:
+ 148:../LIB_AP/Ap_EduMenu.c ****     while( (key = Ap_EduMenu_GetCmd()) != 0 )
+ 344              		.loc 1 148 0 discriminator 1
+ 345 002e B847     		blx	r7
+ 346              	.LVL34:
+ 347 0030 0346     		mov	r3, r0
+ 348 0032 0028     		cmp	r0, #0
+ 349 0034 00F0A380 		beq	.L45
+ 350              	.L34:
+ 150:../LIB_AP/Ap_EduMenu.c ****         switch(key)
+ 351              		.loc 1 150 0
+ 352 0038 A3F13100 		sub	r0, r3, #49
+ 353              	.LVL35:
+ 354 003c 3C28     		cmp	r0, #60
+ 355 003e F6D8     		bhi	.L43
+ 356 0040 01A3     		adr	r3, .L24
+ 357 0042 53F820F0 		ldr	pc, [r3, r0, lsl #2]
+ 358 0046 00BF     		.align	2
+ 359              	.L24:
+ 360 0048 2F020000 		.word	.L17+1
+ 361 004c EF010000 		.word	.L18+1
+ 362 0050 DD010000 		.word	.L19+1
+ 363 0054 C9010000 		.word	.L20+1
+ 364 0058 85010000 		.word	.L21+1
+ 365 005c 3D010000 		.word	.L22+1
+ 366 0060 2F000000 		.word	.L43+1
+ 367 0064 2F000000 		.word	.L43+1
+ 368 0068 2F000000 		.word	.L43+1
+ 369 006c 2F000000 		.word	.L43+1
+ 370 0070 2F000000 		.word	.L43+1
+ 371 0074 2F000000 		.word	.L43+1
+ 372 0078 2F000000 		.word	.L43+1
+ 373 007c 2F000000 		.word	.L43+1
+ 374 0080 2F000000 		.word	.L43+1
+ 375 0084 2F000000 		.word	.L43+1
+ 376 0088 2F000000 		.word	.L43+1
+ 377 008c 2F000000 		.word	.L43+1
+ 378 0090 2F000000 		.word	.L43+1
+ 379 0094 2F000000 		.word	.L43+1
+ 380 0098 2F000000 		.word	.L43+1
+ 381 009c 2F000000 		.word	.L43+1
+ 382 00a0 2F000000 		.word	.L43+1
+ 383 00a4 2F000000 		.word	.L43+1
+ 384 00a8 2F000000 		.word	.L43+1
+ 385 00ac 2F000000 		.word	.L43+1
+ 386 00b0 2F000000 		.word	.L43+1
+ 387 00b4 2F000000 		.word	.L43+1
+ 388 00b8 5D020000 		.word	.L23+1
+ 389 00bc 2F000000 		.word	.L43+1
+ 390 00c0 2F000000 		.word	.L43+1
+ 391 00c4 2F000000 		.word	.L43+1
+ 392 00c8 2F000000 		.word	.L43+1
+ 393 00cc 2F000000 		.word	.L43+1
+ 394 00d0 2F000000 		.word	.L43+1
+ 395 00d4 2F000000 		.word	.L43+1
+ 396 00d8 2F000000 		.word	.L43+1
+ 397 00dc 2F000000 		.word	.L43+1
+ 398 00e0 2F000000 		.word	.L43+1
+ 399 00e4 2F000000 		.word	.L43+1
+ 400 00e8 2F000000 		.word	.L43+1
+ 401 00ec 2F000000 		.word	.L43+1
+ 402 00f0 2F000000 		.word	.L43+1
+ 403 00f4 2F000000 		.word	.L43+1
+ 404 00f8 2F000000 		.word	.L43+1
+ 405 00fc 2F000000 		.word	.L43+1
+ 406 0100 2F000000 		.word	.L43+1
+ 407 0104 2F000000 		.word	.L43+1
+ 408 0108 2F000000 		.word	.L43+1
+ 409 010c 2F000000 		.word	.L43+1
+ 410 0110 2F000000 		.word	.L43+1
+ 411 0114 2F000000 		.word	.L43+1
+ 412 0118 2F000000 		.word	.L43+1
+ 413 011c 2F000000 		.word	.L43+1
+ 414 0120 2F000000 		.word	.L43+1
+ 415 0124 2F000000 		.word	.L43+1
+ 416 0128 2F000000 		.word	.L43+1
+ 417 012c 2F000000 		.word	.L43+1
+ 418 0130 2F000000 		.word	.L43+1
+ 419 0134 2F000000 		.word	.L43+1
+ 420 0138 5D020000 		.word	.L23+1
+ 421              	.L22:
+ 232:../LIB_AP/Ap_EduMenu.c ****            		Lb_printf("ADC 15 : %d\n", Hw_Adc_GetData(16));
+ 422              		.loc 1 232 0
+ 423 013c 40F20003 		movw	r3, #:lower16:Hw_Adc_GetData
+ 424 0140 C0F20003 		movt	r3, #:upper16:Hw_Adc_GetData
+ 425 0144 1020     		movs	r0, #16
+ 426 0146 9847     		blx	r3
+ 427              	.LVL36:
+ 428 0148 0146     		mov	r1, r0
+ 429 014a 5A48     		ldr	r0, .L50+20
+ 430 014c A047     		blx	r4
+ 431              	.LVL37:
+ 432              		.loc 1 233 0
+ 433 014e 40F20003 		movw	r3, #:lower16:Hw_Adc_GetData
+ 434 0152 C0F20003 		movt	r3, #:upper16:Hw_Adc_GetData
+ 435 0156 1120     		movs	r0, #17
+ 436 0158 9847     		blx	r3
+ 437              	.LVL38:
+ 438 015a 4FF4A573 		mov	r3, #330
+ 439 015e 03FB00F0 		mul	r0, r3, r0
+ 440 0162 019B     		ldr	r3, [sp, #4]
+ 441 0164 83FB0031 		smull	r3, r1, r3, r0
+ 442 0168 C317     		asrs	r3, r0, #31
+ 443 016a 0918     		adds	r1, r1, r0
+ 444 016c C3EBE121 		rsb	r1, r3, r1, asr #11
+ 445 0170 5148     		ldr	r0, .L50+24
+ 446 0172 A047     		blx	r4
+ 447              	.LVL39:
+ 148:../LIB_AP/Ap_EduMenu.c ****     while( (key = Ap_EduMenu_GetCmd()) != 0 )
+ 448              		.loc 1 148 0
+ 449 0174 B847     		blx	r7
+ 450              	.LVL40:
+ 451 0176 0346     		mov	r3, r0
+ 452 0178 0028     		cmp	r0, #0
+ 453 017a 7FF45DAF 		bne	.L34
+ 454              	.L45:
  234:../LIB_AP/Ap_EduMenu.c ****                break;  
  235:../LIB_AP/Ap_EduMenu.c **** 
- 236:../LIB_AP/Ap_EduMenu.c ****            case '8':           		
- 237:../LIB_AP/Ap_EduMenu.c ****                break;
+ 236:../LIB_AP/Ap_EduMenu.c ****            case '7':
+ 237:../LIB_AP/Ap_EduMenu.c ****                break;  
  238:../LIB_AP/Ap_EduMenu.c **** 
- 239:../LIB_AP/Ap_EduMenu.c ****            case '9': 
+ 239:../LIB_AP/Ap_EduMenu.c ****            case '8':           		
  240:../LIB_AP/Ap_EduMenu.c ****                break;
  241:../LIB_AP/Ap_EduMenu.c **** 
- 242:../LIB_AP/Ap_EduMenu.c ****            case '0':
+ 242:../LIB_AP/Ap_EduMenu.c ****            case '9': 
  243:../LIB_AP/Ap_EduMenu.c ****                break;
  244:../LIB_AP/Ap_EduMenu.c **** 
- 245:../LIB_AP/Ap_EduMenu.c **** 			case 'm':
- 246:../LIB_AP/Ap_EduMenu.c **** 			case 'M':
- 247:../LIB_AP/Ap_EduMenu.c **** 				Ap_EduMenu_ShowMenu();
- 248:../LIB_AP/Ap_EduMenu.c **** 				break;
- 249:../LIB_AP/Ap_EduMenu.c **** 				
- 250:../LIB_AP/Ap_EduMenu.c ****            default :
- 251:../LIB_AP/Ap_EduMenu.c ****                break;
- 252:../LIB_AP/Ap_EduMenu.c ****         }
- 253:../LIB_AP/Ap_EduMenu.c ****     }
- 254:../LIB_AP/Ap_EduMenu.c ****     
- 255:../LIB_AP/Ap_EduMenu.c ****     return Ret;
- 256:../LIB_AP/Ap_EduMenu.c **** }
- 479              		.loc 1 256 0
- 480 0194 05B0     		add	sp, sp, #20
- 481 0196 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
- 482              	.LVL44:
- 483              	.L19:
- 196:../LIB_AP/Ap_EduMenu.c ****            		Hw_7Seg_Print( 0, "%d", Seg_Count++ );
- 484              		.loc 1 196 0
- 485 019a 3A4B     		ldr	r3, .L49+32
- 486 019c 0020     		movs	r0, #0
- 487 019e 1A88     		ldrh	r2, [r3, #0]
- 488 01a0 3B49     		ldr	r1, .L49+44
- 489 01a2 561C     		adds	r6, r2, #1
- 490 01a4 1E80     		strh	r6, [r3, #0]	@ movhi
- 491 01a6 3B4B     		ldr	r3, .L49+48
- 492 01a8 9847     		blx	r3
- 493              	.LVL45:
- 197:../LIB_AP/Ap_EduMenu.c ****                break; 
- 494              		.loc 1 197 0
- 495 01aa 3EE7     		b	.L42
- 496              	.L18:
- 163:../LIB_AP/Ap_EduMenu.c ****            		Lb_printf("KeyPad Start : press two keys to exit\n");
- 497              		.loc 1 163 0
- 498 01ac 3A48     		ldr	r0, .L49+52
- 499 01ae A847     		blx	r5
- 500              	.LVL46:
- 501 01b0 3A4F     		ldr	r7, .L49+56
- 502 01b2 3B4E     		ldr	r6, .L49+60
- 182:../LIB_AP/Ap_EduMenu.c **** 						Lb_printf("%x KeyRepeat Cnt : %d\n",Hw_KeyPad_GetEventKeyData(HW_KEYPAD_EVENT_REPEAT), Hw_Key
- 503              		.loc 1 182 0
- 504 01b4 DFF81091 		ldr	r9, .L49+100
- 505 01b8 06E0     		b	.L28
+ 245:../LIB_AP/Ap_EduMenu.c ****            case '0':
+ 246:../LIB_AP/Ap_EduMenu.c ****                break;
+ 247:../LIB_AP/Ap_EduMenu.c **** 
+ 248:../LIB_AP/Ap_EduMenu.c **** 			case 'm':
+ 249:../LIB_AP/Ap_EduMenu.c **** 			case 'M':
+ 250:../LIB_AP/Ap_EduMenu.c **** 				Ap_EduMenu_ShowMenu();
+ 251:../LIB_AP/Ap_EduMenu.c **** 				break;
+ 252:../LIB_AP/Ap_EduMenu.c **** 				
+ 253:../LIB_AP/Ap_EduMenu.c ****            default :
+ 254:../LIB_AP/Ap_EduMenu.c ****                break;
+ 255:../LIB_AP/Ap_EduMenu.c ****         }
+ 256:../LIB_AP/Ap_EduMenu.c ****     }
+ 257:../LIB_AP/Ap_EduMenu.c ****     
+ 258:../LIB_AP/Ap_EduMenu.c ****     return Ret;
+ 259:../LIB_AP/Ap_EduMenu.c **** }
+ 455              		.loc 1 259 0
+ 456 017e 05B0     		add	sp, sp, #20
+ 457 0180 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 458              	.LVL41:
+ 459              	.L21:
+ 205:../LIB_AP/Ap_EduMenu.c ****            		Lb_printf("BT Test Start, press x to exit\n");
+ 460              		.loc 1 205 0
+ 461 0184 4D48     		ldr	r0, .L50+28
+ 462 0186 A047     		blx	r4
+ 463              	.LVL42:
+ 464 0188 4D4D     		ldr	r5, .L50+32
+ 222:../LIB_AP/Ap_EduMenu.c ****            					Hw_Uart_Print( HW_USE_UART_CH_BT, "Menu:Send : %c\r\n",UartData );
+ 465              		.loc 1 222 0
+ 466 018a 4E4E     		ldr	r6, .L50+36
+ 467 018c 05E0     		b	.L44
+ 468              	.L30:
+ 214:../LIB_AP/Ap_EduMenu.c ****            			if( Hw_Uart_GetchNoWait( HW_USE_UART_CH_MENU, &UartData ) == TRUE )
+ 469              		.loc 1 214 0
+ 470 018e 0020     		movs	r0, #0
+ 471 0190 0DF10F01 		add	r1, sp, #15
+ 472 0194 A847     		blx	r5
+ 473              	.LVL43:
+ 474 0196 0128     		cmp	r0, #1
+ 475 0198 0FD0     		beq	.L46
+ 476              	.L44:
+ 209:../LIB_AP/Ap_EduMenu.c ****            			if( Hw_Uart_GetchNoWait( HW_USE_UART_CH_BT, &UartData) == TRUE )
+ 477              		.loc 1 209 0
+ 478 019a 0120     		movs	r0, #1
+ 479 019c 0DF10F01 		add	r1, sp, #15
+ 480 01a0 A847     		blx	r5
+ 481              	.LVL44:
+ 482 01a2 0128     		cmp	r0, #1
+ 483 01a4 F3D1     		bne	.L30
+ 211:../LIB_AP/Ap_EduMenu.c ****            				Lb_printf( "BT Rxd : %c \n", UartData );
+ 484              		.loc 1 211 0
+ 485 01a6 9DF80F10 		ldrb	r1, [sp, #15]	@ zero_extendqisi2
+ 486 01aa 4748     		ldr	r0, .L50+40
+ 487 01ac A047     		blx	r4
+ 488              	.LVL45:
+ 214:../LIB_AP/Ap_EduMenu.c ****            			if( Hw_Uart_GetchNoWait( HW_USE_UART_CH_MENU, &UartData ) == TRUE )
+ 489              		.loc 1 214 0
+ 490 01ae 0020     		movs	r0, #0
+ 491 01b0 0DF10F01 		add	r1, sp, #15
+ 492 01b4 A847     		blx	r5
+ 493              	.LVL46:
+ 494 01b6 0128     		cmp	r0, #1
+ 495 01b8 EFD1     		bne	.L44
+ 496              	.L46:
+ 216:../LIB_AP/Ap_EduMenu.c ****            				if( UartData == 'x' )
+ 497              		.loc 1 216 0
+ 498 01ba 9DF80F20 		ldrb	r2, [sp, #15]	@ zero_extendqisi2
+ 222:../LIB_AP/Ap_EduMenu.c ****            					Hw_Uart_Print( HW_USE_UART_CH_BT, "Menu:Send : %c\r\n",UartData );
+ 499              		.loc 1 222 0
+ 500 01be 4349     		ldr	r1, .L50+44
+ 216:../LIB_AP/Ap_EduMenu.c ****            				if( UartData == 'x' )
+ 501              		.loc 1 216 0
+ 502 01c0 782A     		cmp	r2, #120
+ 503 01c2 69D0     		beq	.L32
+ 222:../LIB_AP/Ap_EduMenu.c ****            					Hw_Uart_Print( HW_USE_UART_CH_BT, "Menu:Send : %c\r\n",UartData );
+ 504              		.loc 1 222 0
+ 505 01c4 B047     		blx	r6
  506              	.LVL47:
- 507              	.L25:
- 173:../LIB_AP/Ap_EduMenu.c **** 					if( IS_SET_BIT( KeyEvent, HW_KEYPAD_EVENT_RELEASED) )
- 508              		.loc 1 173 0
- 509 01ba 4207     		lsls	r2, r0, #29
- 510 01bc 31D4     		bmi	.L46
- 178:../LIB_AP/Ap_EduMenu.c **** 					if( IS_SET_BIT( KeyEvent, HW_KEYPAD_EVENT_REPEAT) )
- 511              		.loc 1 178 0
- 512 01be 8307     		lsls	r3, r0, #30
- 513 01c0 35D4     		bmi	.L47
- 514              	.LVL48:
- 515              	.L26:
- 185:../LIB_AP/Ap_EduMenu.c **** 					KeyPressedCnt = Hw_KeyPad_GetPressedCnt();
- 516              		.loc 1 185 0
- 517 01c2 B047     		blx	r6
- 518              	.LVL49:
- 187:../LIB_AP/Ap_EduMenu.c **** 					if( KeyPressedCnt >= 2 )
- 519              		.loc 1 187 0
- 520 01c4 0128     		cmp	r0, #1
- 521 01c6 0CD8     		bhi	.L48
- 522              	.LVL50:
- 523              	.L28:
- 166:../LIB_AP/Ap_EduMenu.c ****            			KeyEvent = Hw_KeyPad_WaitForEvent(1000);
- 524              		.loc 1 166 0
- 525 01c8 4FF47A70 		mov	r0, #1000
- 526 01cc B847     		blx	r7
- 527              	.LVL51:
- 168:../LIB_AP/Ap_EduMenu.c ****            			if( IS_SET_BIT( KeyEvent, HW_KEYPAD_EVENT_PRESSED) )
- 528              		.loc 1 168 0
- 529 01ce C107     		lsls	r1, r0, #31
- 530 01d0 F3D5     		bpl	.L25
- 170:../LIB_AP/Ap_EduMenu.c ****            				Lb_printf("%x KeyPressed\n", Hw_KeyPad_GetEventKeyData(HW_KEYPAD_EVENT_PRESSED) );  
- 531              		.loc 1 170 0
- 532 01d2 0020     		movs	r0, #0
- 533              	.LVL52:
- 534 01d4 C847     		blx	r9
- 535              	.LVL53:
- 536 01d6 0146     		mov	r1, r0
- 537 01d8 3248     		ldr	r0, .L49+64
- 538 01da A847     		blx	r5
- 539              	.LVL54:
- 185:../LIB_AP/Ap_EduMenu.c **** 					KeyPressedCnt = Hw_KeyPad_GetPressedCnt();
- 540              		.loc 1 185 0
- 541 01dc B047     		blx	r6
- 542              	.LVL55:
- 187:../LIB_AP/Ap_EduMenu.c **** 					if( KeyPressedCnt >= 2 )
- 543              		.loc 1 187 0
- 544 01de 0128     		cmp	r0, #1
- 545 01e0 F2D9     		bls	.L28
- 546              	.L48:
- 189:../LIB_AP/Ap_EduMenu.c **** 						Lb_printf("Key Exit\n");
- 547              		.loc 1 189 0
- 548 01e2 3148     		ldr	r0, .L49+68
- 549              	.LVL56:
- 550 01e4 A847     		blx	r5
- 551              	.LVL57:
- 193:../LIB_AP/Ap_EduMenu.c **** 				break;
- 552              		.loc 1 193 0
- 553 01e6 20E7     		b	.L42
- 554              	.L17:
- 152:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 0 );
- 555              		.loc 1 152 0
- 556 01e8 304F     		ldr	r7, .L49+72
- 557 01ea 0020     		movs	r0, #0
- 153:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
- 558              		.loc 1 153 0
- 559 01ec 304E     		ldr	r6, .L49+76
- 152:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 0 );
- 560              		.loc 1 152 0
- 561 01ee B847     		blx	r7
- 562              	.LVL58:
- 153:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
- 563              		.loc 1 153 0
- 564 01f0 4FF4FA70 		mov	r0, #500
- 565 01f4 B047     		blx	r6
- 566              	.LVL59:
- 154:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 1 );
- 567              		.loc 1 154 0
- 568 01f6 0120     		movs	r0, #1
- 569 01f8 B847     		blx	r7
- 570              	.LVL60:
- 155:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
- 571              		.loc 1 155 0
- 572 01fa 4FF4FA70 		mov	r0, #500
- 573 01fe B047     		blx	r6
- 574              	.LVL61:
- 156:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 2 );;
- 575              		.loc 1 156 0
- 576 0200 0220     		movs	r0, #2
- 577 0202 B847     		blx	r7
- 578              	.LVL62:
- 157:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
- 579              		.loc 1 157 0
- 580 0204 4FF4FA70 		mov	r0, #500
- 581 0208 B047     		blx	r6
- 582              	.LVL63:
- 158:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 3 );
- 583              		.loc 1 158 0
- 584 020a 0320     		movs	r0, #3
- 585 020c B847     		blx	r7
- 586              	.LVL64:
- 159:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
- 587              		.loc 1 159 0
- 588 020e 4FF4FA70 		mov	r0, #500
- 589 0212 B047     		blx	r6
- 590              	.LVL65:
- 160:../LIB_AP/Ap_EduMenu.c ****                	break;
- 591              		.loc 1 160 0
- 592 0214 09E7     		b	.L42
- 593              	.L22:
- 247:../LIB_AP/Ap_EduMenu.c **** 				Ap_EduMenu_ShowMenu();
- 594              		.loc 1 247 0
- 595 0216 40F20003 		movw	r3, #:lower16:Ap_EduMenu_ShowMenu
- 596 021a C0F20003 		movt	r3, #:upper16:Ap_EduMenu_ShowMenu
- 597 021e 9847     		blx	r3
- 598              	.LVL66:
- 248:../LIB_AP/Ap_EduMenu.c **** 				break;
- 599              		.loc 1 248 0
- 600 0220 03E7     		b	.L42
- 601              	.LVL67:
- 602              	.L46:
- 175:../LIB_AP/Ap_EduMenu.c **** 						Lb_printf("%x KeyReleased\n", Hw_KeyPad_GetEventKeyData(HW_KEYPAD_EVENT_RELEASED) );         
- 603              		.loc 1 175 0
- 604 0222 0220     		movs	r0, #2
- 605              	.LVL68:
- 606 0224 C847     		blx	r9
- 607              	.LVL69:
- 608 0226 0146     		mov	r1, r0
- 609 0228 2248     		ldr	r0, .L49+80
- 610 022a A847     		blx	r5
- 611              	.LVL70:
- 612 022c C9E7     		b	.L26
- 613              	.LVL71:
- 614              	.L47:
- 180:../LIB_AP/Ap_EduMenu.c **** 						KeyNum = Hw_KeyPad_GetEventKeyNum(HW_KEYPAD_EVENT_REPEAT);
- 615              		.loc 1 180 0
- 616 022e 40F20003 		movw	r3, #:lower16:Hw_KeyPad_GetEventKeyNum
- 617 0232 0120     		movs	r0, #1
- 618              	.LVL72:
- 619 0234 C0F20003 		movt	r3, #:upper16:Hw_KeyPad_GetEventKeyNum
- 620 0238 9847     		blx	r3
- 621              	.LVL73:
- 622 023a 0346     		mov	r3, r0
- 623              	.LVL74:
- 182:../LIB_AP/Ap_EduMenu.c **** 						Lb_printf("%x KeyRepeat Cnt : %d\n",Hw_KeyPad_GetEventKeyData(HW_KEYPAD_EVENT_REPEAT), Hw_Key
- 624              		.loc 1 182 0
- 625 023c 0120     		movs	r0, #1
- 626              	.LVL75:
- 627 023e 0193     		str	r3, [sp, #4]
- 628 0240 C847     		blx	r9
- 629              	.LVL76:
- 630 0242 019B     		ldr	r3, [sp, #4]
- 631 0244 8346     		mov	fp, r0
- 632 0246 D8B2     		uxtb	r0, r3
- 633 0248 40F20003 		movw	r3, #:lower16:Hw_KeyPad_GetRepeatCnt
- 634 024c C0F20003 		movt	r3, #:upper16:Hw_KeyPad_GetRepeatCnt
- 635 0250 9847     		blx	r3
- 636              	.LVL77:
- 637 0252 5946     		mov	r1, fp
- 638 0254 0246     		mov	r2, r0
- 639 0256 1848     		ldr	r0, .L49+84
- 640 0258 A847     		blx	r5
- 641              	.LVL78:
- 642 025a B2E7     		b	.L26
- 643              	.L31:
- 227:../LIB_AP/Ap_EduMenu.c **** 				Lb_printf("BT Test Exit\n");
- 644              		.loc 1 227 0
- 645 025c 1748     		ldr	r0, .L49+88
- 646 025e A847     		blx	r5
- 647              	.LVL79:
- 228:../LIB_AP/Ap_EduMenu.c **** 				break; 
- 648              		.loc 1 228 0
- 649 0260 E3E6     		b	.L42
- 650              	.L50:
- 651 0262 00BF     		.align	2
- 652              	.L49:
- 653 0264 00000000 		.word	Hw_KeyPad_SetEventFunc
- 654 0268 00000000 		.word	KeyPad_UpKeyEvent
- 655 026c 00000000 		.word	KeyPad_DownKeyEvent
- 656 0270 00000000 		.word	Lb_printf
- 657 0274 00000000 		.word	Hw_Uart_GetchNoWait
- 658 0278 58030000 		.word	.LC22
- 659 027c 78030000 		.word	.LC23
- 660 0280 88030000 		.word	.LC24
- 661 0284 00000000 		.word	.LANCHOR0
- 662 0288 4C030000 		.word	.LC21
- 663 028c 00000000 		.word	Hw_CLcd_Print
- 664 0290 00000000 		.word	.LC0
- 665 0294 00000000 		.word	Hw_7Seg_Print
- 666 0298 E0020000 		.word	.LC16
- 667 029c 00000000 		.word	Hw_KeyPad_WaitForEvent
- 668 02a0 00000000 		.word	Hw_KeyPad_GetPressedCnt
- 669 02a4 08030000 		.word	.LC17
- 670 02a8 40030000 		.word	.LC20
- 671 02ac 00000000 		.word	Hw_Led_Toggle
- 672 02b0 00000000 		.word	Hw_Timer_Delay_ms
- 673 02b4 18030000 		.word	.LC18
- 674 02b8 28030000 		.word	.LC19
- 675 02bc 9C030000 		.word	.LC25
- 676 02c0 00000000 		.word	Ap_EduMenu_GetCmd
- 677 02c4 00000000 		.word	Hw_Uart_Print
- 678 02c8 00000000 		.word	Hw_KeyPad_GetEventKeyData
- 679              		.cfi_endproc
- 680              	.LFE4:
- 682              		.global	Seg_Count
- 683              		.section	.rodata.str1.4,"aMS",%progbits,1
- 684              		.align	2
- 685              	.LC0:
- 686 0000 256400   		.ascii	"%d\000"
- 687 0003 00       		.space	1
- 688              	.LC1:
- 689 0004 0A0A00   		.ascii	"\012\012\000"
- 690 0007 00       		.space	1
- 691              	.LC2:
- 692 0008 2A2A2A2A 		.ascii	"***************************************************"
- 692      2A2A2A2A 
- 692      2A2A2A2A 
- 692      2A2A2A2A 
- 692      2A2A2A2A 
- 693 003b 2A2A2A2A 		.ascii	"****\012\000"
- 693      0A00
- 694 0041 000000   		.space	3
- 695              	.LC3:
- 696 0044 20202020 		.ascii	"                      Edu V0.5                     "
- 696      20202020 
- 696      20202020 
- 696      20202020 
- 696      20202020 
- 697 0077 20202020 		.ascii	"    \012\000"
- 697      0A00
- 698 007d 000000   		.space	3
- 699              	.LC4:
- 700 0080 2A20312E 		.ascii	"* 1. LED Test                                      "
- 700      204C4544 
- 700      20546573 
- 700      74202020 
- 700      20202020 
- 701 00b3 2020202A 		.ascii	"   *\012\000"
- 701      0A00
- 702 00b9 000000   		.space	3
- 703              	.LC5:
- 704 00bc 2A20322E 		.ascii	"* 2. KeyPad Test                                   "
- 704      204B6579 
- 704      50616420 
- 704      54657374 
- 704      20202020 
- 705 00ef 2020202A 		.ascii	"   *\012\000"
- 705      0A00
- 706 00f5 000000   		.space	3
- 707              	.LC6:
- 708 00f8 2A20332E 		.ascii	"* 3. 7Seg Test                                     "
- 708      20375365 
- 708      67205465 
- 708      73742020 
- 708      20202020 
- 709 012b 2020202A 		.ascii	"   *\012\000"
- 709      0A00
- 710 0131 000000   		.space	3
- 711              	.LC7:
- 712 0134 2A20342E 		.ascii	"* 4. CLcd Test                                     "
- 712      20434C63 
- 712      64205465 
- 712      73742020 
- 712      20202020 
- 713 0167 2020202A 		.ascii	"   *\012\000"
- 713      0A00
- 714 016d 000000   		.space	3
- 715              	.LC8:
- 716 0170 2A20352E 		.ascii	"* 5. BT Test                                       "
- 716      20425420 
- 716      54657374 
- 716      20202020 
- 716      20202020 
- 717 01a3 2020202A 		.ascii	"   *\012\000"
- 717      0A00
- 718 01a9 000000   		.space	3
- 719              	.LC9:
- 720 01ac 2A20362E 		.ascii	"* 6.                                               "
- 720      20202020 
- 720      20202020 
- 720      20202020 
- 720      20202020 
- 721 01df 2020202A 		.ascii	"   *\012\000"
- 721      0A00
- 722 01e5 000000   		.space	3
- 723              	.LC10:
- 724 01e8 2A20372E 		.ascii	"* 7.                                               "
- 724      20202020 
- 724      20202020 
- 724      20202020 
- 724      20202020 
- 725 021b 2020202A 		.ascii	"   *\012\000"
- 725      0A00
- 726 0221 000000   		.space	3
- 727              	.LC11:
- 728 0224 2A20382E 		.ascii	"* 8.                                               "
- 728      20202020 
- 728      20202020 
- 728      20202020 
- 728      20202020 
- 729 0257 2020202A 		.ascii	"   *\012\000"
- 729      0A00
- 730 025d 000000   		.space	3
- 731              	.LC12:
- 732 0260 2A20392E 		.ascii	"* 9.                                               "
- 732      20202020 
- 732      20202020 
- 732      20202020 
- 732      20202020 
- 733 0293 2020202A 		.ascii	"   *\012\000"
- 733      0A00
- 734 0299 000000   		.space	3
- 735              	.LC13:
- 736 029c 2A206D2E 		.ascii	"* m.  Menu                                         "
- 736      20204D65 
- 736      6E752020 
- 736      20202020 
- 736      20202020 
- 737 02cf 2020202A 		.ascii	"   *\012\000"
- 737      0A00
- 738 02d5 000000   		.space	3
- 739              	.LC14:
- 740 02d8 0A00     		.ascii	"\012\000"
- 741 02da 0000     		.space	2
- 742              	.LC15:
- 743 02dc 3E3E2000 		.ascii	">> \000"
- 744              	.LC16:
- 745 02e0 4B657950 		.ascii	"KeyPad Start : press two keys to exit\012\000"
- 745      61642053 
- 745      74617274 
- 745      203A2070 
- 745      72657373 
- 746 0307 00       		.space	1
- 747              	.LC17:
- 748 0308 2578204B 		.ascii	"%x KeyPressed\012\000"
- 748      65795072 
- 748      65737365 
- 748      640A00
- 749 0317 00       		.space	1
- 750              	.LC18:
- 751 0318 2578204B 		.ascii	"%x KeyReleased\012\000"
- 751      65795265 
- 751      6C656173 
- 751      65640A00 
- 752              	.LC19:
- 753 0328 2578204B 		.ascii	"%x KeyRepeat Cnt : %d\012\000"
- 753      65795265 
- 753      70656174 
- 753      20436E74 
- 753      203A2025 
- 754 033f 00       		.space	1
- 755              	.LC20:
- 756 0340 4B657920 		.ascii	"Key Exit\012\000"
- 756      45786974 
- 756      0A00
- 757 034a 0000     		.space	2
- 758              	.LC21:
- 759 034c 436E7420 		.ascii	"Cnt : %d\000"
- 759      3A202564 
- 759      00
- 760 0355 000000   		.space	3
- 761              	.LC22:
- 762 0358 42542054 		.ascii	"BT Test Start, press x to exit\012\000"
- 762      65737420 
- 762      53746172 
- 762      742C2070 
- 762      72657373 
- 763              	.LC23:
- 764 0378 42542052 		.ascii	"BT Rxd : %c \012\000"
- 764      7864203A 
- 764      20256320 
- 764      0A00
- 765 0386 0000     		.space	2
- 766              	.LC24:
- 767 0388 4D656E75 		.ascii	"Menu:Send : %c\015\012\000"
- 767      3A53656E 
- 767      64203A20 
- 767      25630D0A 
- 767      00
- 768 0399 000000   		.space	3
- 769              	.LC25:
- 770 039c 42542054 		.ascii	"BT Test Exit\012\000"
- 770      65737420 
- 770      45786974 
+ 507 01c6 E8E7     		b	.L44
+ 508              	.L20:
+ 201:../LIB_AP/Ap_EduMenu.c ****            		Hw_CLcd_Print( 0, 1, "Cnt : %d", Seg_Count++);
+ 509              		.loc 1 201 0
+ 510 01c8 414D     		ldr	r5, .L50+48
+ 511 01ca 0121     		movs	r1, #1
+ 512 01cc 2B88     		ldrh	r3, [r5, #0]
+ 513 01ce 414A     		ldr	r2, .L50+52
+ 514 01d0 5E18     		adds	r6, r3, r1
+ 515 01d2 2E80     		strh	r6, [r5, #0]	@ movhi
+ 516 01d4 0020     		movs	r0, #0
+ 517 01d6 404D     		ldr	r5, .L50+56
+ 518 01d8 A847     		blx	r5
+ 519              	.LVL48:
+ 202:../LIB_AP/Ap_EduMenu.c **** 				break;  
+ 520              		.loc 1 202 0
+ 521 01da 28E7     		b	.L43
+ 522              	.L19:
+ 197:../LIB_AP/Ap_EduMenu.c ****            		Hw_7Seg_Print( 0, "%d", Seg_Count++ );
+ 523              		.loc 1 197 0
+ 524 01dc 3C4B     		ldr	r3, .L50+48
+ 525 01de 0020     		movs	r0, #0
+ 526 01e0 1A88     		ldrh	r2, [r3, #0]
+ 527 01e2 3E49     		ldr	r1, .L50+60
+ 528 01e4 551C     		adds	r5, r2, #1
+ 529 01e6 1D80     		strh	r5, [r3, #0]	@ movhi
+ 530 01e8 3D4B     		ldr	r3, .L50+64
+ 531 01ea 9847     		blx	r3
+ 532              	.LVL49:
+ 198:../LIB_AP/Ap_EduMenu.c ****                break; 
+ 533              		.loc 1 198 0
+ 534 01ec 1FE7     		b	.L43
+ 535              	.L18:
+ 164:../LIB_AP/Ap_EduMenu.c ****            		Lb_printf("KeyPad Start : press two keys to exit\n");
+ 536              		.loc 1 164 0
+ 537 01ee 3D48     		ldr	r0, .L50+68
+ 538 01f0 A047     		blx	r4
+ 539              	.LVL50:
+ 540 01f2 3D4E     		ldr	r6, .L50+72
+ 541 01f4 3D4D     		ldr	r5, .L50+76
+ 181:../LIB_AP/Ap_EduMenu.c **** 						KeyNum = Hw_KeyPad_GetEventKeyNum(HW_KEYPAD_EVENT_REPEAT);
+ 542              		.loc 1 181 0
+ 543 01f6 DFF814A1 		ldr	sl, .L50+108
+ 183:../LIB_AP/Ap_EduMenu.c **** 						Lb_printf("%x KeyRepeat Cnt : %d\n",Hw_KeyPad_GetEventKeyData(HW_KEYPAD_EVENT_REPEAT), Hw_Key
+ 544              		.loc 1 183 0
+ 545 01fa DFF81481 		ldr	r8, .L50+112
+ 546 01fe 06E0     		b	.L29
+ 547              	.LVL51:
+ 548              	.L26:
+ 174:../LIB_AP/Ap_EduMenu.c **** 					if( IS_SET_BIT( KeyEvent, HW_KEYPAD_EVENT_RELEASED) )
+ 549              		.loc 1 174 0
+ 550 0200 4207     		lsls	r2, r0, #29
+ 551 0202 31D4     		bmi	.L47
+ 179:../LIB_AP/Ap_EduMenu.c **** 					if( IS_SET_BIT( KeyEvent, HW_KEYPAD_EVENT_REPEAT) )
+ 552              		.loc 1 179 0
+ 553 0204 8307     		lsls	r3, r0, #30
+ 554 0206 35D4     		bmi	.L48
+ 555              	.LVL52:
+ 556              	.L27:
+ 186:../LIB_AP/Ap_EduMenu.c **** 					KeyPressedCnt = Hw_KeyPad_GetPressedCnt();
+ 557              		.loc 1 186 0
+ 558 0208 A847     		blx	r5
+ 559              	.LVL53:
+ 188:../LIB_AP/Ap_EduMenu.c **** 					if( KeyPressedCnt >= 2 )
+ 560              		.loc 1 188 0
+ 561 020a 0128     		cmp	r0, #1
+ 562 020c 0CD8     		bhi	.L49
+ 563              	.LVL54:
+ 564              	.L29:
+ 167:../LIB_AP/Ap_EduMenu.c ****            			KeyEvent = Hw_KeyPad_WaitForEvent(1000);
+ 565              		.loc 1 167 0
+ 566 020e 4FF47A70 		mov	r0, #1000
+ 567 0212 B047     		blx	r6
+ 568              	.LVL55:
+ 169:../LIB_AP/Ap_EduMenu.c ****            			if( IS_SET_BIT( KeyEvent, HW_KEYPAD_EVENT_PRESSED) )
+ 569              		.loc 1 169 0
+ 570 0214 C107     		lsls	r1, r0, #31
+ 571 0216 F3D5     		bpl	.L26
+ 171:../LIB_AP/Ap_EduMenu.c ****            				Lb_printf("%x KeyPressed\n", Hw_KeyPad_GetEventKeyData(HW_KEYPAD_EVENT_PRESSED) );  
+ 572              		.loc 1 171 0
+ 573 0218 0020     		movs	r0, #0
+ 574              	.LVL56:
+ 575 021a C047     		blx	r8
+ 576              	.LVL57:
+ 577 021c 0146     		mov	r1, r0
+ 578 021e 3448     		ldr	r0, .L50+80
+ 579 0220 A047     		blx	r4
+ 580              	.LVL58:
+ 186:../LIB_AP/Ap_EduMenu.c **** 					KeyPressedCnt = Hw_KeyPad_GetPressedCnt();
+ 581              		.loc 1 186 0
+ 582 0222 A847     		blx	r5
+ 583              	.LVL59:
+ 188:../LIB_AP/Ap_EduMenu.c **** 					if( KeyPressedCnt >= 2 )
+ 584              		.loc 1 188 0
+ 585 0224 0128     		cmp	r0, #1
+ 586 0226 F2D9     		bls	.L29
+ 587              	.L49:
+ 190:../LIB_AP/Ap_EduMenu.c **** 						Lb_printf("Key Exit\n");
+ 588              		.loc 1 190 0
+ 589 0228 3248     		ldr	r0, .L50+84
+ 590              	.LVL60:
+ 591 022a A047     		blx	r4
+ 592              	.LVL61:
+ 194:../LIB_AP/Ap_EduMenu.c **** 				break;
+ 593              		.loc 1 194 0
+ 594 022c FFE6     		b	.L43
+ 595              	.L17:
+ 153:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 0 );
+ 596              		.loc 1 153 0
+ 597 022e 324E     		ldr	r6, .L50+88
+ 598 0230 0020     		movs	r0, #0
+ 154:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
+ 599              		.loc 1 154 0
+ 600 0232 324D     		ldr	r5, .L50+92
+ 153:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 0 );
+ 601              		.loc 1 153 0
+ 602 0234 B047     		blx	r6
+ 603              	.LVL62:
+ 154:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
+ 604              		.loc 1 154 0
+ 605 0236 4FF4FA70 		mov	r0, #500
+ 606 023a A847     		blx	r5
+ 607              	.LVL63:
+ 155:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 1 );
+ 608              		.loc 1 155 0
+ 609 023c 0120     		movs	r0, #1
+ 610 023e B047     		blx	r6
+ 611              	.LVL64:
+ 156:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
+ 612              		.loc 1 156 0
+ 613 0240 4FF4FA70 		mov	r0, #500
+ 614 0244 A847     		blx	r5
+ 615              	.LVL65:
+ 157:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 2 );;
+ 616              		.loc 1 157 0
+ 617 0246 0220     		movs	r0, #2
+ 618 0248 B047     		blx	r6
+ 619              	.LVL66:
+ 158:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
+ 620              		.loc 1 158 0
+ 621 024a 4FF4FA70 		mov	r0, #500
+ 622 024e A847     		blx	r5
+ 623              	.LVL67:
+ 159:../LIB_AP/Ap_EduMenu.c ****            		Hw_Led_Toggle( 3 );
+ 624              		.loc 1 159 0
+ 625 0250 0320     		movs	r0, #3
+ 626 0252 B047     		blx	r6
+ 627              	.LVL68:
+ 160:../LIB_AP/Ap_EduMenu.c ****            		Hw_Timer_Delay_ms(500);
+ 628              		.loc 1 160 0
+ 629 0254 4FF4FA70 		mov	r0, #500
+ 630 0258 A847     		blx	r5
+ 631              	.LVL69:
+ 161:../LIB_AP/Ap_EduMenu.c ****                	break;
+ 632              		.loc 1 161 0
+ 633 025a E8E6     		b	.L43
+ 634              	.L23:
+ 250:../LIB_AP/Ap_EduMenu.c **** 				Ap_EduMenu_ShowMenu();
+ 635              		.loc 1 250 0
+ 636 025c 40F20003 		movw	r3, #:lower16:Ap_EduMenu_ShowMenu
+ 637 0260 C0F20003 		movt	r3, #:upper16:Ap_EduMenu_ShowMenu
+ 638 0264 9847     		blx	r3
+ 639              	.LVL70:
+ 251:../LIB_AP/Ap_EduMenu.c **** 				break;
+ 640              		.loc 1 251 0
+ 641 0266 E2E6     		b	.L43
+ 642              	.LVL71:
+ 643              	.L47:
+ 176:../LIB_AP/Ap_EduMenu.c **** 						Lb_printf("%x KeyReleased\n", Hw_KeyPad_GetEventKeyData(HW_KEYPAD_EVENT_RELEASED) );         
+ 644              		.loc 1 176 0
+ 645 0268 0220     		movs	r0, #2
+ 646              	.LVL72:
+ 647 026a C047     		blx	r8
+ 648              	.LVL73:
+ 649 026c 0146     		mov	r1, r0
+ 650 026e 2448     		ldr	r0, .L50+96
+ 651 0270 A047     		blx	r4
+ 652              	.LVL74:
+ 653 0272 C9E7     		b	.L27
+ 654              	.LVL75:
+ 655              	.L48:
+ 181:../LIB_AP/Ap_EduMenu.c **** 						KeyNum = Hw_KeyPad_GetEventKeyNum(HW_KEYPAD_EVENT_REPEAT);
+ 656              		.loc 1 181 0
+ 657 0274 0120     		movs	r0, #1
+ 658              	.LVL76:
+ 659 0276 D047     		blx	sl
+ 660              	.LVL77:
+ 661 0278 8146     		mov	r9, r0
+ 662              	.LVL78:
+ 183:../LIB_AP/Ap_EduMenu.c **** 						Lb_printf("%x KeyRepeat Cnt : %d\n",Hw_KeyPad_GetEventKeyData(HW_KEYPAD_EVENT_REPEAT), Hw_Key
+ 663              		.loc 1 183 0
+ 664 027a 0120     		movs	r0, #1
+ 665              	.LVL79:
+ 666 027c C047     		blx	r8
+ 667              	.LVL80:
+ 668 027e 40F20003 		movw	r3, #:lower16:Hw_KeyPad_GetRepeatCnt
+ 669 0282 8346     		mov	fp, r0
+ 670 0284 C0F20003 		movt	r3, #:upper16:Hw_KeyPad_GetRepeatCnt
+ 671 0288 5FFA89F0 		uxtb	r0, r9
+ 672 028c 9847     		blx	r3
+ 673              	.LVL81:
+ 674 028e 5946     		mov	r1, fp
+ 675 0290 0246     		mov	r2, r0
+ 676 0292 1C48     		ldr	r0, .L50+100
+ 677 0294 A047     		blx	r4
+ 678              	.LVL82:
+ 679 0296 B7E7     		b	.L27
+ 680              	.LVL83:
+ 681              	.L32:
+ 228:../LIB_AP/Ap_EduMenu.c **** 				Lb_printf("BT Test Exit\n");
+ 682              		.loc 1 228 0
+ 683 0298 1B48     		ldr	r0, .L50+104
+ 684 029a A047     		blx	r4
+ 685              	.LVL84:
+ 229:../LIB_AP/Ap_EduMenu.c **** 				break; 
+ 686              		.loc 1 229 0
+ 687 029c C7E6     		b	.L43
+ 688              	.L51:
+ 689 029e 00BF     		.align	2
+ 690              	.L50:
+ 691 02a0 00000000 		.word	Hw_KeyPad_SetEventFunc
+ 692 02a4 00000000 		.word	KeyPad_UpKeyEvent
+ 693 02a8 00000000 		.word	KeyPad_DownKeyEvent
+ 694 02ac 00000000 		.word	Ap_EduMenu_GetCmd
+ 695 02b0 00000000 		.word	Lb_printf
+ 696 02b4 AC030000 		.word	.LC26
+ 697 02b8 BC030000 		.word	.LC27
+ 698 02bc 58030000 		.word	.LC22
+ 699 02c0 00000000 		.word	Hw_Uart_GetchNoWait
+ 700 02c4 00000000 		.word	Hw_Uart_Print
+ 701 02c8 78030000 		.word	.LC23
+ 702 02cc 88030000 		.word	.LC24
+ 703 02d0 00000000 		.word	.LANCHOR0
+ 704 02d4 4C030000 		.word	.LC21
+ 705 02d8 00000000 		.word	Hw_CLcd_Print
+ 706 02dc 00000000 		.word	.LC0
+ 707 02e0 00000000 		.word	Hw_7Seg_Print
+ 708 02e4 E0020000 		.word	.LC16
+ 709 02e8 00000000 		.word	Hw_KeyPad_WaitForEvent
+ 710 02ec 00000000 		.word	Hw_KeyPad_GetPressedCnt
+ 711 02f0 08030000 		.word	.LC17
+ 712 02f4 40030000 		.word	.LC20
+ 713 02f8 00000000 		.word	Hw_Led_Toggle
+ 714 02fc 00000000 		.word	Hw_Timer_Delay_ms
+ 715 0300 18030000 		.word	.LC18
+ 716 0304 28030000 		.word	.LC19
+ 717 0308 9C030000 		.word	.LC25
+ 718 030c 00000000 		.word	Hw_KeyPad_GetEventKeyNum
+ 719 0310 00000000 		.word	Hw_KeyPad_GetEventKeyData
+ 720              		.cfi_endproc
+ 721              	.LFE4:
+ 723              		.global	Seg_Count
+ 724              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 725              		.align	2
+ 726              	.LC0:
+ 727 0000 256400   		.ascii	"%d\000"
+ 728 0003 00       		.space	1
+ 729              	.LC1:
+ 730 0004 0A0A00   		.ascii	"\012\012\000"
+ 731 0007 00       		.space	1
+ 732              	.LC2:
+ 733 0008 2A2A2A2A 		.ascii	"***************************************************"
+ 733      2A2A2A2A 
+ 733      2A2A2A2A 
+ 733      2A2A2A2A 
+ 733      2A2A2A2A 
+ 734 003b 2A2A2A2A 		.ascii	"****\012\000"
+ 734      0A00
+ 735 0041 000000   		.space	3
+ 736              	.LC3:
+ 737 0044 20202020 		.ascii	"                      Edu V0.5                     "
+ 737      20202020 
+ 737      20202020 
+ 737      20202020 
+ 737      20202020 
+ 738 0077 20202020 		.ascii	"    \012\000"
+ 738      0A00
+ 739 007d 000000   		.space	3
+ 740              	.LC4:
+ 741 0080 2A20312E 		.ascii	"* 1. Test.. LED                                    "
+ 741      20546573 
+ 741      742E2E20 
+ 741      4C454420 
+ 741      20202020 
+ 742 00b3 2020202A 		.ascii	"   *\012\000"
+ 742      0A00
+ 743 00b9 000000   		.space	3
+ 744              	.LC5:
+ 745 00bc 2A20322E 		.ascii	"* 2. Test.. KeyPad                                 "
+ 745      20546573 
+ 745      742E2E20 
+ 745      4B657950 
+ 745      61642020 
+ 746 00ef 2020202A 		.ascii	"   *\012\000"
+ 746      0A00
+ 747 00f5 000000   		.space	3
+ 748              	.LC6:
+ 749 00f8 2A20332E 		.ascii	"* 3. Test.. 7Seg                                   "
+ 749      20546573 
+ 749      742E2E20 
+ 749      37536567 
+ 749      20202020 
+ 750 012b 2020202A 		.ascii	"   *\012\000"
+ 750      0A00
+ 751 0131 000000   		.space	3
+ 752              	.LC7:
+ 753 0134 2A20342E 		.ascii	"* 4. Test.. CLcd                                   "
+ 753      20546573 
+ 753      742E2E20 
+ 753      434C6364 
+ 753      20202020 
+ 754 0167 2020202A 		.ascii	"   *\012\000"
+ 754      0A00
+ 755 016d 000000   		.space	3
+ 756              	.LC8:
+ 757 0170 2A20352E 		.ascii	"* 5. Test.. BT                                     "
+ 757      20546573 
+ 757      742E2E20 
+ 757      42542020 
+ 757      20202020 
+ 758 01a3 2020202A 		.ascii	"   *\012\000"
+ 758      0A00
+ 759 01a9 000000   		.space	3
+ 760              	.LC9:
+ 761 01ac 2A20362E 		.ascii	"* 6. Test.. Temperature                            "
+ 761      20546573 
+ 761      742E2E20 
+ 761      54656D70 
+ 761      65726174 
+ 762 01df 2020202A 		.ascii	"   *\012\000"
+ 762      0A00
+ 763 01e5 000000   		.space	3
+ 764              	.LC10:
+ 765 01e8 2A20372E 		.ascii	"* 7.                                               "
+ 765      20202020 
+ 765      20202020 
+ 765      20202020 
+ 765      20202020 
+ 766 021b 2020202A 		.ascii	"   *\012\000"
+ 766      0A00
+ 767 0221 000000   		.space	3
+ 768              	.LC11:
+ 769 0224 2A20382E 		.ascii	"* 8.                                               "
+ 769      20202020 
+ 769      20202020 
+ 769      20202020 
+ 769      20202020 
+ 770 0257 2020202A 		.ascii	"   *\012\000"
  770      0A00
- 771 03aa 0000     		.section	.bss.Seg_Count,"aw",%nobits
- 772              		.align	1
- 773              		.set	.LANCHOR0,. + 0
- 776              	Seg_Count:
- 777 0000 0000     		.space	2
- 778              		.text
- 779              	.Letext0:
- 780              		.file 2 "../LIB_HW/Hw_Define.h"
+ 771 025d 000000   		.space	3
+ 772              	.LC12:
+ 773 0260 2A20392E 		.ascii	"* 9.                                               "
+ 773      20202020 
+ 773      20202020 
+ 773      20202020 
+ 773      20202020 
+ 774 0293 2020202A 		.ascii	"   *\012\000"
+ 774      0A00
+ 775 0299 000000   		.space	3
+ 776              	.LC13:
+ 777 029c 2A206D2E 		.ascii	"* m.  Menu                                         "
+ 777      20204D65 
+ 777      6E752020 
+ 777      20202020 
+ 777      20202020 
+ 778 02cf 2020202A 		.ascii	"   *\012\000"
+ 778      0A00
+ 779 02d5 000000   		.space	3
+ 780              	.LC14:
+ 781 02d8 0A00     		.ascii	"\012\000"
+ 782 02da 0000     		.space	2
+ 783              	.LC15:
+ 784 02dc 3E3E2000 		.ascii	">> \000"
+ 785              	.LC16:
+ 786 02e0 4B657950 		.ascii	"KeyPad Start : press two keys to exit\012\000"
+ 786      61642053 
+ 786      74617274 
+ 786      203A2070 
+ 786      72657373 
+ 787 0307 00       		.space	1
+ 788              	.LC17:
+ 789 0308 2578204B 		.ascii	"%x KeyPressed\012\000"
+ 789      65795072 
+ 789      65737365 
+ 789      640A00
+ 790 0317 00       		.space	1
+ 791              	.LC18:
+ 792 0318 2578204B 		.ascii	"%x KeyReleased\012\000"
+ 792      65795265 
+ 792      6C656173 
+ 792      65640A00 
+ 793              	.LC19:
+ 794 0328 2578204B 		.ascii	"%x KeyRepeat Cnt : %d\012\000"
+ 794      65795265 
+ 794      70656174 
+ 794      20436E74 
+ 794      203A2025 
+ 795 033f 00       		.space	1
+ 796              	.LC20:
+ 797 0340 4B657920 		.ascii	"Key Exit\012\000"
+ 797      45786974 
+ 797      0A00
+ 798 034a 0000     		.space	2
+ 799              	.LC21:
+ 800 034c 436E7420 		.ascii	"Cnt : %d\000"
+ 800      3A202564 
+ 800      00
+ 801 0355 000000   		.space	3
+ 802              	.LC22:
+ 803 0358 42542054 		.ascii	"BT Test Start, press x to exit\012\000"
+ 803      65737420 
+ 803      53746172 
+ 803      742C2070 
+ 803      72657373 
+ 804              	.LC23:
+ 805 0378 42542052 		.ascii	"BT Rxd : %c \012\000"
+ 805      7864203A 
+ 805      20256320 
+ 805      0A00
+ 806 0386 0000     		.space	2
+ 807              	.LC24:
+ 808 0388 4D656E75 		.ascii	"Menu:Send : %c\015\012\000"
+ 808      3A53656E 
+ 808      64203A20 
+ 808      25630D0A 
+ 808      00
+ 809 0399 000000   		.space	3
+ 810              	.LC25:
+ 811 039c 42542054 		.ascii	"BT Test Exit\012\000"
+ 811      65737420 
+ 811      45786974 
+ 811      0A00
+ 812 03aa 0000     		.space	2
+ 813              	.LC26:
+ 814 03ac 41444320 		.ascii	"ADC 15 : %d\012\000"
+ 814      3135203A 
+ 814      2025640A 
+ 814      00
+ 815 03b9 000000   		.space	3
+ 816              	.LC27:
+ 817 03bc 41444320 		.ascii	"ADC 16 : %d\012\000"
+ 817      3136203A 
+ 817      2025640A 
+ 817      00
+ 818 03c9 000000   		.section	.bss.Seg_Count,"aw",%nobits
+ 819              		.align	1
+ 820              		.set	.LANCHOR0,. + 0
+ 823              	Seg_Count:
+ 824 0000 0000     		.space	2
+ 825              		.text
+ 826              	.Letext0:
+ 827              		.file 2 "../LIB_HW/Hw_Define.h"
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 Ap_EduMenu.c
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:19     .text.KeyPad_DownKeyEvent:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:24     .text.KeyPad_DownKeyEvent:0000000000000000 KeyPad_DownKeyEvent
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:70     .text.KeyPad_DownKeyEvent:0000000000000020 $d
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:79     .text.KeyPad_UpKeyEvent:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:84     .text.KeyPad_UpKeyEvent:0000000000000000 KeyPad_UpKeyEvent
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:122    .text.KeyPad_UpKeyEvent:000000000000001c $d
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:131    .text.Ap_EduMenu_ShowMenu:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:136    .text.Ap_EduMenu_ShowMenu:0000000000000000 Ap_EduMenu_ShowMenu
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:688    .rodata.str1.4:0000000000000004 .LC1
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:691    .rodata.str1.4:0000000000000008 .LC2
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:695    .rodata.str1.4:0000000000000044 .LC3
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:699    .rodata.str1.4:0000000000000080 .LC4
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:703    .rodata.str1.4:00000000000000bc .LC5
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:707    .rodata.str1.4:00000000000000f8 .LC6
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:711    .rodata.str1.4:0000000000000134 .LC7
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:715    .rodata.str1.4:0000000000000170 .LC8
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:719    .rodata.str1.4:00000000000001ac .LC9
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:723    .rodata.str1.4:00000000000001e8 .LC10
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:727    .rodata.str1.4:0000000000000224 .LC11
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:731    .rodata.str1.4:0000000000000260 .LC12
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:735    .rodata.str1.4:000000000000029c .LC13
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:739    .rodata.str1.4:00000000000002d8 .LC14
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:239    .text.Ap_EduMenu_GetCmd:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:244    .text.Ap_EduMenu_GetCmd:0000000000000000 Ap_EduMenu_GetCmd
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:742    .rodata.str1.4:00000000000002dc .LC15
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:284    .text.Ap_EduMenu_ExeCmd:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:289    .text.Ap_EduMenu_ExeCmd:0000000000000000 Ap_EduMenu_ExeCmd
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:353    .text.Ap_EduMenu_ExeCmd:0000000000000044 $d
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:416    .text.Ap_EduMenu_ExeCmd:0000000000000138 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:653    .text.Ap_EduMenu_ExeCmd:0000000000000264 $d
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:776    .bss.Seg_Count:0000000000000000 Seg_Count
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:684    .rodata.str1.4:0000000000000000 $d
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccViZ9E8.s:772    .bss.Seg_Count:0000000000000000 $d
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:19     .text.KeyPad_DownKeyEvent:0000000000000000 $t
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:24     .text.KeyPad_DownKeyEvent:0000000000000000 KeyPad_DownKeyEvent
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:70     .text.KeyPad_DownKeyEvent:0000000000000020 $d
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:79     .text.KeyPad_UpKeyEvent:0000000000000000 $t
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:84     .text.KeyPad_UpKeyEvent:0000000000000000 KeyPad_UpKeyEvent
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:122    .text.KeyPad_UpKeyEvent:000000000000001c $d
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:131    .text.Ap_EduMenu_ShowMenu:0000000000000000 $t
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:136    .text.Ap_EduMenu_ShowMenu:0000000000000000 Ap_EduMenu_ShowMenu
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:729    .rodata.str1.4:0000000000000004 .LC1
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:732    .rodata.str1.4:0000000000000008 .LC2
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:736    .rodata.str1.4:0000000000000044 .LC3
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:740    .rodata.str1.4:0000000000000080 .LC4
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:744    .rodata.str1.4:00000000000000bc .LC5
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:748    .rodata.str1.4:00000000000000f8 .LC6
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:752    .rodata.str1.4:0000000000000134 .LC7
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:756    .rodata.str1.4:0000000000000170 .LC8
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:760    .rodata.str1.4:00000000000001ac .LC9
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:764    .rodata.str1.4:00000000000001e8 .LC10
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:768    .rodata.str1.4:0000000000000224 .LC11
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:772    .rodata.str1.4:0000000000000260 .LC12
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:776    .rodata.str1.4:000000000000029c .LC13
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:780    .rodata.str1.4:00000000000002d8 .LC14
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:239    .text.Ap_EduMenu_GetCmd:0000000000000000 $t
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:244    .text.Ap_EduMenu_GetCmd:0000000000000000 Ap_EduMenu_GetCmd
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:783    .rodata.str1.4:00000000000002dc .LC15
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:284    .text.Ap_EduMenu_ExeCmd:0000000000000000 $t
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:289    .text.Ap_EduMenu_ExeCmd:0000000000000000 Ap_EduMenu_ExeCmd
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:360    .text.Ap_EduMenu_ExeCmd:0000000000000048 $d
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:423    .text.Ap_EduMenu_ExeCmd:000000000000013c $t
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:691    .text.Ap_EduMenu_ExeCmd:00000000000002a0 $d
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:823    .bss.Seg_Count:0000000000000000 Seg_Count
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:725    .rodata.str1.4:0000000000000000 $d
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccWF1Uno.s:819    .bss.Seg_Count:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
 Hw_7Seg_Print
 Lb_printf
 get_byte
-Hw_KeyPad_GetEventKeyNum
+Hw_Adc_GetData
 Hw_KeyPad_GetRepeatCnt
 Hw_KeyPad_SetEventFunc
 Hw_Uart_GetchNoWait
+Hw_Uart_Print
 Hw_CLcd_Print
 Hw_KeyPad_WaitForEvent
 Hw_KeyPad_GetPressedCnt
 Hw_Led_Toggle
 Hw_Timer_Delay_ms
-Hw_Uart_Print
+Hw_KeyPad_GetEventKeyNum
 Hw_KeyPad_GetEventKeyData

@@ -255,6 +255,82 @@
 
 
 
+//-- ADC1
+//
+#define REG_ADC1_BASE					0x40012400
+#define REG_ADC1_SR						(*(volatile unsigned long *)(REG_ADC1_BASE + 0x0000))
+#define REG_ADC1_CR1					(*(volatile unsigned long *)(REG_ADC1_BASE + 0x0004))
+#define REG_ADC1_CR2					(*(volatile unsigned long *)(REG_ADC1_BASE + 0x0008))
+#define REG_ADC1_SMPR1					(*(volatile unsigned long *)(REG_ADC1_BASE + 0x000C))
+#define REG_ADC1_SMPR2					(*(volatile unsigned long *)(REG_ADC1_BASE + 0x0010))
+#define REG_ADC1_JOFR1					(*(volatile unsigned long *)(REG_ADC1_BASE + 0x0014))
+#define REG_ADC1_JOFR2					(*(volatile unsigned long *)(REG_ADC1_BASE + 0x0018))
+#define REG_ADC1_JOFR3					(*(volatile unsigned long *)(REG_ADC1_BASE + 0x001C))
+#define REG_ADC1_JOFR4					(*(volatile unsigned long *)(REG_ADC1_BASE + 0x0020))
+#define REG_ADC1_HTR					(*(volatile unsigned long *)(REG_ADC1_BASE + 0x0024))
+#define REG_ADC1_LTR					(*(volatile unsigned long *)(REG_ADC1_BASE + 0x0028))
+#define REG_ADC1_SQR1					(*(volatile unsigned long *)(REG_ADC1_BASE + 0x002C))
+#define REG_ADC1_SQR2					(*(volatile unsigned long *)(REG_ADC1_BASE + 0x0030))
+#define REG_ADC1_SQR3					(*(volatile unsigned long *)(REG_ADC1_BASE + 0x0034))
+#define REG_ADC1_JSQR					(*(volatile unsigned long *)(REG_ADC1_BASE + 0x0038))
+#define REG_ADC1_JDR1					(*(volatile unsigned long *)(REG_ADC1_BASE + 0x003C))
+#define REG_ADC1_JDR2					(*(volatile unsigned long *)(REG_ADC1_BASE + 0x0040))
+#define REG_ADC1_JDR3					(*(volatile unsigned long *)(REG_ADC1_BASE + 0x0044))
+#define REG_ADC1_JDR4					(*(volatile unsigned long *)(REG_ADC1_BASE + 0x0048))
+#define REG_ADC1_DR						(*(volatile unsigned long *)(REG_ADC1_BASE + 0x004C))
+
+
+
+//-- ADC2
+//
+#define REG_ADC2_BASE					0x40012800
+#define REG_ADC2_SR						(*(volatile unsigned long *)(REG_ADC2_BASE + 0x0000))
+#define REG_ADC2_CR1					(*(volatile unsigned long *)(REG_ADC2_BASE + 0x0004))
+#define REG_ADC2_CR2					(*(volatile unsigned long *)(REG_ADC2_BASE + 0x0008))
+#define REG_ADC2_SMPR1					(*(volatile unsigned long *)(REG_ADC2_BASE + 0x000C))
+#define REG_ADC2_SMPR2					(*(volatile unsigned long *)(REG_ADC2_BASE + 0x0010))
+#define REG_ADC2_JOFR1					(*(volatile unsigned long *)(REG_ADC2_BASE + 0x0014))
+#define REG_ADC2_JOFR2					(*(volatile unsigned long *)(REG_ADC2_BASE + 0x0018))
+#define REG_ADC2_JOFR3					(*(volatile unsigned long *)(REG_ADC2_BASE + 0x001C))
+#define REG_ADC2_JOFR4					(*(volatile unsigned long *)(REG_ADC2_BASE + 0x0020))
+#define REG_ADC2_HTR					(*(volatile unsigned long *)(REG_ADC2_BASE + 0x0024))
+#define REG_ADC2_LTR					(*(volatile unsigned long *)(REG_ADC2_BASE + 0x0028))
+#define REG_ADC2_SQR1					(*(volatile unsigned long *)(REG_ADC2_BASE + 0x002C))
+#define REG_ADC2_SQR2					(*(volatile unsigned long *)(REG_ADC2_BASE + 0x0030))
+#define REG_ADC2_SQR3					(*(volatile unsigned long *)(REG_ADC2_BASE + 0x0034))
+#define REG_ADC2_JSQR					(*(volatile unsigned long *)(REG_ADC2_BASE + 0x0038))
+#define REG_ADC2_JDR1					(*(volatile unsigned long *)(REG_ADC2_BASE + 0x003C))
+#define REG_ADC2_JDR2					(*(volatile unsigned long *)(REG_ADC2_BASE + 0x0040))
+#define REG_ADC2_JDR3					(*(volatile unsigned long *)(REG_ADC2_BASE + 0x0044))
+#define REG_ADC2_JDR4					(*(volatile unsigned long *)(REG_ADC2_BASE + 0x0048))
+#define REG_ADC2_DR						(*(volatile unsigned long *)(REG_ADC2_BASE + 0x004C))
+
+
+
+//-- ADC3
+//
+#define REG_ADC3_BASE					0x40013C00
+#define REG_ADC3_SR						(*(volatile unsigned long *)(REG_ADC3_BASE + 0x0000))
+#define REG_ADC3_CR1					(*(volatile unsigned long *)(REG_ADC3_BASE + 0x0004))
+#define REG_ADC3_CR2					(*(volatile unsigned long *)(REG_ADC3_BASE + 0x0008))
+#define REG_ADC3_SMPR1					(*(volatile unsigned long *)(REG_ADC3_BASE + 0x000C))
+#define REG_ADC3_SMPR2					(*(volatile unsigned long *)(REG_ADC3_BASE + 0x0010))
+#define REG_ADC3_JOFR1					(*(volatile unsigned long *)(REG_ADC3_BASE + 0x0014))
+#define REG_ADC3_JOFR2					(*(volatile unsigned long *)(REG_ADC3_BASE + 0x0018))
+#define REG_ADC3_JOFR3					(*(volatile unsigned long *)(REG_ADC3_BASE + 0x001C))
+#define REG_ADC3_JOFR4					(*(volatile unsigned long *)(REG_ADC3_BASE + 0x0020))
+#define REG_ADC3_HTR					(*(volatile unsigned long *)(REG_ADC3_BASE + 0x0024))
+#define REG_ADC3_LTR					(*(volatile unsigned long *)(REG_ADC3_BASE + 0x0028))
+#define REG_ADC3_SQR1					(*(volatile unsigned long *)(REG_ADC3_BASE + 0x002C))
+#define REG_ADC3_SQR2					(*(volatile unsigned long *)(REG_ADC3_BASE + 0x0030))
+#define REG_ADC3_SQR3					(*(volatile unsigned long *)(REG_ADC3_BASE + 0x0034))
+#define REG_ADC3_JSQR					(*(volatile unsigned long *)(REG_ADC3_BASE + 0x0038))
+#define REG_ADC3_JDR1					(*(volatile unsigned long *)(REG_ADC3_BASE + 0x003C))
+#define REG_ADC3_JDR2					(*(volatile unsigned long *)(REG_ADC3_BASE + 0x0040))
+#define REG_ADC3_JDR3					(*(volatile unsigned long *)(REG_ADC3_BASE + 0x0044))
+#define REG_ADC3_JDR4					(*(volatile unsigned long *)(REG_ADC3_BASE + 0x0048))
+#define REG_ADC3_DR						(*(volatile unsigned long *)(REG_ADC3_BASE + 0x004C))
+
 
 
 #endif

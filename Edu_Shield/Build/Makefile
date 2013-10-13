@@ -74,7 +74,8 @@ SRC_HW = 	../LIB_HW/$(STARTUP_C)	\
 			../LIB_HW/Hw_VBus.c		\
 			../LIB_HW/Hw_KeyPad.c	\
 			../LIB_HW/Hw_7Seg.c		\
-			../LIB_HW/Hw_CLcd.c
+			../LIB_HW/Hw_CLcd.c 	\
+			../LIB_HW/Hw_Adc.c
 			
 			
 SRC_USB =   ../LIB_USB/usb_desc.c	\
@@ -88,7 +89,8 @@ SRC_USB =   ../LIB_USB/usb_desc.c	\
 			../LIB_USB/DRV/usb_mem.c	\
 			../LIB_USB/DRV/usb_regs.c	\
 			../LIB_USB/DRV/usb_sil.c	\
-			../LIB_USB/DRV/usb_int.c	
+			../LIB_USB/DRV/usb_int.c
+
 			
 			
 			

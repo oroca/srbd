@@ -421,7 +421,7 @@ void print_byte(unsigned int c)
 #else	
 	if (c == '\n') Hw_Uart_Putch(HW_USE_UART_CH_MENU, '\r');
     
-    Hw_Uart_Putch(HW_UART_COM1, c);
+    Hw_Uart_Putch(HW_USE_UART_CH_MENU, c);
 #endif    
 }
 

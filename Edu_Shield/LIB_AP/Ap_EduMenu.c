@@ -73,12 +73,12 @@ void Ap_EduMenu_ShowMenu(void)
 	Lb_printf("*******************************************************\n");
 	Lb_printf("                      Edu V0.5                         \n");
 	Lb_printf("*******************************************************\n");
-	Lb_printf("* 1. LED Test                                         *\n");
-	Lb_printf("* 2. KeyPad Test                                      *\n");
-	Lb_printf("* 3. 7Seg Test                                        *\n");
-	Lb_printf("* 4. CLcd Test                                        *\n");
-	Lb_printf("* 5. BT Test                                          *\n");
-	Lb_printf("* 6.                                                  *\n");
+	Lb_printf("* 1. Test.. LED                                       *\n");
+	Lb_printf("* 2. Test.. KeyPad                                    *\n");
+	Lb_printf("* 3. Test.. 7Seg                                      *\n");
+	Lb_printf("* 4. Test.. CLcd                                      *\n");
+	Lb_printf("* 5. Test.. BT                                        *\n");
+	Lb_printf("* 6. Test.. Temperature                               *\n");
 	Lb_printf("* 7.                                                  *\n");
 	Lb_printf("* 8.                                                  *\n");
 	Lb_printf("* 9.                                                  *\n");
@@ -131,6 +131,7 @@ u8 Ap_EduMenu_ExeCmd(void)
 	u32 KeyEvent;
 	u32 KeyNum;
 	u16 SegCnt = 0;
+	s16 Temp = 0;
 	
 	static u8 ExeFirst = TRUE;
 	u16 Ret = ERR_NONE;
@@ -228,6 +229,8 @@ u8 Ap_EduMenu_ExeCmd(void)
 				break; 
 
            case '6':
+           		Lb_printf("ADC 15 : %d\n", Hw_Adc_GetData(16));
+           		Lb_printf("ADC 16 : %d\n", Hw_Adc_GetData(17)*330/4095);
                break;  
 
            case '7':

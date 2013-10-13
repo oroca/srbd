@@ -58,6 +58,7 @@ void Hw_Init( void )
 	Hw_VBus_Init();
 	Hw_VCom_Init();
 	
+	Hw_Adc_Init();
 	Hw_Led_Init();
 	Hw_KeyPad_Init();
 	Hw_7Seg_Init();
