@@ -44,9 +44,10 @@
 
 
 
+//-- Core
+//
 #include "Hw_Regs.h"
 #include "Hw_Define.h"
-
 #include "Hw_PLL.h"
 #include "Hw_DMA.h"
 #include "Hw_Uart.h"
@@ -56,13 +57,17 @@
 #include "Hw_I2C.h"
 #include "Hw_SPI.h"
 #include "Hw_Adc.h"
+
+
+//-- Driver
+//
 #include "Hw_Si47xx.h"
 #include "Hw_N5110G.h"
 #include "Hw_VBus.h"
 #include "Hw_KeyPad.h"
 #include "Hw_7Seg.h"
 #include "Hw_CLcd.h"
-
+#include "Hw_Cds.h"
 
 #include "Hw_VCom.h"
 

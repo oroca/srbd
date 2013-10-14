@@ -53,16 +53,19 @@ void Hw_Init( void )
 	//Hw_DMA_Init();
 	Hw_Uart_Init();
 	Hw_Timer_Init();
+
+	Hw_Adc_Init();
+
 	//Hw_Si47xx_Init();
 	//Hw_N5110G_Init();
 	Hw_VBus_Init();
 	Hw_VCom_Init();
 	
-	Hw_Adc_Init();
 	Hw_Led_Init();
 	Hw_KeyPad_Init();
 	Hw_7Seg_Init();
 	Hw_CLcd_Init();
+	Hw_Cds_Init();
 	
 }
 

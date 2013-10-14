@@ -71,14 +71,14 @@ void Ap_EduMenu_ShowMenu(void)
 
 	Lb_printf("\n\n");
 	Lb_printf("*******************************************************\n");
-	Lb_printf("                      Edu V0.5                         \n");
+	Lb_printf("                      Edu V0.6                         \n");
 	Lb_printf("*******************************************************\n");
 	Lb_printf("* 1. Test.. LED                                       *\n");
 	Lb_printf("* 2. Test.. KeyPad                                    *\n");
 	Lb_printf("* 3. Test.. 7Seg                                      *\n");
 	Lb_printf("* 4. Test.. CLcd                                      *\n");
 	Lb_printf("* 5. Test.. BT                                        *\n");
-	Lb_printf("* 6. Test.. Temperature                               *\n");
+	Lb_printf("* 6. Test.. Cds                                       *\n");
 	Lb_printf("* 7.                                                  *\n");
 	Lb_printf("* 8.                                                  *\n");
 	Lb_printf("* 9.                                                  *\n");
@@ -229,8 +229,24 @@ u8 Ap_EduMenu_ExeCmd(void)
 				break; 
 
            case '6':
-           		Lb_printf("ADC 15 : %d\n", Hw_Adc_GetData(16));
-           		Lb_printf("ADC 16 : %d\n", Hw_Adc_GetData(17)*330/4095);
+           		Lb_printf("Cds Test Start, press x to exit\n");
+           		
+           		while(1)
+           		{
+
+           			if( Hw_Uart_GetchNoWait( HW_USE_UART_CH_MENU, &UartData ) == TRUE )
+           			{
+           				if( UartData == 'x' )
+           				{
+           					break;
+           				}
+           			}
+
+           			Hw_CLcd_Print( 0, 1, "Cds : %d", Hw_Cds_GetData() );
+
+				}      
+
+				Lb_printf("Cds Test Exit\n");     		
                break;  
 
            case '7':

@@ -44,6 +44,7 @@
 #endif
 
 
+#define HW_ADC_MAX_LIMIT	4095
 
 
 

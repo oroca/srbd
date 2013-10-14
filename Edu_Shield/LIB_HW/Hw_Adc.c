@@ -36,8 +36,6 @@ void Hw_Adc_PortInit( void );
 ---------------------------------------------------------------------------*/
 void Hw_Adc_Init( void )
 {
-	//ADC_InitTypeDef ADC_InitStructure;
-
 
 	//-- ADC GPIO 설정
 	//
@@ -51,27 +49,13 @@ void Hw_Adc_Init( void )
 	CLR_BIT( REG_RCC_CFGR, 14 );
 
 
-
 	// Enable ADC1 clock so that we can talk to it
 	//
 	SET_BIT( REG_RCC_APB2ENR, 9 );
 
-	// Put everything back to power-on defaults
-	//
-	//ADC_DeInit(ADC1);
-
 
 	// ADC1 Configuration ------------------------------------------------------
-
-	//ADC_StructInit(&ADC_InitStructure);
-
-	//ADC_InitStructure.ADC_Mode 					= ADC_Mode_Independent;	// ADC1 and ADC2 operate independently
-	//ADC_InitStructure.ADC_ScanConvMode 			= DISABLE;				// Disable the scan conversion so we do one at a time
-	//ADC_InitStructure.ADC_ContinuousConvMode 	= DISABLE;				// Don't do contimuous conversions - do them on demand
-	//ADC_InitStructure.ADC_ExternalTrigConv 		= ADC_ExternalTrigConv_None; // Start conversin by software, not an external trigger
-	//ADC_InitStructure.ADC_DataAlign 			= ADC_DataAlign_Right;	// Conversions are 12 bit - put them in the lower 12 bits of the result */
-	//ADC_InitStructure.ADC_NbrOfChannel 			= 1; 					// Say how many channels would be used by the sequencer
-
+	//
 	REG_ADC1_CR1 = 0
         | ( 0 << 23 )   // AWDEN     - Analogwatchdogenableonregularchannels
         				//             0 : Disabled
@@ -191,12 +175,11 @@ void Hw_Adc_PortInit( void )
 {
 	//GPIO_InitTypeDef GPIO_InitStructure;
 
-	//-- ADC GPIO 설정  PB0 : ADC8
+	//-- ADC GPIO 설정  PA7 : AIN7
 	//
-	//GPIO_InitStructure.GPIO_Mode 	= GPIO_Mode_AIN;
-	//GPIO_InitStructure.GPIO_Pin 	= GPIO_Pin_0;
-	//GPIO_InitStructure.GPIO_Speed 	= GPIO_Speed_50MHz;
-	//GPIO_Init(GPIOB, &GPIO_InitStructure);
+	REG_GPIOA_CRL &= ~(0x0F << (28));	// Clear
+	REG_GPIOA_CRL |=  (0x00 << (28));	// MODE, PA.7 Input Mode
+	REG_GPIOA_CRL |=  (0x00 << (30));	// CNF,  PA.7 Analog Mode	
 }
 
 
@@ -210,13 +193,10 @@ void Hw_Adc_PortInit( void )
 ---------------------------------------------------------------------------*/
 u16 Hw_Adc_GetData( u8 Ch )
 {
-	u16 SampleTimeOffset;
+	u32 TimeOut;
 
 	//-- 채널 설정
 	//
-	//ADC_RegularChannelConfig(ADC1, Ch, 1, ADC_SampleTime_1Cycles5);
-	//ADC_RegularChannelConfig(ADC1, Ch, 1, ADC_SampleTime_55Cycles5);
-
 	if( Ch >= 10 )
 	{
 		REG_ADC1_SMPR1 &= ~(0x07<<(Ch-10)*3);
@@ -237,7 +217,12 @@ u16 Hw_Adc_GetData( u8 Ch )
 
 	//-- Wait until conversion completion
 	//
-	while( IS_CLR_BIT( REG_ADC1_SR, 1) );
+	TimeOut = 10000;
+	while( IS_CLR_BIT( REG_ADC1_SR, 1) )
+	{
+		TimeOut--;
+		if( TimeOut == 0 ) break;
+	} 
 
 	// Get the conversion value
 
@@ -256,14 +241,27 @@ u16 Hw_Adc_GetData( u8 Ch )
 ---------------------------------------------------------------------------*/
 void Hw_Adc_StartConv( u8 Ch )
 {
+	u32 TimeOut;
+
 	//-- 채널 설정
 	//
-	//ADC_RegularChannelConfig(ADC1, Ch, 1, ADC_SampleTime_1Cycles5);
-	//ADC_RegularChannelConfig(ADC1, Ch, 1, ADC_SampleTime_55Cycles5);
+	if( Ch >= 10 )
+	{
+		REG_ADC1_SMPR1 &= ~(0x07<<(Ch-10)*3);
+		REG_ADC1_SMPR1 |=  (0x05<<(Ch-10)*3);	// 55.5 cycles
+	}
+	else
+	{
+		REG_ADC1_SMPR2 &= ~(0x07<<(Ch*3));
+		REG_ADC1_SMPR2 |=  (0x05<<(Ch*3));	// 55.5 cycles
+	}
+
+	REG_ADC1_SQR3 = Ch;
+
 
 	//-- Start the conversion
 	//
-	//ADC_SoftwareStartConvCmd(ADC1, ENABLE);
+	SET_BIT( REG_ADC1_CR2, 0 );
 }
 
 
@@ -278,16 +276,16 @@ void Hw_Adc_StartConv( u8 Ch )
 ---------------------------------------------------------------------------*/
 u8 Hw_Adc_GetConv( u16 *pAdcData )
 {
-	/*
-	if( ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == SET )
+	
+	if( IS_SET_BIT( REG_ADC1_SR, 1) )
 	{
-		*pAdcData = ADC_GetConversionValue(ADC1);
+		*pAdcData = REG_ADC1_DR;
 	}
 	else
 	{
 		return FALSE;
 	}
-	*/
+	
 
 	return TRUE;
 }
