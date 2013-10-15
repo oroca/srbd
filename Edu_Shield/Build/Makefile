@@ -39,10 +39,10 @@ OUTDIR = ./Build
 # 추가 헤더 파일이 속해 있는 디렉토리 
 # -각 디렉토리는 공백으로 구분
 #---------------------------------------------------------------------------
-EXTRAINCDIRS  =	../LIB_AP ../LIB_AP/Cmd ../LIB_AP/Core ../LIB_AP/Menu 
-EXTRAINCDIRS += ../LIB_HW 
+EXTRAINCDIRS  =	../LIB_AP ../LIB_AP/Core ../LIB_AP/Lib/Cmd ../LIB_AP/Lib/Menu 
+EXTRAINCDIRS += ../LIB_HW ../LIB_HW/Core ../LIB_HW/Driver 
 EXTRAINCDIRS += ../LIB_LB 
-EXTRAINCDIRS += ../LIB_USB ../LIB_USB/DRV	
+EXTRAINCDIRS += ../LIB_HW/Driver/LIB_USB ../LIB_HW/Driver/LIB_USB/DRV	
 EXTRAINCDIRS += ../
 
 
@@ -50,55 +50,57 @@ EXTRAINCDIRS += ../
 # 소스 파일
 #---------------------------------------------------------------------------
 
-SRC_AP = 	../main.c		\
-			\
-			../LIB_AP/Core/Ap.c			\
-			../LIB_AP/Core/Ap_Radio.c	\
-			\
-			../LIB_AP/Menu/Ap_RadioMenu.c	\
-			../LIB_AP/Menu/Ap_GLcdMenu.c	\
-			../LIB_AP/Menu/Ap_EduMenu.c
+
+SRC_AP = 	../main.c							\
+												\
+			../LIB_AP/Core/Ap.c					\
+			../LIB_AP/Core/Ap_Radio.c			\
+												\
+			../LIB_AP/Lib/Menu/Ap_RadioMenu.c	\
+			../LIB_AP/Lib/Menu/Ap_GLcdMenu.c	\
+			../LIB_AP/Lib/Menu/Ap_EduMenu.c
 
 
 SRC_LB = 	../LIB_LB/Lb_Util.c	\
 			../LIB_LB/Lb_Printf.c
 
 
-SRC_HW = 	../LIB_HW/$(STARTUP_C)	\
-			../LIB_HW/Hw.c			\
-			../LIB_HW/Hw_Uart.c		\
-			../LIB_HW/Hw_PLL.c		\
-			../LIB_HW/Hw_Led.c		\
-			../LIB_HW/Hw_Uart_Q.c	\
-			../LIB_HW/Hw_ISR.c		\
-			../LIB_HW/Hw_Timer.c	\
-			../LIB_HW/Hw_VCom.c		\
-			../LIB_HW/Hw_I2C.c		\
-			../LIB_HW/Hw_I2C_SW.c	\
-			../LIB_HW/Hw_Si47xx.c	\
-			../LIB_HW/Hw_SPI.c		\
-			../LIB_HW/Hw_N5110G.c	\
-			../LIB_HW/Hw_DMA.c		\
-			../LIB_HW/Hw_VBus.c		\
-			../LIB_HW/Hw_KeyPad.c	\
-			../LIB_HW/Hw_7Seg.c		\
-			../LIB_HW/Hw_CLcd.c 	\
-			../LIB_HW/Hw_Adc.c 		\
-			../LIB_HW/Hw_Cds.c
+SRC_HW = 	../LIB_HW/Core/$(STARTUP_C)			\
+			../LIB_HW/Core/Hw.c					\
+			../LIB_HW/Core/Hw_Uart.c			\
+			../LIB_HW/Core/Hw_PLL.c				\
+			../LIB_HW/Core/Hw_ISR.c				\
+			../LIB_HW/Core/Hw_Timer.c			\
+			../LIB_HW/Core/Hw_Uart_Q.c			\
+			../LIB_HW/Core/Hw_I2C.c				\
+			../LIB_HW/Core/Hw_I2C_SW.c			\
+			../LIB_HW/Core/Hw_SPI.c				\
+			../LIB_HW/Core/Hw_DMA.c				\
+			../LIB_HW/Core/Hw_Adc.c				\
+												\
+			../LIB_HW/Driver/Hw_Led.c			\
+			../LIB_HW/Driver/Hw_VCom.c			\
+			../LIB_HW/Driver/Hw_Si47xx.c		\
+			../LIB_HW/Driver/Hw_N5110G.c		\
+			../LIB_HW/Driver/Hw_VBus.c			\
+			../LIB_HW/Driver/Hw_KeyPad.c		\
+			../LIB_HW/Driver/Hw_7Seg.c			\
+			../LIB_HW/Driver/Hw_CLcd.c 			\
+			../LIB_HW/Driver/Hw_Cds.c
 			
 			
-SRC_USB =   ../LIB_USB/usb_desc.c	\
-			../LIB_USB/usb_endp.c	\
-			../LIB_USB/usb_istr.c	\
-			../LIB_USB/usb_prop.c	\
-			../LIB_USB/usb_pwr.c	\
-			../LIB_USB/hw_config.c	\
-			../LIB_USB/DRV/usb_core.c	\
-			../LIB_USB/DRV/usb_init.c	\
-			../LIB_USB/DRV/usb_mem.c	\
-			../LIB_USB/DRV/usb_regs.c	\
-			../LIB_USB/DRV/usb_sil.c	\
-			../LIB_USB/DRV/usb_int.c
+SRC_USB =   ../LIB_HW/Driver/LIB_USB/usb_desc.c	\
+			../LIB_HW/Driver/LIB_USB/usb_endp.c	\
+			../LIB_HW/Driver/LIB_USB/usb_istr.c	\
+			../LIB_HW/Driver/LIB_USB/usb_prop.c	\
+			../LIB_HW/Driver/LIB_USB/usb_pwr.c	\
+			../LIB_HW/Driver/LIB_USB/hw_config.c	\
+			../LIB_HW/Driver/LIB_USB/DRV/usb_core.c	\
+			../LIB_HW/Driver/LIB_USB/DRV/usb_init.c	\
+			../LIB_HW/Driver/LIB_USB/DRV/usb_mem.c	\
+			../LIB_HW/Driver/LIB_USB/DRV/usb_regs.c	\
+			../LIB_HW/Driver/LIB_USB/DRV/usb_sil.c	\
+			../LIB_HW/Driver/LIB_USB/DRV/usb_int.c
 
 			
 			
