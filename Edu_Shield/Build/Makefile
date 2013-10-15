@@ -39,7 +39,11 @@ OUTDIR = ./Build
 # 추가 헤더 파일이 속해 있는 디렉토리 
 # -각 디렉토리는 공백으로 구분
 #---------------------------------------------------------------------------
-EXTRAINCDIRS = ../LIB_AP ../LIB_LB ../LIB_HW ../ ../LIB_USB ../LIB_USB/DRV
+EXTRAINCDIRS  =	../LIB_AP ../LIB_AP/Cmd ../LIB_AP/Core ../LIB_AP/Menu 
+EXTRAINCDIRS += ../LIB_HW 
+EXTRAINCDIRS += ../LIB_LB 
+EXTRAINCDIRS += ../LIB_USB ../LIB_USB/DRV	
+EXTRAINCDIRS += ../
 
 
 #---------------------------------------------------------------------------
@@ -47,14 +51,18 @@ EXTRAINCDIRS = ../LIB_AP ../LIB_LB ../LIB_HW ../ ../LIB_USB ../LIB_USB/DRV
 #---------------------------------------------------------------------------
 
 SRC_AP = 	../main.c		\
-			../LIB_AP/Ap.c	\
-			../LIB_AP/Ap_RadioMenu.c	\
-			../LIB_AP/Ap_Radio.c		\
-			../LIB_AP/Ap_GLcdMenu.c		\
-			../LIB_AP/Ap_EduMenu.c
+			\
+			../LIB_AP/Core/Ap.c			\
+			../LIB_AP/Core/Ap_Radio.c	\
+			\
+			../LIB_AP/Menu/Ap_RadioMenu.c	\
+			../LIB_AP/Menu/Ap_GLcdMenu.c	\
+			../LIB_AP/Menu/Ap_EduMenu.c
+
 
 SRC_LB = 	../LIB_LB/Lb_Util.c	\
 			../LIB_LB/Lb_Printf.c
+
 
 SRC_HW = 	../LIB_HW/$(STARTUP_C)	\
 			../LIB_HW/Hw.c			\
