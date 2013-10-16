@@ -55,6 +55,8 @@ SRC_AP = 	../main.c							\
 												\
 			../LIB_AP/Core/Ap.c					\
 			../LIB_AP/Core/Ap_Radio.c			\
+			../LIB_AP/Core/Ap_StrCmd.c			\
+			../LIB_AP/Core/Ap_StrCmd_Q.c		\
 												\
 			../LIB_AP/Lib/Menu/Ap_RadioMenu.c	\
 			../LIB_AP/Lib/Menu/Ap_GLcdMenu.c	\

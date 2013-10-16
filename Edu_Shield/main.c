@@ -69,9 +69,11 @@ int main(void)
 
 	//-- 명령어 처리
 	//
-	//Ap_RadioMenu_ExeCmd();    
-	//Ap_GLcdMenu_ExeCmd();    
-	Ap_EduMenu_ExeCmd();
+	while(1)
+	{
+		Ap_EduMenu_ExeCmd();
+		Ap_StrCmd_ExeCmd();
+	}
 
     while(1);
     

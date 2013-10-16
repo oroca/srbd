@@ -79,8 +79,8 @@ void Hw_CLcd_Init(void)
 	Hw_CLcd_Goto(0,0);		
 	Hw_CLcd_Clear();	
 	
-	Hw_CLcd_Print( 0, 0, "SmartRobot BD");
-	Hw_CLcd_Print( 0, 1, "Baram");
+	Hw_CLcd_Printf( 0, 0, "SmartRobot BD");
+	Hw_CLcd_Printf( 0, 1, "Baram");
 }
 
 
@@ -244,7 +244,7 @@ u16 Hw_CLcd_WriteStr( char *pStr )
      ARG     : void
      RET     : void
 ---------------------------------------------------------------------------*/
-u16 Hw_CLcd_Print( u8 x_str, u8 y_str,  char *format, ... )
+u16 Hw_CLcd_Printf( u8 x_str, u8 y_str,  char *format, ... )
 {
 	u16 Ret = ERR_NONE;
 	char Str[200];

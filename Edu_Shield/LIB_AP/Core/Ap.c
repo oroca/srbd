@@ -44,6 +44,8 @@ void Ap_Init( void )
 		Lb_printf("Radio Init Fail\n");
 	}
 	*/
+
+	Ap_StrCmd_Init();
 }
 
 

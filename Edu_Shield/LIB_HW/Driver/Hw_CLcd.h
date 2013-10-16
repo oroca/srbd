@@ -33,6 +33,6 @@
 EXT_HW_CLCD_DEF void Hw_CLcd_Init(void);
 
 EXT_HW_CLCD_DEF u16  Hw_CLcd_Clear( void );
-EXT_HW_CLCD_DEF u16  Hw_CLcd_Print( u8 x_str, u8 y_str,  char *format, ... );
+EXT_HW_CLCD_DEF u16  Hw_CLcd_Printf( u8 x_str, u8 y_str,  char *format, ... );
 
 #endif

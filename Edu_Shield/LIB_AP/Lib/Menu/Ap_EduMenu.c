@@ -42,7 +42,7 @@ void KeyPad_UpKeyEvent( u32 Event )
 {
 	if( Event == HW_KEYPAD_EVENT_RELEASED || Event == HW_KEYPAD_EVENT_REPEAT )
 	{
-		Hw_7Seg_Print( 0, "%d", Seg_Count++ );
+		Hw_7Seg_Printf( 0, "%d", Seg_Count++ );
 	}
 }
 
@@ -53,7 +53,7 @@ void KeyPad_DownKeyEvent( u32 Event )
 		Seg_Count -= 2;
 		
 		
-		Hw_7Seg_Print( 0, "%d", Seg_Count++ );
+		Hw_7Seg_Printf( 0, "%d", Seg_Count++ );
 	}	
 }
 
@@ -145,7 +145,14 @@ u8 Ap_EduMenu_ExeCmd(void)
 		Hw_KeyPad_SetEventFunc( 0, KeyPad_DownKeyEvent );	
 	}
 
-    while( (key = Ap_EduMenu_GetCmd()) != 0 )
+	key = 0;
+
+	if( Hw_Uart_GetchNoWait( HW_USE_UART_CH_MENU, &UartData ) == TRUE )
+	{
+		key = UartData;
+	}
+
+    if( key > 0 )
     {
         switch(key)
         {
@@ -194,11 +201,11 @@ u8 Ap_EduMenu_ExeCmd(void)
 				break;
 
            case '3':	
-           		Hw_7Seg_Print( 0, "%d", Seg_Count++ );
+           		Hw_7Seg_Printf( 0, "%d", Seg_Count++ );
                break; 
 
            case '4':
-           		Hw_CLcd_Print( 0, 1, "Cnt : %d", Seg_Count++);
+           		Hw_CLcd_Printf( 0, 1, "Cnt : %d", Seg_Count++);
 				break;  
 
            case '5':
@@ -219,7 +226,7 @@ u8 Ap_EduMenu_ExeCmd(void)
            				}
            				else
            				{
-           					Hw_Uart_Print( HW_USE_UART_CH_BT, "Menu:Send : %c\r\n",UartData );
+           					Hw_Uart_Printf( HW_USE_UART_CH_BT, "Menu:Send : %c\r\n",UartData );
            				}
            			}
 
@@ -242,7 +249,7 @@ u8 Ap_EduMenu_ExeCmd(void)
            				}
            			}
 
-           			Hw_CLcd_Print( 0, 1, "Cds : %d", Hw_Cds_GetData() );
+           			Hw_CLcd_Printf( 0, 1, "Cds : %d", Hw_Cds_GetData() );
 
 				}      
 

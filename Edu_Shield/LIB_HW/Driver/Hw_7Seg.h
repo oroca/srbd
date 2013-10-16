@@ -36,6 +36,6 @@ EXT_HW_7SEG_DEF void Hw_7Seg_Init( void );
 
 EXT_HW_7SEG_DEF void Hw_7Seg_SetDot( u8 Index, u8 DotData  );
 EXT_HW_7SEG_DEF void Hw_7Seg_SetNumber( u8 Index, u8 Number  );
-EXT_HW_7SEG_DEF void Hw_7Seg_Print( u8 Index, char *format, ... );
+EXT_HW_7SEG_DEF void Hw_7Seg_Printf( u8 Index, char *format, ... );
 
 #endif

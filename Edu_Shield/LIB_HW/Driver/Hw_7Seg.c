@@ -195,7 +195,7 @@ void Hw_7Seg_SetNumber( u8 Index, u8 Number  )
      ARG     : void
      RET     : void
 ---------------------------------------------------------------------------*/
-void Hw_7Seg_Print( u8 Index, char *format, ... )
+void Hw_7Seg_Printf( u8 Index, char *format, ... )
 {
 	char Str[200];
 	u32 StrSize;

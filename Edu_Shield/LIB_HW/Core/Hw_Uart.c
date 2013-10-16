@@ -362,7 +362,7 @@ void Hw_Uart_PrintEx( u8 Ch, char *UartPrintData )
      ARG
      RET
 ---------------------------------------------------------------------------*/
-void Hw_Uart_Print( u8 Ch,  char *format, ... )
+void Hw_Uart_Printf( u8 Ch,  char *format, ... )
 {
 	char Str[200];
 	
