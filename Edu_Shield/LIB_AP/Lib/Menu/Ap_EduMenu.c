@@ -143,13 +143,20 @@ u8 Ap_EduMenu_ExeCmd(void)
 		
 		Hw_KeyPad_SetEventFunc( 2, KeyPad_UpKeyEvent );
 		Hw_KeyPad_SetEventFunc( 0, KeyPad_DownKeyEvent );	
+
+		ExeFirst = FALSE;
 	}
 
 	key = 0;
 
 	if( Hw_Uart_GetchNoWait( HW_USE_UART_CH_MENU, &UartData ) == TRUE )
 	{
+		Lb_printf(">> %c\n", UartData);
 		key = UartData;
+	}
+	else
+	{
+		return 0;
 	}
 
     if( key > 0 )
