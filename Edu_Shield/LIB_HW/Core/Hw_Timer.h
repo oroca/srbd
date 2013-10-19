@@ -65,6 +65,12 @@ typedef struct tmr
 } TMR;
 
 
+typedef struct 
+{
+	u32 Start;
+} HW_TIMER_TIME_OBJ;
+
+
 
 EXT_HW_TIMER_DEF void Hw_Timer_Init( void );
 EXT_HW_TIMER_DEF void Hw_Timer_Tick(void);
@@ -75,6 +81,9 @@ EXT_HW_TIMER_DEF void Hw_Timer_Reset(u8 TmrNum);
 EXT_HW_TIMER_DEF void Hw_Timer_Delay_ms( u16 DelayData );
 EXT_HW_TIMER_DEF s16  Hw_Timer_Get_Handle( void );
 EXT_HW_TIMER_DEF u32  Hw_Timer_Get_CountValue( void );
+
+EXT_HW_TIMER_DEF void Hw_Timer_TimeStart( HW_TIMER_TIME_OBJ *TimerTimePtr );
+EXT_HW_TIMER_DEF u32  Hw_Timer_TimeGetElapse( HW_TIMER_TIME_OBJ *TimerTimePtr );
 
 
 #endif

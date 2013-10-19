@@ -88,7 +88,8 @@ SRC_HW = 	../LIB_HW/Core/$(STARTUP_C)			\
 			../LIB_HW/Driver/Hw_KeyPad.c		\
 			../LIB_HW/Driver/Hw_7Seg.c			\
 			../LIB_HW/Driver/Hw_CLcd.c 			\
-			../LIB_HW/Driver/Hw_Cds.c
+			../LIB_HW/Driver/Hw_Cds.c 			\
+			../LIB_HW/Driver/Hw_DHT11.c
 			
 			
 SRC_USB =   ../LIB_HW/Driver/LIB_USB/usb_desc.c	\

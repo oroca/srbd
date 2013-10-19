@@ -333,6 +333,121 @@
 
 
 
+//-- EXTI
+//
+#define REG_EXTI_BASE					0x40010400
+#define REG_EXTI_IMR					(*(volatile unsigned long *)(REG_EXTI_BASE + 0x0000))
+#define REG_EXTI_EMR					(*(volatile unsigned long *)(REG_EXTI_BASE + 0x0004))
+#define REG_EXIT_RTSR					(*(volatile unsigned long *)(REG_EXTI_BASE + 0x0008))
+#define REG_EXIT_FTSR					(*(volatile unsigned long *)(REG_EXTI_BASE + 0x000C))
+#define REG_EXIT_SWIER					(*(volatile unsigned long *)(REG_EXTI_BASE + 0x0010))
+#define REG_EXIT_PR						(*(volatile unsigned long *)(REG_EXTI_BASE + 0x0014))
+
+
+
+//-- Timer1
+//
+#define REG_TIM1_BASE					0x40012C00
+#define REG_TIM1_CR1					(*(volatile unsigned long *)(REG_TIM1_BASE + 0x0000))
+#define REG_TIM1_CR2					(*(volatile unsigned long *)(REG_TIM1_BASE + 0x0004))
+#define REG_TIM1_SMCR					(*(volatile unsigned long *)(REG_TIM1_BASE + 0x0008))
+#define REG_TIM1_DIER					(*(volatile unsigned long *)(REG_TIM1_BASE + 0x000C))
+#define REG_TIM1_SR						(*(volatile unsigned long *)(REG_TIM1_BASE + 0x0010))
+#define REG_TIM1_EGR					(*(volatile unsigned long *)(REG_TIM1_BASE + 0x0014))
+#define REG_TIM1_CCMR1					(*(volatile unsigned long *)(REG_TIM1_BASE + 0x0018))
+#define REG_TIM1_CCMR2					(*(volatile unsigned long *)(REG_TIM1_BASE + 0x001C))
+#define REG_TIM1_CCER					(*(volatile unsigned long *)(REG_TIM1_BASE + 0x0020))
+#define REG_TIM1_CNT					(*(volatile unsigned long *)(REG_TIM1_BASE + 0x0024))
+#define REG_TIM1_PSC					(*(volatile unsigned long *)(REG_TIM1_BASE + 0x0028))
+#define REG_TIM1_ARR					(*(volatile unsigned long *)(REG_TIM1_BASE + 0x002C))
+#define REG_TIM1_RCR					(*(volatile unsigned long *)(REG_TIM1_BASE + 0x0030))
+#define REG_TIM1_CCR1					(*(volatile unsigned long *)(REG_TIM1_BASE + 0x0034))
+#define REG_TIM1_CCR2					(*(volatile unsigned long *)(REG_TIM1_BASE + 0x0038))
+#define REG_TIM1_CCR3					(*(volatile unsigned long *)(REG_TIM1_BASE + 0x003C))
+#define REG_TIM1_CCR4					(*(volatile unsigned long *)(REG_TIM1_BASE + 0x0040))
+#define REG_TIM1_BDTR					(*(volatile unsigned long *)(REG_TIM1_BASE + 0x0044))
+#define REG_TIM1_DCR					(*(volatile unsigned long *)(REG_TIM1_BASE + 0x0048))
+#define REG_TIM1_DMAR					(*(volatile unsigned long *)(REG_TIM1_BASE + 0x004C))
+
+
+
+//-- Timer2
+//
+#define REG_TIM2_BASE					0x40000000
+#define REG_TIM2_CR1					(*(volatile unsigned long *)(REG_TIM2_BASE + 0x0000))
+#define REG_TIM2_CR2					(*(volatile unsigned long *)(REG_TIM2_BASE + 0x0004))
+#define REG_TIM2_SMCR					(*(volatile unsigned long *)(REG_TIM2_BASE + 0x0008))
+#define REG_TIM2_DIER					(*(volatile unsigned long *)(REG_TIM2_BASE + 0x000C))
+#define REG_TIM2_SR						(*(volatile unsigned long *)(REG_TIM2_BASE + 0x0010))
+#define REG_TIM2_EGR					(*(volatile unsigned long *)(REG_TIM2_BASE + 0x0014))
+#define REG_TIM2_CCMR1					(*(volatile unsigned long *)(REG_TIM2_BASE + 0x0018))
+#define REG_TIM2_CCMR2					(*(volatile unsigned long *)(REG_TIM2_BASE + 0x001C))
+#define REG_TIM2_CCER					(*(volatile unsigned long *)(REG_TIM2_BASE + 0x0020))
+#define REG_TIM2_CNT					(*(volatile unsigned long *)(REG_TIM2_BASE + 0x0024))
+#define REG_TIM2_PSC					(*(volatile unsigned long *)(REG_TIM2_BASE + 0x0028))
+#define REG_TIM2_ARR					(*(volatile unsigned long *)(REG_TIM2_BASE + 0x002C))
+#define REG_TIM2_RCR					(*(volatile unsigned long *)(REG_TIM2_BASE + 0x0030))
+#define REG_TIM2_CCR1					(*(volatile unsigned long *)(REG_TIM2_BASE + 0x0034))
+#define REG_TIM2_CCR2					(*(volatile unsigned long *)(REG_TIM2_BASE + 0x0038))
+#define REG_TIM2_CCR3					(*(volatile unsigned long *)(REG_TIM2_BASE + 0x003C))
+#define REG_TIM2_CCR4					(*(volatile unsigned long *)(REG_TIM2_BASE + 0x0040))
+#define REG_TIM2_BDTR					(*(volatile unsigned long *)(REG_TIM2_BASE + 0x0044))
+#define REG_TIM2_DCR					(*(volatile unsigned long *)(REG_TIM2_BASE + 0x0048))
+#define REG_TIM2_DMAR					(*(volatile unsigned long *)(REG_TIM2_BASE + 0x004C))
+
+
+
+//-- Timer3
+//
+#define REG_TIM3_BASE					0x40000400
+#define REG_TIM3_CR1					(*(volatile unsigned long *)(REG_TIM3_BASE + 0x0000))
+#define REG_TIM3_CR2					(*(volatile unsigned long *)(REG_TIM3_BASE + 0x0004))
+#define REG_TIM3_SMCR					(*(volatile unsigned long *)(REG_TIM3_BASE + 0x0008))
+#define REG_TIM3_DIER					(*(volatile unsigned long *)(REG_TIM3_BASE + 0x000C))
+#define REG_TIM3_SR						(*(volatile unsigned long *)(REG_TIM3_BASE + 0x0010))
+#define REG_TIM3_EGR					(*(volatile unsigned long *)(REG_TIM3_BASE + 0x0014))
+#define REG_TIM3_CCMR1					(*(volatile unsigned long *)(REG_TIM3_BASE + 0x0018))
+#define REG_TIM3_CCMR2					(*(volatile unsigned long *)(REG_TIM3_BASE + 0x001C))
+#define REG_TIM3_CCER					(*(volatile unsigned long *)(REG_TIM3_BASE + 0x0020))
+#define REG_TIM3_CNT					(*(volatile unsigned long *)(REG_TIM3_BASE + 0x0024))
+#define REG_TIM3_PSC					(*(volatile unsigned long *)(REG_TIM3_BASE + 0x0028))
+#define REG_TIM3_ARR					(*(volatile unsigned long *)(REG_TIM3_BASE + 0x002C))
+#define REG_TIM3_RCR					(*(volatile unsigned long *)(REG_TIM3_BASE + 0x0030))
+#define REG_TIM3_CCR1					(*(volatile unsigned long *)(REG_TIM3_BASE + 0x0034))
+#define REG_TIM3_CCR2					(*(volatile unsigned long *)(REG_TIM3_BASE + 0x0038))
+#define REG_TIM3_CCR3					(*(volatile unsigned long *)(REG_TIM3_BASE + 0x003C))
+#define REG_TIM3_CCR4					(*(volatile unsigned long *)(REG_TIM3_BASE + 0x0040))
+#define REG_TIM3_BDTR					(*(volatile unsigned long *)(REG_TIM3_BASE + 0x0044))
+#define REG_TIM3_DCR					(*(volatile unsigned long *)(REG_TIM3_BASE + 0x0048))
+#define REG_TIM3_DMAR					(*(volatile unsigned long *)(REG_TIM3_BASE + 0x004C))
+
+
+
+//-- Timer4
+//
+#define REG_TIM4_BASE					0x40000800
+#define REG_TIM4_CR1					(*(volatile unsigned long *)(REG_TIM4_BASE + 0x0000))
+#define REG_TIM4_CR2					(*(volatile unsigned long *)(REG_TIM4_BASE + 0x0004))
+#define REG_TIM4_SMCR					(*(volatile unsigned long *)(REG_TIM4_BASE + 0x0008))
+#define REG_TIM4_DIER					(*(volatile unsigned long *)(REG_TIM4_BASE + 0x000C))
+#define REG_TIM4_SR						(*(volatile unsigned long *)(REG_TIM4_BASE + 0x0010))
+#define REG_TIM4_EGR					(*(volatile unsigned long *)(REG_TIM4_BASE + 0x0014))
+#define REG_TIM4_CCMR1					(*(volatile unsigned long *)(REG_TIM4_BASE + 0x0018))
+#define REG_TIM4_CCMR2					(*(volatile unsigned long *)(REG_TIM4_BASE + 0x001C))
+#define REG_TIM4_CCER					(*(volatile unsigned long *)(REG_TIM4_BASE + 0x0020))
+#define REG_TIM4_CNT					(*(volatile unsigned long *)(REG_TIM4_BASE + 0x0024))
+#define REG_TIM4_PSC					(*(volatile unsigned long *)(REG_TIM4_BASE + 0x0028))
+#define REG_TIM4_ARR					(*(volatile unsigned long *)(REG_TIM4_BASE + 0x002C))
+#define REG_TIM4_RCR					(*(volatile unsigned long *)(REG_TIM4_BASE + 0x0030))
+#define REG_TIM4_CCR1					(*(volatile unsigned long *)(REG_TIM4_BASE + 0x0034))
+#define REG_TIM4_CCR2					(*(volatile unsigned long *)(REG_TIM4_BASE + 0x0038))
+#define REG_TIM4_CCR3					(*(volatile unsigned long *)(REG_TIM4_BASE + 0x003C))
+#define REG_TIM4_CCR4					(*(volatile unsigned long *)(REG_TIM4_BASE + 0x0040))
+#define REG_TIM4_BDTR					(*(volatile unsigned long *)(REG_TIM4_BASE + 0x0044))
+#define REG_TIM4_DCR					(*(volatile unsigned long *)(REG_TIM4_BASE + 0x0048))
+#define REG_TIM4_DMAR					(*(volatile unsigned long *)(REG_TIM4_BASE + 0x004C))
+
+
 #endif
 
 

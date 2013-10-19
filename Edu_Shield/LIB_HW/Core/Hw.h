@@ -40,6 +40,7 @@
 #define HW_TIMER_CH_GLCD				3
 #define HW_TIMER_CH_KEYPAD				4
 #define HW_TIMER_CH_7SEG				5
+#define HW_TIMER_CH_DHT11				6
 
 
 
@@ -68,6 +69,7 @@
 #include "Hw_7Seg.h"
 #include "Hw_CLcd.h"
 #include "Hw_Cds.h"
+#include "Hw_DHT11.h"
 
 #include "Hw_VCom.h"
 

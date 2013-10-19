@@ -66,6 +66,7 @@ void Hw_Init( void )
 	Hw_7Seg_Init();
 	Hw_CLcd_Init();
 	Hw_Cds_Init();
+	Hw_DHT11_Init();
 	
 }
 

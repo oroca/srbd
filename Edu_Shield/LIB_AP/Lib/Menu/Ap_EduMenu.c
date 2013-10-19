@@ -79,7 +79,7 @@ void Ap_EduMenu_ShowMenu(void)
 	Lb_printf("* 4. Test.. CLcd                                      *\n");
 	Lb_printf("* 5. Test.. BT                                        *\n");
 	Lb_printf("* 6. Test.. Cds                                       *\n");
-	Lb_printf("* 7.                                                  *\n");
+	Lb_printf("* 7. Test.. DHT11                                     *\n");
 	Lb_printf("* 8.                                                  *\n");
 	Lb_printf("* 9.                                                  *\n");
 	Lb_printf("* m.  Menu                                            *\n");
@@ -264,6 +264,8 @@ u8 Ap_EduMenu_ExeCmd(void)
                break;  
 
            case '7':
+           		Lb_printf("H : %d, T : %d \n", Hw_DHT11_GetHumidity(), Hw_DHT11_GetTemperature() );
+           		Hw_CLcd_Printf( 0, 1, "H:%d, T:%d", Hw_DHT11_GetHumidity(), Hw_DHT11_GetTemperature() );
                break;  
 
            case '8':           		

@@ -312,3 +312,31 @@ u32 Hw_Timer_Get_CountValue( void )
 	return Hw_Timer_Counter;
 }
 
+
+
+
+/*---------------------------------------------------------------------------
+     TITLE	: Hw_Timer_TimeStart
+     WORK
+     ARG
+     RET
+---------------------------------------------------------------------------*/
+void Hw_Timer_TimeStart( HW_TIMER_TIME_OBJ *TimerTimePtr )
+{
+	TimerTimePtr->Start = Hw_Timer_Counter;
+}
+
+
+
+
+
+/*---------------------------------------------------------------------------
+     TITLE	: Hw_Timer_TimeStart
+     WORK
+     ARG
+     RET
+---------------------------------------------------------------------------*/
+u32 Hw_Timer_TimeGetElapse( HW_TIMER_TIME_OBJ *TimerTimePtr )
+{
+	return (Hw_Timer_Counter - TimerTimePtr->Start);
+}
