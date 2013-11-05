@@ -20115,7 +20115,7 @@ void Ap_EduMenu_ShowMenu(void)
 	Lb_printf("*******************************************************\n");
  800a204:	4628      	mov	r0, r5
  800a206:	47a0      	blx	r4
-	Lb_printf("                      Edu V0.6                         \n");
+	Lb_printf("                      Edu V0.7                         \n");
  800a208:	f64d 6028 	movw	r0, #56872	; 0xde28
  800a20c:	f6c0 0000 	movt	r0, #2048	; 0x800
  800a210:	47a0      	blx	r4
@@ -24517,7 +24517,7 @@ void Hw_Timer_Setup( void )
  800b286:	7023      	strb	r3, [r4, #0]
  800b288:	bd10      	pop	{r4, pc}
  800b28a:	bf00      	nop
- 800b28c:	20000ab0 	.word	0x20000ab0
+ 800b28c:	20000ab2 	.word	0x20000ab2
  800b290:	20000a14 	.word	0x20000a14
  800b294:	0800b201 	.word	0x0800b201
 
@@ -24637,7 +24637,7 @@ void Hw_Timer_Tick(void)
 }
  800b2f6:	bd38      	pop	{r3, r4, r5, pc}
  800b2f8:	20000aac 	.word	0x20000aac
- 800b2fc:	20000ab2 	.word	0x20000ab2
+ 800b2fc:	20000ab0 	.word	0x20000ab0
  800b300:	20000a14 	.word	0x20000a14
 
 0800b304 <Hw_Timer_ISR>:
@@ -24727,7 +24727,7 @@ void Hw_Timer_Delay_ms( u16 DelayData )
 }
  800b354:	4770      	bx	lr
  800b356:	bf00      	nop
- 800b358:	20000ab2 	.word	0x20000ab2
+ 800b358:	20000ab0 	.word	0x20000ab0
 
 0800b35c <Hw_Timer_Get_CountValue>:
      ARG
@@ -36200,7 +36200,7 @@ void CTR_LP(void)
  800de38:	20202020 	.word	0x20202020
  800de3c:	64452020 	.word	0x64452020
  800de40:	30562075 	.word	0x30562075
- 800de44:	2020362e 	.word	0x2020362e
+ 800de44:	2020372e 	.word	0x2020372e
  800de48:	20202020 	.word	0x20202020
  800de4c:	20202020 	.word	0x20202020
  800de50:	20202020 	.word	0x20202020

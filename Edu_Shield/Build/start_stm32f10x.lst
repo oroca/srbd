@@ -11,1848 +11,676 @@
   11              		.eabi_attribute 34, 1
   12              		.eabi_attribute 18, 4
   13              		.thumb
-  14              		.file	"Hw_DHT11.c"
+  14              		.file	"usb_int.c"
   15              		.text
   16              	.Ltext0:
   17              		.cfi_sections	.debug_frame
-  18              		.section	.text.Hw_DHT11_Tick,"ax",%progbits
+  18              		.section	.text.CTR_LP,"ax",%progbits
   19              		.align	2
-  20              		.global	Hw_DHT11_Tick
+  20              		.global	CTR_LP
   21              		.thumb
   22              		.thumb_func
-  24              	Hw_DHT11_Tick:
+  24              	CTR_LP:
   25              	.LFB0:
-  26              		.file 1 "../LIB_HW/Driver/Hw_DHT11.c"
-   1:../LIB_HW/Driver/Hw_DHT11.c **** //----------------------------------------------------------------------------
-   2:../LIB_HW/Driver/Hw_DHT11.c **** //    프로그램명 : DHT11 관련 함수
-   3:../LIB_HW/Driver/Hw_DHT11.c **** //
-   4:../LIB_HW/Driver/Hw_DHT11.c **** //    만든이     : Cho Han Cheol 
-   5:../LIB_HW/Driver/Hw_DHT11.c **** //
-   6:../LIB_HW/Driver/Hw_DHT11.c **** //    날  짜     : 
-   7:../LIB_HW/Driver/Hw_DHT11.c **** //    
-   8:../LIB_HW/Driver/Hw_DHT11.c **** //    최종 수정  : 
-   9:../LIB_HW/Driver/Hw_DHT11.c **** //
-  10:../LIB_HW/Driver/Hw_DHT11.c **** //    MPU_Type   : 
-  11:../LIB_HW/Driver/Hw_DHT11.c **** //
-  12:../LIB_HW/Driver/Hw_DHT11.c **** //    파일명     : Hw_DHT11.c
-  13:../LIB_HW/Driver/Hw_DHT11.c **** //----------------------------------------------------------------------------
-  14:../LIB_HW/Driver/Hw_DHT11.c **** 
-  15:../LIB_HW/Driver/Hw_DHT11.c **** 
-  16:../LIB_HW/Driver/Hw_DHT11.c **** 
-  17:../LIB_HW/Driver/Hw_DHT11.c **** //----- 헤더파일 열기
-  18:../LIB_HW/Driver/Hw_DHT11.c **** //
-  19:../LIB_HW/Driver/Hw_DHT11.c **** #define  HW_DHT11_LOCAL  
-  20:../LIB_HW/Driver/Hw_DHT11.c **** 
-  21:../LIB_HW/Driver/Hw_DHT11.c **** #include "Hw_DHT11.h"
-  22:../LIB_HW/Driver/Hw_DHT11.c **** 
-  23:../LIB_HW/Driver/Hw_DHT11.c **** 
-  24:../LIB_HW/Driver/Hw_DHT11.c **** 
-  25:../LIB_HW/Driver/Hw_DHT11.c **** #define HW_DHT11_DEBUG		0
-  26:../LIB_HW/Driver/Hw_DHT11.c **** 
-  27:../LIB_HW/Driver/Hw_DHT11.c **** 
-  28:../LIB_HW/Driver/Hw_DHT11.c **** 
-  29:../LIB_HW/Driver/Hw_DHT11.c **** //----- 내부 함수
-  30:../LIB_HW/Driver/Hw_DHT11.c **** void Hw_DHT11_Timer_Setup(void);
-  31:../LIB_HW/Driver/Hw_DHT11.c **** void Hw_DHT11_IO_Setup(void);
-  32:../LIB_HW/Driver/Hw_DHT11.c **** void Hw_DHT11_IO_SetupISR(void);
-  33:../LIB_HW/Driver/Hw_DHT11.c **** void Hw_DHT11_IO_SetOutput(void);
-  34:../LIB_HW/Driver/Hw_DHT11.c **** void Hw_DHT11_IO_SetInput(void);
-  35:../LIB_HW/Driver/Hw_DHT11.c **** void Hw_DHT11_IO_SetHigh(void);
-  36:../LIB_HW/Driver/Hw_DHT11.c **** void Hw_DHT11_IO_SetLow(void);
-  37:../LIB_HW/Driver/Hw_DHT11.c **** u8   Hw_DHT11_IO_Get(void);
-  38:../LIB_HW/Driver/Hw_DHT11.c **** 
-  39:../LIB_HW/Driver/Hw_DHT11.c **** void Hw_DHT11_IO_EnableISR(void);
-  40:../LIB_HW/Driver/Hw_DHT11.c **** void Hw_DHT11_IO_DisableISR(void);
-  41:../LIB_HW/Driver/Hw_DHT11.c **** 
-  42:../LIB_HW/Driver/Hw_DHT11.c **** 
-  43:../LIB_HW/Driver/Hw_DHT11.c **** //----- 내부 변수
-  44:../LIB_HW/Driver/Hw_DHT11.c **** u32 Hw_DHT11_BitIndex = 0;
-  45:../LIB_HW/Driver/Hw_DHT11.c **** u16 Hw_DHT11_BitTbl[45];
-  46:../LIB_HW/Driver/Hw_DHT11.c **** 
-  47:../LIB_HW/Driver/Hw_DHT11.c **** 
-  48:../LIB_HW/Driver/Hw_DHT11.c **** HW_DHT11_DATA_OBJ Hw_DHT11_Log;
-  49:../LIB_HW/Driver/Hw_DHT11.c **** 
-  50:../LIB_HW/Driver/Hw_DHT11.c **** 
-  51:../LIB_HW/Driver/Hw_DHT11.c **** 
-  52:../LIB_HW/Driver/Hw_DHT11.c **** void Hw_DHT11_Tick(void)
-  53:../LIB_HW/Driver/Hw_DHT11.c **** {
-  27              		.loc 1 53 0
+  26              		.file 1 "../LIB_HW/Driver/LIB_USB/DRV/usb_int.c"
+   1:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** /**
+   2:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   ******************************************************************************
+   3:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   * @file    usb_int.c
+   4:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   * @author  MCD Application Team
+   5:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   * @version V4.0.0
+   6:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   * @date    28-August-2012
+   7:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   * @brief   Endpoint CTR (Low and High) interrupt's service routines
+   8:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   ******************************************************************************
+   9:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   * @attention
+  10:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   *
+  11:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+  12:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   *
+  13:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
+  14:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   * You may not use this file except in compliance with the License.
+  15:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   * You may obtain a copy of the License at:
+  16:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   *
+  17:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   *        http://www.st.com/software_license_agreement_liberty_v2
+  18:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   *
+  19:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   * Unless required by applicable law or agreed to in writing, software 
+  20:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   * distributed under the License is distributed on an "AS IS" BASIS, 
+  21:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  22:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   * See the License for the specific language governing permissions and
+  23:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   * limitations under the License.
+  24:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   *
+  25:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   ******************************************************************************
+  26:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   */
+  27:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+  28:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** /* Includes ------------------------------------------------------------------*/
+  29:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** #include "usb_lib.h"
+  30:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+  31:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** /* Private typedef -----------------------------------------------------------*/
+  32:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** /* Private define ------------------------------------------------------------*/
+  33:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** /* Private macro -------------------------------------------------------------*/
+  34:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** /* Private variables ---------------------------------------------------------*/
+  35:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** __IO uint16_t SaveRState;
+  36:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** __IO uint16_t SaveTState;
+  37:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+  38:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** /* Extern variables ----------------------------------------------------------*/
+  39:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** extern void (*pEpInt_IN[7])(void);    /*  Handles IN  interrupts   */
+  40:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** extern void (*pEpInt_OUT[7])(void);   /*  Handles OUT interrupts   */
+  41:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+  42:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** /* Private function prototypes -----------------------------------------------*/
+  43:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** /* Private functions ---------------------------------------------------------*/
+  44:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+  45:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** /*******************************************************************************
+  46:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** * Function Name  : CTR_LP.
+  47:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** * Description    : Low priority Endpoint Correct Transfer interrupt's service
+  48:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** *                  routine.
+  49:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** * Input          : None.
+  50:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** * Output         : None.
+  51:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** * Return         : None.
+  52:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** *******************************************************************************/
+  53:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** void CTR_LP(void)
+  54:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** {
+  27              		.loc 1 54 0
   28              		.cfi_startproc
-  29              		@ args = 0, pretend = 0, frame = 0
+  29              		@ args = 0, pretend = 0, frame = 8
   30              		@ frame_needed = 0, uses_anonymous_args = 0
-  31              		@ link register save eliminated.
-  54:../LIB_HW/Driver/Hw_DHT11.c **** 	static u32 State = 0;
-  55:../LIB_HW/Driver/Hw_DHT11.c **** 	static u32 Cnt = 0;
-  56:../LIB_HW/Driver/Hw_DHT11.c **** 	u32 i;
-  57:../LIB_HW/Driver/Hw_DHT11.c **** 	u32 RegNum;
-  58:../LIB_HW/Driver/Hw_DHT11.c **** 	u32 BitNum;
-  59:../LIB_HW/Driver/Hw_DHT11.c **** 	u8  CheckSum;
-  60:../LIB_HW/Driver/Hw_DHT11.c **** 
-  61:../LIB_HW/Driver/Hw_DHT11.c **** 	switch( State )
-  32              		.loc 1 61 0
-  33 0000 5649     		ldr	r1, .L22
-  53:../LIB_HW/Driver/Hw_DHT11.c **** {
-  34              		.loc 1 53 0
-  35 0002 F0B4     		push	{r4, r5, r6, r7}
-  36              	.LCFI0:
-  37              		.cfi_def_cfa_offset 16
-  38              		.cfi_offset 4, -16
-  39              		.cfi_offset 5, -12
-  40              		.cfi_offset 6, -8
-  41              		.cfi_offset 7, -4
-  42              		.loc 1 61 0
-  43 0004 0B68     		ldr	r3, [r1, #0]
-  62:../LIB_HW/Driver/Hw_DHT11.c **** 	{
-  63:../LIB_HW/Driver/Hw_DHT11.c **** 		//-- PowerON 후 1초를 기다린다.
-  64:../LIB_HW/Driver/Hw_DHT11.c **** 		//
-  65:../LIB_HW/Driver/Hw_DHT11.c **** 		case 0:
-  66:../LIB_HW/Driver/Hw_DHT11.c **** 
-  67:../LIB_HW/Driver/Hw_DHT11.c **** 			if( Cnt > 1000/10 )
-  68:../LIB_HW/Driver/Hw_DHT11.c **** 			{
-  69:../LIB_HW/Driver/Hw_DHT11.c **** 				Cnt   = 0;
-  70:../LIB_HW/Driver/Hw_DHT11.c **** 				State = 1;
-  71:../LIB_HW/Driver/Hw_DHT11.c **** 			}
-  72:../LIB_HW/Driver/Hw_DHT11.c **** 			break;
-  73:../LIB_HW/Driver/Hw_DHT11.c **** 
-  74:../LIB_HW/Driver/Hw_DHT11.c **** 		//-- Start Pulse (20ms)
-  75:../LIB_HW/Driver/Hw_DHT11.c **** 		//
-  76:../LIB_HW/Driver/Hw_DHT11.c **** 		case 1:
-  77:../LIB_HW/Driver/Hw_DHT11.c **** 
-  78:../LIB_HW/Driver/Hw_DHT11.c **** 			if( Cnt == 1 )
-  44              		.loc 1 78 0
-  45 0006 564F     		ldr	r7, .L22+4
-  61:../LIB_HW/Driver/Hw_DHT11.c **** 	switch( State )
-  46              		.loc 1 61 0
-  47 0008 012B     		cmp	r3, #1
-  48 000a 3AD0     		beq	.L4
-  49 000c 06D2     		bcs	.L18
-  67:../LIB_HW/Driver/Hw_DHT11.c **** 			if( Cnt > 1000/10 )
-  50              		.loc 1 67 0
-  51 000e 3B68     		ldr	r3, [r7, #0]
-  52 0010 642B     		cmp	r3, #100
-  53 0012 67D8     		bhi	.L7
-  54              	.L16:
-  55 0014 0133     		adds	r3, r3, #1
-  56              	.L6:
-  79:../LIB_HW/Driver/Hw_DHT11.c **** 			{
-  80:../LIB_HW/Driver/Hw_DHT11.c **** 				Hw_DHT11_IO_SetLow();	
-  81:../LIB_HW/Driver/Hw_DHT11.c **** 			}
-  82:../LIB_HW/Driver/Hw_DHT11.c **** 			
-  83:../LIB_HW/Driver/Hw_DHT11.c **** 			if( Cnt >= 20/10 )	
-  84:../LIB_HW/Driver/Hw_DHT11.c **** 			{
-  85:../LIB_HW/Driver/Hw_DHT11.c **** 				Hw_DHT11_BitIndex = 0;
-  86:../LIB_HW/Driver/Hw_DHT11.c **** 				Hw_DHT11_IO_SetHigh();
-  87:../LIB_HW/Driver/Hw_DHT11.c **** 				Hw_DHT11_IO_SetInput();				
-  88:../LIB_HW/Driver/Hw_DHT11.c **** 				Hw_DHT11_IO_EnableISR();				
-  89:../LIB_HW/Driver/Hw_DHT11.c **** 				State = 2;	
-  90:../LIB_HW/Driver/Hw_DHT11.c **** 			}
-  91:../LIB_HW/Driver/Hw_DHT11.c **** 			break;
-  92:../LIB_HW/Driver/Hw_DHT11.c **** 
-  93:../LIB_HW/Driver/Hw_DHT11.c **** 		//-- End 
-  94:../LIB_HW/Driver/Hw_DHT11.c **** 		//
-  95:../LIB_HW/Driver/Hw_DHT11.c **** 		case 2:
-  96:../LIB_HW/Driver/Hw_DHT11.c **** 			if( Cnt == 500/10 )
-  97:../LIB_HW/Driver/Hw_DHT11.c **** 			{
-  98:../LIB_HW/Driver/Hw_DHT11.c **** 				Hw_DHT11_IO_DisableISR();								
-  99:../LIB_HW/Driver/Hw_DHT11.c **** 				Hw_DHT11_IO_SetHigh();
- 100:../LIB_HW/Driver/Hw_DHT11.c **** 				Hw_DHT11_IO_SetOutput();
- 101:../LIB_HW/Driver/Hw_DHT11.c **** 			}
- 102:../LIB_HW/Driver/Hw_DHT11.c **** 
- 103:../LIB_HW/Driver/Hw_DHT11.c **** 			//-- 1초마다 센서 데이터를 업데이트 한다.
- 104:../LIB_HW/Driver/Hw_DHT11.c **** 			//
- 105:../LIB_HW/Driver/Hw_DHT11.c **** 			if( Cnt >= 1200/10 )
- 106:../LIB_HW/Driver/Hw_DHT11.c **** 			{
- 107:../LIB_HW/Driver/Hw_DHT11.c **** 				Cnt   = 0;
- 108:../LIB_HW/Driver/Hw_DHT11.c **** 				State = 1;
- 109:../LIB_HW/Driver/Hw_DHT11.c **** 				Hw_DHT11_Log.Data[0] = 0;
- 110:../LIB_HW/Driver/Hw_DHT11.c **** 				Hw_DHT11_Log.Data[1] = 0;
- 111:../LIB_HW/Driver/Hw_DHT11.c **** 				Hw_DHT11_Log.Data[2] = 0;
- 112:../LIB_HW/Driver/Hw_DHT11.c **** 				Hw_DHT11_Log.Data[3] = 0;
- 113:../LIB_HW/Driver/Hw_DHT11.c **** 				Hw_DHT11_Log.Data[4] = 0;
- 114:../LIB_HW/Driver/Hw_DHT11.c **** 
- 115:../LIB_HW/Driver/Hw_DHT11.c **** 				for( i=0; i<40; i++ )
- 116:../LIB_HW/Driver/Hw_DHT11.c **** 				{
- 117:../LIB_HW/Driver/Hw_DHT11.c **** 					RegNum = i/8;
- 118:../LIB_HW/Driver/Hw_DHT11.c **** 					BitNum = i%8;
- 119:../LIB_HW/Driver/Hw_DHT11.c **** 
- 120:../LIB_HW/Driver/Hw_DHT11.c **** 					if( Hw_DHT11_BitTbl[i] > 100 )
- 121:../LIB_HW/Driver/Hw_DHT11.c **** 					{
- 122:../LIB_HW/Driver/Hw_DHT11.c **** 						SET_BIT( Hw_DHT11_Log.Data[RegNum], 7-BitNum );
- 123:../LIB_HW/Driver/Hw_DHT11.c **** 					}
- 124:../LIB_HW/Driver/Hw_DHT11.c **** 				}
- 125:../LIB_HW/Driver/Hw_DHT11.c **** 
- 126:../LIB_HW/Driver/Hw_DHT11.c **** 				CheckSum = 0;
- 127:../LIB_HW/Driver/Hw_DHT11.c **** 
- 128:../LIB_HW/Driver/Hw_DHT11.c **** 				for( i=0; i<4; i++ )
- 129:../LIB_HW/Driver/Hw_DHT11.c **** 				{
- 130:../LIB_HW/Driver/Hw_DHT11.c **** 					CheckSum += Hw_DHT11_Log.Data[i];
- 131:../LIB_HW/Driver/Hw_DHT11.c **** 				}
- 132:../LIB_HW/Driver/Hw_DHT11.c **** 
- 133:../LIB_HW/Driver/Hw_DHT11.c **** 				// CheckSum 확인 
- 134:../LIB_HW/Driver/Hw_DHT11.c **** 				if( CheckSum == Hw_DHT11_Log.Data[4] )
- 135:../LIB_HW/Driver/Hw_DHT11.c **** 				{
- 136:../LIB_HW/Driver/Hw_DHT11.c **** 					Hw_DHT11_Log.Error       = 0;
- 137:../LIB_HW/Driver/Hw_DHT11.c **** 					Hw_DHT11_Log.Humidity    = Hw_DHT11_Log.Data[0];
- 138:../LIB_HW/Driver/Hw_DHT11.c **** 					Hw_DHT11_Log.Temperature = Hw_DHT11_Log.Data[2];
- 139:../LIB_HW/Driver/Hw_DHT11.c **** 
- 140:../LIB_HW/Driver/Hw_DHT11.c **** 					#if HW_DHT11_DEBUG == 1
- 141:../LIB_HW/Driver/Hw_DHT11.c **** 					Lb_printf("H %d T %d \n", Hw_DHT11_Log.Humidity, Hw_DHT11_Log.Temperature );
- 142:../LIB_HW/Driver/Hw_DHT11.c **** 					#endif
- 143:../LIB_HW/Driver/Hw_DHT11.c **** 				}
- 144:../LIB_HW/Driver/Hw_DHT11.c **** 				else
- 145:../LIB_HW/Driver/Hw_DHT11.c **** 				{
- 146:../LIB_HW/Driver/Hw_DHT11.c **** 					Hw_DHT11_Log.Error = 1;
- 147:../LIB_HW/Driver/Hw_DHT11.c **** 
- 148:../LIB_HW/Driver/Hw_DHT11.c **** 					#if HW_DHT11_DEBUG == 1
- 149:../LIB_HW/Driver/Hw_DHT11.c **** 					Lb_printf("Fail\n");
- 150:../LIB_HW/Driver/Hw_DHT11.c **** 					for( i=0; i<5; i++ )
- 151:../LIB_HW/Driver/Hw_DHT11.c **** 					{
- 152:../LIB_HW/Driver/Hw_DHT11.c **** 						Lb_printf("%d %x \n", i, Hw_DHT11_Log.Data[i] );
- 153:../LIB_HW/Driver/Hw_DHT11.c **** 					}
- 154:../LIB_HW/Driver/Hw_DHT11.c **** 
- 155:../LIB_HW/Driver/Hw_DHT11.c **** 					for( i=0; i<40; i++ )
- 156:../LIB_HW/Driver/Hw_DHT11.c **** 					{
- 157:../LIB_HW/Driver/Hw_DHT11.c **** 						Lb_printf("Bit %d %d \n", i, Hw_DHT11_BitTbl[i] );
- 158:../LIB_HW/Driver/Hw_DHT11.c **** 					}					
- 159:../LIB_HW/Driver/Hw_DHT11.c **** 					#endif
- 160:../LIB_HW/Driver/Hw_DHT11.c **** 
- 161:../LIB_HW/Driver/Hw_DHT11.c **** 				}
- 162:../LIB_HW/Driver/Hw_DHT11.c **** 			}
- 163:../LIB_HW/Driver/Hw_DHT11.c **** 			
- 164:../LIB_HW/Driver/Hw_DHT11.c **** 			break;
- 165:../LIB_HW/Driver/Hw_DHT11.c **** 	}
- 166:../LIB_HW/Driver/Hw_DHT11.c **** 
- 167:../LIB_HW/Driver/Hw_DHT11.c **** 	Cnt++;
-  57              		.loc 1 167 0
-  58 0016 3B60     		str	r3, [r7, #0]
- 168:../LIB_HW/Driver/Hw_DHT11.c **** }
-  59              		.loc 1 168 0
-  60 0018 F0BC     		pop	{r4, r5, r6, r7}
-  61 001a 7047     		bx	lr
-  62              	.L18:
-  61:../LIB_HW/Driver/Hw_DHT11.c **** 	switch( State )
-  63              		.loc 1 61 0
-  64 001c 022B     		cmp	r3, #2
-  96:../LIB_HW/Driver/Hw_DHT11.c **** 			if( Cnt == 500/10 )
-  65              		.loc 1 96 0
-  66 001e 3B68     		ldr	r3, [r7, #0]
-  61:../LIB_HW/Driver/Hw_DHT11.c **** 	switch( State )
-  67              		.loc 1 61 0
-  68 0020 F8D1     		bne	.L16
-  96:../LIB_HW/Driver/Hw_DHT11.c **** 			if( Cnt == 500/10 )
-  69              		.loc 1 96 0
-  70 0022 322B     		cmp	r3, #50
-  71 0024 6BD0     		beq	.L19
- 105:../LIB_HW/Driver/Hw_DHT11.c **** 			if( Cnt >= 1200/10 )
-  72              		.loc 1 105 0
-  73 0026 772B     		cmp	r3, #119
-  74 0028 F4D9     		bls	.L16
- 109:../LIB_HW/Driver/Hw_DHT11.c **** 				Hw_DHT11_Log.Data[0] = 0;
-  75              		.loc 1 109 0
-  76 002a 4E4C     		ldr	r4, .L22+8
- 107:../LIB_HW/Driver/Hw_DHT11.c **** 				Cnt   = 0;
-  77              		.loc 1 107 0
-  78 002c 0023     		movs	r3, #0
- 108:../LIB_HW/Driver/Hw_DHT11.c **** 				State = 1;
-  79              		.loc 1 108 0
-  80 002e 0126     		movs	r6, #1
-  81 0030 4D4A     		ldr	r2, .L22+12
- 107:../LIB_HW/Driver/Hw_DHT11.c **** 				Cnt   = 0;
-  82              		.loc 1 107 0
-  83 0032 3B60     		str	r3, [r7, #0]
- 108:../LIB_HW/Driver/Hw_DHT11.c **** 				State = 1;
-  84              		.loc 1 108 0
-  85 0034 0E60     		str	r6, [r1, #0]
- 109:../LIB_HW/Driver/Hw_DHT11.c **** 				Hw_DHT11_Log.Data[0] = 0;
-  86              		.loc 1 109 0
-  87 0036 2370     		strb	r3, [r4, #0]
- 110:../LIB_HW/Driver/Hw_DHT11.c **** 				Hw_DHT11_Log.Data[1] = 0;
-  88              		.loc 1 110 0
-  89 0038 6370     		strb	r3, [r4, #1]
- 111:../LIB_HW/Driver/Hw_DHT11.c **** 				Hw_DHT11_Log.Data[2] = 0;
-  90              		.loc 1 111 0
-  91 003a A370     		strb	r3, [r4, #2]
- 112:../LIB_HW/Driver/Hw_DHT11.c **** 				Hw_DHT11_Log.Data[3] = 0;
-  92              		.loc 1 112 0
-  93 003c E370     		strb	r3, [r4, #3]
- 113:../LIB_HW/Driver/Hw_DHT11.c **** 				Hw_DHT11_Log.Data[4] = 0;
-  94              		.loc 1 113 0
-  95 003e 2371     		strb	r3, [r4, #4]
-  96              	.LVL0:
-  97              	.L12:
- 120:../LIB_HW/Driver/Hw_DHT11.c **** 					if( Hw_DHT11_BitTbl[i] > 100 )
-  98              		.loc 1 120 0
-  99 0040 32F8021F 		ldrh	r1, [r2, #2]!
- 118:../LIB_HW/Driver/Hw_DHT11.c **** 					BitNum = i%8;
- 100              		.loc 1 118 0
- 101 0044 03F00700 		and	r0, r3, #7
- 102              	.LVL1:
- 120:../LIB_HW/Driver/Hw_DHT11.c **** 					if( Hw_DHT11_BitTbl[i] > 100 )
- 103              		.loc 1 120 0
- 104 0048 6429     		cmp	r1, #100
- 122:../LIB_HW/Driver/Hw_DHT11.c **** 						SET_BIT( Hw_DHT11_Log.Data[RegNum], 7-BitNum );
- 105              		.loc 1 122 0
- 106 004a C0F10700 		rsb	r0, r0, #7
- 107              	.LVL2:
- 120:../LIB_HW/Driver/Hw_DHT11.c **** 					if( Hw_DHT11_BitTbl[i] > 100 )
- 108              		.loc 1 120 0
- 109 004e 05D9     		bls	.L11
- 122:../LIB_HW/Driver/Hw_DHT11.c **** 						SET_BIT( Hw_DHT11_Log.Data[RegNum], 7-BitNum );
- 110              		.loc 1 122 0
- 111 0050 06FA00F0 		lsl	r0, r6, r0
- 117:../LIB_HW/Driver/Hw_DHT11.c **** 					RegNum = i/8;
- 112              		.loc 1 117 0
- 113 0054 D908     		lsrs	r1, r3, #3
- 114              	.LVL3:
- 122:../LIB_HW/Driver/Hw_DHT11.c **** 						SET_BIT( Hw_DHT11_Log.Data[RegNum], 7-BitNum );
- 115              		.loc 1 122 0
- 116 0056 655C     		ldrb	r5, [r4, r1]	@ zero_extendqisi2
- 117 0058 2843     		orrs	r0, r0, r5
- 118 005a 6054     		strb	r0, [r4, r1]
- 119              	.LVL4:
- 120              	.L11:
- 115:../LIB_HW/Driver/Hw_DHT11.c **** 				for( i=0; i<40; i++ )
- 121              		.loc 1 115 0
- 122 005c 0133     		adds	r3, r3, #1
- 123              	.LVL5:
- 124 005e 282B     		cmp	r3, #40
- 125 0060 EED1     		bne	.L12
- 126              	.LVL6:
- 130:../LIB_HW/Driver/Hw_DHT11.c **** 					CheckSum += Hw_DHT11_Log.Data[i];
- 127              		.loc 1 130 0 discriminator 1
- 128 0062 2178     		ldrb	r1, [r4, #0]	@ zero_extendqisi2
- 129              	.LVL7:
- 130 0064 6078     		ldrb	r0, [r4, #1]	@ zero_extendqisi2
- 131 0066 A378     		ldrb	r3, [r4, #2]	@ zero_extendqisi2
- 132              	.LVL8:
- 133 0068 E278     		ldrb	r2, [r4, #3]	@ zero_extendqisi2
- 134 006a 0818     		adds	r0, r1, r0
- 135              	.LVL9:
- 136 006c C018     		adds	r0, r0, r3
- 137              	.LVL10:
- 138 006e 8018     		adds	r0, r0, r2
- 139              	.LVL11:
- 134:../LIB_HW/Driver/Hw_DHT11.c **** 				if( CheckSum == Hw_DHT11_Log.Data[4] )
- 140              		.loc 1 134 0 discriminator 1
- 141 0070 2479     		ldrb	r4, [r4, #4]	@ zero_extendqisi2
+  31 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 36
+  34              		.cfi_offset 4, -36
+  35              		.cfi_offset 5, -32
+  36              		.cfi_offset 6, -28
+  37              		.cfi_offset 7, -24
+  38              		.cfi_offset 8, -20
+  39              		.cfi_offset 9, -16
+  40              		.cfi_offset 10, -12
+  41              		.cfi_offset 11, -8
+  42              		.cfi_offset 14, -4
+  43 0004 DFF8ACA1 		ldr	sl, .L83+20
+  44 0008 83B0     		sub	sp, sp, #12
+  45              	.LCFI1:
+  46              		.cfi_def_cfa_offset 48
+  55:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   __IO uint16_t wEPVal = 0;
+  56:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   /* stay in loop while pending interrupts */
+  57:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   while (((wIstr = _GetISTR()) & ISTR_CTR) != 0)
+  47              		.loc 1 57 0
+  48 000a 45F6444B 		movw	fp, #23620
+  55:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   __IO uint16_t wEPVal = 0;
+  49              		.loc 1 55 0
+  50 000e 0023     		movs	r3, #0
+  58:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   {
+  59:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     /* extract highest priority endpoint number */
+  60:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     EPindex = (uint8_t)(wIstr & ISTR_EP_ID);
+  51              		.loc 1 60 0
+  52 0010 DFF8A491 		ldr	r9, .L83+24
+  61:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     if (EPindex == 0)
+  62:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     {
+  63:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       /* Decode and service control endpoint interrupt */
+  64:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       /* calling related service routine */
+  65:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       /* (Setup0_Process, In0_Process, Out0_Process) */
+  66:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+  67:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       /* save RX & TX status */
+  68:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       /* and set both to NAK */
+  69:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       
+  70:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 	    SaveRState = _GetENDPOINT(ENDP0);
+  53              		.loc 1 70 0
+  54 0014 624D     		ldr	r5, .L83
+  55:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   __IO uint16_t wEPVal = 0;
+  55              		.loc 1 55 0
+  56 0016 ADF80630 		strh	r3, [sp, #6]	@ movhi
+  57              	.LVL0:
+  57:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   while (((wIstr = _GetISTR()) & ISTR_CTR) != 0)
+  58              		.loc 1 57 0
+  59 001a C4F2000B 		movt	fp, 16384
+  60 001e D046     		mov	r8, sl
+  61              	.LVL1:
+  62              	.L65:
+  57:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   while (((wIstr = _GetISTR()) & ISTR_CTR) != 0)
+  63              		.loc 1 57 0 is_stmt 0 discriminator 1
+  64 0020 DBF80030 		ldr	r3, [fp, #0]
+  65              		.loc 1 70 0 is_stmt 1 discriminator 1
+  66 0024 4FF4B844 		mov	r4, #23552
+  57:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   while (((wIstr = _GetISTR()) & ISTR_CTR) != 0)
+  67              		.loc 1 57 0 discriminator 1
+  68 0028 9AB2     		uxth	r2, r3
+  69              	.LVL2:
+  70 002a 1B04     		lsls	r3, r3, #16
+  71 002c AAF80020 		strh	r2, [sl, #0]	@ movhi
+  72 0030 40F1AB80 		bpl	.L1
+  60:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     EPindex = (uint8_t)(wIstr & ISTR_EP_ID);
+  73              		.loc 1 60 0
+  74 0034 B8F80020 		ldrh	r2, [r8, #0]
+  75              		.loc 1 70 0
+  76 0038 C4F20004 		movt	r4, 16384
+  60:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     EPindex = (uint8_t)(wIstr & ISTR_EP_ID);
+  77              		.loc 1 60 0
+  78 003c 02F00F02 		and	r2, r2, #15
+  71:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 	    SaveTState = SaveRState & EPTX_STAT;
+  72:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 	    SaveRState &=  EPRX_STAT;	
+  73:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+  74:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 	    _SetEPRxTxStatus(ENDP0,EP_RX_NAK,EP_TX_NAK);
+  75:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+  76:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       /* DIR bit = origin of the interrupt */
+  77:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+  78:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       if ((wIstr & ISTR_DIR) == 0)
+  79:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       {
+  80:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         /* DIR = 0 */
+  81:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+  82:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         /* DIR = 0      => IN  int */
+  83:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         /* DIR = 0 implies that (EP_CTR_TX = 1) always  */
+  84:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+  85:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         _ClearEP_CTR_TX(ENDP0);
+  86:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         In0_Process();
+  87:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+  88:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****            /* before terminate set Tx & Rx status */
+  89:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+  90:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****             _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
+  91:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 		  return;
+  92:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       }
+  93:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       else
+  94:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       {
+  95:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         /* DIR = 1 */
+  96:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+  97:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         /* DIR = 1 & CTR_RX       => SETUP or OUT int */
+  98:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         /* DIR = 1 & (CTR_TX | CTR_RX) => 2 int pending */
+  99:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+ 100:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         wEPVal = _GetENDPOINT(ENDP0);
+ 101:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         
+ 102:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         if ((wEPVal &EP_SETUP) != 0)
+ 103:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         {
+ 104:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****           _ClearEP_CTR_RX(ENDP0); /* SETUP bit kept frozen while CTR_RX = 1 */
+ 105:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****           Setup0_Process();
+ 106:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****           /* before terminate set Tx & Rx status */
+ 107:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+ 108:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 		      _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
+ 109:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****           return;
+ 110:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         }
+ 111:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+ 112:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         else if ((wEPVal & EP_CTR_RX) != 0)
+ 113:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         {
+ 114:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****           _ClearEP_CTR_RX(ENDP0);
+ 115:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****           Out0_Process();
+ 116:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****           /* before terminate set Tx & Rx status */
+ 117:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****      
+ 118:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 		     _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
+ 119:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****           return;
+ 120:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         }
+ 121:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       }
+ 122:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     }/* if(EPindex == 0) */
+ 123:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     else
+ 124:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     {
+ 125:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       /* Decode and service non control endpoints interrupt  */
+ 126:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+ 127:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       /* process related endpoint register */
+ 128:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       wEPVal = _GetENDPOINT(EPindex);
+  79              		.loc 1 128 0
+  80 0040 9000     		lsls	r0, r2, #2
+  81              	.LVL3:
+  82 0042 00F18040 		add	r0, r0, #1073741824
+  71:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 	    SaveTState = SaveRState & EPTX_STAT;
+  83              		.loc 1 71 0
+  84 0046 574E     		ldr	r6, .L83+4
+  85              	.LBB2:
+  74:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 	    _SetEPRxTxStatus(ENDP0,EP_RX_NAK,EP_TX_NAK);
+  86              		.loc 1 74 0
+  87 0048 4BF6BF71 		movw	r1, #49087
+  88              	.LBE2:
+  70:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 	    SaveRState = _GetENDPOINT(ENDP0);
+  89              		.loc 1 70 0
+  90 004c 544F     		ldr	r7, .L83
+  61:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     if (EPindex == 0)
+  91              		.loc 1 61 0
+  92 004e 1346     		mov	r3, r2
+  93              	.LVL4:
+  94              		.loc 1 128 0
+  95 0050 00F5B840 		add	r0, r0, #23552
+  60:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     EPindex = (uint8_t)(wIstr & ISTR_EP_ID);
+  96              		.loc 1 60 0
+  97 0054 89F80020 		strb	r2, [r9, #0]
+  61:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     if (EPindex == 0)
+  98              		.loc 1 61 0
+  99 0058 002A     		cmp	r2, #0
+ 100 005a 33D1     		bne	.L3
+ 101              	.LVL5:
+  70:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 	    SaveRState = _GetENDPOINT(ENDP0);
+ 102              		.loc 1 70 0
+ 103 005c 2368     		ldr	r3, [r4, #0]
+ 104 005e 9BB2     		uxth	r3, r3
+ 105 0060 2B80     		strh	r3, [r5, #0]	@ movhi
+  71:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 	    SaveTState = SaveRState & EPTX_STAT;
+ 106              		.loc 1 71 0
+ 107 0062 2B88     		ldrh	r3, [r5, #0]
+ 108 0064 03F03003 		and	r3, r3, #48
+ 109 0068 3380     		strh	r3, [r6, #0]	@ movhi
+  72:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 	    SaveRState &=  EPRX_STAT;	
+ 110              		.loc 1 72 0
+ 111 006a 2B88     		ldrh	r3, [r5, #0]
+ 112 006c 03F44053 		and	r3, r3, #12288
+ 113 0070 2B80     		strh	r3, [r5, #0]	@ movhi
+ 114              	.LBB3:
+  74:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 	    _SetEPRxTxStatus(ENDP0,EP_RX_NAK,EP_TX_NAK);
+ 115              		.loc 1 74 0
+ 116 0072 2368     		ldr	r3, [r4, #0]
+ 117 0074 1940     		ands	r1, r1, r3
+ 118              	.LVL6:
+ 119 0076 81F40051 		eor	r1, r1, #8192
+ 120              	.LVL7:
+ 121 007a 81F02001 		eor	r1, r1, #32
+ 122              	.LVL8:
+ 123 007e 41F40041 		orr	r1, r1, #32768
+ 124              	.LVL9:
+ 125 0082 41F08001 		orr	r1, r1, #128
+ 126 0086 2160     		str	r1, [r4, #0]
+ 127              	.LBE3:
+  78:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       if ((wIstr & ISTR_DIR) == 0)
+ 128              		.loc 1 78 0
+ 129 0088 B8F80030 		ldrh	r3, [r8, #0]
+ 130              	.LVL10:
+ 131 008c 03F01003 		and	r3, r3, #16
+ 132 0090 9BB2     		uxth	r3, r3
+ 133 0092 002B     		cmp	r3, #0
+ 134 0094 49D0     		beq	.L80
+ 100:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         wEPVal = _GetENDPOINT(ENDP0);
+ 135              		.loc 1 100 0
+ 136 0096 2368     		ldr	r3, [r4, #0]
+ 137 0098 9BB2     		uxth	r3, r3
+ 138              	.LVL11:
+ 139 009a ADF80630 		strh	r3, [sp, #6]	@ movhi
+ 102:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         if ((wEPVal &EP_SETUP) != 0)
+ 140              		.loc 1 102 0
+ 141 009e BDF80630 		ldrh	r3, [sp, #6]
  142              	.LVL12:
- 143 0072 00F0FF00 		and	r0, r0, #255
- 144 0076 8442     		cmp	r4, r0
- 130:../LIB_HW/Driver/Hw_DHT11.c **** 					CheckSum += Hw_DHT11_Log.Data[i];
- 145              		.loc 1 130 0 discriminator 1
- 146 0078 3A4A     		ldr	r2, .L22+8
- 134:../LIB_HW/Driver/Hw_DHT11.c **** 				if( CheckSum == Hw_DHT11_Log.Data[4] )
- 147              		.loc 1 134 0 discriminator 1
- 148 007a 68D0     		beq	.L20
- 146:../LIB_HW/Driver/Hw_DHT11.c **** 					Hw_DHT11_Log.Error = 1;
- 149              		.loc 1 146 0
- 150 007c 0123     		movs	r3, #1
- 151              	.LVL13:
- 152 007e 5371     		strb	r3, [r2, #5]
- 153 0080 C9E7     		b	.L6
- 154              	.LVL14:
- 155              	.L4:
-  78:../LIB_HW/Driver/Hw_DHT11.c **** 			if( Cnt == 1 )
- 156              		.loc 1 78 0
- 157 0082 3D68     		ldr	r5, [r7, #0]
- 158 0084 012D     		cmp	r5, #1
- 159 0086 30D0     		beq	.L21
-  83:../LIB_HW/Driver/Hw_DHT11.c **** 			if( Cnt >= 20/10 )	
- 160              		.loc 1 83 0
- 161 0088 C5D9     		bls	.L6
- 162              	.LBB28:
- 163              	.LBB29:
- 169:../LIB_HW/Driver/Hw_DHT11.c **** 
- 170:../LIB_HW/Driver/Hw_DHT11.c **** 
- 171:../LIB_HW/Driver/Hw_DHT11.c **** 
- 172:../LIB_HW/Driver/Hw_DHT11.c **** 
- 173:../LIB_HW/Driver/Hw_DHT11.c **** 
- 174:../LIB_HW/Driver/Hw_DHT11.c **** void Hw_DHT11_IO_ISR(void)
- 175:../LIB_HW/Driver/Hw_DHT11.c **** {
- 176:../LIB_HW/Driver/Hw_DHT11.c **** 	static u16 TimerCntSaved = 0;
- 177:../LIB_HW/Driver/Hw_DHT11.c **** 	u16 TimerCntCur;
- 178:../LIB_HW/Driver/Hw_DHT11.c **** 
- 179:../LIB_HW/Driver/Hw_DHT11.c **** 	//-- 인터럽트 팬딩 레지스터 Clear
- 180:../LIB_HW/Driver/Hw_DHT11.c **** 	//
- 181:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_PR = (1<<6);
- 182:../LIB_HW/Driver/Hw_DHT11.c **** 
- 183:../LIB_HW/Driver/Hw_DHT11.c **** 
- 184:../LIB_HW/Driver/Hw_DHT11.c **** 	if( Hw_DHT11_BitIndex >= 2 && Hw_DHT11_BitIndex <= 41 )
- 185:../LIB_HW/Driver/Hw_DHT11.c **** 	{
- 186:../LIB_HW/Driver/Hw_DHT11.c **** 		TimerCntCur = REG_TIM2_CNT;
- 187:../LIB_HW/Driver/Hw_DHT11.c **** 			
- 188:../LIB_HW/Driver/Hw_DHT11.c **** 		Hw_DHT11_BitTbl[Hw_DHT11_BitIndex-2] = TimerCntCur - TimerCntSaved;
- 189:../LIB_HW/Driver/Hw_DHT11.c **** 	}
- 190:../LIB_HW/Driver/Hw_DHT11.c **** 
- 191:../LIB_HW/Driver/Hw_DHT11.c **** 
- 192:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_BitIndex++;
- 193:../LIB_HW/Driver/Hw_DHT11.c **** 
- 194:../LIB_HW/Driver/Hw_DHT11.c **** 
- 195:../LIB_HW/Driver/Hw_DHT11.c **** 	if( Hw_DHT11_BitIndex >= 42 )
- 196:../LIB_HW/Driver/Hw_DHT11.c **** 	{
- 197:../LIB_HW/Driver/Hw_DHT11.c **** 		Hw_DHT11_BitIndex = 42;	
- 198:../LIB_HW/Driver/Hw_DHT11.c **** 	}
- 199:../LIB_HW/Driver/Hw_DHT11.c **** 
- 200:../LIB_HW/Driver/Hw_DHT11.c **** 	TimerCntSaved = REG_TIM2_CNT;
- 201:../LIB_HW/Driver/Hw_DHT11.c **** }
- 202:../LIB_HW/Driver/Hw_DHT11.c **** 
- 203:../LIB_HW/Driver/Hw_DHT11.c **** 
- 204:../LIB_HW/Driver/Hw_DHT11.c **** 
- 205:../LIB_HW/Driver/Hw_DHT11.c **** 
- 206:../LIB_HW/Driver/Hw_DHT11.c **** /*---------------------------------------------------------------------------
- 207:../LIB_HW/Driver/Hw_DHT11.c ****      TITLE   : Hw_DHT11_Init
- 208:../LIB_HW/Driver/Hw_DHT11.c ****      WORK    : 
- 209:../LIB_HW/Driver/Hw_DHT11.c ****      ARG     : void
- 210:../LIB_HW/Driver/Hw_DHT11.c ****      RET     : void
- 211:../LIB_HW/Driver/Hw_DHT11.c **** ---------------------------------------------------------------------------*/
- 212:../LIB_HW/Driver/Hw_DHT11.c **** void Hw_DHT11_Init(void)
- 213:../LIB_HW/Driver/Hw_DHT11.c **** {
- 214:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_Log.Data[0] = 0;
- 215:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_Log.Data[1] = 0;
- 216:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_Log.Data[2] = 0;
- 217:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_Log.Data[3] = 0;
- 218:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_Log.Error		 = 0;
- 219:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_Log.DataValid   = FALSE;
- 220:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_Log.Humidity    = 0;
- 221:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_Log.Temperature = 0;
- 222:../LIB_HW/Driver/Hw_DHT11.c **** 
- 223:../LIB_HW/Driver/Hw_DHT11.c **** 
- 224:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_IO_Setup();
- 225:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_Timer_Setup();
- 226:../LIB_HW/Driver/Hw_DHT11.c **** 
- 227:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_IO_SetupISR();
- 228:../LIB_HW/Driver/Hw_DHT11.c **** 
- 229:../LIB_HW/Driver/Hw_DHT11.c **** 
- 230:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_Timer_Set  ( HW_TIMER_CH_DHT11, 10, LOOP_TIME, Hw_DHT11_Tick, NULL );	
- 231:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_Timer_Start( HW_TIMER_CH_DHT11 );
- 232:../LIB_HW/Driver/Hw_DHT11.c **** }
- 233:../LIB_HW/Driver/Hw_DHT11.c **** 
- 234:../LIB_HW/Driver/Hw_DHT11.c **** 
- 235:../LIB_HW/Driver/Hw_DHT11.c **** 
- 236:../LIB_HW/Driver/Hw_DHT11.c **** 
- 237:../LIB_HW/Driver/Hw_DHT11.c **** 
- 238:../LIB_HW/Driver/Hw_DHT11.c **** /*---------------------------------------------------------------------------
- 239:../LIB_HW/Driver/Hw_DHT11.c ****      TITLE   : Hw_DHT11_GetHumidity
- 240:../LIB_HW/Driver/Hw_DHT11.c ****      WORK    : 
- 241:../LIB_HW/Driver/Hw_DHT11.c ****      ARG     : void
- 242:../LIB_HW/Driver/Hw_DHT11.c ****      RET     : void
- 243:../LIB_HW/Driver/Hw_DHT11.c **** ---------------------------------------------------------------------------*/
- 244:../LIB_HW/Driver/Hw_DHT11.c **** u8 Hw_DHT11_GetHumidity(void)
- 245:../LIB_HW/Driver/Hw_DHT11.c **** {
- 246:../LIB_HW/Driver/Hw_DHT11.c **** 	u8 Humidity;
- 247:../LIB_HW/Driver/Hw_DHT11.c **** 
- 248:../LIB_HW/Driver/Hw_DHT11.c **** 	
- 249:../LIB_HW/Driver/Hw_DHT11.c **** 	Disable_ISR();
- 250:../LIB_HW/Driver/Hw_DHT11.c **** 	Humidity = Hw_DHT11_Log.Humidity;
- 251:../LIB_HW/Driver/Hw_DHT11.c **** 	Enable_ISR();
- 252:../LIB_HW/Driver/Hw_DHT11.c **** 
- 253:../LIB_HW/Driver/Hw_DHT11.c **** 	return Humidity;
- 254:../LIB_HW/Driver/Hw_DHT11.c **** }
- 255:../LIB_HW/Driver/Hw_DHT11.c **** 
- 256:../LIB_HW/Driver/Hw_DHT11.c **** 
- 257:../LIB_HW/Driver/Hw_DHT11.c **** 
- 258:../LIB_HW/Driver/Hw_DHT11.c **** 
- 259:../LIB_HW/Driver/Hw_DHT11.c **** 
- 260:../LIB_HW/Driver/Hw_DHT11.c **** /*---------------------------------------------------------------------------
- 261:../LIB_HW/Driver/Hw_DHT11.c ****      TITLE   : Hw_DHT11_GetTemperature
- 262:../LIB_HW/Driver/Hw_DHT11.c ****      WORK    : 
- 263:../LIB_HW/Driver/Hw_DHT11.c ****      ARG     : void
- 264:../LIB_HW/Driver/Hw_DHT11.c ****      RET     : void
- 265:../LIB_HW/Driver/Hw_DHT11.c **** ---------------------------------------------------------------------------*/
- 266:../LIB_HW/Driver/Hw_DHT11.c **** u8 Hw_DHT11_GetTemperature(void)
- 267:../LIB_HW/Driver/Hw_DHT11.c **** {
- 268:../LIB_HW/Driver/Hw_DHT11.c **** 	u8 Temperature;
- 269:../LIB_HW/Driver/Hw_DHT11.c **** 
- 270:../LIB_HW/Driver/Hw_DHT11.c **** 	
- 271:../LIB_HW/Driver/Hw_DHT11.c **** 	Disable_ISR();
- 272:../LIB_HW/Driver/Hw_DHT11.c **** 	Temperature = Hw_DHT11_Log.Temperature;
- 273:../LIB_HW/Driver/Hw_DHT11.c **** 	Enable_ISR();
- 274:../LIB_HW/Driver/Hw_DHT11.c **** 
- 275:../LIB_HW/Driver/Hw_DHT11.c **** 	return Temperature;
- 276:../LIB_HW/Driver/Hw_DHT11.c **** }
- 277:../LIB_HW/Driver/Hw_DHT11.c **** 
- 278:../LIB_HW/Driver/Hw_DHT11.c **** 
- 279:../LIB_HW/Driver/Hw_DHT11.c **** 
- 280:../LIB_HW/Driver/Hw_DHT11.c **** 
- 281:../LIB_HW/Driver/Hw_DHT11.c **** 
- 282:../LIB_HW/Driver/Hw_DHT11.c **** /*---------------------------------------------------------------------------
- 283:../LIB_HW/Driver/Hw_DHT11.c ****      TITLE   : Hw_DHT11_Start
- 284:../LIB_HW/Driver/Hw_DHT11.c ****      WORK    : 
- 285:../LIB_HW/Driver/Hw_DHT11.c ****      ARG     : void
- 286:../LIB_HW/Driver/Hw_DHT11.c ****      RET     : void
- 287:../LIB_HW/Driver/Hw_DHT11.c **** ---------------------------------------------------------------------------*/
- 288:../LIB_HW/Driver/Hw_DHT11.c **** void Hw_DHT11_Start(void)
- 289:../LIB_HW/Driver/Hw_DHT11.c **** {
- 290:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_Timer_Reset( HW_TIMER_CH_DHT11 );
- 291:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_Timer_Start( HW_TIMER_CH_DHT11 );
- 292:../LIB_HW/Driver/Hw_DHT11.c **** }
- 293:../LIB_HW/Driver/Hw_DHT11.c **** 
- 294:../LIB_HW/Driver/Hw_DHT11.c **** 
- 295:../LIB_HW/Driver/Hw_DHT11.c **** 
- 296:../LIB_HW/Driver/Hw_DHT11.c **** 
- 297:../LIB_HW/Driver/Hw_DHT11.c **** 
- 298:../LIB_HW/Driver/Hw_DHT11.c **** /*---------------------------------------------------------------------------
- 299:../LIB_HW/Driver/Hw_DHT11.c ****      TITLE   : Hw_DHT11_Stop
- 300:../LIB_HW/Driver/Hw_DHT11.c ****      WORK    : 
- 301:../LIB_HW/Driver/Hw_DHT11.c ****      ARG     : void
- 302:../LIB_HW/Driver/Hw_DHT11.c ****      RET     : void
- 303:../LIB_HW/Driver/Hw_DHT11.c **** ---------------------------------------------------------------------------*/
- 304:../LIB_HW/Driver/Hw_DHT11.c **** void Hw_DHT11_Stop(void)
- 305:../LIB_HW/Driver/Hw_DHT11.c **** {
- 306:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_Timer_Stop( HW_TIMER_CH_DHT11 );
- 307:../LIB_HW/Driver/Hw_DHT11.c **** }
- 308:../LIB_HW/Driver/Hw_DHT11.c **** 
- 309:../LIB_HW/Driver/Hw_DHT11.c **** 
- 310:../LIB_HW/Driver/Hw_DHT11.c **** 
- 311:../LIB_HW/Driver/Hw_DHT11.c **** 
- 312:../LIB_HW/Driver/Hw_DHT11.c **** 
- 313:../LIB_HW/Driver/Hw_DHT11.c **** /*---------------------------------------------------------------------------
- 314:../LIB_HW/Driver/Hw_DHT11.c ****      TITLE   : Hw_DHT11_Timer_Setup
- 315:../LIB_HW/Driver/Hw_DHT11.c ****      WORK    : 
- 316:../LIB_HW/Driver/Hw_DHT11.c ****      ARG     : void
- 317:../LIB_HW/Driver/Hw_DHT11.c ****      RET     : void
- 318:../LIB_HW/Driver/Hw_DHT11.c **** ---------------------------------------------------------------------------*/
- 319:../LIB_HW/Driver/Hw_DHT11.c **** void Hw_DHT11_Timer_Setup(void)
- 320:../LIB_HW/Driver/Hw_DHT11.c **** {
- 321:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_RCC_APB1ENR, 0 );		// TIM2 Clock Enable APB1 = 36Mhz
- 322:../LIB_HW/Driver/Hw_DHT11.c **** 
- 323:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_TIM2_PSC = 72-1; 				// 36Mhz/36 = 1Mhz
- 324:../LIB_HW/Driver/Hw_DHT11.c **** 
- 325:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_TIM2_CR1, 0 );			// Counter Enable 		 
- 326:../LIB_HW/Driver/Hw_DHT11.c **** }
- 327:../LIB_HW/Driver/Hw_DHT11.c **** 
- 328:../LIB_HW/Driver/Hw_DHT11.c **** 
- 329:../LIB_HW/Driver/Hw_DHT11.c **** 
- 330:../LIB_HW/Driver/Hw_DHT11.c **** 
- 331:../LIB_HW/Driver/Hw_DHT11.c **** 
- 332:../LIB_HW/Driver/Hw_DHT11.c **** /*---------------------------------------------------------------------------
- 333:../LIB_HW/Driver/Hw_DHT11.c ****      TITLE   : Hw_DHT11_TimerInit
- 334:../LIB_HW/Driver/Hw_DHT11.c ****      WORK    : 
- 335:../LIB_HW/Driver/Hw_DHT11.c ****      ARG     : void
- 336:../LIB_HW/Driver/Hw_DHT11.c ****      RET     : void
- 337:../LIB_HW/Driver/Hw_DHT11.c **** ---------------------------------------------------------------------------*/
- 338:../LIB_HW/Driver/Hw_DHT11.c **** void Hw_DHT11_IO_Setup(void)
- 339:../LIB_HW/Driver/Hw_DHT11.c **** {
- 340:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_IO_SetOutput();
- 341:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_IO_SetHigh();		
- 342:../LIB_HW/Driver/Hw_DHT11.c **** }
- 343:../LIB_HW/Driver/Hw_DHT11.c **** 
- 344:../LIB_HW/Driver/Hw_DHT11.c **** 
- 345:../LIB_HW/Driver/Hw_DHT11.c **** 
- 346:../LIB_HW/Driver/Hw_DHT11.c **** 
- 347:../LIB_HW/Driver/Hw_DHT11.c **** 
- 348:../LIB_HW/Driver/Hw_DHT11.c **** /*---------------------------------------------------------------------------
- 349:../LIB_HW/Driver/Hw_DHT11.c ****      TITLE   : Hw_DHT11_IO_SetupISR
- 350:../LIB_HW/Driver/Hw_DHT11.c ****      WORK    : 
- 351:../LIB_HW/Driver/Hw_DHT11.c ****      ARG     : void
- 352:../LIB_HW/Driver/Hw_DHT11.c ****      RET     : void
- 353:../LIB_HW/Driver/Hw_DHT11.c **** ---------------------------------------------------------------------------*/
- 354:../LIB_HW/Driver/Hw_DHT11.c **** void Hw_DHT11_IO_SetupISR(void)
- 355:../LIB_HW/Driver/Hw_DHT11.c **** {
- 356:../LIB_HW/Driver/Hw_DHT11.c **** 
- 357:../LIB_HW/Driver/Hw_DHT11.c **** 	// 1. 인터럽트 핀 설정 
- 358:../LIB_HW/Driver/Hw_DHT11.c **** 	//
- 359:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_AFIO_EXTICR2 &= ~(0x0F<<8);
- 360:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_AFIO_EXTICR2 |=  (0x00<<8);	// EXTI6, PA.6을 외부 인터럽트로 설정 
- 361:../LIB_HW/Driver/Hw_DHT11.c **** 
- 362:../LIB_HW/Driver/Hw_DHT11.c **** 	// 2. Falling trigger로 설정
- 363:../LIB_HW/Driver/Hw_DHT11.c **** 	// 
- 364:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_FTSR |= (1<<6);	 
- 365:../LIB_HW/Driver/Hw_DHT11.c **** 
- 366:../LIB_HW/Driver/Hw_DHT11.c **** 
- 367:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_ISR_SetIRQFunc( 23, (u32)Hw_DHT11_IO_ISR, 0 );	
- 368:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_NVIC_ISER( 23/32 ), 23%32 );	// NVIC 37번 EXTI0 인터럽트 활성화
- 369:../LIB_HW/Driver/Hw_DHT11.c **** }
- 370:../LIB_HW/Driver/Hw_DHT11.c **** 
- 371:../LIB_HW/Driver/Hw_DHT11.c **** 
- 372:../LIB_HW/Driver/Hw_DHT11.c **** 
- 373:../LIB_HW/Driver/Hw_DHT11.c **** 
- 374:../LIB_HW/Driver/Hw_DHT11.c **** 
- 375:../LIB_HW/Driver/Hw_DHT11.c **** /*---------------------------------------------------------------------------
- 376:../LIB_HW/Driver/Hw_DHT11.c ****      TITLE   : Hw_DHT11_IO_EnableISR
- 377:../LIB_HW/Driver/Hw_DHT11.c ****      WORK    : 
- 378:../LIB_HW/Driver/Hw_DHT11.c ****      ARG     : void
- 379:../LIB_HW/Driver/Hw_DHT11.c ****      RET     : void
- 380:../LIB_HW/Driver/Hw_DHT11.c **** ---------------------------------------------------------------------------*/
- 381:../LIB_HW/Driver/Hw_DHT11.c **** void Hw_DHT11_IO_EnableISR(void)
- 382:../LIB_HW/Driver/Hw_DHT11.c **** {
- 383:../LIB_HW/Driver/Hw_DHT11.c **** 	// EXTI6 Enable
- 384:../LIB_HW/Driver/Hw_DHT11.c **** 	// 
- 385:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_EMR |= (1<<6);	// Event Enable
- 386:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_IMR |= (1<<6);	// Interrupt nable	
- 387:../LIB_HW/Driver/Hw_DHT11.c **** }
- 388:../LIB_HW/Driver/Hw_DHT11.c **** 
- 389:../LIB_HW/Driver/Hw_DHT11.c **** 
- 390:../LIB_HW/Driver/Hw_DHT11.c **** 
- 391:../LIB_HW/Driver/Hw_DHT11.c **** 
- 392:../LIB_HW/Driver/Hw_DHT11.c **** 
- 393:../LIB_HW/Driver/Hw_DHT11.c **** /*---------------------------------------------------------------------------
- 394:../LIB_HW/Driver/Hw_DHT11.c ****      TITLE   : Hw_DHT11_IO_DisableISR
- 395:../LIB_HW/Driver/Hw_DHT11.c ****      WORK    : 
- 396:../LIB_HW/Driver/Hw_DHT11.c ****      ARG     : void
- 397:../LIB_HW/Driver/Hw_DHT11.c ****      RET     : void
- 398:../LIB_HW/Driver/Hw_DHT11.c **** ---------------------------------------------------------------------------*/
- 399:../LIB_HW/Driver/Hw_DHT11.c **** void Hw_DHT11_IO_DisableISR(void)
- 400:../LIB_HW/Driver/Hw_DHT11.c **** {
- 401:../LIB_HW/Driver/Hw_DHT11.c **** 	// EXTI6 Disable
- 402:../LIB_HW/Driver/Hw_DHT11.c **** 	// 
- 403:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_EMR &= ~(1<<6);	// Event Enable
- 404:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_IMR &= ~(1<<6);	// Interrupt nable	
- 405:../LIB_HW/Driver/Hw_DHT11.c **** }
- 406:../LIB_HW/Driver/Hw_DHT11.c **** 
- 407:../LIB_HW/Driver/Hw_DHT11.c **** 
- 408:../LIB_HW/Driver/Hw_DHT11.c **** 
- 409:../LIB_HW/Driver/Hw_DHT11.c **** 
- 410:../LIB_HW/Driver/Hw_DHT11.c **** 
- 411:../LIB_HW/Driver/Hw_DHT11.c **** /*---------------------------------------------------------------------------
- 412:../LIB_HW/Driver/Hw_DHT11.c ****      TITLE   : Hw_DHT11_IO_SetOutput
- 413:../LIB_HW/Driver/Hw_DHT11.c ****      WORK    : 
- 414:../LIB_HW/Driver/Hw_DHT11.c ****      ARG     : void
- 415:../LIB_HW/Driver/Hw_DHT11.c ****      RET     : void
- 416:../LIB_HW/Driver/Hw_DHT11.c **** ---------------------------------------------------------------------------*/
- 417:../LIB_HW/Driver/Hw_DHT11.c **** void Hw_DHT11_IO_SetOutput(void)
- 418:../LIB_HW/Driver/Hw_DHT11.c **** {
- 419:../LIB_HW/Driver/Hw_DHT11.c **** 	//-- PA.6
- 420:../LIB_HW/Driver/Hw_DHT11.c **** 	//
- 421:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL &= ~(0x0F << (24));	// Clear
- 422:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL |=  (0x03 << (24));	// MODE, PA.6 Output mode, max speed 50Mhz
- 423:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL |=  (0x00 << (26));	// CNF,  PA.6 General purpose output push-pul		
- 424:../LIB_HW/Driver/Hw_DHT11.c **** }
- 425:../LIB_HW/Driver/Hw_DHT11.c **** 
- 426:../LIB_HW/Driver/Hw_DHT11.c **** 
- 427:../LIB_HW/Driver/Hw_DHT11.c **** 
- 428:../LIB_HW/Driver/Hw_DHT11.c **** 
- 429:../LIB_HW/Driver/Hw_DHT11.c **** 
- 430:../LIB_HW/Driver/Hw_DHT11.c **** /*---------------------------------------------------------------------------
- 431:../LIB_HW/Driver/Hw_DHT11.c ****      TITLE   : Hw_DHT11_IO_SetInput
- 432:../LIB_HW/Driver/Hw_DHT11.c ****      WORK    : 
- 433:../LIB_HW/Driver/Hw_DHT11.c ****      ARG     : void
- 434:../LIB_HW/Driver/Hw_DHT11.c ****      RET     : void
- 435:../LIB_HW/Driver/Hw_DHT11.c **** ---------------------------------------------------------------------------*/
- 436:../LIB_HW/Driver/Hw_DHT11.c **** void Hw_DHT11_IO_SetInput(void)
- 437:../LIB_HW/Driver/Hw_DHT11.c **** {
- 438:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL &= ~(0x0F << (24));	// Clear
- 439:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL |=  (0x00 << (24));	// MODE, PA.6 Input Mode
- 440:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL |=  (0x01 << (26));	// CNF,  PA.6 Floating input	
- 441:../LIB_HW/Driver/Hw_DHT11.c **** }
- 442:../LIB_HW/Driver/Hw_DHT11.c **** 
- 443:../LIB_HW/Driver/Hw_DHT11.c **** 
- 444:../LIB_HW/Driver/Hw_DHT11.c **** 
- 445:../LIB_HW/Driver/Hw_DHT11.c **** 
- 446:../LIB_HW/Driver/Hw_DHT11.c **** 
- 447:../LIB_HW/Driver/Hw_DHT11.c **** /*---------------------------------------------------------------------------
- 448:../LIB_HW/Driver/Hw_DHT11.c ****      TITLE   : Hw_DHT11_IO_SetHigh
- 449:../LIB_HW/Driver/Hw_DHT11.c ****      WORK    : 
- 450:../LIB_HW/Driver/Hw_DHT11.c ****      ARG     : void
- 451:../LIB_HW/Driver/Hw_DHT11.c ****      RET     : void
- 452:../LIB_HW/Driver/Hw_DHT11.c **** ---------------------------------------------------------------------------*/
- 453:../LIB_HW/Driver/Hw_DHT11.c **** void Hw_DHT11_IO_SetHigh(void)
- 454:../LIB_HW/Driver/Hw_DHT11.c **** {
- 455:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_GPIOA_ODR, 6 );		
- 164              		.loc 1 455 0
- 165 008a 40F60C00 		movw	r0, #2060
- 166 008e C4F20100 		movt	r0, 16385
- 167 0092 0368     		ldr	r3, [r0, #0]
- 168              	.LBE29:
- 169              	.LBE28:
-  85:../LIB_HW/Driver/Hw_DHT11.c **** 				Hw_DHT11_BitIndex = 0;
- 170              		.loc 1 85 0
- 171 0094 354C     		ldr	r4, .L22+16
- 172              	.LBB32:
- 173              	.LBB30:
- 174              		.loc 1 455 0
- 175 0096 43F04003 		orr	r3, r3, #64
- 176              	.LBE30:
- 177              	.LBE32:
- 178              	.LBB33:
- 179              	.LBB34:
- 438:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL &= ~(0x0F << (24));	// Clear
- 180              		.loc 1 438 0
- 181 009a 4FF40062 		mov	r2, #2048
- 182              	.LBE34:
- 183              	.LBE33:
-  85:../LIB_HW/Driver/Hw_DHT11.c **** 				Hw_DHT11_BitIndex = 0;
- 184              		.loc 1 85 0
- 185 009e 0026     		movs	r6, #0
- 186 00a0 2660     		str	r6, [r4, #0]
- 187              	.LBB40:
- 188              	.LBB35:
- 438:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL &= ~(0x0F << (24));	// Clear
- 189              		.loc 1 438 0
- 190 00a2 C4F20102 		movt	r2, 16385
- 191              	.LBE35:
- 192              	.LBE40:
- 193              	.LBB41:
- 194              	.LBB31:
- 195              		.loc 1 455 0
- 196 00a6 0360     		str	r3, [r0, #0]
- 197              	.LBE31:
- 198              	.LBE41:
- 199              	.LBB42:
- 200              	.LBB36:
- 438:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL &= ~(0x0F << (24));	// Clear
- 201              		.loc 1 438 0
- 202 00a8 1368     		ldr	r3, [r2, #0]
- 203              	.LBE36:
- 204              	.LBE42:
- 205              	.LBB43:
- 206              	.LBB44:
- 385:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_EMR |= (1<<6);	// Event Enable
- 207              		.loc 1 385 0
- 208 00aa 40F20444 		movw	r4, #1028
- 209              	.LBE44:
- 210              	.LBE43:
- 211              	.LBB49:
- 212              	.LBB37:
- 438:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL &= ~(0x0F << (24));	// Clear
- 213              		.loc 1 438 0
- 214 00ae 23F07063 		bic	r3, r3, #251658240
- 215 00b2 1360     		str	r3, [r2, #0]
- 439:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL |=  (0x00 << (24));	// MODE, PA.6 Input Mode
- 216              		.loc 1 439 0
- 217 00b4 1368     		ldr	r3, [r2, #0]
- 218              	.LBE37:
- 219              	.LBE49:
- 220              	.LBB50:
- 221              	.LBB45:
- 385:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_EMR |= (1<<6);	// Event Enable
- 222              		.loc 1 385 0
- 223 00b6 C4F20104 		movt	r4, 16385
- 224              	.LBE45:
- 225              	.LBE50:
- 226              	.LBB51:
- 227              	.LBB38:
- 439:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL |=  (0x00 << (24));	// MODE, PA.6 Input Mode
- 228              		.loc 1 439 0
- 229 00ba 1360     		str	r3, [r2, #0]
- 440:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL |=  (0x01 << (26));	// CNF,  PA.6 Floating input	
- 230              		.loc 1 440 0
- 231 00bc 1368     		ldr	r3, [r2, #0]
- 232              	.LBE38:
- 233              	.LBE51:
- 234              	.LBB52:
- 235              	.LBB46:
- 386:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_IMR |= (1<<6);	// Interrupt nable	
- 236              		.loc 1 386 0
- 237 00be 4FF48060 		mov	r0, #1024
- 238              	.LBE46:
- 239              	.LBE52:
- 240              	.LBB53:
- 241              	.LBB39:
- 440:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL |=  (0x01 << (26));	// CNF,  PA.6 Floating input	
- 242              		.loc 1 440 0
- 243 00c2 43F08063 		orr	r3, r3, #67108864
- 244 00c6 1360     		str	r3, [r2, #0]
- 245              	.LBE39:
- 246              	.LBE53:
- 247              	.LBB54:
- 248              	.LBB47:
- 385:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_EMR |= (1<<6);	// Event Enable
- 249              		.loc 1 385 0
- 250 00c8 2368     		ldr	r3, [r4, #0]
- 386:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_IMR |= (1<<6);	// Interrupt nable	
- 251              		.loc 1 386 0
- 252 00ca C4F20100 		movt	r0, 16385
- 385:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_EMR |= (1<<6);	// Event Enable
- 253              		.loc 1 385 0
- 254 00ce 43F04003 		orr	r3, r3, #64
- 255 00d2 2360     		str	r3, [r4, #0]
- 386:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_IMR |= (1<<6);	// Interrupt nable	
- 256              		.loc 1 386 0
- 257 00d4 0368     		ldr	r3, [r0, #0]
- 258              	.LBE47:
- 259              	.LBE54:
-  89:../LIB_HW/Driver/Hw_DHT11.c **** 				State = 2;	
- 260              		.loc 1 89 0
- 261 00d6 0222     		movs	r2, #2
- 262              	.LBB55:
- 263              	.LBB48:
- 386:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_IMR |= (1<<6);	// Interrupt nable	
- 264              		.loc 1 386 0
- 265 00d8 43F04003 		orr	r3, r3, #64
- 266 00dc 0360     		str	r3, [r0, #0]
- 267 00de 6B1C     		adds	r3, r5, #1
- 268              	.LBE48:
- 269              	.LBE55:
-  89:../LIB_HW/Driver/Hw_DHT11.c **** 				State = 2;	
- 270              		.loc 1 89 0
- 271 00e0 0A60     		str	r2, [r1, #0]
- 272 00e2 98E7     		b	.L6
- 273              	.L7:
-  70:../LIB_HW/Driver/Hw_DHT11.c **** 				State = 1;
- 274              		.loc 1 70 0
- 275 00e4 0123     		movs	r3, #1
- 276 00e6 0B60     		str	r3, [r1, #0]
- 277 00e8 95E7     		b	.L6
- 278              	.L21:
- 279              	.LBB56:
- 280              	.LBB57:
- 456:../LIB_HW/Driver/Hw_DHT11.c **** }
- 457:../LIB_HW/Driver/Hw_DHT11.c **** 
- 458:../LIB_HW/Driver/Hw_DHT11.c **** 
- 459:../LIB_HW/Driver/Hw_DHT11.c **** 
- 460:../LIB_HW/Driver/Hw_DHT11.c **** 
- 461:../LIB_HW/Driver/Hw_DHT11.c **** 
- 462:../LIB_HW/Driver/Hw_DHT11.c **** /*---------------------------------------------------------------------------
- 463:../LIB_HW/Driver/Hw_DHT11.c ****      TITLE   : Hw_DHT11_IO_SetLow
- 464:../LIB_HW/Driver/Hw_DHT11.c ****      WORK    : 
- 465:../LIB_HW/Driver/Hw_DHT11.c ****      ARG     : void
- 466:../LIB_HW/Driver/Hw_DHT11.c ****      RET     : void
- 467:../LIB_HW/Driver/Hw_DHT11.c **** ---------------------------------------------------------------------------*/
- 468:../LIB_HW/Driver/Hw_DHT11.c **** void Hw_DHT11_IO_SetLow(void)
- 469:../LIB_HW/Driver/Hw_DHT11.c **** {
- 470:../LIB_HW/Driver/Hw_DHT11.c **** 	CLR_BIT( REG_GPIOA_ODR, 6 );		
- 281              		.loc 1 470 0
- 282 00ea 40F60C02 		movw	r2, #2060
- 283 00ee C4F20102 		movt	r2, 16385
- 284 00f2 1168     		ldr	r1, [r2, #0]
- 285 00f4 0223     		movs	r3, #2
- 286 00f6 21F04001 		bic	r1, r1, #64
- 287 00fa 1160     		str	r1, [r2, #0]
- 288 00fc 8BE7     		b	.L6
- 289              	.L19:
- 290              	.LBE57:
- 291              	.LBE56:
- 292              	.LBB58:
- 293              	.LBB59:
- 403:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_EMR &= ~(1<<6);	// Event Enable
- 294              		.loc 1 403 0
- 295 00fe 40F20443 		movw	r3, #1028
- 296 0102 C4F20103 		movt	r3, 16385
- 297 0106 1968     		ldr	r1, [r3, #0]
- 404:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_IMR &= ~(1<<6);	// Interrupt nable	
- 298              		.loc 1 404 0
- 299 0108 4FF48062 		mov	r2, #1024
- 403:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_EMR &= ~(1<<6);	// Event Enable
- 300              		.loc 1 403 0
- 301 010c 21F04001 		bic	r1, r1, #64
- 302 0110 1960     		str	r1, [r3, #0]
- 404:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_IMR &= ~(1<<6);	// Interrupt nable	
- 303              		.loc 1 404 0
- 304 0112 C4F20102 		movt	r2, 16385
- 305 0116 1168     		ldr	r1, [r2, #0]
- 306              	.LBE59:
- 307              	.LBE58:
- 308              	.LBB61:
- 309              	.LBB62:
- 455:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_GPIOA_ODR, 6 );		
- 310              		.loc 1 455 0
- 311 0118 40F60C03 		movw	r3, #2060
- 312              	.LBE62:
- 313              	.LBE61:
- 314              	.LBB65:
- 315              	.LBB60:
- 404:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_IMR &= ~(1<<6);	// Interrupt nable	
- 316              		.loc 1 404 0
- 317 011c 21F04001 		bic	r1, r1, #64
- 318 0120 1160     		str	r1, [r2, #0]
- 319              	.LBE60:
- 320              	.LBE65:
- 321              	.LBB66:
- 322              	.LBB63:
- 455:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_GPIOA_ODR, 6 );		
- 323              		.loc 1 455 0
- 324 0122 C4F20103 		movt	r3, 16385
- 325 0126 1968     		ldr	r1, [r3, #0]
- 326              	.LBE63:
- 327              	.LBE66:
- 328              	.LBB67:
- 329              	.LBB68:
- 421:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL &= ~(0x0F << (24));	// Clear
- 330              		.loc 1 421 0
- 331 0128 4FF40062 		mov	r2, #2048
- 332              	.LBE68:
- 333              	.LBE67:
- 334              	.LBB70:
- 335              	.LBB64:
- 455:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_GPIOA_ODR, 6 );		
- 336              		.loc 1 455 0
- 337 012c 41F04001 		orr	r1, r1, #64
- 338 0130 1960     		str	r1, [r3, #0]
- 339              	.LBE64:
- 340              	.LBE70:
- 341              	.LBB71:
- 342              	.LBB69:
- 421:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL &= ~(0x0F << (24));	// Clear
- 343              		.loc 1 421 0
- 344 0132 C4F20102 		movt	r2, 16385
- 345 0136 1168     		ldr	r1, [r2, #0]
- 423:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL |=  (0x00 << (26));	// CNF,  PA.6 General purpose output push-pul		
- 346              		.loc 1 423 0
- 347 0138 3323     		movs	r3, #51
- 421:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL &= ~(0x0F << (24));	// Clear
- 348              		.loc 1 421 0
- 349 013a 21F07061 		bic	r1, r1, #251658240
- 350 013e 1160     		str	r1, [r2, #0]
- 422:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL |=  (0x03 << (24));	// MODE, PA.6 Output mode, max speed 50Mhz
- 351              		.loc 1 422 0
- 352 0140 1168     		ldr	r1, [r2, #0]
- 353 0142 41F04071 		orr	r1, r1, #50331648
- 354 0146 1160     		str	r1, [r2, #0]
- 423:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL |=  (0x00 << (26));	// CNF,  PA.6 General purpose output push-pul		
- 355              		.loc 1 423 0
- 356 0148 1168     		ldr	r1, [r2, #0]
- 357 014a 1160     		str	r1, [r2, #0]
- 358 014c 63E7     		b	.L6
- 359              	.LVL15:
- 360              	.L20:
- 361              	.LBE69:
- 362              	.LBE71:
- 136:../LIB_HW/Driver/Hw_DHT11.c **** 					Hw_DHT11_Log.Error       = 0;
- 363              		.loc 1 136 0
- 364 014e 0020     		movs	r0, #0
- 138:../LIB_HW/Driver/Hw_DHT11.c **** 					Hw_DHT11_Log.Temperature = Hw_DHT11_Log.Data[2];
- 365              		.loc 1 138 0
- 366 0150 1372     		strb	r3, [r2, #8]
- 136:../LIB_HW/Driver/Hw_DHT11.c **** 					Hw_DHT11_Log.Error       = 0;
- 367              		.loc 1 136 0
- 368 0152 5071     		strb	r0, [r2, #5]
- 137:../LIB_HW/Driver/Hw_DHT11.c **** 					Hw_DHT11_Log.Humidity    = Hw_DHT11_Log.Data[0];
- 369              		.loc 1 137 0
- 370 0154 D171     		strb	r1, [r2, #7]
- 138:../LIB_HW/Driver/Hw_DHT11.c **** 					Hw_DHT11_Log.Temperature = Hw_DHT11_Log.Data[2];
- 371              		.loc 1 138 0
- 372 0156 0123     		movs	r3, #1
- 373              	.LVL16:
- 374 0158 5DE7     		b	.L6
- 375              	.L23:
- 376 015a 00BF     		.align	2
- 377              	.L22:
- 378 015c 00000000 		.word	.LANCHOR0
- 379 0160 00000000 		.word	.LANCHOR1
- 380 0164 00000000 		.word	Hw_DHT11_Log
- 381 0168 FEFFFFFF 		.word	Hw_DHT11_BitTbl-2
- 382 016c 00000000 		.word	.LANCHOR2
- 383              		.cfi_endproc
- 384              	.LFE0:
- 386              		.section	.text.Hw_DHT11_IO_ISR,"ax",%progbits
- 387              		.align	2
- 388              		.global	Hw_DHT11_IO_ISR
- 389              		.thumb
- 390              		.thumb_func
- 392              	Hw_DHT11_IO_ISR:
- 393              	.LFB1:
- 175:../LIB_HW/Driver/Hw_DHT11.c **** {
- 394              		.loc 1 175 0
- 395              		.cfi_startproc
- 396              		@ args = 0, pretend = 0, frame = 0
- 397              		@ frame_needed = 0, uses_anonymous_args = 0
- 398              		@ link register save eliminated.
- 184:../LIB_HW/Driver/Hw_DHT11.c **** 	if( Hw_DHT11_BitIndex >= 2 && Hw_DHT11_BitIndex <= 41 )
- 399              		.loc 1 184 0
- 400 0000 114B     		ldr	r3, .L31
- 181:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_PR = (1<<6);
- 401              		.loc 1 181 0
- 402 0002 40F21441 		movw	r1, #1044
- 184:../LIB_HW/Driver/Hw_DHT11.c **** 	if( Hw_DHT11_BitIndex >= 2 && Hw_DHT11_BitIndex <= 41 )
- 403              		.loc 1 184 0
- 404 0006 1A68     		ldr	r2, [r3, #0]
- 175:../LIB_HW/Driver/Hw_DHT11.c **** {
- 405              		.loc 1 175 0
- 406 0008 30B4     		push	{r4, r5}
- 407              	.LCFI1:
- 408              		.cfi_def_cfa_offset 8
- 409              		.cfi_offset 4, -8
- 410              		.cfi_offset 5, -4
- 184:../LIB_HW/Driver/Hw_DHT11.c **** 	if( Hw_DHT11_BitIndex >= 2 && Hw_DHT11_BitIndex <= 41 )
- 411              		.loc 1 184 0
- 412 000a 901E     		subs	r0, r2, #2
- 181:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_PR = (1<<6);
- 413              		.loc 1 181 0
- 414 000c 4024     		movs	r4, #64
- 415 000e C4F20101 		movt	r1, 16385
- 184:../LIB_HW/Driver/Hw_DHT11.c **** 	if( Hw_DHT11_BitIndex >= 2 && Hw_DHT11_BitIndex <= 41 )
- 416              		.loc 1 184 0
- 417 0012 2728     		cmp	r0, #39
- 181:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_PR = (1<<6);
- 418              		.loc 1 181 0
- 419 0014 0C60     		str	r4, [r1, #0]
- 184:../LIB_HW/Driver/Hw_DHT11.c **** 	if( Hw_DHT11_BitIndex >= 2 && Hw_DHT11_BitIndex <= 41 )
- 420              		.loc 1 184 0
- 421 0016 0CD9     		bls	.L29
- 422 0018 0C49     		ldr	r1, .L31+4
- 423              	.L25:
- 192:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_BitIndex++;
- 424              		.loc 1 192 0
- 425 001a 0132     		adds	r2, r2, #1
- 195:../LIB_HW/Driver/Hw_DHT11.c **** 	if( Hw_DHT11_BitIndex >= 42 )
- 426              		.loc 1 195 0
- 427 001c 292A     		cmp	r2, #41
- 197:../LIB_HW/Driver/Hw_DHT11.c **** 		Hw_DHT11_BitIndex = 42;	
- 428              		.loc 1 197 0
- 429 001e 88BF     		it	hi
- 430 0020 2A22     		movhi	r2, #42
- 431 0022 1A60     		str	r2, [r3, #0]
- 200:../LIB_HW/Driver/Hw_DHT11.c **** 	TimerCntSaved = REG_TIM2_CNT;
- 432              		.loc 1 200 0
- 433 0024 2423     		movs	r3, #36
- 434 0026 C4F20003 		movt	r3, 16384
- 435 002a 1B68     		ldr	r3, [r3, #0]
- 436 002c 0B80     		strh	r3, [r1, #0]	@ movhi
- 201:../LIB_HW/Driver/Hw_DHT11.c **** }
- 437              		.loc 1 201 0
- 438 002e 30BC     		pop	{r4, r5}
- 439 0030 7047     		bx	lr
- 440              	.L29:
- 186:../LIB_HW/Driver/Hw_DHT11.c **** 		TimerCntCur = REG_TIM2_CNT;
- 441              		.loc 1 186 0
- 442 0032 2424     		movs	r4, #36
- 188:../LIB_HW/Driver/Hw_DHT11.c **** 		Hw_DHT11_BitTbl[Hw_DHT11_BitIndex-2] = TimerCntCur - TimerCntSaved;
- 443              		.loc 1 188 0
- 444 0034 0549     		ldr	r1, .L31+4
- 186:../LIB_HW/Driver/Hw_DHT11.c **** 		TimerCntCur = REG_TIM2_CNT;
- 445              		.loc 1 186 0
- 446 0036 C4F20004 		movt	r4, 16384
- 447 003a 2568     		ldr	r5, [r4, #0]
- 448              	.LVL17:
- 188:../LIB_HW/Driver/Hw_DHT11.c **** 		Hw_DHT11_BitTbl[Hw_DHT11_BitIndex-2] = TimerCntCur - TimerCntSaved;
- 449              		.loc 1 188 0
- 450 003c 0C88     		ldrh	r4, [r1, #0]
- 451 003e 2D1B     		subs	r5, r5, r4
- 452              	.LVL18:
- 453 0040 034C     		ldr	r4, .L31+8
- 454 0042 24F81050 		strh	r5, [r4, r0, lsl #1]	@ movhi
- 455 0046 E8E7     		b	.L25
- 456              	.L32:
- 457              		.align	2
- 458              	.L31:
- 459 0048 00000000 		.word	.LANCHOR2
- 460 004c 00000000 		.word	.LANCHOR3
- 461 0050 00000000 		.word	Hw_DHT11_BitTbl
- 462              		.cfi_endproc
- 463              	.LFE1:
- 465              		.section	.text.Hw_DHT11_GetHumidity,"ax",%progbits
- 466              		.align	2
- 467              		.global	Hw_DHT11_GetHumidity
- 468              		.thumb
- 469              		.thumb_func
- 471              	Hw_DHT11_GetHumidity:
- 472              	.LFB3:
- 245:../LIB_HW/Driver/Hw_DHT11.c **** {
- 473              		.loc 1 245 0
- 474              		.cfi_startproc
- 475              		@ args = 0, pretend = 0, frame = 0
- 476              		@ frame_needed = 0, uses_anonymous_args = 0
- 477              		@ link register save eliminated.
- 249:../LIB_HW/Driver/Hw_DHT11.c **** 	Disable_ISR();
- 478              		.loc 1 249 0
- 479              	@ 249 "../LIB_HW/Driver/Hw_DHT11.c" 1
- 480 0000 72B6     		cpsid i
- 481              	@ 0 "" 2
- 482              	.LVL19:
- 251:../LIB_HW/Driver/Hw_DHT11.c **** 	Enable_ISR();
- 483              		.loc 1 251 0
- 484              	@ 251 "../LIB_HW/Driver/Hw_DHT11.c" 1
- 485 0002 62B6     		cpsie i
- 486              	@ 0 "" 2
- 250:../LIB_HW/Driver/Hw_DHT11.c **** 	Humidity = Hw_DHT11_Log.Humidity;
- 487              		.loc 1 250 0
- 488              		.thumb
- 489 0004 40F20003 		movw	r3, #:lower16:Hw_DHT11_Log
- 490 0008 C0F20003 		movt	r3, #:upper16:Hw_DHT11_Log
- 254:../LIB_HW/Driver/Hw_DHT11.c **** }
- 491              		.loc 1 254 0
- 492 000c D879     		ldrb	r0, [r3, #7]	@ zero_extendqisi2
- 493 000e 7047     		bx	lr
- 494              		.cfi_endproc
- 495              	.LFE3:
- 497              		.section	.text.Hw_DHT11_GetTemperature,"ax",%progbits
- 498              		.align	2
- 499              		.global	Hw_DHT11_GetTemperature
- 500              		.thumb
- 501              		.thumb_func
- 503              	Hw_DHT11_GetTemperature:
- 504              	.LFB4:
- 267:../LIB_HW/Driver/Hw_DHT11.c **** {
- 505              		.loc 1 267 0
- 506              		.cfi_startproc
- 507              		@ args = 0, pretend = 0, frame = 0
- 508              		@ frame_needed = 0, uses_anonymous_args = 0
- 509              		@ link register save eliminated.
- 271:../LIB_HW/Driver/Hw_DHT11.c **** 	Disable_ISR();
- 510              		.loc 1 271 0
- 511              	@ 271 "../LIB_HW/Driver/Hw_DHT11.c" 1
- 512 0000 72B6     		cpsid i
- 513              	@ 0 "" 2
- 514              	.LVL20:
- 273:../LIB_HW/Driver/Hw_DHT11.c **** 	Enable_ISR();
- 515              		.loc 1 273 0
- 516              	@ 273 "../LIB_HW/Driver/Hw_DHT11.c" 1
- 517 0002 62B6     		cpsie i
- 518              	@ 0 "" 2
- 272:../LIB_HW/Driver/Hw_DHT11.c **** 	Temperature = Hw_DHT11_Log.Temperature;
- 519              		.loc 1 272 0
- 520              		.thumb
- 521 0004 40F20003 		movw	r3, #:lower16:Hw_DHT11_Log
- 522 0008 C0F20003 		movt	r3, #:upper16:Hw_DHT11_Log
- 276:../LIB_HW/Driver/Hw_DHT11.c **** }
- 523              		.loc 1 276 0
- 524 000c 187A     		ldrb	r0, [r3, #8]	@ zero_extendqisi2
- 525 000e 7047     		bx	lr
- 526              		.cfi_endproc
- 527              	.LFE4:
- 529              		.section	.text.Hw_DHT11_Start,"ax",%progbits
- 530              		.align	2
- 531              		.global	Hw_DHT11_Start
- 532              		.thumb
- 533              		.thumb_func
- 535              	Hw_DHT11_Start:
- 536              	.LFB5:
- 289:../LIB_HW/Driver/Hw_DHT11.c **** {
- 537              		.loc 1 289 0
- 538              		.cfi_startproc
- 539              		@ args = 0, pretend = 0, frame = 0
- 540              		@ frame_needed = 0, uses_anonymous_args = 0
- 541 0000 08B5     		push	{r3, lr}
- 542              	.LCFI2:
- 543              		.cfi_def_cfa_offset 8
- 544              		.cfi_offset 3, -8
- 545              		.cfi_offset 14, -4
- 290:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_Timer_Reset( HW_TIMER_CH_DHT11 );
- 546              		.loc 1 290 0
- 547 0002 40F20003 		movw	r3, #:lower16:Hw_Timer_Reset
- 548 0006 0620     		movs	r0, #6
- 549 0008 C0F20003 		movt	r3, #:upper16:Hw_Timer_Reset
- 550 000c 9847     		blx	r3
- 551              	.LVL21:
- 291:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_Timer_Start( HW_TIMER_CH_DHT11 );
- 552              		.loc 1 291 0
- 553 000e 40F20003 		movw	r3, #:lower16:Hw_Timer_Start
- 554 0012 0620     		movs	r0, #6
- 555 0014 C0F20003 		movt	r3, #:upper16:Hw_Timer_Start
- 556 0018 9847     		blx	r3
- 557              	.LVL22:
- 558 001a 08BD     		pop	{r3, pc}
- 559              		.cfi_endproc
- 560              	.LFE5:
- 562              		.section	.text.Hw_DHT11_Stop,"ax",%progbits
- 563              		.align	2
- 564              		.global	Hw_DHT11_Stop
- 565              		.thumb
- 566              		.thumb_func
- 568              	Hw_DHT11_Stop:
- 569              	.LFB6:
- 305:../LIB_HW/Driver/Hw_DHT11.c **** {
- 570              		.loc 1 305 0
- 571              		.cfi_startproc
- 572              		@ args = 0, pretend = 0, frame = 0
- 573              		@ frame_needed = 0, uses_anonymous_args = 0
- 574 0000 08B5     		push	{r3, lr}
- 575              	.LCFI3:
- 576              		.cfi_def_cfa_offset 8
- 577              		.cfi_offset 3, -8
- 578              		.cfi_offset 14, -4
- 306:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_Timer_Stop( HW_TIMER_CH_DHT11 );
- 579              		.loc 1 306 0
- 580 0002 40F20003 		movw	r3, #:lower16:Hw_Timer_Stop
- 581 0006 0620     		movs	r0, #6
- 582 0008 C0F20003 		movt	r3, #:upper16:Hw_Timer_Stop
- 583 000c 9847     		blx	r3
- 584              	.LVL23:
- 585 000e 08BD     		pop	{r3, pc}
- 586              		.cfi_endproc
- 587              	.LFE6:
- 589              		.section	.text.Hw_DHT11_Timer_Setup,"ax",%progbits
- 590              		.align	2
- 591              		.global	Hw_DHT11_Timer_Setup
- 592              		.thumb
- 593              		.thumb_func
- 595              	Hw_DHT11_Timer_Setup:
- 596              	.LFB7:
- 320:../LIB_HW/Driver/Hw_DHT11.c **** {
- 597              		.loc 1 320 0
- 598              		.cfi_startproc
- 599              		@ args = 0, pretend = 0, frame = 0
- 600              		@ frame_needed = 0, uses_anonymous_args = 0
- 601              		@ link register save eliminated.
- 321:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_RCC_APB1ENR, 0 );		// TIM2 Clock Enable APB1 = 36Mhz
- 602              		.loc 1 321 0
- 603 0000 41F21C03 		movw	r3, #4124
- 604 0004 C4F20203 		movt	r3, 16386
- 605 0008 1968     		ldr	r1, [r3, #0]
- 323:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_TIM2_PSC = 72-1; 				// 36Mhz/36 = 1Mhz
- 606              		.loc 1 323 0
- 607 000a 2822     		movs	r2, #40
- 321:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_RCC_APB1ENR, 0 );		// TIM2 Clock Enable APB1 = 36Mhz
- 608              		.loc 1 321 0
- 609 000c 41F00101 		orr	r1, r1, #1
- 610 0010 1960     		str	r1, [r3, #0]
- 323:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_TIM2_PSC = 72-1; 				// 36Mhz/36 = 1Mhz
- 611              		.loc 1 323 0
- 612 0012 C4F20002 		movt	r2, 16384
- 613 0016 4721     		movs	r1, #71
- 325:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_TIM2_CR1, 0 );			// Counter Enable 		 
- 614              		.loc 1 325 0
- 615 0018 4FF08043 		mov	r3, #1073741824
- 323:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_TIM2_PSC = 72-1; 				// 36Mhz/36 = 1Mhz
- 616              		.loc 1 323 0
- 617 001c 1160     		str	r1, [r2, #0]
- 325:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_TIM2_CR1, 0 );			// Counter Enable 		 
- 618              		.loc 1 325 0
- 619 001e 1A68     		ldr	r2, [r3, #0]
- 620 0020 42F00102 		orr	r2, r2, #1
- 621 0024 1A60     		str	r2, [r3, #0]
- 622 0026 7047     		bx	lr
- 623              		.cfi_endproc
- 624              	.LFE7:
- 626              		.section	.text.Hw_DHT11_IO_Setup,"ax",%progbits
- 627              		.align	2
- 628              		.global	Hw_DHT11_IO_Setup
- 629              		.thumb
- 630              		.thumb_func
- 632              	Hw_DHT11_IO_Setup:
- 633              	.LFB8:
- 339:../LIB_HW/Driver/Hw_DHT11.c **** {
- 634              		.loc 1 339 0
- 635              		.cfi_startproc
- 636              		@ args = 0, pretend = 0, frame = 0
- 637              		@ frame_needed = 0, uses_anonymous_args = 0
- 638              		@ link register save eliminated.
- 639              	.LBB72:
- 640              	.LBB73:
- 421:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL &= ~(0x0F << (24));	// Clear
- 641              		.loc 1 421 0
- 642 0000 4FF40063 		mov	r3, #2048
- 643 0004 C4F20103 		movt	r3, 16385
- 644 0008 1968     		ldr	r1, [r3, #0]
- 645              	.LBE73:
- 646              	.LBE72:
- 647              	.LBB76:
- 648              	.LBB77:
- 455:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_GPIOA_ODR, 6 );		
- 649              		.loc 1 455 0
- 650 000a 40F60C02 		movw	r2, #2060
- 651              	.LBE77:
- 652              	.LBE76:
- 653              	.LBB80:
- 654              	.LBB74:
- 421:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL &= ~(0x0F << (24));	// Clear
- 655              		.loc 1 421 0
- 656 000e 21F07061 		bic	r1, r1, #251658240
- 657 0012 1960     		str	r1, [r3, #0]
- 422:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL |=  (0x03 << (24));	// MODE, PA.6 Output mode, max speed 50Mhz
- 658              		.loc 1 422 0
- 659 0014 1968     		ldr	r1, [r3, #0]
- 660              	.LBE74:
- 661              	.LBE80:
- 662              	.LBB81:
- 663              	.LBB78:
- 455:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_GPIOA_ODR, 6 );		
- 664              		.loc 1 455 0
- 665 0016 C4F20102 		movt	r2, 16385
- 666              	.LBE78:
- 667              	.LBE81:
- 668              	.LBB82:
- 669              	.LBB75:
- 422:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL |=  (0x03 << (24));	// MODE, PA.6 Output mode, max speed 50Mhz
- 670              		.loc 1 422 0
- 671 001a 41F04071 		orr	r1, r1, #50331648
- 672 001e 1960     		str	r1, [r3, #0]
- 423:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL |=  (0x00 << (26));	// CNF,  PA.6 General purpose output push-pul		
- 673              		.loc 1 423 0
- 674 0020 1968     		ldr	r1, [r3, #0]
- 675 0022 1960     		str	r1, [r3, #0]
- 676              	.LBE75:
- 677              	.LBE82:
- 678              	.LBB83:
- 679              	.LBB79:
- 455:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_GPIOA_ODR, 6 );		
- 680              		.loc 1 455 0
- 681 0024 1368     		ldr	r3, [r2, #0]
- 682 0026 43F04003 		orr	r3, r3, #64
- 683 002a 1360     		str	r3, [r2, #0]
- 684 002c 7047     		bx	lr
- 685              	.LBE79:
- 686              	.LBE83:
- 687              		.cfi_endproc
- 688              	.LFE8:
- 690 002e 00BF     		.section	.text.Hw_DHT11_IO_SetupISR,"ax",%progbits
- 691              		.align	2
- 692              		.global	Hw_DHT11_IO_SetupISR
- 693              		.thumb
- 694              		.thumb_func
- 696              	Hw_DHT11_IO_SetupISR:
- 697              	.LFB9:
- 355:../LIB_HW/Driver/Hw_DHT11.c **** {
- 698              		.loc 1 355 0
- 699              		.cfi_startproc
- 700              		@ args = 0, pretend = 0, frame = 0
- 701              		@ frame_needed = 0, uses_anonymous_args = 0
- 702 0000 08B5     		push	{r3, lr}
- 703              	.LCFI4:
- 704              		.cfi_def_cfa_offset 8
- 705              		.cfi_offset 3, -8
- 706              		.cfi_offset 14, -4
- 359:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_AFIO_EXTICR2 &= ~(0x0F<<8);
- 707              		.loc 1 359 0
- 708 0002 0C23     		movs	r3, #12
- 709 0004 C4F20103 		movt	r3, 16385
- 710 0008 1968     		ldr	r1, [r3, #0]
- 364:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_FTSR |= (1<<6);	 
- 711              		.loc 1 364 0
- 712 000a 40F20C42 		movw	r2, #1036
- 359:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_AFIO_EXTICR2 &= ~(0x0F<<8);
- 713              		.loc 1 359 0
- 714 000e 21F47061 		bic	r1, r1, #3840
- 715 0012 1960     		str	r1, [r3, #0]
- 360:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_AFIO_EXTICR2 |=  (0x00<<8);	// EXTI6, PA.6을 외부 인터럽트로 설정 
- 716              		.loc 1 360 0
- 717 0014 1968     		ldr	r1, [r3, #0]
- 364:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_FTSR |= (1<<6);	 
- 718              		.loc 1 364 0
- 719 0016 C4F20102 		movt	r2, 16385
- 360:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_AFIO_EXTICR2 |=  (0x00<<8);	// EXTI6, PA.6을 외부 인터럽트로 설정 
- 720              		.loc 1 360 0
- 721 001a 1960     		str	r1, [r3, #0]
- 364:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_FTSR |= (1<<6);	 
- 722              		.loc 1 364 0
- 723 001c 1168     		ldr	r1, [r2, #0]
- 367:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_ISR_SetIRQFunc( 23, (u32)Hw_DHT11_IO_ISR, 0 );	
- 724              		.loc 1 367 0
- 725 001e 40F20003 		movw	r3, #:lower16:Hw_ISR_SetIRQFunc
- 364:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_FTSR |= (1<<6);	 
- 726              		.loc 1 364 0
- 727 0022 41F04001 		orr	r1, r1, #64
- 728 0026 1160     		str	r1, [r2, #0]
- 367:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_ISR_SetIRQFunc( 23, (u32)Hw_DHT11_IO_ISR, 0 );	
- 729              		.loc 1 367 0
- 730 0028 40F20001 		movw	r1, #:lower16:Hw_DHT11_IO_ISR
- 731 002c 0022     		movs	r2, #0
- 732 002e C0F20003 		movt	r3, #:upper16:Hw_ISR_SetIRQFunc
- 733 0032 1720     		movs	r0, #23
- 734 0034 C0F20001 		movt	r1, #:upper16:Hw_DHT11_IO_ISR
- 735 0038 9847     		blx	r3
- 736              	.LVL24:
- 368:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_NVIC_ISER( 23/32 ), 23%32 );	// NVIC 37번 EXTI0 인터럽트 활성화
- 737              		.loc 1 368 0
- 738 003a 4FF46143 		mov	r3, #57600
- 739 003e CEF20003 		movt	r3, 57344
- 740 0042 1A68     		ldr	r2, [r3, #0]
- 741 0044 42F40002 		orr	r2, r2, #8388608
- 742 0048 1A60     		str	r2, [r3, #0]
- 743 004a 08BD     		pop	{r3, pc}
- 744              		.cfi_endproc
- 745              	.LFE9:
- 747              		.section	.text.Hw_DHT11_Init,"ax",%progbits
- 748              		.align	2
- 749              		.global	Hw_DHT11_Init
- 750              		.thumb
- 751              		.thumb_func
- 753              	Hw_DHT11_Init:
- 754              	.LFB2:
- 213:../LIB_HW/Driver/Hw_DHT11.c **** {
- 755              		.loc 1 213 0
- 756              		.cfi_startproc
- 757              		@ args = 0, pretend = 0, frame = 0
- 758              		@ frame_needed = 0, uses_anonymous_args = 0
- 214:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_Log.Data[0] = 0;
- 759              		.loc 1 214 0
- 760 0000 40F20003 		movw	r3, #:lower16:Hw_DHT11_Log
- 213:../LIB_HW/Driver/Hw_DHT11.c **** {
- 761              		.loc 1 213 0
- 762 0004 30B5     		push	{r4, r5, lr}
- 763              	.LCFI5:
- 764              		.cfi_def_cfa_offset 12
- 765              		.cfi_offset 4, -12
- 766              		.cfi_offset 5, -8
- 767              		.cfi_offset 14, -4
- 214:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_Log.Data[0] = 0;
- 768              		.loc 1 214 0
- 769 0006 C0F20003 		movt	r3, #:upper16:Hw_DHT11_Log
- 770 000a 0024     		movs	r4, #0
- 771              	.LBB84:
- 772              	.LBB85:
- 773              	.LBB86:
- 421:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL &= ~(0x0F << (24));	// Clear
- 774              		.loc 1 421 0
- 775 000c 4FF40062 		mov	r2, #2048
- 776              	.LBE86:
- 777              	.LBE85:
- 778              	.LBE84:
- 214:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_Log.Data[0] = 0;
- 779              		.loc 1 214 0
- 780 0010 1C70     		strb	r4, [r3, #0]
- 215:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_Log.Data[1] = 0;
- 781              		.loc 1 215 0
- 782 0012 5C70     		strb	r4, [r3, #1]
- 216:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_Log.Data[2] = 0;
- 783              		.loc 1 216 0
- 784 0014 9C70     		strb	r4, [r3, #2]
- 217:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_Log.Data[3] = 0;
- 785              		.loc 1 217 0
- 786 0016 DC70     		strb	r4, [r3, #3]
- 218:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_Log.Error		 = 0;
- 787              		.loc 1 218 0
- 788 0018 5C71     		strb	r4, [r3, #5]
- 219:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_Log.DataValid   = FALSE;
- 789              		.loc 1 219 0
- 790 001a 9C71     		strb	r4, [r3, #6]
- 220:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_Log.Humidity    = 0;
- 791              		.loc 1 220 0
- 792 001c DC71     		strb	r4, [r3, #7]
- 221:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_Log.Temperature = 0;
- 793              		.loc 1 221 0
- 794 001e 1C72     		strb	r4, [r3, #8]
- 795              	.LBB103:
- 796              	.LBB91:
- 797              	.LBB87:
- 421:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL &= ~(0x0F << (24));	// Clear
- 798              		.loc 1 421 0
- 799 0020 C4F20102 		movt	r2, 16385
- 800 0024 1368     		ldr	r3, [r2, #0]
- 801              	.LBE87:
- 802              	.LBE91:
- 803              	.LBB92:
- 804              	.LBB93:
- 455:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_GPIOA_ODR, 6 );		
- 805              		.loc 1 455 0
- 806 0026 40F60C01 		movw	r1, #2060
- 807              	.LBE93:
- 808              	.LBE92:
- 809              	.LBB97:
- 810              	.LBB88:
- 421:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL &= ~(0x0F << (24));	// Clear
- 811              		.loc 1 421 0
- 812 002a 23F07063 		bic	r3, r3, #251658240
- 813 002e 1360     		str	r3, [r2, #0]
- 422:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL |=  (0x03 << (24));	// MODE, PA.6 Output mode, max speed 50Mhz
- 814              		.loc 1 422 0
- 815 0030 1368     		ldr	r3, [r2, #0]
- 816              	.LBE88:
- 817              	.LBE97:
- 818              	.LBB98:
- 819              	.LBB94:
- 455:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_GPIOA_ODR, 6 );		
- 820              		.loc 1 455 0
- 821 0032 C4F20101 		movt	r1, 16385
- 822              	.LBE94:
- 823              	.LBE98:
- 824              	.LBB99:
- 825              	.LBB89:
- 422:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL |=  (0x03 << (24));	// MODE, PA.6 Output mode, max speed 50Mhz
- 826              		.loc 1 422 0
- 827 0036 43F04073 		orr	r3, r3, #50331648
- 828 003a 1360     		str	r3, [r2, #0]
- 423:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL |=  (0x00 << (26));	// CNF,  PA.6 General purpose output push-pul		
- 829              		.loc 1 423 0
- 830 003c 1068     		ldr	r0, [r2, #0]
- 831              	.LBE89:
- 832              	.LBE99:
- 833              	.LBE103:
- 834              	.LBB104:
- 835              	.LBB105:
- 321:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_RCC_APB1ENR, 0 );		// TIM2 Clock Enable APB1 = 36Mhz
- 836              		.loc 1 321 0
- 837 003e 41F21C03 		movw	r3, #4124
- 838              	.LBE105:
- 839              	.LBE104:
- 840              	.LBB110:
- 841              	.LBB100:
- 842              	.LBB90:
- 423:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL |=  (0x00 << (26));	// CNF,  PA.6 General purpose output push-pul		
- 843              		.loc 1 423 0
- 844 0042 1060     		str	r0, [r2, #0]
- 845              	.LBE90:
- 846              	.LBE100:
- 847              	.LBB101:
- 848              	.LBB95:
- 455:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_GPIOA_ODR, 6 );		
- 849              		.loc 1 455 0
- 850 0044 0A68     		ldr	r2, [r1, #0]
- 851              	.LBE95:
- 852              	.LBE101:
- 853              	.LBE110:
- 854              	.LBB111:
- 855              	.LBB106:
- 321:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_RCC_APB1ENR, 0 );		// TIM2 Clock Enable APB1 = 36Mhz
- 856              		.loc 1 321 0
- 857 0046 C4F20203 		movt	r3, 16386
- 858              	.LBE106:
- 859              	.LBE111:
- 860              	.LBB112:
- 861              	.LBB102:
- 862              	.LBB96:
- 455:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_GPIOA_ODR, 6 );		
- 863              		.loc 1 455 0
- 864 004a 42F04002 		orr	r2, r2, #64
- 865 004e 0A60     		str	r2, [r1, #0]
- 866              	.LBE96:
- 867              	.LBE102:
- 868              	.LBE112:
- 869              	.LBB113:
- 870              	.LBB107:
- 321:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_RCC_APB1ENR, 0 );		// TIM2 Clock Enable APB1 = 36Mhz
- 871              		.loc 1 321 0
- 872 0050 1A68     		ldr	r2, [r3, #0]
- 323:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_TIM2_PSC = 72-1; 				// 36Mhz/36 = 1Mhz
- 873              		.loc 1 323 0
- 874 0052 2821     		movs	r1, #40
- 321:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_RCC_APB1ENR, 0 );		// TIM2 Clock Enable APB1 = 36Mhz
- 875              		.loc 1 321 0
- 876 0054 42F00102 		orr	r2, r2, #1
- 877 0058 1A60     		str	r2, [r3, #0]
- 323:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_TIM2_PSC = 72-1; 				// 36Mhz/36 = 1Mhz
- 878              		.loc 1 323 0
- 879 005a C4F20001 		movt	r1, 16384
- 880 005e 4723     		movs	r3, #71
- 325:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_TIM2_CR1, 0 );			// Counter Enable 		 
- 881              		.loc 1 325 0
- 882 0060 4FF08042 		mov	r2, #1073741824
- 323:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_TIM2_PSC = 72-1; 				// 36Mhz/36 = 1Mhz
- 883              		.loc 1 323 0
- 884 0064 0B60     		str	r3, [r1, #0]
- 325:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_TIM2_CR1, 0 );			// Counter Enable 		 
- 885              		.loc 1 325 0
- 886 0066 1168     		ldr	r1, [r2, #0]
- 887              	.LBE107:
- 888              	.LBE113:
- 227:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_IO_SetupISR();
- 889              		.loc 1 227 0
- 890 0068 40F20003 		movw	r3, #:lower16:Hw_DHT11_IO_SetupISR
- 891              	.LBB114:
- 892              	.LBB108:
- 325:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_TIM2_CR1, 0 );			// Counter Enable 		 
- 893              		.loc 1 325 0
- 894 006c 41F00101 		orr	r1, r1, #1
- 895              	.LBE108:
- 896              	.LBE114:
- 213:../LIB_HW/Driver/Hw_DHT11.c **** {
- 897              		.loc 1 213 0
- 898 0070 83B0     		sub	sp, sp, #12
- 899              	.LCFI6:
- 900              		.cfi_def_cfa_offset 24
- 901              	.LBB115:
- 902              	.LBB109:
- 325:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_TIM2_CR1, 0 );			// Counter Enable 		 
- 903              		.loc 1 325 0
- 904 0072 1160     		str	r1, [r2, #0]
- 905              	.LBE109:
- 906              	.LBE115:
- 227:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_DHT11_IO_SetupISR();
- 907              		.loc 1 227 0
- 908 0074 C0F20003 		movt	r3, #:upper16:Hw_DHT11_IO_SetupISR
- 909 0078 9847     		blx	r3
- 910              	.LVL25:
- 230:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_Timer_Set  ( HW_TIMER_CH_DHT11, 10, LOOP_TIME, Hw_DHT11_Tick, NULL );	
- 911              		.loc 1 230 0
- 912 007a 40F20005 		movw	r5, #:lower16:Hw_Timer_Set
- 913 007e 40F20003 		movw	r3, #:lower16:Hw_DHT11_Tick
- 914 0082 0620     		movs	r0, #6
- 915 0084 0094     		str	r4, [sp, #0]
- 916 0086 0A21     		movs	r1, #10
- 917 0088 0222     		movs	r2, #2
- 918 008a C0F20003 		movt	r3, #:upper16:Hw_DHT11_Tick
- 919 008e C0F20005 		movt	r5, #:upper16:Hw_Timer_Set
- 920 0092 A847     		blx	r5
- 921              	.LVL26:
- 231:../LIB_HW/Driver/Hw_DHT11.c **** 	Hw_Timer_Start( HW_TIMER_CH_DHT11 );
- 922              		.loc 1 231 0
- 923 0094 40F20003 		movw	r3, #:lower16:Hw_Timer_Start
- 924 0098 0620     		movs	r0, #6
- 925 009a C0F20003 		movt	r3, #:upper16:Hw_Timer_Start
- 926 009e 9847     		blx	r3
- 927              	.LVL27:
- 232:../LIB_HW/Driver/Hw_DHT11.c **** }
- 928              		.loc 1 232 0
- 929 00a0 03B0     		add	sp, sp, #12
- 930 00a2 30BD     		pop	{r4, r5, pc}
- 931              		.cfi_endproc
- 932              	.LFE2:
- 934              		.section	.text.Hw_DHT11_IO_EnableISR,"ax",%progbits
- 935              		.align	2
- 936              		.global	Hw_DHT11_IO_EnableISR
- 937              		.thumb
- 938              		.thumb_func
- 940              	Hw_DHT11_IO_EnableISR:
- 941              	.LFB10:
- 382:../LIB_HW/Driver/Hw_DHT11.c **** {
- 942              		.loc 1 382 0
- 943              		.cfi_startproc
- 944              		@ args = 0, pretend = 0, frame = 0
- 945              		@ frame_needed = 0, uses_anonymous_args = 0
- 946              		@ link register save eliminated.
- 385:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_EMR |= (1<<6);	// Event Enable
- 947              		.loc 1 385 0
- 948 0000 40F20442 		movw	r2, #1028
- 949 0004 C4F20102 		movt	r2, 16385
- 950 0008 1168     		ldr	r1, [r2, #0]
- 386:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_IMR |= (1<<6);	// Interrupt nable	
- 951              		.loc 1 386 0
- 952 000a 4FF48063 		mov	r3, #1024
- 385:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_EMR |= (1<<6);	// Event Enable
- 953              		.loc 1 385 0
- 954 000e 41F04001 		orr	r1, r1, #64
- 955 0012 1160     		str	r1, [r2, #0]
- 386:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_IMR |= (1<<6);	// Interrupt nable	
- 956              		.loc 1 386 0
- 957 0014 C4F20103 		movt	r3, 16385
- 958 0018 1A68     		ldr	r2, [r3, #0]
- 959 001a 42F04002 		orr	r2, r2, #64
- 960 001e 1A60     		str	r2, [r3, #0]
- 961 0020 7047     		bx	lr
- 962              		.cfi_endproc
- 963              	.LFE10:
- 965 0022 00BF     		.section	.text.Hw_DHT11_IO_DisableISR,"ax",%progbits
- 966              		.align	2
- 967              		.global	Hw_DHT11_IO_DisableISR
- 968              		.thumb
- 969              		.thumb_func
- 971              	Hw_DHT11_IO_DisableISR:
- 972              	.LFB11:
- 400:../LIB_HW/Driver/Hw_DHT11.c **** {
- 973              		.loc 1 400 0
- 974              		.cfi_startproc
- 975              		@ args = 0, pretend = 0, frame = 0
- 976              		@ frame_needed = 0, uses_anonymous_args = 0
- 977              		@ link register save eliminated.
- 403:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_EMR &= ~(1<<6);	// Event Enable
- 978              		.loc 1 403 0
- 979 0000 40F20442 		movw	r2, #1028
- 980 0004 C4F20102 		movt	r2, 16385
- 981 0008 1168     		ldr	r1, [r2, #0]
- 404:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_IMR &= ~(1<<6);	// Interrupt nable	
- 982              		.loc 1 404 0
- 983 000a 4FF48063 		mov	r3, #1024
- 403:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_EMR &= ~(1<<6);	// Event Enable
- 984              		.loc 1 403 0
- 985 000e 21F04001 		bic	r1, r1, #64
- 986 0012 1160     		str	r1, [r2, #0]
- 404:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_EXTI_IMR &= ~(1<<6);	// Interrupt nable	
- 987              		.loc 1 404 0
- 988 0014 C4F20103 		movt	r3, 16385
- 989 0018 1A68     		ldr	r2, [r3, #0]
- 990 001a 22F04002 		bic	r2, r2, #64
- 991 001e 1A60     		str	r2, [r3, #0]
- 992 0020 7047     		bx	lr
- 993              		.cfi_endproc
- 994              	.LFE11:
- 996 0022 00BF     		.section	.text.Hw_DHT11_IO_SetOutput,"ax",%progbits
- 997              		.align	2
- 998              		.global	Hw_DHT11_IO_SetOutput
- 999              		.thumb
- 1000              		.thumb_func
- 1002              	Hw_DHT11_IO_SetOutput:
- 1003              	.LFB12:
- 418:../LIB_HW/Driver/Hw_DHT11.c **** {
- 1004              		.loc 1 418 0
- 1005              		.cfi_startproc
- 1006              		@ args = 0, pretend = 0, frame = 0
- 1007              		@ frame_needed = 0, uses_anonymous_args = 0
- 1008              		@ link register save eliminated.
- 421:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL &= ~(0x0F << (24));	// Clear
- 1009              		.loc 1 421 0
- 1010 0000 4FF40063 		mov	r3, #2048
- 1011 0004 C4F20103 		movt	r3, 16385
- 1012 0008 1A68     		ldr	r2, [r3, #0]
- 1013 000a 22F07062 		bic	r2, r2, #251658240
- 1014 000e 1A60     		str	r2, [r3, #0]
- 422:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL |=  (0x03 << (24));	// MODE, PA.6 Output mode, max speed 50Mhz
- 1015              		.loc 1 422 0
- 1016 0010 1A68     		ldr	r2, [r3, #0]
- 1017 0012 42F04072 		orr	r2, r2, #50331648
- 1018 0016 1A60     		str	r2, [r3, #0]
- 423:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL |=  (0x00 << (26));	// CNF,  PA.6 General purpose output push-pul		
- 1019              		.loc 1 423 0
- 1020 0018 1A68     		ldr	r2, [r3, #0]
- 1021 001a 1A60     		str	r2, [r3, #0]
- 1022 001c 7047     		bx	lr
- 1023              		.cfi_endproc
- 1024              	.LFE12:
- 1026 001e 00BF     		.section	.text.Hw_DHT11_IO_SetInput,"ax",%progbits
- 1027              		.align	2
- 1028              		.global	Hw_DHT11_IO_SetInput
- 1029              		.thumb
- 1030              		.thumb_func
- 1032              	Hw_DHT11_IO_SetInput:
- 1033              	.LFB13:
- 437:../LIB_HW/Driver/Hw_DHT11.c **** {
- 1034              		.loc 1 437 0
- 1035              		.cfi_startproc
- 1036              		@ args = 0, pretend = 0, frame = 0
- 1037              		@ frame_needed = 0, uses_anonymous_args = 0
- 1038              		@ link register save eliminated.
- 438:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL &= ~(0x0F << (24));	// Clear
- 1039              		.loc 1 438 0
- 1040 0000 4FF40063 		mov	r3, #2048
- 1041 0004 C4F20103 		movt	r3, 16385
- 1042 0008 1A68     		ldr	r2, [r3, #0]
- 1043 000a 22F07062 		bic	r2, r2, #251658240
- 1044 000e 1A60     		str	r2, [r3, #0]
- 439:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL |=  (0x00 << (24));	// MODE, PA.6 Input Mode
- 1045              		.loc 1 439 0
- 1046 0010 1A68     		ldr	r2, [r3, #0]
- 1047 0012 1A60     		str	r2, [r3, #0]
- 440:../LIB_HW/Driver/Hw_DHT11.c **** 	REG_GPIOA_CRL |=  (0x01 << (26));	// CNF,  PA.6 Floating input	
- 1048              		.loc 1 440 0
- 1049 0014 1A68     		ldr	r2, [r3, #0]
- 1050 0016 42F08062 		orr	r2, r2, #67108864
- 1051 001a 1A60     		str	r2, [r3, #0]
- 1052 001c 7047     		bx	lr
- 1053              		.cfi_endproc
- 1054              	.LFE13:
- 1056 001e 00BF     		.section	.text.Hw_DHT11_IO_SetHigh,"ax",%progbits
- 1057              		.align	2
- 1058              		.global	Hw_DHT11_IO_SetHigh
- 1059              		.thumb
- 1060              		.thumb_func
- 1062              	Hw_DHT11_IO_SetHigh:
- 1063              	.LFB14:
- 454:../LIB_HW/Driver/Hw_DHT11.c **** {
- 1064              		.loc 1 454 0
- 1065              		.cfi_startproc
- 1066              		@ args = 0, pretend = 0, frame = 0
- 1067              		@ frame_needed = 0, uses_anonymous_args = 0
- 1068              		@ link register save eliminated.
- 455:../LIB_HW/Driver/Hw_DHT11.c **** 	SET_BIT( REG_GPIOA_ODR, 6 );		
- 1069              		.loc 1 455 0
- 1070 0000 40F60C03 		movw	r3, #2060
- 1071 0004 C4F20103 		movt	r3, 16385
- 1072 0008 1A68     		ldr	r2, [r3, #0]
- 1073 000a 42F04002 		orr	r2, r2, #64
- 1074 000e 1A60     		str	r2, [r3, #0]
- 1075 0010 7047     		bx	lr
- 1076              		.cfi_endproc
- 1077              	.LFE14:
- 1079 0012 00BF     		.section	.text.Hw_DHT11_IO_SetLow,"ax",%progbits
- 1080              		.align	2
- 1081              		.global	Hw_DHT11_IO_SetLow
- 1082              		.thumb
- 1083              		.thumb_func
- 1085              	Hw_DHT11_IO_SetLow:
- 1086              	.LFB15:
- 469:../LIB_HW/Driver/Hw_DHT11.c **** {
- 1087              		.loc 1 469 0
- 1088              		.cfi_startproc
- 1089              		@ args = 0, pretend = 0, frame = 0
- 1090              		@ frame_needed = 0, uses_anonymous_args = 0
- 1091              		@ link register save eliminated.
- 1092              		.loc 1 470 0
- 1093 0000 40F60C03 		movw	r3, #2060
- 1094 0004 C4F20103 		movt	r3, 16385
- 1095 0008 1A68     		ldr	r2, [r3, #0]
- 1096 000a 22F04002 		bic	r2, r2, #64
- 1097 000e 1A60     		str	r2, [r3, #0]
- 1098 0010 7047     		bx	lr
- 1099              		.cfi_endproc
- 1100              	.LFE15:
- 1102 0012 00BF     		.section	.text.Hw_DHT11_IO_Get,"ax",%progbits
- 1103              		.align	2
- 1104              		.global	Hw_DHT11_IO_Get
- 1105              		.thumb
- 1106              		.thumb_func
- 1108              	Hw_DHT11_IO_Get:
- 1109              	.LFB16:
- 471:../LIB_HW/Driver/Hw_DHT11.c **** }
- 472:../LIB_HW/Driver/Hw_DHT11.c **** 
- 473:../LIB_HW/Driver/Hw_DHT11.c **** 
- 474:../LIB_HW/Driver/Hw_DHT11.c **** 
- 475:../LIB_HW/Driver/Hw_DHT11.c **** 
- 476:../LIB_HW/Driver/Hw_DHT11.c **** 
- 477:../LIB_HW/Driver/Hw_DHT11.c **** /*---------------------------------------------------------------------------
- 478:../LIB_HW/Driver/Hw_DHT11.c ****      TITLE   : Hw_DHT11_IO_Get
- 479:../LIB_HW/Driver/Hw_DHT11.c ****      WORK    : 
- 480:../LIB_HW/Driver/Hw_DHT11.c ****      ARG     : void
- 481:../LIB_HW/Driver/Hw_DHT11.c ****      RET     : void
- 482:../LIB_HW/Driver/Hw_DHT11.c **** ---------------------------------------------------------------------------*/
- 483:../LIB_HW/Driver/Hw_DHT11.c **** u8 Hw_DHT11_IO_Get(void)
- 484:../LIB_HW/Driver/Hw_DHT11.c **** {
- 1110              		.loc 1 484 0
- 1111              		.cfi_startproc
- 1112              		@ args = 0, pretend = 0, frame = 0
- 1113              		@ frame_needed = 0, uses_anonymous_args = 0
- 1114              		@ link register save eliminated.
- 485:../LIB_HW/Driver/Hw_DHT11.c **** 	if( IS_SET_BIT( REG_GPIOA_IDR, 6 ) ) return 1;
- 1115              		.loc 1 485 0
- 1116 0000 40F60803 		movw	r3, #2056
- 1117 0004 C4F20103 		movt	r3, 16385
- 1118 0008 1868     		ldr	r0, [r3, #0]
- 486:../LIB_HW/Driver/Hw_DHT11.c **** 	else								 return 0;	
- 487:../LIB_HW/Driver/Hw_DHT11.c **** }
- 1119              		.loc 1 487 0
- 1120 000a C0F38010 		ubfx	r0, r0, #6, #1
- 1121 000e 7047     		bx	lr
- 1122              		.cfi_endproc
- 1123              	.LFE16:
- 1125              		.comm	Hw_DHT11_Log,9,4
- 1126              		.comm	Hw_DHT11_BitTbl,90,4
- 1127              		.global	Hw_DHT11_BitIndex
- 1128              		.section	.bss.TimerCntSaved.4432,"aw",%nobits
- 1129              		.align	1
- 1130              		.set	.LANCHOR3,. + 0
- 1133              	TimerCntSaved.4432:
- 1134 0000 0000     		.space	2
- 1135              		.section	.bss.Hw_DHT11_BitIndex,"aw",%nobits
- 1136              		.align	2
- 1137              		.set	.LANCHOR2,. + 0
- 1140              	Hw_DHT11_BitIndex:
- 1141 0000 00000000 		.space	4
- 1142              		.section	.bss.State.4413,"aw",%nobits
- 1143              		.align	2
- 1144              		.set	.LANCHOR0,. + 0
- 1147              	State.4413:
- 1148 0000 00000000 		.space	4
- 1149              		.section	.bss.Cnt.4414,"aw",%nobits
- 1150              		.align	2
- 1151              		.set	.LANCHOR1,. + 0
- 1154              	Cnt.4414:
- 1155 0000 00000000 		.space	4
- 1156              		.text
- 1157              	.Letext0:
- 1158              		.file 2 "../LIB_HW/Core/Hw_Define.h"
- 1159              		.file 3 "../LIB_HW/Driver/Hw_DHT11.h"
+ 143 00a2 03F40063 		and	r3, r3, #2048
+ 144 00a6 9BB2     		uxth	r3, r3
+ 145 00a8 002B     		cmp	r3, #0
+ 146 00aa 71D1     		bne	.L81
+ 112:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         else if ((wEPVal & EP_CTR_RX) != 0)
+ 147              		.loc 1 112 0
+ 148 00ac BDF80630 		ldrh	r3, [sp, #6]
+ 149              	.LVL13:
+ 150 00b0 1BB2     		sxth	r3, r3
+ 151              	.LVL14:
+ 152 00b2 002B     		cmp	r3, #0
+ 153 00b4 B4DA     		bge	.L65
+ 114:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****           _ClearEP_CTR_RX(ENDP0);
+ 154              		.loc 1 114 0
+ 155 00b6 2268     		ldr	r2, [r4, #0]
+ 156              	.LVL15:
+ 157 00b8 40F68F73 		movw	r3, #3983
+ 158 00bc 1340     		ands	r3, r3, r2
+ 159 00be 2360     		str	r3, [r4, #0]
+ 115:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****           Out0_Process();
+ 160              		.loc 1 115 0
+ 161 00c0 394B     		ldr	r3, .L83+8
+ 162 00c2 38E0     		b	.L77
+ 163              	.LVL16:
+ 164              	.L3:
+ 165              		.loc 1 128 0
+ 166 00c4 0268     		ldr	r2, [r0, #0]
+ 167              	.LVL17:
+ 168 00c6 92B2     		uxth	r2, r2
+ 169              	.LVL18:
+ 170 00c8 ADF80620 		strh	r2, [sp, #6]	@ movhi
+ 129:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       if ((wEPVal & EP_CTR_RX) != 0)
+ 171              		.loc 1 129 0
+ 172 00cc BDF80620 		ldrh	r2, [sp, #6]
+ 173              	.LVL19:
+ 174 00d0 12B2     		sxth	r2, r2
+ 175 00d2 002A     		cmp	r2, #0
+ 176 00d4 1BDB     		blt	.L82
+ 177              	.L21:
+ 130:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       {
+ 131:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         /* clear int flag */
+ 132:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         _ClearEP_CTR_RX(EPindex);
+ 133:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+ 134:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         /* call OUT service function */
+ 135:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         (*pEpInt_OUT[EPindex-1])();
+ 136:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+ 137:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       } /* if((wEPVal & EP_CTR_RX) */
+ 138:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+ 139:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       if ((wEPVal & EP_CTR_TX) != 0)
+ 178              		.loc 1 139 0
+ 179 00d6 BDF80630 		ldrh	r3, [sp, #6]
+ 180              	.LVL20:
+ 181 00da 03F08003 		and	r3, r3, #128
+ 182              	.LVL21:
+ 183 00de 9BB2     		uxth	r3, r3
+ 184 00e0 002B     		cmp	r3, #0
+ 185 00e2 9DD0     		beq	.L65
+ 140:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       {
+ 141:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         /* clear int flag */
+ 142:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         _ClearEP_CTR_TX(EPindex);
+ 186              		.loc 1 142 0
+ 187 00e4 99F80010 		ldrb	r1, [r9, #0]	@ zero_extendqisi2
+ 188 00e8 48F60F73 		movw	r3, #36623
+ 189 00ec 8A00     		lsls	r2, r1, #2
+ 190 00ee 02F18042 		add	r2, r2, #1073741824
+ 191 00f2 02F5B842 		add	r2, r2, #23552
+ 192 00f6 1068     		ldr	r0, [r2, #0]
+ 143:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+ 144:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         /* call IN service function */
+ 145:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         (*pEpInt_IN[EPindex-1])();
+ 193              		.loc 1 145 0
+ 194 00f8 0139     		subs	r1, r1, #1
+ 142:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         _ClearEP_CTR_TX(EPindex);
+ 195              		.loc 1 142 0
+ 196 00fa 0340     		ands	r3, r3, r0
+ 197 00fc 1360     		str	r3, [r2, #0]
+ 198              		.loc 1 145 0
+ 199 00fe 40F20002 		movw	r2, #:lower16:pEpInt_IN
+ 200 0102 C0F20002 		movt	r2, #:upper16:pEpInt_IN
+ 201 0106 52F82130 		ldr	r3, [r2, r1, lsl #2]
+ 202 010a 9847     		blx	r3
+ 203              	.LVL22:
+ 204 010c 88E7     		b	.L65
+ 205              	.L82:
+ 132:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         _ClearEP_CTR_RX(EPindex);
+ 206              		.loc 1 132 0
+ 207 010e 0168     		ldr	r1, [r0, #0]
+ 208 0110 40F68F72 		movw	r2, #3983
+ 209 0114 0A40     		ands	r2, r2, r1
+ 210 0116 0260     		str	r2, [r0, #0]
+ 135:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         (*pEpInt_OUT[EPindex-1])();
+ 211              		.loc 1 135 0
+ 212 0118 40F20002 		movw	r2, #:lower16:pEpInt_OUT
+ 213              	.LVL23:
+ 214 011c 013B     		subs	r3, r3, #1
+ 215              	.LVL24:
+ 216 011e C0F20002 		movt	r2, #:upper16:pEpInt_OUT
+ 217 0122 52F82330 		ldr	r3, [r2, r3, lsl #2]
+ 218 0126 9847     		blx	r3
+ 219              	.LVL25:
+ 220 0128 D5E7     		b	.L21
+ 221              	.LVL26:
+ 222              	.L80:
+  85:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         _ClearEP_CTR_TX(ENDP0);
+ 223              		.loc 1 85 0
+ 224 012a 2268     		ldr	r2, [r4, #0]
+ 225              	.LVL27:
+ 226 012c 48F60F73 		movw	r3, #36623
+ 227 0130 1340     		ands	r3, r3, r2
+ 228 0132 2360     		str	r3, [r4, #0]
+  86:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****         In0_Process();
+ 229              		.loc 1 86 0
+ 230 0134 1D4B     		ldr	r3, .L83+12
+ 231              	.L77:
+ 115:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****           Out0_Process();
+ 232              		.loc 1 115 0
+ 233 0136 9847     		blx	r3
+ 234              	.LVL28:
+ 235              	.LBB4:
+ 118:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 		     _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
+ 236              		.loc 1 118 0
+ 237 0138 2168     		ldr	r1, [r4, #0]
+ 238 013a 3A88     		ldrh	r2, [r7, #0]
+ 239 013c 4BF6BF73 		movw	r3, #49087
+ 240 0140 02F48052 		and	r2, r2, #4096
+ 241 0144 92B2     		uxth	r2, r2
+ 242 0146 0B40     		ands	r3, r3, r1
+ 243              	.LVL29:
+ 244 0148 0AB1     		cbz	r2, .L17
+ 118:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 		     _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
+ 245              		.loc 1 118 0 is_stmt 0 discriminator 1
+ 246 014a 83F48053 		eor	r3, r3, #4096
+ 247              	.LVL30:
+ 248              	.L17:
+ 118:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 		     _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
+ 249              		.loc 1 118 0 discriminator 2
+ 250 014e 3A88     		ldrh	r2, [r7, #0]
+ 251 0150 02F40052 		and	r2, r2, #8192
+ 252 0154 92B2     		uxth	r2, r2
+ 253 0156 0AB1     		cbz	r2, .L18
+ 118:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 		     _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
+ 254              		.loc 1 118 0 discriminator 3
+ 255 0158 83F40053 		eor	r3, r3, #8192
+ 256              	.LVL31:
+ 257              	.L18:
+ 118:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 		     _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
+ 258              		.loc 1 118 0 discriminator 4
+ 259 015c 3288     		ldrh	r2, [r6, #0]
+ 260 015e 02F01002 		and	r2, r2, #16
+ 261 0162 92B2     		uxth	r2, r2
+ 262 0164 0AB1     		cbz	r2, .L19
+ 118:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 		     _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
+ 263              		.loc 1 118 0 discriminator 5
+ 264 0166 83F01003 		eor	r3, r3, #16
+ 265              	.LVL32:
+ 266              	.L19:
+ 118:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 		     _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
+ 267              		.loc 1 118 0 discriminator 6
+ 268 016a 3288     		ldrh	r2, [r6, #0]
+ 269 016c 02F02002 		and	r2, r2, #32
+ 270 0170 92B2     		uxth	r2, r2
+ 271 0172 0AB1     		cbz	r2, .L20
+ 118:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 		     _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
+ 272              		.loc 1 118 0 discriminator 7
+ 273 0174 83F02003 		eor	r3, r3, #32
+ 274              	.LVL33:
+ 275              	.L20:
+ 118:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 		     _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
+ 276              		.loc 1 118 0 discriminator 8
+ 277 0178 43F40043 		orr	r3, r3, #32768
+ 278              	.LVL34:
+ 279 017c 4FF4B842 		mov	r2, #23552
+ 280 0180 43F08003 		orr	r3, r3, #128
+ 281 0184 C4F20002 		movt	r2, 16384
+ 282 0188 1360     		str	r3, [r2, #0]
+ 283              	.L1:
+ 284              	.LBE4:
+ 146:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       } /* if((wEPVal & EP_CTR_TX) != 0) */
+ 147:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+ 148:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     }/* if(EPindex == 0) else */
+ 149:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+ 150:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   }/* while(...) */
+ 151:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** }
+ 285              		.loc 1 151 0 is_stmt 1
+ 286 018a 03B0     		add	sp, sp, #12
+ 287 018c BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 288              	.LVL35:
+ 289              	.L81:
+ 104:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****           _ClearEP_CTR_RX(ENDP0); /* SETUP bit kept frozen while CTR_RX = 1 */
+ 290              		.loc 1 104 0
+ 291 0190 2268     		ldr	r2, [r4, #0]
+ 292              	.LVL36:
+ 293 0192 40F68F73 		movw	r3, #3983
+ 294 0196 1340     		ands	r3, r3, r2
+ 295 0198 2360     		str	r3, [r4, #0]
+ 105:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****           Setup0_Process();
+ 296              		.loc 1 105 0
+ 297 019a 054B     		ldr	r3, .L83+16
+ 298 019c CBE7     		b	.L77
+ 299              	.L84:
+ 300 019e 00BF     		.align	2
+ 301              	.L83:
+ 302 01a0 00000000 		.word	SaveRState
+ 303 01a4 00000000 		.word	SaveTState
+ 304 01a8 00000000 		.word	Out0_Process
+ 305 01ac 00000000 		.word	In0_Process
+ 306 01b0 00000000 		.word	Setup0_Process
+ 307 01b4 00000000 		.word	wIstr
+ 308 01b8 00000000 		.word	EPindex
+ 309              		.cfi_endproc
+ 310              	.LFE0:
+ 312              		.section	.text.CTR_HP,"ax",%progbits
+ 313              		.align	2
+ 314              		.global	CTR_HP
+ 315              		.thumb
+ 316              		.thumb_func
+ 318              	CTR_HP:
+ 319              	.LFB1:
+ 152:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+ 153:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** /*******************************************************************************
+ 154:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** * Function Name  : CTR_HP.
+ 155:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** * Description    : High Priority Endpoint Correct Transfer interrupt's service 
+ 156:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** *                  routine.
+ 157:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** * Input          : None.
+ 158:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** * Output         : None.
+ 159:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** * Return         : None.
+ 160:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** *******************************************************************************/
+ 161:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** void CTR_HP(void)
+ 162:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** {
+ 320              		.loc 1 162 0
+ 321              		.cfi_startproc
+ 322              		@ args = 0, pretend = 0, frame = 0
+ 323              		@ frame_needed = 0, uses_anonymous_args = 0
+ 324 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, sl, lr}
+ 325              	.LCFI2:
+ 326              		.cfi_def_cfa_offset 32
+ 327              		.cfi_offset 4, -32
+ 328              		.cfi_offset 5, -28
+ 329              		.cfi_offset 6, -24
+ 330              		.cfi_offset 7, -20
+ 331              		.cfi_offset 8, -16
+ 332              		.cfi_offset 9, -12
+ 333              		.cfi_offset 10, -8
+ 334              		.cfi_offset 14, -4
+ 335 0004 1C4F     		ldr	r7, .L97
+ 163:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   uint32_t wEPVal = 0;
+ 164:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+ 165:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   while (((wIstr = _GetISTR()) & ISTR_CTR) != 0)
+ 336              		.loc 1 165 0
+ 337 0006 45F64444 		movw	r4, #23620
+ 166:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   {
+ 167:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     _SetISTR((uint16_t)CLR_CTR); /* clear CTR flag */
+ 168:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     /* extract highest priority endpoint number */
+ 169:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     EPindex = (uint8_t)(wIstr & ISTR_EP_ID);
+ 338              		.loc 1 169 0
+ 339 000a DFF878A0 		ldr	sl, .L97+12
+ 170:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     /* process related endpoint register */
+ 171:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     wEPVal = _GetENDPOINT(EPindex);
+ 172:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     if ((wEPVal & EP_CTR_RX) != 0)
+ 173:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     {
+ 174:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       /* clear int flag */
+ 175:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       _ClearEP_CTR_RX(EPindex);
+ 176:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+ 177:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       /* call OUT service function */
+ 178:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       (*pEpInt_OUT[EPindex-1])();
+ 179:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+ 180:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     } /* if((wEPVal & EP_CTR_RX) */
+ 181:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     else if ((wEPVal & EP_CTR_TX) != 0)
+ 182:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     {
+ 183:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       /* clear int flag */
+ 184:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       _ClearEP_CTR_TX(EPindex);
+ 185:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c **** 
+ 186:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       /* call IN service function */
+ 187:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       (*pEpInt_IN[EPindex-1])();
+ 340              		.loc 1 187 0
+ 341 000e 1B4E     		ldr	r6, .L97+4
+ 178:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       (*pEpInt_OUT[EPindex-1])();
+ 342              		.loc 1 178 0
+ 343 0010 1B4D     		ldr	r5, .L97+8
+ 165:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   while (((wIstr = _GetISTR()) & ISTR_CTR) != 0)
+ 344              		.loc 1 165 0
+ 345 0012 C4F20004 		movt	r4, 16384
+ 346 0016 B946     		mov	r9, r7
+ 167:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     _SetISTR((uint16_t)CLR_CTR); /* clear CTR flag */
+ 347              		.loc 1 167 0
+ 348 0018 47F6FF78 		movw	r8, #32767
+ 349              	.L95:
+ 350              	.LVL37:
+ 165:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****   while (((wIstr = _GetISTR()) & ISTR_CTR) != 0)
+ 351              		.loc 1 165 0
+ 352 001c 2368     		ldr	r3, [r4, #0]
+ 353 001e 9AB2     		uxth	r2, r3
+ 354 0020 1B04     		lsls	r3, r3, #16
+ 355 0022 3A80     		strh	r2, [r7, #0]	@ movhi
+ 356 0024 25D5     		bpl	.L85
+ 167:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     _SetISTR((uint16_t)CLR_CTR); /* clear CTR flag */
+ 357              		.loc 1 167 0
+ 358 0026 C4F80080 		str	r8, [r4, #0]
+ 169:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     EPindex = (uint8_t)(wIstr & ISTR_EP_ID);
+ 359              		.loc 1 169 0
+ 360 002a B9F80030 		ldrh	r3, [r9, #0]
+ 361 002e 03F00F03 		and	r3, r3, #15
+ 171:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     wEPVal = _GetENDPOINT(EPindex);
+ 362              		.loc 1 171 0
+ 363 0032 9A00     		lsls	r2, r3, #2
+ 364 0034 02F18042 		add	r2, r2, #1073741824
+ 169:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     EPindex = (uint8_t)(wIstr & ISTR_EP_ID);
+ 365              		.loc 1 169 0
+ 366 0038 8AF80030 		strb	r3, [sl, #0]
+ 171:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     wEPVal = _GetENDPOINT(EPindex);
+ 367              		.loc 1 171 0
+ 368 003c 02F5B842 		add	r2, r2, #23552
+ 369 0040 1168     		ldr	r1, [r2, #0]
+ 370              	.LVL38:
+ 172:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     if ((wEPVal & EP_CTR_RX) != 0)
+ 371              		.loc 1 172 0
+ 372 0042 0804     		lsls	r0, r1, #16
+ 373 0044 0BD4     		bmi	.L96
+ 181:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****     else if ((wEPVal & EP_CTR_TX) != 0)
+ 374              		.loc 1 181 0
+ 375 0046 0906     		lsls	r1, r1, #24
+ 376              	.LVL39:
+ 377 0048 E8D5     		bpl	.L95
+ 184:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       _ClearEP_CTR_TX(EPindex);
+ 378              		.loc 1 184 0
+ 379 004a 1068     		ldr	r0, [r2, #0]
+ 380 004c 48F60F71 		movw	r1, #36623
+ 381 0050 0140     		ands	r1, r1, r0
+ 382              		.loc 1 187 0
+ 383 0052 013B     		subs	r3, r3, #1
+ 184:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       _ClearEP_CTR_TX(EPindex);
+ 384              		.loc 1 184 0
+ 385 0054 1160     		str	r1, [r2, #0]
+ 386              		.loc 1 187 0
+ 387 0056 56F82330 		ldr	r3, [r6, r3, lsl #2]
+ 388 005a 9847     		blx	r3
+ 389              	.LVL40:
+ 390 005c DEE7     		b	.L95
+ 391              	.LVL41:
+ 392              	.L96:
+ 175:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       _ClearEP_CTR_RX(EPindex);
+ 393              		.loc 1 175 0
+ 394 005e 1068     		ldr	r0, [r2, #0]
+ 395 0060 40F68F71 		movw	r1, #3983
+ 396              	.LVL42:
+ 397 0064 0140     		ands	r1, r1, r0
+ 178:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       (*pEpInt_OUT[EPindex-1])();
+ 398              		.loc 1 178 0
+ 399 0066 013B     		subs	r3, r3, #1
+ 175:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       _ClearEP_CTR_RX(EPindex);
+ 400              		.loc 1 175 0
+ 401 0068 1160     		str	r1, [r2, #0]
+ 178:../LIB_HW/Driver/LIB_USB/DRV/usb_int.c ****       (*pEpInt_OUT[EPindex-1])();
+ 402              		.loc 1 178 0
+ 403 006a 55F82330 		ldr	r3, [r5, r3, lsl #2]
+ 404 006e 9847     		blx	r3
+ 405              	.LVL43:
+ 406 0070 D4E7     		b	.L95
+ 407              	.LVL44:
+ 408              	.L85:
+ 409 0072 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, sl, pc}
+ 410              	.L98:
+ 411 0076 00BF     		.align	2
+ 412              	.L97:
+ 413 0078 00000000 		.word	wIstr
+ 414 007c 00000000 		.word	pEpInt_IN
+ 415 0080 00000000 		.word	pEpInt_OUT
+ 416 0084 00000000 		.word	EPindex
+ 417              		.cfi_endproc
+ 418              	.LFE1:
+ 420              		.comm	SaveTState,2,2
+ 421              		.comm	SaveRState,2,2
+ 422              		.text
+ 423              	.Letext0:
+ 424              		.file 2 "../LIB_HW/Core/Hw_Define.h"
+ 425              		.file 3 "../LIB_HW/Driver/LIB_USB/DRV/usb_regs.h"
+ 426              		.file 4 "../LIB_HW/Driver/LIB_USB/DRV/usb_init.h"
 DEFINED SYMBOLS
-                            *ABS*:0000000000000000 Hw_DHT11.c
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:19     .text.Hw_DHT11_Tick:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:24     .text.Hw_DHT11_Tick:0000000000000000 Hw_DHT11_Tick
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:378    .text.Hw_DHT11_Tick:000000000000015c $d
-                            *COM*:0000000000000009 Hw_DHT11_Log
-                            *COM*:000000000000005a Hw_DHT11_BitTbl
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:387    .text.Hw_DHT11_IO_ISR:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:392    .text.Hw_DHT11_IO_ISR:0000000000000000 Hw_DHT11_IO_ISR
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:459    .text.Hw_DHT11_IO_ISR:0000000000000048 $d
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:466    .text.Hw_DHT11_GetHumidity:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:471    .text.Hw_DHT11_GetHumidity:0000000000000000 Hw_DHT11_GetHumidity
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:498    .text.Hw_DHT11_GetTemperature:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:503    .text.Hw_DHT11_GetTemperature:0000000000000000 Hw_DHT11_GetTemperature
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:530    .text.Hw_DHT11_Start:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:535    .text.Hw_DHT11_Start:0000000000000000 Hw_DHT11_Start
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:563    .text.Hw_DHT11_Stop:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:568    .text.Hw_DHT11_Stop:0000000000000000 Hw_DHT11_Stop
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:590    .text.Hw_DHT11_Timer_Setup:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:595    .text.Hw_DHT11_Timer_Setup:0000000000000000 Hw_DHT11_Timer_Setup
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:627    .text.Hw_DHT11_IO_Setup:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:632    .text.Hw_DHT11_IO_Setup:0000000000000000 Hw_DHT11_IO_Setup
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:691    .text.Hw_DHT11_IO_SetupISR:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:696    .text.Hw_DHT11_IO_SetupISR:0000000000000000 Hw_DHT11_IO_SetupISR
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:748    .text.Hw_DHT11_Init:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:753    .text.Hw_DHT11_Init:0000000000000000 Hw_DHT11_Init
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:935    .text.Hw_DHT11_IO_EnableISR:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:940    .text.Hw_DHT11_IO_EnableISR:0000000000000000 Hw_DHT11_IO_EnableISR
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:966    .text.Hw_DHT11_IO_DisableISR:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:971    .text.Hw_DHT11_IO_DisableISR:0000000000000000 Hw_DHT11_IO_DisableISR
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:997    .text.Hw_DHT11_IO_SetOutput:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:1002   .text.Hw_DHT11_IO_SetOutput:0000000000000000 Hw_DHT11_IO_SetOutput
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:1027   .text.Hw_DHT11_IO_SetInput:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:1032   .text.Hw_DHT11_IO_SetInput:0000000000000000 Hw_DHT11_IO_SetInput
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:1057   .text.Hw_DHT11_IO_SetHigh:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:1062   .text.Hw_DHT11_IO_SetHigh:0000000000000000 Hw_DHT11_IO_SetHigh
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:1080   .text.Hw_DHT11_IO_SetLow:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:1085   .text.Hw_DHT11_IO_SetLow:0000000000000000 Hw_DHT11_IO_SetLow
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:1103   .text.Hw_DHT11_IO_Get:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:1108   .text.Hw_DHT11_IO_Get:0000000000000000 Hw_DHT11_IO_Get
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:1140   .bss.Hw_DHT11_BitIndex:0000000000000000 Hw_DHT11_BitIndex
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:1129   .bss.TimerCntSaved.4432:0000000000000000 $d
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:1133   .bss.TimerCntSaved.4432:0000000000000000 TimerCntSaved.4432
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:1136   .bss.Hw_DHT11_BitIndex:0000000000000000 $d
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:1143   .bss.State.4413:0000000000000000 $d
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:1147   .bss.State.4413:0000000000000000 State.4413
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:1150   .bss.Cnt.4414:0000000000000000 $d
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cci5pTJU.s:1154   .bss.Cnt.4414:0000000000000000 Cnt.4414
+                            *ABS*:0000000000000000 usb_int.c
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cce3lfo6.s:19     .text.CTR_LP:0000000000000000 $t
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cce3lfo6.s:24     .text.CTR_LP:0000000000000000 CTR_LP
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cce3lfo6.s:302    .text.CTR_LP:00000000000001a0 $d
+                            *COM*:0000000000000002 SaveRState
+                            *COM*:0000000000000002 SaveTState
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cce3lfo6.s:313    .text.CTR_HP:0000000000000000 $t
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cce3lfo6.s:318    .text.CTR_HP:0000000000000000 CTR_HP
+/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//cce3lfo6.s:413    .text.CTR_HP:0000000000000078 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
-Hw_Timer_Reset
-Hw_Timer_Start
-Hw_Timer_Stop
-Hw_ISR_SetIRQFunc
-Hw_Timer_Set
+pEpInt_IN
+pEpInt_OUT
+Out0_Process
+In0_Process
+Setup0_Process
+wIstr
+EPindex

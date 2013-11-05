@@ -291,18 +291,18 @@ Discarded input sections
                 0x0000000000000000       0xb4 Ap_RadioMenu.o
  .text.Ap_RadioMenu_ExeCmd
                 0x0000000000000000      0x390 Ap_RadioMenu.o
- .bss.FM_Freq_Index.4513
+ .bss.FM_Freq_Index.4517
                 0x0000000000000000        0x2 Ap_RadioMenu.o
- .bss.Band_Mode.4512
+ .bss.Band_Mode.4516
                 0x0000000000000000        0x1 Ap_RadioMenu.o
- .rodata.AM_Freq.4516
-                0x0000000000000000       0x14 Ap_RadioMenu.o
- .rodata.FM_Freq.4514
+ .rodata.FM_Freq.4518
                 0x0000000000000000       0x38 Ap_RadioMenu.o
  .rodata.str1.4
                 0x0000000000000000      0x400 Ap_RadioMenu.o
- .bss.AM_Freq_Index.4515
+ .bss.AM_Freq_Index.4519
                 0x0000000000000000        0x2 Ap_RadioMenu.o
+ .rodata.AM_Freq.4520
+                0x0000000000000000       0x14 Ap_RadioMenu.o
  .debug_info    0x0000000000000000      0x5e2 Ap_RadioMenu.o
  .debug_abbrev  0x0000000000000000      0x158 Ap_RadioMenu.o
  .debug_loc     0x0000000000000000      0x25d Ap_RadioMenu.o
@@ -328,18 +328,18 @@ Discarded input sections
                 0x0000000000000000       0x30 Ap_GLcdMenu.o
  .text.Ap_GLcdMenu_ExeCmd
                 0x0000000000000000      0x204 Ap_GLcdMenu.o
- .data.dir.4500
+ .bss.x.4503    0x0000000000000000        0x1 Ap_GLcdMenu.o
+ .data.dir.4504
                 0x0000000000000000        0x1 Ap_GLcdMenu.o
- .bss.cnt.4493  0x0000000000000000        0x1 Ap_GLcdMenu.o
- .bss.Count.4518
+ .bss.Count.4522
                 0x0000000000000000        0x1 Ap_GLcdMenu.o
- .bss.cnt.4501  0x0000000000000000        0x1 Ap_GLcdMenu.o
+ .bss.cnt.4497  0x0000000000000000        0x1 Ap_GLcdMenu.o
  .rodata.str1.4
                 0x0000000000000000      0x318 Ap_GLcdMenu.o
- .bss.x.4491    0x0000000000000000        0x1 Ap_GLcdMenu.o
- .data.dir.4492
+ .bss.cnt.4505  0x0000000000000000        0x1 Ap_GLcdMenu.o
+ .bss.x.4495    0x0000000000000000        0x1 Ap_GLcdMenu.o
+ .data.dir.4496
                 0x0000000000000000        0x1 Ap_GLcdMenu.o
- .bss.x.4499    0x0000000000000000        0x1 Ap_GLcdMenu.o
  .debug_info    0x0000000000000000      0x560 Ap_GLcdMenu.o
  .debug_abbrev  0x0000000000000000      0x14f Ap_GLcdMenu.o
  .debug_loc     0x0000000000000000      0x114 Ap_GLcdMenu.o
@@ -517,7 +517,7 @@ Discarded input sections
                 0x0000000000000000       0x60 Hw_SPI.o
  .text.Hw_SPI_Write16Bit
                 0x0000000000000000       0x60 Hw_SPI.o
- .bss.Called.4390
+ .bss.Called.4394
                 0x0000000000000000        0x1 Hw_SPI.o
  .debug_info    0x0000000000000000      0x277 Hw_SPI.o
  .debug_abbrev  0x0000000000000000      0x1c2 Hw_SPI.o
@@ -540,7 +540,7 @@ Discarded input sections
                 0x0000000000000000       0x78 Hw_DMA.o
  .text.Hw_DMA_SPI2_IsTransFinished
                 0x0000000000000000       0x28 Hw_DMA.o
- .bss.Called.4386
+ .bss.Called.4390
                 0x0000000000000000        0x1 Hw_DMA.o
  .debug_info    0x0000000000000000      0x11d Hw_DMA.o
  .debug_abbrev  0x0000000000000000       0xc3 Hw_DMA.o
@@ -1997,17 +1997,17 @@ LOAD /opt/local/lib/gcc/arm-none-eabi/4.7.2/thumb/libgcc.a
                 0x0000000020000a0c       0xa0 Hw_Timer.o
  .bss.Hw_Timer_Counter
                 0x0000000020000aac        0x4 Hw_Timer.o
- .bss.Excute.4398
-                0x0000000020000ab0        0x1 Hw_Timer.o
- *fill*         0x0000000020000ab1        0x1 
- .bss.Tmr_Ctn   0x0000000020000ab2        0x2 Hw_Timer.o
+ .bss.Tmr_Ctn   0x0000000020000ab0        0x2 Hw_Timer.o
+ .bss.Excute.4402
+                0x0000000020000ab2        0x1 Hw_Timer.o
+ *fill*         0x0000000020000ab3        0x1 
  .bss.Hw_KeyPad_EventFlag
                 0x0000000020000ab4        0x4 Hw_KeyPad.o
                 0x0000000020000ab4                Hw_KeyPad_EventFlag
  .bss.Hw_KeyPad_PressedCount
                 0x0000000020000ab8        0x4 Hw_KeyPad.o
                 0x0000000020000ab8                Hw_KeyPad_PressedCount
- .bss.Column_Cnt.4388
+ .bss.Column_Cnt.4392
                 0x0000000020000abc        0x1 Hw_7Seg.o
  *fill*         0x0000000020000abd        0x1 
  .bss.TimerCntSaved.4432
@@ -2018,7 +2018,7 @@ LOAD /opt/local/lib/gcc/arm-none-eabi/4.7.2/thumb/libgcc.a
  .bss.State.4413
                 0x0000000020000ac4        0x4 Hw_DHT11.o
  .bss.Cnt.4414  0x0000000020000ac8        0x4 Hw_DHT11.o
- .bss.FrameCount.4846
+ .bss.FrameCount.4850
                 0x0000000020000acc        0x4 usb_endp.o
  .bss.wCNTR     0x0000000020000ad0        0x4 usb_istr.o
                 0x0000000020000ad0                wCNTR
