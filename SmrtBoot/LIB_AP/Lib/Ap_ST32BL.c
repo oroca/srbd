@@ -565,6 +565,7 @@ void Ap_ST32BL_JumpToApp( u32 Address )
 {
 	pFunction JumpToApp;
 	u32 	  JumpAddress;
+	u32 	  RegData;
 
 	//JumpToAddress = (pFunction)(HW_ST32BL_FLASH_START_ADDRESS + 4);
 
@@ -575,10 +576,27 @@ void Ap_ST32BL_JumpToApp( u32 Address )
 	JumpToApp = (pFunction) JumpAddress;
 
 
-	Hw_Uart_DeInit();
-	Hw_Timer_DeInit();
+	REG_RCC_AHBENR  = 0x00000014;
+	REG_RCC_APB1ENR = 0x00000000;
+	REG_RCC_APB2ENR = 0x00000000;	
 
-	//Disable_ISR();
+
+	RegData = 0xFFFFFFFF;
+
+	CLR_BIT(RegData, 17);			// UART2
+	CLR_BIT(RegData, 18);			// UART3
+	CLR_BIT(RegData, 19);			// UART4
+	CLR_BIT(RegData, 20);			// UART5
+
+	REG_RCC_APB1RSTR = RegData;
+
+
+	RegData = 0xFFFFFFFF;
+
+	CLR_BIT(RegData, 14);			// UART1
+	
+	REG_RCC_APB2RSTR = RegData;
+
 
 	JumpToApp();
 }	

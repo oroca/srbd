@@ -33,6 +33,7 @@
 #define REG_RCC_CFGR					(*(volatile unsigned long *)(REG_RCC_BASE + 0x0004))
 #define REG_RCC_CIR						(*(volatile unsigned long *)(REG_RCC_BASE + 0x0008))
 #define REG_RCC_APB2RSTR				(*(volatile unsigned long *)(REG_RCC_BASE + 0x000C))
+#define REG_RCC_APB1RSTR				(*(volatile unsigned long *)(REG_RCC_BASE + 0x0010))
 #define REG_RCC_AHBENR					(*(volatile unsigned long *)(REG_RCC_BASE + 0x0014))
 #define REG_RCC_APB2ENR					(*(volatile unsigned long *)(REG_RCC_BASE + 0x0018))
 #define REG_RCC_APB1ENR					(*(volatile unsigned long *)(REG_RCC_BASE + 0x001C))
