@@ -125,8 +125,8 @@
   34 0000 4FF40053 		mov	r3, #8192
   35 0004 C4F20203 		movt	r3, 16386
   36 0008 1A68     		ldr	r2, [r3, #0]
-  37 000a 02F03801 		and	r1, r2, #56
-  38 000e 1960     		str	r1, [r3, #0]
+  37 000a 02F03802 		and	r2, r2, #56
+  38 000e 1A60     		str	r2, [r3, #0]
   93:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   FLASH->ACR |= FLASH_Latency;
   39              		.loc 1 93 0
   40 0010 1A68     		ldr	r2, [r3, #0]
@@ -172,8 +172,8 @@
   63 0000 4FF40053 		mov	r3, #8192
   64 0004 C4F20203 		movt	r3, 16386
   65 0008 1A68     		ldr	r2, [r3, #0]
-  66 000a 22F00801 		bic	r1, r2, #8
-  67 000e 1960     		str	r1, [r3, #0]
+  66 000a 22F00802 		bic	r2, r2, #8
+  67 000e 1A60     		str	r2, [r3, #0]
  113:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   FLASH->ACR |= FLASH_HalfCycleAccess;
   68              		.loc 1 113 0
   69 0010 1A68     		ldr	r2, [r3, #0]
@@ -219,8 +219,8 @@
   92 0000 4FF40053 		mov	r3, #8192
   93 0004 C4F20203 		movt	r3, 16386
   94 0008 1A68     		ldr	r2, [r3, #0]
-  95 000a 22F01001 		bic	r1, r2, #16
-  96 000e 1960     		str	r1, [r3, #0]
+  95 000a 22F01002 		bic	r2, r2, #16
+  96 000e 1A60     		str	r2, [r3, #0]
  133:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   FLASH->ACR |= FLASH_PrefetchBuffer;
   97              		.loc 1 133 0
   98 0010 1A68     		ldr	r2, [r3, #0]
@@ -305,8 +305,8 @@
  151 0000 4FF40053 		mov	r3, #8192
  152 0004 C4F20203 		movt	r3, 16386
  153 0008 1A69     		ldr	r2, [r3, #16]
- 154 000a 42F08000 		orr	r0, r2, #128
- 155 000e 1861     		str	r0, [r3, #16]
+ 154 000a 42F08002 		orr	r2, r2, #128
+ 155 000e 1A61     		str	r2, [r3, #16]
  156 0010 7047     		bx	lr
  157              		.cfi_endproc
  158              	.LFE4:
@@ -1086,8 +1086,8 @@
  788:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   {
  789:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****    if((FLASH->SR & FLASH_FLAG) != (u32)RESET)
  314              		.loc 1 789 0
- 315 000c D968     		ldr	r1, [r3, #12]
- 316 000e 0842     		tst	r0, r1
+ 315 000c DB68     		ldr	r3, [r3, #12]
+ 316 000e 1842     		tst	r0, r3
  784:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       bitstatus = RESET;
  317              		.loc 1 784 0
  318 0010 0CBF     		ite	eq
@@ -1200,8 +1200,8 @@
  840:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   {  
  841:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     if(FLASH->SR & FLASH_FLAG_PGERR)
  377              		.loc 1 841 0
- 378 000e D868     		ldr	r0, [r3, #12]
- 379 0010 4207     		lsls	r2, r0, #29
+ 378 000e DA68     		ldr	r2, [r3, #12]
+ 379 0010 5207     		lsls	r2, r2, #29
  380 0012 01D5     		bpl	.L26
  842:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     { 
  843:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       flashstatus = FLASH_ERROR_PG;
@@ -1232,8 +1232,8 @@
  389              	.LBB7:
  847:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       if(FLASH->SR & FLASH_FLAG_WRPRTERR)
  390              		.loc 1 847 0
- 391 0018 D968     		ldr	r1, [r3, #12]
- 392 001a 11F0100F 		tst	r1, #16
+ 391 0018 DB68     		ldr	r3, [r3, #12]
+ 392 001a 13F0100F 		tst	r3, #16
  849:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****         flashstatus = FLASH_ERROR_WRP;
  393              		.loc 1 849 0
  394 001e 0CBF     		ite	eq
@@ -1286,7 +1286,7 @@
  874:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   /* Check for the Flash Status */
  875:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   status = FLASH_GetStatus();
  428              		.loc 1 875 0
- 429 0002 0F4D     		ldr	r5, .L43
+ 429 0002 154D     		ldr	r5, .L41
  871:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** { 
  430              		.loc 1 871 0
  431 0004 83B0     		sub	sp, sp, #12
@@ -1302,11 +1302,15 @@
  877:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   /* Wait for a Flash operation to complete or a TIMEOUT to occur */
  878:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   while((status == FLASH_BUSY) && (Timeout != 0x00))
  439              		.loc 1 878 0
- 440 000a 0128     		cmp	r0, #1
- 441 000c 15D1     		bne	.L28
- 442 000e 8CB1     		cbz	r4, .L35
- 443              	.LBB8:
- 444              	.LBB9:
+ 440 000a B0F1010E 		subs	lr, r0, #1
+ 441 000e DEF10003 		rsbs	r3, lr, #0
+ 442 0012 53EB0E03 		adcs	r3, r3, lr
+ 443 0016 002C     		cmp	r4, #0
+ 444 0018 08BF     		it	eq
+ 445 001a 0023     		moveq	r3, #0
+ 446 001c BBB1     		cbz	r3, .L28
+ 447              	.LBB8:
+ 448              	.LBB9:
  879:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   {
  880:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     delay();
  881:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     status = FLASH_GetStatus();
@@ -1332,139 +1336,131 @@
  901:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** static void delay(void)
  902:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** {
  903:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   vu32 i = 0;
- 445              		.loc 1 903 0
- 446 0010 0027     		movs	r7, #0
+ 449              		.loc 1 903 0
+ 450 001e 0027     		movs	r7, #0
  904:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** 
  905:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   for(i = 0xFF; i != 0; i--)
- 447              		.loc 1 905 0
- 448 0012 FF26     		movs	r6, #255
- 449              	.LVL26:
- 450              	.L38:
+ 451              		.loc 1 905 0
+ 452 0020 FF26     		movs	r6, #255
+ 453              	.LVL26:
+ 454              	.L36:
  903:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   vu32 i = 0;
- 451              		.loc 1 903 0
- 452 0014 0197     		str	r7, [sp, #4]
- 453              		.loc 1 905 0
- 454 0016 0196     		str	r6, [sp, #4]
- 455 0018 019B     		ldr	r3, [sp, #4]
- 456 001a 2BB1     		cbz	r3, .L33
- 457              	.L39:
- 458 001c 0198     		ldr	r0, [sp, #4]
- 459 001e 411E     		subs	r1, r0, #1
- 460              	.LVL27:
- 461 0020 0191     		str	r1, [sp, #4]
- 462              	.LVL28:
- 463 0022 019A     		ldr	r2, [sp, #4]
- 464 0024 002A     		cmp	r2, #0
- 465 0026 F9D1     		bne	.L39
- 466              	.L33:
- 467              	.LBE9:
- 468              	.LBE8:
+ 455              		.loc 1 903 0
+ 456 0022 0197     		str	r7, [sp, #4]
+ 457              		.loc 1 905 0
+ 458 0024 0196     		str	r6, [sp, #4]
+ 459 0026 019B     		ldr	r3, [sp, #4]
+ 460 0028 2BB1     		cbz	r3, .L31
+ 461              	.L37:
+ 462 002a 019B     		ldr	r3, [sp, #4]
+ 463 002c 013B     		subs	r3, r3, #1
+ 464              	.LVL27:
+ 465 002e 0193     		str	r3, [sp, #4]
+ 466              	.LVL28:
+ 467 0030 019B     		ldr	r3, [sp, #4]
+ 468              	.LVL29:
+ 469 0032 002B     		cmp	r3, #0
+ 470 0034 F9D1     		bne	.L37
+ 471              	.L31:
+ 472              	.LBE9:
+ 473              	.LBE8:
  881:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     status = FLASH_GetStatus();
- 469              		.loc 1 881 0
- 470 0028 A847     		blx	r5
- 471              	.LVL29:
- 882:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     Timeout--;
- 472              		.loc 1 882 0
- 473 002a 013C     		subs	r4, r4, #1
- 474              	.LVL30:
+ 474              		.loc 1 881 0
+ 475 0036 A847     		blx	r5
+ 476              	.LVL30:
  878:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   while((status == FLASH_BUSY) && (Timeout != 0x00))
- 475              		.loc 1 878 0
- 476 002c 0128     		cmp	r0, #1
- 477 002e 04D1     		bne	.L28
- 878:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   while((status == FLASH_BUSY) && (Timeout != 0x00))
- 478              		.loc 1 878 0 is_stmt 0 discriminator 2
- 479 0030 002C     		cmp	r4, #0
- 480 0032 EFD1     		bne	.L38
- 481              	.LVL31:
- 482              	.L35:
- 887:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     status = FLASH_TIMEOUT;
- 483              		.loc 1 887 0 is_stmt 1
- 484 0034 0520     		movs	r0, #5
- 485              	.LVL32:
- 486              	.L30:
+ 477              		.loc 1 878 0
+ 478 0038 013C     		subs	r4, r4, #1
+ 479              	.LVL31:
+ 480 003a 0CBF     		ite	eq
+ 481 003c 0023     		moveq	r3, #0
+ 482 003e 0123     		movne	r3, #1
+ 483 0040 0128     		cmp	r0, #1
+ 484 0042 14BF     		ite	ne
+ 485 0044 0023     		movne	r3, #0
+ 486 0046 03F00103 		andeq	r3, r3, #1
+ 487 004a 002B     		cmp	r3, #0
+ 488 004c E9D1     		bne	.L36
+ 489              	.LVL32:
+ 490              	.L28:
  892:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** }
- 487              		.loc 1 892 0
- 488 0036 03B0     		add	sp, sp, #12
- 489 0038 F0BD     		pop	{r4, r5, r6, r7, pc}
- 490              	.LVL33:
- 491              	.L28:
- 885:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   if(Timeout == 0x00 )
- 492              		.loc 1 885 0
- 493 003a 002C     		cmp	r4, #0
- 494 003c FBD1     		bne	.L30
- 495 003e F9E7     		b	.L35
- 496              	.L44:
- 497              		.align	2
- 498              	.L43:
- 499 0040 00000000 		.word	FLASH_GetStatus
- 500              		.cfi_endproc
- 501              	.LFE22:
- 503              		.section	.text.FLASH_UserOptionByteConfig,"ax",%progbits
- 504              		.align	2
- 505              		.global	FLASH_UserOptionByteConfig
- 506              		.thumb
- 507              		.thumb_func
- 509              	FLASH_UserOptionByteConfig:
- 510              	.LFB13:
+ 491              		.loc 1 892 0
+ 492 004e 002C     		cmp	r4, #0
+ 493 0050 08BF     		it	eq
+ 494 0052 0520     		moveq	r0, #5
+ 495              	.LVL33:
+ 496 0054 03B0     		add	sp, sp, #12
+ 497 0056 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 498              	.L42:
+ 499              		.align	2
+ 500              	.L41:
+ 501 0058 00000000 		.word	FLASH_GetStatus
+ 502              		.cfi_endproc
+ 503              	.LFE22:
+ 505              		.section	.text.FLASH_UserOptionByteConfig,"ax",%progbits
+ 506              		.align	2
+ 507              		.global	FLASH_UserOptionByteConfig
+ 508              		.thumb
+ 509              		.thumb_func
+ 511              	FLASH_UserOptionByteConfig:
+ 512              	.LFB13:
  619:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** {
- 511              		.loc 1 619 0
- 512              		.cfi_startproc
- 513              		@ args = 0, pretend = 0, frame = 0
- 514              		@ frame_needed = 0, uses_anonymous_args = 0
- 515              	.LVL34:
- 516 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
- 517              	.LCFI2:
- 518              		.cfi_def_cfa_offset 24
- 519              		.cfi_offset 4, -24
- 520              		.cfi_offset 5, -20
- 521              		.cfi_offset 6, -16
- 522              		.cfi_offset 7, -12
- 523              		.cfi_offset 8, -8
- 524              		.cfi_offset 14, -4
+ 513              		.loc 1 619 0
+ 514              		.cfi_startproc
+ 515              		@ args = 0, pretend = 0, frame = 0
+ 516              		@ frame_needed = 0, uses_anonymous_args = 0
+ 517              	.LVL34:
+ 518 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 519              	.LCFI2:
+ 520              		.cfi_def_cfa_offset 24
+ 521              		.cfi_offset 4, -24
+ 522              		.cfi_offset 5, -20
+ 523              		.cfi_offset 6, -16
+ 524              		.cfi_offset 7, -12
+ 525              		.cfi_offset 8, -8
+ 526              		.cfi_offset 14, -4
  629:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   FLASH->OPTKEYR = FLASH_KEY2;
- 525              		.loc 1 629 0
- 526 0004 48F6AB13 		movw	r3, #35243
+ 527              		.loc 1 629 0
+ 528 0004 48F6AB13 		movw	r3, #35243
  628:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   FLASH->OPTKEYR = FLASH_KEY1;
- 527              		.loc 1 628 0
- 528 0008 4FF40054 		mov	r4, #8192
- 529 000c 40F22315 		movw	r5, #291
- 530 0010 C4F20204 		movt	r4, 16386
- 531 0014 C4F26755 		movt	r5, 17767
+ 529              		.loc 1 628 0
+ 530 0008 4FF40054 		mov	r4, #8192
+ 531 000c 40F22315 		movw	r5, #291
+ 532 0010 C4F20204 		movt	r4, 16386
+ 533 0014 C4F26755 		movt	r5, 17767
  629:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   FLASH->OPTKEYR = FLASH_KEY2;
- 532              		.loc 1 629 0
- 533 0018 CCF6EF53 		movt	r3, 52719
+ 534              		.loc 1 629 0
+ 535 0018 CCF6EF53 		movt	r3, 52719
  628:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   FLASH->OPTKEYR = FLASH_KEY1;
- 534              		.loc 1 628 0
- 535 001c A560     		str	r5, [r4, #8]
+ 536              		.loc 1 628 0
+ 537 001c A560     		str	r5, [r4, #8]
  619:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** {
- 536              		.loc 1 619 0
- 537 001e 8046     		mov	r8, r0
+ 538              		.loc 1 619 0
+ 539 001e 8046     		mov	r8, r0
  629:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   FLASH->OPTKEYR = FLASH_KEY2;
- 538              		.loc 1 629 0
- 539 0020 A360     		str	r3, [r4, #8]
+ 540              		.loc 1 629 0
+ 541 0020 A360     		str	r3, [r4, #8]
  632:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   status = FLASH_WaitForLastOperation(ProgramTimeout);
- 540              		.loc 1 632 0
- 541 0022 0F20     		movs	r0, #15
- 542              	.LVL35:
- 543 0024 104D     		ldr	r5, .L51
+ 542              		.loc 1 632 0
+ 543 0022 0F20     		movs	r0, #15
+ 544              	.LVL35:
+ 545 0024 104D     		ldr	r5, .L49
  619:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** {
- 544              		.loc 1 619 0
- 545 0026 0F46     		mov	r7, r1
- 546 0028 1646     		mov	r6, r2
+ 546              		.loc 1 619 0
+ 547 0026 0F46     		mov	r7, r1
+ 548 0028 1646     		mov	r6, r2
  632:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   status = FLASH_WaitForLastOperation(ProgramTimeout);
- 547              		.loc 1 632 0
- 548 002a A847     		blx	r5
- 549              	.LVL36:
+ 549              		.loc 1 632 0
+ 550 002a A847     		blx	r5
+ 551              	.LVL36:
  634:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
- 550              		.loc 1 634 0
- 551 002c 0428     		cmp	r0, #4
- 552 002e 01D0     		beq	.L50
- 553              	.LVL37:
- 554              	.L46:
+ 552              		.loc 1 634 0
+ 553 002c 0428     		cmp	r0, #4
+ 554 002e 01D0     		beq	.L48
  652:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** }
  555              		.loc 1 652 0
  556 0030 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
- 557              	.L50:
+ 557              	.L48:
  637:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->CR |= CR_OPTPG_Set; 
  558              		.loc 1 637 0
  559 0034 2269     		ldr	r2, [r4, #16]
@@ -1472,44 +1468,44 @@
  560              		.loc 1 639 0
  561 0036 48F0F808 		orr	r8, r8, #248
  562 003a 47EA0807 		orr	r7, r7, r8
- 563 003e 4FF47841 		mov	r1, #63488
+ 563 003e 4FF47843 		mov	r3, #63488
+ 564 0042 C1F6FF73 		movt	r3, 8191
  637:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->CR |= CR_OPTPG_Set; 
- 564              		.loc 1 637 0
- 565 0042 42F01000 		orr	r0, r2, #16
- 566              	.LVL38:
+ 565              		.loc 1 637 0
+ 566 0046 42F01002 		orr	r2, r2, #16
  639:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     OB->USER = ( OB_IWDG | OB_STOP |OB_STDBY) | (u16)0xF8; 
  567              		.loc 1 639 0
- 568 0046 C1F6FF71 		movt	r1, 8191
- 569 004a 3E43     		orrs	r6, r6, r7
+ 568 004a 3E43     		orrs	r6, r6, r7
  637:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->CR |= CR_OPTPG_Set; 
- 570              		.loc 1 637 0
- 571 004c 2061     		str	r0, [r4, #16]
+ 569              		.loc 1 637 0
+ 570 004c 2261     		str	r2, [r4, #16]
  642:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(ProgramTimeout);
- 572              		.loc 1 642 0
- 573 004e 0F20     		movs	r0, #15
+ 571              		.loc 1 642 0
+ 572 004e 0F20     		movs	r0, #15
+ 573              	.LVL37:
  639:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     OB->USER = ( OB_IWDG | OB_STOP |OB_STDBY) | (u16)0xF8; 
  574              		.loc 1 639 0
- 575 0050 4E80     		strh	r6, [r1, #2]	@ movhi
+ 575 0050 5E80     		strh	r6, [r3, #2]	@ movhi
  642:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(ProgramTimeout);
  576              		.loc 1 642 0
  577 0052 A847     		blx	r5
- 578              	.LVL39:
+ 578              	.LVL38:
  644:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     if(status != FLASH_BUSY)
  579              		.loc 1 644 0
  580 0054 0128     		cmp	r0, #1
- 581 0056 EBD0     		beq	.L46
  647:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       FLASH->CR &= CR_OPTPG_Reset;
- 582              		.loc 1 647 0
- 583 0058 2269     		ldr	r2, [r4, #16]
- 584 005a 41F6EF73 		movw	r3, #8175
- 585 005e 1340     		ands	r3, r3, r2
- 586 0060 2361     		str	r3, [r4, #16]
+ 581              		.loc 1 647 0
+ 582 0056 1FBF     		itttt	ne
+ 583 0058 2269     		ldrne	r2, [r4, #16]
+ 584 005a 41F6EF73 		movwne	r3, #8175
+ 585 005e 1340     		andne	r3, r2, r3
+ 586 0060 2361     		strne	r3, [r4, #16]
  652:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** }
  587              		.loc 1 652 0
  588 0062 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
- 589              	.L52:
+ 589              	.L50:
  590 0066 00BF     		.align	2
- 591              	.L51:
+ 591              	.L49:
  592 0068 00000000 		.word	FLASH_WaitForLastOperation
  593              		.cfi_endproc
  594              	.LFE13:
@@ -1525,7 +1521,7 @@
  605              		.cfi_startproc
  606              		@ args = 0, pretend = 0, frame = 0
  607              		@ frame_needed = 0, uses_anonymous_args = 0
- 608              	.LVL40:
+ 608              	.LVL39:
  609 0000 70B5     		push	{r4, r5, r6, lr}
  610              	.LCFI3:
  611              		.cfi_def_cfa_offset 16
@@ -1538,19 +1534,19 @@
  617 0002 0646     		mov	r6, r0
  544:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   status = FLASH_WaitForLastOperation(EraseTimeout);
  618              		.loc 1 544 0
- 619 0004 264C     		ldr	r4, .L66
+ 619 0004 264C     		ldr	r4, .L64
  620 0006 40F6FF70 		movw	r0, #4095
- 621              	.LVL41:
+ 621              	.LVL40:
  622 000a A047     		blx	r4
- 623              	.LVL42:
+ 623              	.LVL41:
  546:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
  624              		.loc 1 546 0
  625 000c 0428     		cmp	r0, #4
- 626 000e 00D0     		beq	.L63
+ 626 000e 00D0     		beq	.L61
  595:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** }
  627              		.loc 1 595 0
  628 0010 70BD     		pop	{r4, r5, r6, pc}
- 629              	.L63:
+ 629              	.L61:
  549:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY1;
  630              		.loc 1 549 0
  631 0012 4FF40055 		mov	r5, #8192
@@ -1573,32 +1569,32 @@
  643 002c AB60     		str	r3, [r5, #8]
  552:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->CR |= CR_OPTER_Set;
  644              		.loc 1 552 0
- 645 002e 2969     		ldr	r1, [r5, #16]
+ 645 002e 2B69     		ldr	r3, [r5, #16]
  556:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(EraseTimeout);
  646              		.loc 1 556 0
  647 0030 40F6FF70 		movw	r0, #4095
- 648              	.LVL43:
+ 648              	.LVL42:
  552:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->CR |= CR_OPTER_Set;
  649              		.loc 1 552 0
- 650 0034 41F02002 		orr	r2, r1, #32
- 651 0038 2A61     		str	r2, [r5, #16]
+ 650 0034 43F02003 		orr	r3, r3, #32
+ 651 0038 2B61     		str	r3, [r5, #16]
  553:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->CR |= CR_STRT_Set;
  652              		.loc 1 553 0
  653 003a 2B69     		ldr	r3, [r5, #16]
- 654 003c 43F04001 		orr	r1, r3, #64
- 655 0040 2961     		str	r1, [r5, #16]
+ 654 003c 43F04003 		orr	r3, r3, #64
+ 655 0040 2B61     		str	r3, [r5, #16]
  556:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(EraseTimeout);
  656              		.loc 1 556 0
  657 0042 A047     		blx	r4
- 658              	.LVL44:
+ 658              	.LVL43:
  558:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     if(status == FLASH_COMPLETE)
  659              		.loc 1 558 0
  660 0044 0428     		cmp	r0, #4
- 661 0046 07D0     		beq	.L64
+ 661 0046 07D0     		beq	.L62
  586:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       if(status != FLASH_BUSY)
  662              		.loc 1 586 0
  663 0048 0128     		cmp	r0, #1
- 664 004a 27D0     		beq	.L59
+ 664 004a 27D0     		beq	.L57
  589:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****         FLASH->CR &= CR_OPTER_Reset;
  665              		.loc 1 589 0
  666 004c 2A69     		ldr	r2, [r5, #16]
@@ -1608,952 +1604,929 @@
  595:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** }
  670              		.loc 1 595 0
  671 0056 70BD     		pop	{r4, r5, r6, pc}
- 672              	.L64:
+ 672              	.L62:
  561:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       FLASH->CR &= CR_OPTER_Reset;
  673              		.loc 1 561 0
- 674 0058 2869     		ldr	r0, [r5, #16]
- 675              	.LVL45:
- 676 005a 41F6DF71 		movw	r1, #8159
- 677 005e 0140     		ands	r1, r1, r0
- 678 0060 2961     		str	r1, [r5, #16]
+ 674 0058 2A69     		ldr	r2, [r5, #16]
+ 675 005a 41F6DF73 		movw	r3, #8159
+ 676 005e 1340     		ands	r3, r3, r2
+ 677 0060 2B61     		str	r3, [r5, #16]
  564:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       FLASH->CR |= CR_OPTPG_Set; 
- 679              		.loc 1 564 0
- 680 0062 2A69     		ldr	r2, [r5, #16]
+ 678              		.loc 1 564 0
+ 679 0062 2B69     		ldr	r3, [r5, #16]
+ 680 0064 43F01003 		orr	r3, r3, #16
+ 681 0068 2B61     		str	r3, [r5, #16]
  568:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****         OB->RDP = 0x00;
- 681              		.loc 1 568 0
- 682 0064 4FF47840 		mov	r0, #63488
- 564:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       FLASH->CR |= CR_OPTPG_Set; 
- 683              		.loc 1 564 0
- 684 0068 42F01003 		orr	r3, r2, #16
- 685 006c 2B61     		str	r3, [r5, #16]
- 568:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****         OB->RDP = 0x00;
- 686              		.loc 1 568 0
- 687 006e C1F6FF70 		movt	r0, 8191
+ 682              		.loc 1 568 0
+ 683 006a 4FF47843 		mov	r3, #63488
+ 684 006e C1F6FF73 		movt	r3, 8191
  566:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       if(NewState != DISABLE)
- 688              		.loc 1 566 0
- 689 0072 86B9     		cbnz	r6, .L65
+ 685              		.loc 1 566 0
+ 686 0072 86B9     		cbnz	r6, .L63
  572:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****         OB->RDP = RDP_Key;  
- 690              		.loc 1 572 0
- 691 0074 A521     		movs	r1, #165
- 692 0076 0180     		strh	r1, [r0, #0]	@ movhi
- 693              	.L57:
+ 687              		.loc 1 572 0
+ 688 0074 A522     		movs	r2, #165
+ 689 0076 1A80     		strh	r2, [r3, #0]	@ movhi
+ 690              	.L55:
  576:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       status = FLASH_WaitForLastOperation(EraseTimeout); 
- 694              		.loc 1 576 0
- 695 0078 40F6FF70 		movw	r0, #4095
- 696 007c A047     		blx	r4
- 697              	.LVL46:
+ 691              		.loc 1 576 0
+ 692 0078 40F6FF70 		movw	r0, #4095
+ 693              	.LVL44:
+ 694 007c A047     		blx	r4
+ 695              	.LVL45:
  578:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       if(status != FLASH_BUSY)
- 698              		.loc 1 578 0
- 699 007e 0128     		cmp	r0, #1
- 700 0080 0CD0     		beq	.L59
+ 696              		.loc 1 578 0
+ 697 007e 0128     		cmp	r0, #1
+ 698 0080 0CD0     		beq	.L57
  581:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****         FLASH->CR &= CR_OPTPG_Reset;
- 701              		.loc 1 581 0
- 702 0082 4FF40053 		mov	r3, #8192
- 703 0086 C4F20203 		movt	r3, 16386
- 704 008a 1969     		ldr	r1, [r3, #16]
- 705 008c 41F6EF72 		movw	r2, #8175
- 706 0090 0A40     		ands	r2, r2, r1
- 707 0092 1A61     		str	r2, [r3, #16]
- 708 0094 70BD     		pop	{r4, r5, r6, pc}
- 709              	.LVL47:
- 710              	.L65:
+ 699              		.loc 1 581 0
+ 700 0082 4FF40053 		mov	r3, #8192
+ 701 0086 C4F20203 		movt	r3, 16386
+ 702 008a 1969     		ldr	r1, [r3, #16]
+ 703 008c 41F6EF72 		movw	r2, #8175
+ 704 0090 0A40     		ands	r2, r2, r1
+ 705 0092 1A61     		str	r2, [r3, #16]
+ 706 0094 70BD     		pop	{r4, r5, r6, pc}
+ 707              	.L63:
  568:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****         OB->RDP = 0x00;
- 711              		.loc 1 568 0
- 712 0096 0022     		movs	r2, #0
- 713 0098 0280     		strh	r2, [r0, #0]	@ movhi
- 714 009a EDE7     		b	.L57
- 715              	.L59:
+ 708              		.loc 1 568 0
+ 709 0096 0022     		movs	r2, #0
+ 710 0098 1A80     		strh	r2, [r3, #0]	@ movhi
+ 711 009a EDE7     		b	.L55
+ 712              	.LVL46:
+ 713              	.L57:
  538:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** {
- 716              		.loc 1 538 0
- 717 009c 0120     		movs	r0, #1
- 718 009e 70BD     		pop	{r4, r5, r6, pc}
- 719              	.L67:
- 720              		.align	2
- 721              	.L66:
- 722 00a0 00000000 		.word	FLASH_WaitForLastOperation
- 723              		.cfi_endproc
- 724              	.LFE12:
- 726              		.section	.text.FLASH_EnableWriteProtection,"ax",%progbits
- 727              		.align	2
- 728              		.global	FLASH_EnableWriteProtection
- 729              		.thumb
- 730              		.thumb_func
- 732              	FLASH_EnableWriteProtection:
- 733              	.LFB11:
+ 714              		.loc 1 538 0
+ 715 009c 0120     		movs	r0, #1
+ 716 009e 70BD     		pop	{r4, r5, r6, pc}
+ 717              	.L65:
+ 718              		.align	2
+ 719              	.L64:
+ 720 00a0 00000000 		.word	FLASH_WaitForLastOperation
+ 721              		.cfi_endproc
+ 722              	.LFE12:
+ 724              		.section	.text.FLASH_EnableWriteProtection,"ax",%progbits
+ 725              		.align	2
+ 726              		.global	FLASH_EnableWriteProtection
+ 727              		.thumb
+ 728              		.thumb_func
+ 730              	FLASH_EnableWriteProtection:
+ 731              	.LFB11:
  459:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** {
- 734              		.loc 1 459 0
- 735              		.cfi_startproc
- 736              		@ args = 0, pretend = 0, frame = 0
- 737              		@ frame_needed = 0, uses_anonymous_args = 0
- 738              	.LVL48:
- 739 0000 70B5     		push	{r4, r5, r6, lr}
- 740              	.LCFI4:
- 741              		.cfi_def_cfa_offset 16
- 742              		.cfi_offset 4, -16
- 743              		.cfi_offset 5, -12
- 744              		.cfi_offset 6, -8
- 745              		.cfi_offset 14, -4
+ 732              		.loc 1 459 0
+ 733              		.cfi_startproc
+ 734              		@ args = 0, pretend = 0, frame = 0
+ 735              		@ frame_needed = 0, uses_anonymous_args = 0
+ 736              	.LVL47:
+ 737 0000 38B5     		push	{r3, r4, r5, lr}
+ 738              	.LCFI4:
+ 739              		.cfi_def_cfa_offset 16
+ 740              		.cfi_offset 3, -16
+ 741              		.cfi_offset 4, -12
+ 742              		.cfi_offset 5, -8
+ 743              		.cfi_offset 14, -4
  459:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** {
- 746              		.loc 1 459 0
- 747 0002 0646     		mov	r6, r0
- 748              	.LVL49:
+ 744              		.loc 1 459 0
+ 745 0002 0546     		mov	r5, r0
+ 746              	.LVL48:
  474:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   status = FLASH_WaitForLastOperation(ProgramTimeout);
- 749              		.loc 1 474 0
- 750 0004 2C4D     		ldr	r5, .L95
- 751 0006 0F20     		movs	r0, #15
+ 747              		.loc 1 474 0
+ 748 0004 354C     		ldr	r4, .L89
+ 749 0006 0F20     		movs	r0, #15
+ 750              	.LVL49:
+ 751 0008 A047     		blx	r4
  752              	.LVL50:
- 753 0008 A847     		blx	r5
- 754              	.LVL51:
  476:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
- 755              		.loc 1 476 0
- 756 000a 0428     		cmp	r0, #4
- 474:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   status = FLASH_WaitForLastOperation(ProgramTimeout);
- 757              		.loc 1 474 0
- 758 000c 0446     		mov	r4, r0
- 759              	.LVL52:
- 476:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
- 760              		.loc 1 476 0
- 761 000e 01D0     		beq	.L94
- 762              	.LVL53:
- 763              	.L84:
+ 753              		.loc 1 476 0
+ 754 000a 0428     		cmp	r0, #4
+ 755 000c 00D0     		beq	.L85
+ 756              	.LVL51:
+ 757              	.L67:
  522:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** }
- 764              		.loc 1 522 0
- 765 0010 2046     		mov	r0, r4
- 766 0012 70BD     		pop	{r4, r5, r6, pc}
- 767              	.LVL54:
- 768              	.L94:
+ 758              		.loc 1 522 0
+ 759 000e 38BD     		pop	{r3, r4, r5, pc}
+ 760              	.LVL52:
+ 761              	.L85:
  479:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY1;
- 769              		.loc 1 479 0
- 770 0014 4FF40053 		mov	r3, #8192
- 771 0018 40F22311 		movw	r1, #291
+ 762              		.loc 1 479 0
+ 763 0010 4FF40053 		mov	r3, #8192
+ 764 0014 40F22311 		movw	r1, #291
  480:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY2;
- 772              		.loc 1 480 0
- 773 001c 48F6AB12 		movw	r2, #35243
+ 765              		.loc 1 480 0
+ 766 0018 48F6AB12 		movw	r2, #35243
  479:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY1;
- 774              		.loc 1 479 0
- 775 0020 C4F20203 		movt	r3, 16386
- 776 0024 C4F26751 		movt	r1, 17767
+ 767              		.loc 1 479 0
+ 768 001c C4F20203 		movt	r3, 16386
+ 769 0020 C4F26751 		movt	r1, 17767
  480:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY2;
- 777              		.loc 1 480 0
- 778 0028 CCF6EF52 		movt	r2, 52719
+ 770              		.loc 1 480 0
+ 771 0024 CCF6EF52 		movt	r2, 52719
  479:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY1;
- 779              		.loc 1 479 0
- 780 002c 9960     		str	r1, [r3, #8]
+ 772              		.loc 1 479 0
+ 773 0028 9960     		str	r1, [r3, #8]
  480:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY2;
- 781              		.loc 1 480 0
- 782 002e 9A60     		str	r2, [r3, #8]
+ 774              		.loc 1 480 0
+ 775 002a 9A60     		str	r2, [r3, #8]
  481:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->CR |= CR_OPTPG_Set;
- 783              		.loc 1 481 0
- 784 0030 1869     		ldr	r0, [r3, #16]
- 785              	.LVL55:
+ 776              		.loc 1 481 0
+ 777 002c 1969     		ldr	r1, [r3, #16]
  467:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   FLASH_Pages = (u32)(~FLASH_Pages);
- 786              		.loc 1 467 0
- 787 0032 F643     		mvns	r6, r6
- 788              	.LVL56:
+ 778              		.loc 1 467 0
+ 779 002e ED43     		mvns	r5, r5
+ 780              	.LVL53:
+ 481:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->CR |= CR_OPTPG_Set;
+ 781              		.loc 1 481 0
+ 782 0030 41F01001 		orr	r1, r1, #16
  468:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   WRP0_Data = (vu16)(FLASH_Pages & WRP0_Mask);
- 789              		.loc 1 468 0
- 790 0034 F2B2     		uxtb	r2, r6
+ 783              		.loc 1 468 0
+ 784 0034 EAB2     		uxtb	r2, r5
  481:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->CR |= CR_OPTPG_Set;
- 791              		.loc 1 481 0
- 792 0036 40F01001 		orr	r1, r0, #16
+ 785              		.loc 1 481 0
+ 786 0036 1961     		str	r1, [r3, #16]
  483:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     if(WRP0_Data != 0xFF)
- 793              		.loc 1 483 0
- 794 003a FF2A     		cmp	r2, #255
- 481:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->CR |= CR_OPTPG_Set;
- 795              		.loc 1 481 0
- 796 003c 1961     		str	r1, [r3, #16]
- 483:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     if(WRP0_Data != 0xFF)
- 797              		.loc 1 483 0
- 798 003e 16D0     		beq	.L73
+ 787              		.loc 1 483 0
+ 788 0038 0123     		movs	r3, #1
+ 789 003a FF2A     		cmp	r2, #255
+ 790 003c 09D0     		beq	.L68
  485:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       OB->WRP0 = WRP0_Data;
- 799              		.loc 1 485 0
- 800 0040 4FF47843 		mov	r3, #63488
- 801 0044 C1F6FF73 		movt	r3, 8191
+ 791              		.loc 1 485 0
+ 792 003e 4FF47843 		mov	r3, #63488
+ 793 0042 C1F6FF73 		movt	r3, 8191
+ 794 0046 1A81     		strh	r2, [r3, #8]	@ movhi
  488:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       status = FLASH_WaitForLastOperation(ProgramTimeout);
- 802              		.loc 1 488 0
- 803 0048 0F20     		movs	r0, #15
- 485:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       OB->WRP0 = WRP0_Data;
- 804              		.loc 1 485 0
- 805 004a 1A81     		strh	r2, [r3, #8]	@ movhi
- 488:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       status = FLASH_WaitForLastOperation(ProgramTimeout);
- 806              		.loc 1 488 0
- 807 004c A847     		blx	r5
- 808              	.LVL57:
- 490:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     if((status == FLASH_COMPLETE) && (WRP1_Data != 0xFF))
- 809              		.loc 1 490 0
- 810 004e 0428     		cmp	r0, #4
- 811 0050 0DD0     		beq	.L73
- 812              	.LVL58:
- 813              	.L93:
- 514:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     if(status != FLASH_BUSY)
- 814              		.loc 1 514 0
- 815 0052 0128     		cmp	r0, #1
- 511:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       status = FLASH_WaitForLastOperation(ProgramTimeout);
- 816              		.loc 1 511 0
- 817 0054 0446     		mov	r4, r0
- 818              	.LVL59:
- 514:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     if(status != FLASH_BUSY)
- 819              		.loc 1 514 0
- 820 0056 DBD0     		beq	.L84
- 821              	.LVL60:
- 822              	.L78:
- 517:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       FLASH->CR &= CR_OPTPG_Reset;
- 823              		.loc 1 517 0
- 824 0058 4FF40050 		mov	r0, #8192
- 825 005c C4F20200 		movt	r0, 16386
- 826 0060 0169     		ldr	r1, [r0, #16]
- 827 0062 41F6EF73 		movw	r3, #8175
- 828 0066 0B40     		ands	r3, r3, r1
- 829 0068 0361     		str	r3, [r0, #16]
- 830              	.LVL61:
- 522:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** }
- 831              		.loc 1 522 0
- 832 006a 2046     		mov	r0, r4
- 833 006c 70BD     		pop	{r4, r5, r6, pc}
- 834              	.LVL62:
- 835              	.L73:
+ 795              		.loc 1 488 0
+ 796 0048 0F20     		movs	r0, #15
+ 797              	.LVL54:
+ 798 004a A047     		blx	r4
+ 799              	.LVL55:
+ 800 004c 011F     		subs	r1, r0, #4
+ 801 004e 4B42     		rsbs	r3, r1, #0
+ 802 0050 4B41     		adcs	r3, r3, r1
+ 803              	.LVL56:
+ 804              	.L68:
  469:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   WRP1_Data = (vu16)((FLASH_Pages & WRP1_Mask) >> 8);
- 836              		.loc 1 469 0
- 837 006e C6F30720 		ubfx	r0, r6, #8, #8
+ 805              		.loc 1 469 0
+ 806 0052 C5F30722 		ubfx	r2, r5, #8, #8
+ 807              	.LVL57:
  490:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     if((status == FLASH_COMPLETE) && (WRP1_Data != 0xFF))
- 838              		.loc 1 490 0
- 839 0072 FF28     		cmp	r0, #255
- 840 0074 08D0     		beq	.L72
- 492:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       OB->WRP1 = WRP1_Data;
- 841              		.loc 1 492 0
- 842 0076 4FF47841 		mov	r1, #63488
- 843 007a C1F6FF71 		movt	r1, 8191
- 844 007e 4881     		strh	r0, [r1, #10]	@ movhi
- 495:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       status = FLASH_WaitForLastOperation(ProgramTimeout);
- 845              		.loc 1 495 0
- 846 0080 0F20     		movs	r0, #15
- 847 0082 A847     		blx	r5
- 848              	.LVL63:
- 498:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     if((status == FLASH_COMPLETE) && (WRP2_Data != 0xFF))
- 849              		.loc 1 498 0
- 850 0084 0428     		cmp	r0, #4
- 851 0086 E4D1     		bne	.L93
- 852              	.LVL64:
- 853              	.L72:
+ 808              		.loc 1 490 0
+ 809 0056 FF2A     		cmp	r2, #255
+ 810 0058 0CBF     		ite	eq
+ 811 005a 0021     		moveq	r1, #0
+ 812 005c 03F00101 		andne	r1, r3, #1
+ 813 0060 81BB     		cbnz	r1, .L86
+ 814              	.LVL58:
+ 815              	.L69:
  470:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   WRP2_Data = (vu16)((FLASH_Pages & WRP2_Mask) >> 16);
- 854              		.loc 1 470 0
- 855 0088 C6F30743 		ubfx	r3, r6, #16, #8
+ 816              		.loc 1 470 0
+ 817 0062 C5F30742 		ubfx	r2, r5, #16, #8
+ 818              	.LVL59:
  498:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     if((status == FLASH_COMPLETE) && (WRP2_Data != 0xFF))
- 856              		.loc 1 498 0
- 857 008c FF2B     		cmp	r3, #255
- 858 008e 08D0     		beq	.L76
+ 819              		.loc 1 498 0
+ 820 0066 FF2A     		cmp	r2, #255
+ 821 0068 0CBF     		ite	eq
+ 822 006a 0021     		moveq	r1, #0
+ 823 006c 03F00101 		andne	r1, r3, #1
+ 824 0070 D1B9     		cbnz	r1, .L87
+ 825              	.LVL60:
+ 826              	.L70:
+ 471:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   WRP3_Data = (vu16)((FLASH_Pages & WRP3_Mask) >> 24);
+ 827              		.loc 1 471 0
+ 828 0072 2D0E     		lsrs	r5, r5, #24
+ 829              	.LVL61:
+ 506:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     if((status == FLASH_COMPLETE)&& (WRP3_Data != 0xFF))
+ 830              		.loc 1 506 0
+ 831 0074 FF2D     		cmp	r5, #255
+ 832 0076 0CBF     		ite	eq
+ 833 0078 0023     		moveq	r3, #0
+ 834 007a 03F00103 		andne	r3, r3, #1
+ 835 007e 5BB9     		cbnz	r3, .L88
+ 836              	.LVL62:
+ 837              	.L71:
+ 514:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     if(status != FLASH_BUSY)
+ 838              		.loc 1 514 0
+ 839 0080 0128     		cmp	r0, #1
+ 840 0082 C4D0     		beq	.L67
+ 517:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       FLASH->CR &= CR_OPTPG_Reset;
+ 841              		.loc 1 517 0
+ 842 0084 4FF40053 		mov	r3, #8192
+ 843 0088 C4F20203 		movt	r3, 16386
+ 844 008c 1969     		ldr	r1, [r3, #16]
+ 845 008e 41F6EF72 		movw	r2, #8175
+ 846 0092 0A40     		ands	r2, r2, r1
+ 847 0094 1A61     		str	r2, [r3, #16]
+ 522:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** }
+ 848              		.loc 1 522 0
+ 849 0096 38BD     		pop	{r3, r4, r5, pc}
+ 850              	.L88:
+ 508:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       OB->WRP3 = WRP3_Data;
+ 851              		.loc 1 508 0
+ 852 0098 4FF47843 		mov	r3, #63488
+ 853 009c C1F6FF73 		movt	r3, 8191
+ 854 00a0 DD81     		strh	r5, [r3, #14]	@ movhi
+ 511:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       status = FLASH_WaitForLastOperation(ProgramTimeout);
+ 855              		.loc 1 511 0
+ 856 00a2 0F20     		movs	r0, #15
+ 857              	.LVL63:
+ 858 00a4 A047     		blx	r4
+ 859              	.LVL64:
+ 860 00a6 EBE7     		b	.L71
+ 861              	.L87:
  500:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       OB->WRP2 = WRP2_Data;
- 859              		.loc 1 500 0
- 860 0090 4FF47842 		mov	r2, #63488
- 861 0094 C1F6FF72 		movt	r2, 8191
- 503:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       status = FLASH_WaitForLastOperation(ProgramTimeout);
- 862              		.loc 1 503 0
- 863 0098 0F20     		movs	r0, #15
- 500:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       OB->WRP2 = WRP2_Data;
- 864              		.loc 1 500 0
- 865 009a 9381     		strh	r3, [r2, #12]	@ movhi
+ 862              		.loc 1 500 0
+ 863 00a8 4FF47843 		mov	r3, #63488
+ 864 00ac C1F6FF73 		movt	r3, 8191
+ 865 00b0 9A81     		strh	r2, [r3, #12]	@ movhi
  503:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       status = FLASH_WaitForLastOperation(ProgramTimeout);
  866              		.loc 1 503 0
- 867 009c A847     		blx	r5
+ 867 00b2 0F20     		movs	r0, #15
  868              	.LVL65:
- 506:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     if((status == FLASH_COMPLETE)&& (WRP3_Data != 0xFF))
- 869              		.loc 1 506 0
- 870 009e 0428     		cmp	r0, #4
- 871 00a0 D7D1     		bne	.L93
- 872              	.LVL66:
- 873              	.L76:
- 471:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   WRP3_Data = (vu16)((FLASH_Pages & WRP3_Mask) >> 24);
- 874              		.loc 1 471 0
- 875 00a2 360E     		lsrs	r6, r6, #24
- 506:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     if((status == FLASH_COMPLETE)&& (WRP3_Data != 0xFF))
- 876              		.loc 1 506 0
- 877 00a4 FF2E     		cmp	r6, #255
- 878 00a6 D7D0     		beq	.L78
- 508:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       OB->WRP3 = WRP3_Data;
- 879              		.loc 1 508 0
- 880 00a8 4FF47844 		mov	r4, #63488
- 881 00ac C1F6FF74 		movt	r4, 8191
- 882 00b0 E681     		strh	r6, [r4, #14]	@ movhi
- 511:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       status = FLASH_WaitForLastOperation(ProgramTimeout);
- 883              		.loc 1 511 0
- 884 00b2 0F20     		movs	r0, #15
- 885 00b4 A847     		blx	r5
- 886              	.LVL67:
- 887 00b6 CCE7     		b	.L93
- 888              	.L96:
- 889              		.align	2
- 890              	.L95:
- 891 00b8 00000000 		.word	FLASH_WaitForLastOperation
- 892              		.cfi_endproc
- 893              	.LFE11:
- 895              		.section	.text.FLASH_ProgramOptionByteData,"ax",%progbits
- 896              		.align	2
- 897              		.global	FLASH_ProgramOptionByteData
- 898              		.thumb
- 899              		.thumb_func
- 901              	FLASH_ProgramOptionByteData:
- 902              	.LFB10:
+ 869 00b4 A047     		blx	r4
+ 870              	.LVL66:
+ 871 00b6 B0F1040C 		subs	ip, r0, #4
+ 872 00ba DCF10003 		rsbs	r3, ip, #0
+ 873 00be 53EB0C03 		adcs	r3, r3, ip
+ 874 00c2 D6E7     		b	.L70
+ 875              	.L86:
+ 492:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       OB->WRP1 = WRP1_Data;
+ 876              		.loc 1 492 0
+ 877 00c4 4FF47843 		mov	r3, #63488
+ 878 00c8 C1F6FF73 		movt	r3, 8191
+ 879 00cc 5A81     		strh	r2, [r3, #10]	@ movhi
+ 495:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       status = FLASH_WaitForLastOperation(ProgramTimeout);
+ 880              		.loc 1 495 0
+ 881 00ce 0F20     		movs	r0, #15
+ 882              	.LVL67:
+ 883 00d0 A047     		blx	r4
+ 884              	.LVL68:
+ 885 00d2 021F     		subs	r2, r0, #4
+ 886 00d4 5342     		rsbs	r3, r2, #0
+ 887 00d6 5341     		adcs	r3, r3, r2
+ 888 00d8 C3E7     		b	.L69
+ 889              	.L90:
+ 890 00da 00BF     		.align	2
+ 891              	.L89:
+ 892 00dc 00000000 		.word	FLASH_WaitForLastOperation
+ 893              		.cfi_endproc
+ 894              	.LFE11:
+ 896              		.section	.text.FLASH_ProgramOptionByteData,"ax",%progbits
+ 897              		.align	2
+ 898              		.global	FLASH_ProgramOptionByteData
+ 899              		.thumb
+ 900              		.thumb_func
+ 902              	FLASH_ProgramOptionByteData:
+ 903              	.LFB10:
  410:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** {
- 903              		.loc 1 410 0
- 904              		.cfi_startproc
- 905              		@ args = 0, pretend = 0, frame = 0
- 906              		@ frame_needed = 0, uses_anonymous_args = 0
- 907              	.LVL68:
- 908 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
- 909              	.LCFI5:
- 910              		.cfi_def_cfa_offset 24
- 911              		.cfi_offset 3, -24
- 912              		.cfi_offset 4, -20
- 913              		.cfi_offset 5, -16
- 914              		.cfi_offset 6, -12
- 915              		.cfi_offset 7, -8
- 916              		.cfi_offset 14, -4
+ 904              		.loc 1 410 0
+ 905              		.cfi_startproc
+ 906              		@ args = 0, pretend = 0, frame = 0
+ 907              		@ frame_needed = 0, uses_anonymous_args = 0
+ 908              	.LVL69:
+ 909 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 910              	.LCFI5:
+ 911              		.cfi_def_cfa_offset 24
+ 912              		.cfi_offset 3, -24
+ 913              		.cfi_offset 4, -20
+ 914              		.cfi_offset 5, -16
+ 915              		.cfi_offset 6, -12
+ 916              		.cfi_offset 7, -8
+ 917              		.cfi_offset 14, -4
  410:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** {
- 917              		.loc 1 410 0
- 918 0002 0646     		mov	r6, r0
+ 918              		.loc 1 410 0
+ 919 0002 0646     		mov	r6, r0
  416:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   status = FLASH_WaitForLastOperation(ProgramTimeout);
- 919              		.loc 1 416 0
- 920 0004 114C     		ldr	r4, .L103
- 921 0006 0F20     		movs	r0, #15
- 922              	.LVL69:
+ 920              		.loc 1 416 0
+ 921 0004 114C     		ldr	r4, .L97
+ 922 0006 0F20     		movs	r0, #15
+ 923              	.LVL70:
  410:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** {
- 923              		.loc 1 410 0
- 924 0008 0F46     		mov	r7, r1
+ 924              		.loc 1 410 0
+ 925 0008 0F46     		mov	r7, r1
  416:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   status = FLASH_WaitForLastOperation(ProgramTimeout);
- 925              		.loc 1 416 0
- 926 000a A047     		blx	r4
- 927              	.LVL70:
+ 926              		.loc 1 416 0
+ 927 000a A047     		blx	r4
+ 928              	.LVL71:
  418:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
- 928              		.loc 1 418 0
- 929 000c 0428     		cmp	r0, #4
- 930 000e 00D0     		beq	.L102
- 931              	.LVL71:
- 932              	.L98:
+ 929              		.loc 1 418 0
+ 930 000c 0428     		cmp	r0, #4
+ 931 000e 00D0     		beq	.L96
  439:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** }
- 933              		.loc 1 439 0
- 934 0010 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
- 935              	.L102:
+ 932              		.loc 1 439 0
+ 933 0010 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 934              	.L96:
  421:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY1;
- 936              		.loc 1 421 0
- 937 0012 4FF40055 		mov	r5, #8192
- 938 0016 40F22312 		movw	r2, #291
+ 935              		.loc 1 421 0
+ 936 0012 4FF40055 		mov	r5, #8192
+ 937 0016 40F22312 		movw	r2, #291
  422:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY2;
- 939              		.loc 1 422 0
- 940 001a 48F6AB13 		movw	r3, #35243
+ 938              		.loc 1 422 0
+ 939 001a 48F6AB13 		movw	r3, #35243
  421:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY1;
- 941              		.loc 1 421 0
- 942 001e C4F20205 		movt	r5, 16386
- 943 0022 C4F26752 		movt	r2, 17767
+ 940              		.loc 1 421 0
+ 941 001e C4F20205 		movt	r5, 16386
+ 942 0022 C4F26752 		movt	r2, 17767
  422:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY2;
- 944              		.loc 1 422 0
- 945 0026 CCF6EF53 		movt	r3, 52719
+ 943              		.loc 1 422 0
+ 944 0026 CCF6EF53 		movt	r3, 52719
  421:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY1;
- 946              		.loc 1 421 0
- 947 002a AA60     		str	r2, [r5, #8]
+ 945              		.loc 1 421 0
+ 946 002a AA60     		str	r2, [r5, #8]
  422:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY2;
- 948              		.loc 1 422 0
- 949 002c AB60     		str	r3, [r5, #8]
+ 947              		.loc 1 422 0
+ 948 002c AB60     		str	r3, [r5, #8]
  425:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->CR |= CR_OPTPG_Set; 
- 950              		.loc 1 425 0
- 951 002e 2969     		ldr	r1, [r5, #16]
+ 949              		.loc 1 425 0
+ 950 002e 2B69     		ldr	r3, [r5, #16]
  429:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(ProgramTimeout);
- 952              		.loc 1 429 0
- 953 0030 0F20     		movs	r0, #15
- 954              	.LVL72:
+ 951              		.loc 1 429 0
+ 952 0030 0F20     		movs	r0, #15
+ 953              	.LVL72:
  425:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->CR |= CR_OPTPG_Set; 
- 955              		.loc 1 425 0
- 956 0032 41F01002 		orr	r2, r1, #16
- 957 0036 2A61     		str	r2, [r5, #16]
+ 954              		.loc 1 425 0
+ 955 0032 43F01003 		orr	r3, r3, #16
+ 956 0036 2B61     		str	r3, [r5, #16]
  426:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     *(vu16*)Address = Data;
- 958              		.loc 1 426 0
- 959 0038 3780     		strh	r7, [r6, #0]	@ movhi
+ 957              		.loc 1 426 0
+ 958 0038 3780     		strh	r7, [r6, #0]	@ movhi
  429:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(ProgramTimeout);
- 960              		.loc 1 429 0
- 961 003a A047     		blx	r4
- 962              	.LVL73:
+ 959              		.loc 1 429 0
+ 960 003a A047     		blx	r4
+ 961              	.LVL73:
  431:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     if(status != FLASH_BUSY)
- 963              		.loc 1 431 0
- 964 003c 0128     		cmp	r0, #1
- 965 003e E7D0     		beq	.L98
+ 962              		.loc 1 431 0
+ 963 003c 0128     		cmp	r0, #1
  434:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       FLASH->CR &= CR_OPTPG_Reset;
- 966              		.loc 1 434 0
- 967 0040 2969     		ldr	r1, [r5, #16]
- 968 0042 41F6EF73 		movw	r3, #8175
- 969 0046 0B40     		ands	r3, r3, r1
- 970 0048 2B61     		str	r3, [r5, #16]
+ 964              		.loc 1 434 0
+ 965 003e 1FBF     		itttt	ne
+ 966 0040 2A69     		ldrne	r2, [r5, #16]
+ 967 0042 41F6EF73 		movwne	r3, #8175
+ 968 0046 1340     		andne	r3, r2, r3
+ 969 0048 2B61     		strne	r3, [r5, #16]
  439:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** }
- 971              		.loc 1 439 0
- 972 004a F8BD     		pop	{r3, r4, r5, r6, r7, pc}
- 973              	.L104:
- 974              		.align	2
- 975              	.L103:
- 976 004c 00000000 		.word	FLASH_WaitForLastOperation
- 977              		.cfi_endproc
- 978              	.LFE10:
- 980              		.section	.text.FLASH_ProgramHalfWord,"ax",%progbits
- 981              		.align	2
- 982              		.global	FLASH_ProgramHalfWord
- 983              		.thumb
- 984              		.thumb_func
- 986              	FLASH_ProgramHalfWord:
- 987              	.LFB9:
+ 970              		.loc 1 439 0
+ 971 004a F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 972              	.L98:
+ 973              		.align	2
+ 974              	.L97:
+ 975 004c 00000000 		.word	FLASH_WaitForLastOperation
+ 976              		.cfi_endproc
+ 977              	.LFE10:
+ 979              		.section	.text.FLASH_ProgramHalfWord,"ax",%progbits
+ 980              		.align	2
+ 981              		.global	FLASH_ProgramHalfWord
+ 982              		.thumb
+ 983              		.thumb_func
+ 985              	FLASH_ProgramHalfWord:
+ 986              	.LFB9:
  370:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** {
- 988              		.loc 1 370 0
- 989              		.cfi_startproc
- 990              		@ args = 0, pretend = 0, frame = 0
- 991              		@ frame_needed = 0, uses_anonymous_args = 0
- 992              	.LVL74:
- 993 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
- 994              	.LCFI6:
- 995              		.cfi_def_cfa_offset 24
- 996              		.cfi_offset 3, -24
- 997              		.cfi_offset 4, -20
- 998              		.cfi_offset 5, -16
- 999              		.cfi_offset 6, -12
- 1000              		.cfi_offset 7, -8
- 1001              		.cfi_offset 14, -4
+ 987              		.loc 1 370 0
+ 988              		.cfi_startproc
+ 989              		@ args = 0, pretend = 0, frame = 0
+ 990              		@ frame_needed = 0, uses_anonymous_args = 0
+ 991              	.LVL74:
+ 992 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 993              	.LCFI6:
+ 994              		.cfi_def_cfa_offset 24
+ 995              		.cfi_offset 3, -24
+ 996              		.cfi_offset 4, -20
+ 997              		.cfi_offset 5, -16
+ 998              		.cfi_offset 6, -12
+ 999              		.cfi_offset 7, -8
+ 1000              		.cfi_offset 14, -4
  370:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** {
- 1002              		.loc 1 370 0
- 1003 0002 0546     		mov	r5, r0
+ 1001              		.loc 1 370 0
+ 1002 0002 0546     		mov	r5, r0
  377:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   status = FLASH_WaitForLastOperation(ProgramTimeout);
- 1004              		.loc 1 377 0
- 1005 0004 0C4C     		ldr	r4, .L111
- 1006 0006 0F20     		movs	r0, #15
- 1007              	.LVL75:
+ 1003              		.loc 1 377 0
+ 1004 0004 0C4C     		ldr	r4, .L105
+ 1005 0006 0F20     		movs	r0, #15
+ 1006              	.LVL75:
  370:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** {
- 1008              		.loc 1 370 0
- 1009 0008 0E46     		mov	r6, r1
+ 1007              		.loc 1 370 0
+ 1008 0008 0E46     		mov	r6, r1
  377:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   status = FLASH_WaitForLastOperation(ProgramTimeout);
- 1010              		.loc 1 377 0
- 1011 000a A047     		blx	r4
- 1012              	.LVL76:
+ 1009              		.loc 1 377 0
+ 1010 000a A047     		blx	r4
+ 1011              	.LVL76:
  379:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
- 1013              		.loc 1 379 0
- 1014 000c 0428     		cmp	r0, #4
- 1015 000e 00D0     		beq	.L110
- 1016              	.LVL77:
- 1017              	.L106:
+ 1012              		.loc 1 379 0
+ 1013 000c 0428     		cmp	r0, #4
+ 1014 000e 00D0     		beq	.L104
  396:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** }
- 1018              		.loc 1 396 0
- 1019 0010 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
- 1020              	.L110:
+ 1015              		.loc 1 396 0
+ 1016 0010 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 1017              	.L104:
  382:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->CR |= CR_PG_Set;
- 1021              		.loc 1 382 0
- 1022 0012 4FF40057 		mov	r7, #8192
- 1023 0016 C4F20207 		movt	r7, 16386
- 1024 001a 3B69     		ldr	r3, [r7, #16]
+ 1018              		.loc 1 382 0
+ 1019 0012 4FF40057 		mov	r7, #8192
+ 1020 0016 C4F20207 		movt	r7, 16386
+ 1021 001a 3B69     		ldr	r3, [r7, #16]
  386:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(ProgramTimeout);
- 1025              		.loc 1 386 0
- 1026 001c 0F20     		movs	r0, #15
- 1027              	.LVL78:
+ 1022              		.loc 1 386 0
+ 1023 001c 0F20     		movs	r0, #15
+ 1024              	.LVL77:
  382:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->CR |= CR_PG_Set;
- 1028              		.loc 1 382 0
- 1029 001e 43F00101 		orr	r1, r3, #1
- 1030 0022 3961     		str	r1, [r7, #16]
+ 1025              		.loc 1 382 0
+ 1026 001e 43F00103 		orr	r3, r3, #1
+ 1027 0022 3B61     		str	r3, [r7, #16]
  384:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     *(vu16*)Address = Data;
- 1031              		.loc 1 384 0
- 1032 0024 2E80     		strh	r6, [r5, #0]	@ movhi
+ 1028              		.loc 1 384 0
+ 1029 0024 2E80     		strh	r6, [r5, #0]	@ movhi
  386:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(ProgramTimeout);
- 1033              		.loc 1 386 0
- 1034 0026 A047     		blx	r4
- 1035              	.LVL79:
+ 1030              		.loc 1 386 0
+ 1031 0026 A047     		blx	r4
+ 1032              	.LVL78:
  388:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     if(status != FLASH_BUSY)
- 1036              		.loc 1 388 0
- 1037 0028 0128     		cmp	r0, #1
- 1038 002a F1D0     		beq	.L106
+ 1033              		.loc 1 388 0
+ 1034 0028 0128     		cmp	r0, #1
  391:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       FLASH->CR &= CR_PG_Reset;
- 1039              		.loc 1 391 0
- 1040 002c 3A69     		ldr	r2, [r7, #16]
- 1041 002e 41F6FE73 		movw	r3, #8190
- 1042 0032 1340     		ands	r3, r3, r2
- 1043 0034 3B61     		str	r3, [r7, #16]
+ 1035              		.loc 1 391 0
+ 1036 002a 1FBF     		itttt	ne
+ 1037 002c 3A69     		ldrne	r2, [r7, #16]
+ 1038 002e 41F6FE73 		movwne	r3, #8190
+ 1039 0032 1340     		andne	r3, r2, r3
+ 1040 0034 3B61     		strne	r3, [r7, #16]
  396:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** }
- 1044              		.loc 1 396 0
- 1045 0036 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
- 1046              	.L112:
- 1047              		.align	2
- 1048              	.L111:
- 1049 0038 00000000 		.word	FLASH_WaitForLastOperation
- 1050              		.cfi_endproc
- 1051              	.LFE9:
- 1053              		.section	.text.FLASH_ProgramWord,"ax",%progbits
- 1054              		.align	2
- 1055              		.global	FLASH_ProgramWord
- 1056              		.thumb
- 1057              		.thumb_func
- 1059              	FLASH_ProgramWord:
- 1060              	.LFB8:
+ 1041              		.loc 1 396 0
+ 1042 0036 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 1043              	.L106:
+ 1044              		.align	2
+ 1045              	.L105:
+ 1046 0038 00000000 		.word	FLASH_WaitForLastOperation
+ 1047              		.cfi_endproc
+ 1048              	.LFE9:
+ 1050              		.section	.text.FLASH_ProgramWord,"ax",%progbits
+ 1051              		.align	2
+ 1052              		.global	FLASH_ProgramWord
+ 1053              		.thumb
+ 1054              		.thumb_func
+ 1056              	FLASH_ProgramWord:
+ 1057              	.LFB8:
  311:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** {
- 1061              		.loc 1 311 0
- 1062              		.cfi_startproc
- 1063              		@ args = 0, pretend = 0, frame = 0
- 1064              		@ frame_needed = 0, uses_anonymous_args = 0
- 1065              	.LVL80:
- 1066 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
- 1067              	.LCFI7:
- 1068              		.cfi_def_cfa_offset 24
- 1069              		.cfi_offset 3, -24
- 1070              		.cfi_offset 4, -20
- 1071              		.cfi_offset 5, -16
- 1072              		.cfi_offset 6, -12
- 1073              		.cfi_offset 7, -8
- 1074              		.cfi_offset 14, -4
+ 1058              		.loc 1 311 0
+ 1059              		.cfi_startproc
+ 1060              		@ args = 0, pretend = 0, frame = 0
+ 1061              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1062              	.LVL79:
+ 1063 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 1064              	.LCFI7:
+ 1065              		.cfi_def_cfa_offset 24
+ 1066              		.cfi_offset 3, -24
+ 1067              		.cfi_offset 4, -20
+ 1068              		.cfi_offset 5, -16
+ 1069              		.cfi_offset 6, -12
+ 1070              		.cfi_offset 7, -8
+ 1071              		.cfi_offset 14, -4
  311:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** {
- 1075              		.loc 1 311 0
- 1076 0002 0546     		mov	r5, r0
+ 1072              		.loc 1 311 0
+ 1073 0002 0546     		mov	r5, r0
  318:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   status = FLASH_WaitForLastOperation(ProgramTimeout);
- 1077              		.loc 1 318 0
- 1078 0004 114C     		ldr	r4, .L126
- 1079 0006 0F20     		movs	r0, #15
- 1080              	.LVL81:
+ 1074              		.loc 1 318 0
+ 1075 0004 114C     		ldr	r4, .L120
+ 1076 0006 0F20     		movs	r0, #15
+ 1077              	.LVL80:
  311:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** {
- 1081              		.loc 1 311 0
- 1082 0008 0E46     		mov	r6, r1
+ 1078              		.loc 1 311 0
+ 1079 0008 0E46     		mov	r6, r1
  318:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   status = FLASH_WaitForLastOperation(ProgramTimeout);
- 1083              		.loc 1 318 0
- 1084 000a A047     		blx	r4
- 1085              	.LVL82:
+ 1080              		.loc 1 318 0
+ 1081 000a A047     		blx	r4
+ 1082              	.LVL81:
  320:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
- 1086              		.loc 1 320 0
- 1087 000c 0428     		cmp	r0, #4
- 1088 000e 00D0     		beq	.L123
+ 1083              		.loc 1 320 0
+ 1084 000c 0428     		cmp	r0, #4
+ 1085 000e 00D0     		beq	.L117
  357:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** }
- 1089              		.loc 1 357 0
- 1090 0010 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
- 1091              	.L123:
+ 1086              		.loc 1 357 0
+ 1087 0010 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 1088              	.L117:
  324:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->CR |= CR_PG_Set;
- 1092              		.loc 1 324 0
- 1093 0012 4FF40057 		mov	r7, #8192
- 1094 0016 C4F20207 		movt	r7, 16386
- 1095 001a 3A69     		ldr	r2, [r7, #16]
+ 1089              		.loc 1 324 0
+ 1090 0012 4FF40057 		mov	r7, #8192
+ 1091 0016 C4F20207 		movt	r7, 16386
+ 1092 001a 3A69     		ldr	r2, [r7, #16]
  326:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     *(vu16*)Address = (u16)Data;
- 1096              		.loc 1 326 0
- 1097 001c B3B2     		uxth	r3, r6
+ 1093              		.loc 1 326 0
+ 1094 001c B3B2     		uxth	r3, r6
  324:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->CR |= CR_PG_Set;
- 1098              		.loc 1 324 0
- 1099 001e 42F00100 		orr	r0, r2, #1
- 1100              	.LVL83:
- 1101 0022 3861     		str	r0, [r7, #16]
+ 1095              		.loc 1 324 0
+ 1096 001e 42F00102 		orr	r2, r2, #1
+ 1097 0022 3A61     		str	r2, [r7, #16]
  329:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(ProgramTimeout);
- 1102              		.loc 1 329 0
- 1103 0024 0F20     		movs	r0, #15
+ 1098              		.loc 1 329 0
+ 1099 0024 0F20     		movs	r0, #15
+ 1100              	.LVL82:
  326:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     *(vu16*)Address = (u16)Data;
- 1104              		.loc 1 326 0
- 1105 0026 2B80     		strh	r3, [r5, #0]	@ movhi
+ 1101              		.loc 1 326 0
+ 1102 0026 2B80     		strh	r3, [r5, #0]	@ movhi
  329:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(ProgramTimeout);
- 1106              		.loc 1 329 0
- 1107 0028 A047     		blx	r4
- 1108              	.LVL84:
+ 1103              		.loc 1 329 0
+ 1104 0028 A047     		blx	r4
+ 1105              	.LVL83:
  331:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     if(status == FLASH_COMPLETE)
- 1109              		.loc 1 331 0
- 1110 002a 0428     		cmp	r0, #4
- 1111 002c 09D0     		beq	.L124
- 1112              	.LVL85:
- 1113              	.L122:
+ 1106              		.loc 1 331 0
+ 1107 002a 0428     		cmp	r0, #4
+ 1108 002c 09D0     		beq	.L118
+ 1109              	.LVL84:
+ 1110              	.L116:
  340:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       if(status != FLASH_BUSY)
- 1114              		.loc 1 340 0
- 1115 002e 0128     		cmp	r0, #1
- 1116 0030 05D0     		beq	.L125
+ 1111              		.loc 1 340 0
+ 1112 002e 0128     		cmp	r0, #1
+ 1113 0030 05D0     		beq	.L119
  351:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****         FLASH->CR &= CR_PG_Reset;
- 1117              		.loc 1 351 0
- 1118 0032 3969     		ldr	r1, [r7, #16]
- 1119 0034 41F6FE72 		movw	r2, #8190
- 1120 0038 0A40     		ands	r2, r2, r1
- 1121 003a 3A61     		str	r2, [r7, #16]
+ 1114              		.loc 1 351 0
+ 1115 0032 3A69     		ldr	r2, [r7, #16]
+ 1116 0034 41F6FE73 		movw	r3, #8190
+ 1117 0038 1340     		ands	r3, r3, r2
+ 1118 003a 3B61     		str	r3, [r7, #16]
  357:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** }
- 1122              		.loc 1 357 0
- 1123 003c F8BD     		pop	{r3, r4, r5, r6, r7, pc}
- 1124              	.L125:
+ 1119              		.loc 1 357 0
+ 1120 003c F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 1121              	.L119:
  311:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** {
- 1125              		.loc 1 311 0
- 1126 003e 0120     		movs	r0, #1
- 1127              	.LVL86:
- 1128 0040 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
- 1129              	.LVL87:
- 1130              	.L124:
+ 1122              		.loc 1 311 0
+ 1123 003e 0120     		movs	r0, #1
+ 1124              	.LVL85:
+ 1125 0040 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 1126              	.LVL86:
+ 1127              	.L118:
  335:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       *(vu16*)(Address + 2) = Data >> 16;
- 1131              		.loc 1 335 0
- 1132 0042 360C     		lsrs	r6, r6, #16
- 1133              	.LVL88:
- 1134 0044 6E80     		strh	r6, [r5, #2]	@ movhi
+ 1128              		.loc 1 335 0
+ 1129 0042 360C     		lsrs	r6, r6, #16
+ 1130              	.LVL87:
+ 1131 0044 6E80     		strh	r6, [r5, #2]	@ movhi
  338:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       status = FLASH_WaitForLastOperation(ProgramTimeout);
- 1135              		.loc 1 338 0
- 1136 0046 0F20     		movs	r0, #15
- 1137              	.LVL89:
- 1138 0048 A047     		blx	r4
- 1139              	.LVL90:
- 1140 004a F0E7     		b	.L122
- 1141              	.L127:
- 1142              		.align	2
- 1143              	.L126:
- 1144 004c 00000000 		.word	FLASH_WaitForLastOperation
- 1145              		.cfi_endproc
- 1146              	.LFE8:
- 1148              		.section	.text.FLASH_EraseOptionBytes,"ax",%progbits
- 1149              		.align	2
- 1150              		.global	FLASH_EraseOptionBytes
- 1151              		.thumb
- 1152              		.thumb_func
- 1154              	FLASH_EraseOptionBytes:
- 1155              	.LFB7:
+ 1132              		.loc 1 338 0
+ 1133 0046 0F20     		movs	r0, #15
+ 1134              	.LVL88:
+ 1135 0048 A047     		blx	r4
+ 1136              	.LVL89:
+ 1137 004a F0E7     		b	.L116
+ 1138              	.L121:
+ 1139              		.align	2
+ 1140              	.L120:
+ 1141 004c 00000000 		.word	FLASH_WaitForLastOperation
+ 1142              		.cfi_endproc
+ 1143              	.LFE8:
+ 1145              		.section	.text.FLASH_EraseOptionBytes,"ax",%progbits
+ 1146              		.align	2
+ 1147              		.global	FLASH_EraseOptionBytes
+ 1148              		.thumb
+ 1149              		.thumb_func
+ 1151              	FLASH_EraseOptionBytes:
+ 1152              	.LFB7:
  248:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** {
- 1156              		.loc 1 248 0
- 1157              		.cfi_startproc
- 1158              		@ args = 0, pretend = 0, frame = 0
- 1159              		@ frame_needed = 0, uses_anonymous_args = 0
- 1160              	.LVL91:
- 1161 0000 38B5     		push	{r3, r4, r5, lr}
- 1162              	.LCFI8:
- 1163              		.cfi_def_cfa_offset 16
- 1164              		.cfi_offset 3, -16
- 1165              		.cfi_offset 4, -12
- 1166              		.cfi_offset 5, -8
- 1167              		.cfi_offset 14, -4
+ 1153              		.loc 1 248 0
+ 1154              		.cfi_startproc
+ 1155              		@ args = 0, pretend = 0, frame = 0
+ 1156              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1157              	.LVL90:
+ 1158 0000 38B5     		push	{r3, r4, r5, lr}
+ 1159              	.LCFI8:
+ 1160              		.cfi_def_cfa_offset 16
+ 1161              		.cfi_offset 3, -16
+ 1162              		.cfi_offset 4, -12
+ 1163              		.cfi_offset 5, -8
+ 1164              		.cfi_offset 14, -4
  252:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   status = FLASH_WaitForLastOperation(EraseTimeout);
- 1168              		.loc 1 252 0
- 1169 0002 40F6FF70 		movw	r0, #4095
- 1170 0006 1E4C     		ldr	r4, .L141
- 1171 0008 A047     		blx	r4
- 1172              	.LVL92:
+ 1165              		.loc 1 252 0
+ 1166 0002 40F6FF70 		movw	r0, #4095
+ 1167 0006 1E4C     		ldr	r4, .L135
+ 1168 0008 A047     		blx	r4
+ 1169              	.LVL91:
  254:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
- 1173              		.loc 1 254 0
- 1174 000a 0428     		cmp	r0, #4
- 1175 000c 00D0     		beq	.L138
+ 1170              		.loc 1 254 0
+ 1171 000a 0428     		cmp	r0, #4
+ 1172 000c 00D0     		beq	.L132
  298:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** }
- 1176              		.loc 1 298 0
- 1177 000e 38BD     		pop	{r3, r4, r5, pc}
- 1178              	.L138:
+ 1173              		.loc 1 298 0
+ 1174 000e 38BD     		pop	{r3, r4, r5, pc}
+ 1175              	.L132:
  257:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY1;
- 1179              		.loc 1 257 0
- 1180 0010 4FF40055 		mov	r5, #8192
- 1181 0014 40F22312 		movw	r2, #291
+ 1176              		.loc 1 257 0
+ 1177 0010 4FF40055 		mov	r5, #8192
+ 1178 0014 40F22312 		movw	r2, #291
  258:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY2;
- 1182              		.loc 1 258 0
- 1183 0018 48F6AB13 		movw	r3, #35243
+ 1179              		.loc 1 258 0
+ 1180 0018 48F6AB13 		movw	r3, #35243
  257:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY1;
- 1184              		.loc 1 257 0
- 1185 001c C4F20205 		movt	r5, 16386
- 1186 0020 C4F26752 		movt	r2, 17767
+ 1181              		.loc 1 257 0
+ 1182 001c C4F20205 		movt	r5, 16386
+ 1183 0020 C4F26752 		movt	r2, 17767
  258:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY2;
- 1187              		.loc 1 258 0
- 1188 0024 CCF6EF53 		movt	r3, 52719
+ 1184              		.loc 1 258 0
+ 1185 0024 CCF6EF53 		movt	r3, 52719
  257:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY1;
- 1189              		.loc 1 257 0
- 1190 0028 AA60     		str	r2, [r5, #8]
+ 1186              		.loc 1 257 0
+ 1187 0028 AA60     		str	r2, [r5, #8]
  258:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY2;
- 1191              		.loc 1 258 0
- 1192 002a AB60     		str	r3, [r5, #8]
+ 1188              		.loc 1 258 0
+ 1189 002a AB60     		str	r3, [r5, #8]
  261:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->CR |= CR_OPTER_Set;
- 1193              		.loc 1 261 0
- 1194 002c 2969     		ldr	r1, [r5, #16]
+ 1190              		.loc 1 261 0
+ 1191 002c 2B69     		ldr	r3, [r5, #16]
  265:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(EraseTimeout);
- 1195              		.loc 1 265 0
- 1196 002e 40F6FF70 		movw	r0, #4095
- 1197              	.LVL93:
+ 1192              		.loc 1 265 0
+ 1193 002e 40F6FF70 		movw	r0, #4095
+ 1194              	.LVL92:
  261:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->CR |= CR_OPTER_Set;
- 1198              		.loc 1 261 0
- 1199 0032 41F02002 		orr	r2, r1, #32
- 1200 0036 2A61     		str	r2, [r5, #16]
+ 1195              		.loc 1 261 0
+ 1196 0032 43F02003 		orr	r3, r3, #32
+ 1197 0036 2B61     		str	r3, [r5, #16]
  262:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->CR |= CR_STRT_Set;
- 1201              		.loc 1 262 0
- 1202 0038 2B69     		ldr	r3, [r5, #16]
- 1203 003a 43F04001 		orr	r1, r3, #64
- 1204 003e 2961     		str	r1, [r5, #16]
+ 1198              		.loc 1 262 0
+ 1199 0038 2B69     		ldr	r3, [r5, #16]
+ 1200 003a 43F04003 		orr	r3, r3, #64
+ 1201 003e 2B61     		str	r3, [r5, #16]
  265:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(EraseTimeout);
- 1205              		.loc 1 265 0
- 1206 0040 A047     		blx	r4
- 1207              	.LVL94:
+ 1202              		.loc 1 265 0
+ 1203 0040 A047     		blx	r4
+ 1204              	.LVL93:
  267:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     if(status == FLASH_COMPLETE)
- 1208              		.loc 1 267 0
- 1209 0042 0428     		cmp	r0, #4
- 1210 0044 09D0     		beq	.L139
- 1211              	.LVL95:
- 1212              	.L137:
+ 1205              		.loc 1 267 0
+ 1206 0042 0428     		cmp	r0, #4
+ 1207 0044 09D0     		beq	.L133
+ 1208              	.LVL94:
+ 1209              	.L131:
  281:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       if(status != FLASH_BUSY)
- 1213              		.loc 1 281 0
- 1214 0046 0128     		cmp	r0, #1
- 1215 0048 05D0     		beq	.L140
+ 1210              		.loc 1 281 0
+ 1211 0046 0128     		cmp	r0, #1
+ 1212 0048 05D0     		beq	.L134
  292:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****         FLASH->CR &= CR_OPTPG_Reset;
- 1216              		.loc 1 292 0
- 1217 004a 2969     		ldr	r1, [r5, #16]
- 1218 004c 41F6EF73 		movw	r3, #8175
- 1219 0050 0B40     		ands	r3, r3, r1
- 1220 0052 2B61     		str	r3, [r5, #16]
+ 1213              		.loc 1 292 0
+ 1214 004a 2A69     		ldr	r2, [r5, #16]
+ 1215 004c 41F6EF73 		movw	r3, #8175
+ 1216 0050 1340     		ands	r3, r3, r2
+ 1217 0052 2B61     		str	r3, [r5, #16]
  298:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** }
- 1221              		.loc 1 298 0
- 1222 0054 38BD     		pop	{r3, r4, r5, pc}
- 1223              	.L140:
+ 1218              		.loc 1 298 0
+ 1219 0054 38BD     		pop	{r3, r4, r5, pc}
+ 1220              	.L134:
  248:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** {
- 1224              		.loc 1 248 0
- 1225 0056 0120     		movs	r0, #1
- 1226              	.LVL96:
- 1227 0058 38BD     		pop	{r3, r4, r5, pc}
- 1228              	.LVL97:
- 1229              	.L139:
+ 1221              		.loc 1 248 0
+ 1222 0056 0120     		movs	r0, #1
+ 1223              	.LVL95:
+ 1224 0058 38BD     		pop	{r3, r4, r5, pc}
+ 1225              	.LVL96:
+ 1226              	.L133:
  270:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       FLASH->CR &= CR_OPTER_Reset;
- 1230              		.loc 1 270 0
- 1231 005a 2869     		ldr	r0, [r5, #16]
- 1232              	.LVL98:
- 1233 005c 41F6DF72 		movw	r2, #8159
- 1234 0060 0240     		ands	r2, r2, r0
- 1235 0062 2A61     		str	r2, [r5, #16]
+ 1227              		.loc 1 270 0
+ 1228 005a 2A69     		ldr	r2, [r5, #16]
+ 1229 005c 41F6DF73 		movw	r3, #8159
+ 1230 0060 1340     		ands	r3, r3, r2
+ 1231 0062 2B61     		str	r3, [r5, #16]
+ 273:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       FLASH->CR |= CR_OPTPG_Set;
+ 1232              		.loc 1 273 0
+ 1233 0064 2A69     		ldr	r2, [r5, #16]
+ 276:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       OB->RDP= RDP_Key; 
+ 1234              		.loc 1 276 0
+ 1235 0066 4FF47843 		mov	r3, #63488
  273:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       FLASH->CR |= CR_OPTPG_Set;
  1236              		.loc 1 273 0
- 1237 0064 2969     		ldr	r1, [r5, #16]
+ 1237 006a 42F01002 		orr	r2, r2, #16
+ 1238 006e 2A61     		str	r2, [r5, #16]
  276:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       OB->RDP= RDP_Key; 
- 1238              		.loc 1 276 0
- 1239 0066 4FF47843 		mov	r3, #63488
- 273:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       FLASH->CR |= CR_OPTPG_Set;
- 1240              		.loc 1 273 0
- 1241 006a 41F01000 		orr	r0, r1, #16
+ 1239              		.loc 1 276 0
+ 1240 0070 C1F6FF73 		movt	r3, 8191
+ 1241 0074 A522     		movs	r2, #165
+ 279:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       status = FLASH_WaitForLastOperation(ProgramTimeout);
+ 1242              		.loc 1 279 0
+ 1243 0076 0F20     		movs	r0, #15
+ 1244              	.LVL97:
  276:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       OB->RDP= RDP_Key; 
- 1242              		.loc 1 276 0
- 1243 006e C1F6FF73 		movt	r3, 8191
- 1244 0072 A522     		movs	r2, #165
- 273:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       FLASH->CR |= CR_OPTPG_Set;
- 1245              		.loc 1 273 0
- 1246 0074 2861     		str	r0, [r5, #16]
+ 1245              		.loc 1 276 0
+ 1246 0078 1A80     		strh	r2, [r3, #0]	@ movhi
  279:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       status = FLASH_WaitForLastOperation(ProgramTimeout);
  1247              		.loc 1 279 0
- 1248 0076 0F20     		movs	r0, #15
- 276:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       OB->RDP= RDP_Key; 
- 1249              		.loc 1 276 0
- 1250 0078 1A80     		strh	r2, [r3, #0]	@ movhi
- 279:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       status = FLASH_WaitForLastOperation(ProgramTimeout);
- 1251              		.loc 1 279 0
- 1252 007a A047     		blx	r4
- 1253              	.LVL99:
- 1254 007c E3E7     		b	.L137
- 1255              	.L142:
- 1256 007e 00BF     		.align	2
- 1257              	.L141:
- 1258 0080 00000000 		.word	FLASH_WaitForLastOperation
- 1259              		.cfi_endproc
- 1260              	.LFE7:
- 1262              		.section	.text.FLASH_EraseAllPages,"ax",%progbits
- 1263              		.align	2
- 1264              		.global	FLASH_EraseAllPages
- 1265              		.thumb
- 1266              		.thumb_func
- 1268              	FLASH_EraseAllPages:
- 1269              	.LFB6:
+ 1248 007a A047     		blx	r4
+ 1249              	.LVL98:
+ 1250 007c E3E7     		b	.L131
+ 1251              	.L136:
+ 1252 007e 00BF     		.align	2
+ 1253              	.L135:
+ 1254 0080 00000000 		.word	FLASH_WaitForLastOperation
+ 1255              		.cfi_endproc
+ 1256              	.LFE7:
+ 1258              		.section	.text.FLASH_EraseAllPages,"ax",%progbits
+ 1259              		.align	2
+ 1260              		.global	FLASH_EraseAllPages
+ 1261              		.thumb
+ 1262              		.thumb_func
+ 1264              	FLASH_EraseAllPages:
+ 1265              	.LFB6:
  213:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** {
- 1270              		.loc 1 213 0
- 1271              		.cfi_startproc
- 1272              		@ args = 0, pretend = 0, frame = 0
- 1273              		@ frame_needed = 0, uses_anonymous_args = 0
- 1274              	.LVL100:
- 1275 0000 38B5     		push	{r3, r4, r5, lr}
- 1276              	.LCFI9:
- 1277              		.cfi_def_cfa_offset 16
- 1278              		.cfi_offset 3, -16
- 1279              		.cfi_offset 4, -12
- 1280              		.cfi_offset 5, -8
- 1281              		.cfi_offset 14, -4
+ 1266              		.loc 1 213 0
+ 1267              		.cfi_startproc
+ 1268              		@ args = 0, pretend = 0, frame = 0
+ 1269              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1270              	.LVL99:
+ 1271 0000 38B5     		push	{r3, r4, r5, lr}
+ 1272              	.LCFI9:
+ 1273              		.cfi_def_cfa_offset 16
+ 1274              		.cfi_offset 3, -16
+ 1275              		.cfi_offset 4, -12
+ 1276              		.cfi_offset 5, -8
+ 1277              		.cfi_offset 14, -4
  217:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   status = FLASH_WaitForLastOperation(EraseTimeout);
- 1282              		.loc 1 217 0
- 1283 0002 40F6FF70 		movw	r0, #4095
- 1284 0006 0E4C     		ldr	r4, .L149
- 1285 0008 A047     		blx	r4
- 1286              	.LVL101:
+ 1278              		.loc 1 217 0
+ 1279 0002 40F6FF70 		movw	r0, #4095
+ 1280 0006 0E4C     		ldr	r4, .L143
+ 1281 0008 A047     		blx	r4
+ 1282              	.LVL100:
  219:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
- 1287              		.loc 1 219 0
- 1288 000a 0428     		cmp	r0, #4
- 1289 000c 00D0     		beq	.L148
- 1290              	.LVL102:
- 1291              	.L144:
+ 1283              		.loc 1 219 0
+ 1284 000a 0428     		cmp	r0, #4
+ 1285 000c 00D0     		beq	.L142
  236:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** }
- 1292              		.loc 1 236 0
- 1293 000e 38BD     		pop	{r3, r4, r5, pc}
- 1294              	.L148:
+ 1286              		.loc 1 236 0
+ 1287 000e 38BD     		pop	{r3, r4, r5, pc}
+ 1288              	.L142:
  222:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****      FLASH->CR |= CR_MER_Set;
- 1295              		.loc 1 222 0
- 1296 0010 4FF40055 		mov	r5, #8192
- 1297 0014 C4F20205 		movt	r5, 16386
- 1298 0018 2B69     		ldr	r3, [r5, #16]
+ 1289              		.loc 1 222 0
+ 1290 0010 4FF40055 		mov	r5, #8192
+ 1291 0014 C4F20205 		movt	r5, 16386
+ 1292 0018 2B69     		ldr	r3, [r5, #16]
  226:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(EraseTimeout);
- 1299              		.loc 1 226 0
- 1300 001a 40F6FF70 		movw	r0, #4095
- 1301              	.LVL103:
+ 1293              		.loc 1 226 0
+ 1294 001a 40F6FF70 		movw	r0, #4095
+ 1295              	.LVL101:
  222:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****      FLASH->CR |= CR_MER_Set;
- 1302              		.loc 1 222 0
- 1303 001e 43F00401 		orr	r1, r3, #4
- 1304 0022 2961     		str	r1, [r5, #16]
+ 1296              		.loc 1 222 0
+ 1297 001e 43F00403 		orr	r3, r3, #4
+ 1298 0022 2B61     		str	r3, [r5, #16]
  223:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****      FLASH->CR |= CR_STRT_Set;
- 1305              		.loc 1 223 0
- 1306 0024 2A69     		ldr	r2, [r5, #16]
- 1307 0026 42F04003 		orr	r3, r2, #64
- 1308 002a 2B61     		str	r3, [r5, #16]
+ 1299              		.loc 1 223 0
+ 1300 0024 2B69     		ldr	r3, [r5, #16]
+ 1301 0026 43F04003 		orr	r3, r3, #64
+ 1302 002a 2B61     		str	r3, [r5, #16]
  226:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(EraseTimeout);
- 1309              		.loc 1 226 0
- 1310 002c A047     		blx	r4
- 1311              	.LVL104:
+ 1303              		.loc 1 226 0
+ 1304 002c A047     		blx	r4
+ 1305              	.LVL102:
  228:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     if(status != FLASH_BUSY)
- 1312              		.loc 1 228 0
- 1313 002e 0128     		cmp	r0, #1
- 1314 0030 EDD0     		beq	.L144
+ 1306              		.loc 1 228 0
+ 1307 002e 0128     		cmp	r0, #1
  231:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       FLASH->CR &= CR_MER_Reset;
- 1315              		.loc 1 231 0
- 1316 0032 2969     		ldr	r1, [r5, #16]
- 1317 0034 41F6FB72 		movw	r2, #8187
- 1318 0038 0A40     		ands	r2, r2, r1
- 1319 003a 2A61     		str	r2, [r5, #16]
+ 1308              		.loc 1 231 0
+ 1309 0030 1FBF     		itttt	ne
+ 1310 0032 2A69     		ldrne	r2, [r5, #16]
+ 1311 0034 41F6FB73 		movwne	r3, #8187
+ 1312 0038 1340     		andne	r3, r2, r3
+ 1313 003a 2B61     		strne	r3, [r5, #16]
  236:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** }
- 1320              		.loc 1 236 0
- 1321 003c 38BD     		pop	{r3, r4, r5, pc}
- 1322              	.L150:
- 1323 003e 00BF     		.align	2
- 1324              	.L149:
- 1325 0040 00000000 		.word	FLASH_WaitForLastOperation
- 1326              		.cfi_endproc
- 1327              	.LFE6:
- 1329              		.section	.text.FLASH_ErasePage,"ax",%progbits
- 1330              		.align	2
- 1331              		.global	FLASH_ErasePage
- 1332              		.thumb
- 1333              		.thumb_func
- 1335              	FLASH_ErasePage:
- 1336              	.LFB5:
+ 1314              		.loc 1 236 0
+ 1315 003c 38BD     		pop	{r3, r4, r5, pc}
+ 1316              	.L144:
+ 1317 003e 00BF     		.align	2
+ 1318              	.L143:
+ 1319 0040 00000000 		.word	FLASH_WaitForLastOperation
+ 1320              		.cfi_endproc
+ 1321              	.LFE6:
+ 1323              		.section	.text.FLASH_ErasePage,"ax",%progbits
+ 1324              		.align	2
+ 1325              		.global	FLASH_ErasePage
+ 1326              		.thumb
+ 1327              		.thumb_func
+ 1329              	FLASH_ErasePage:
+ 1330              	.LFB5:
  174:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** {
- 1337              		.loc 1 174 0
- 1338              		.cfi_startproc
- 1339              		@ args = 0, pretend = 0, frame = 0
- 1340              		@ frame_needed = 0, uses_anonymous_args = 0
- 1341              	.LVL105:
- 1342 0000 70B5     		push	{r4, r5, r6, lr}
- 1343              	.LCFI10:
- 1344              		.cfi_def_cfa_offset 16
- 1345              		.cfi_offset 4, -16
- 1346              		.cfi_offset 5, -12
- 1347              		.cfi_offset 6, -8
- 1348              		.cfi_offset 14, -4
+ 1331              		.loc 1 174 0
+ 1332              		.cfi_startproc
+ 1333              		@ args = 0, pretend = 0, frame = 0
+ 1334              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1335              	.LVL103:
+ 1336 0000 70B5     		push	{r4, r5, r6, lr}
+ 1337              	.LCFI10:
+ 1338              		.cfi_def_cfa_offset 16
+ 1339              		.cfi_offset 4, -16
+ 1340              		.cfi_offset 5, -12
+ 1341              		.cfi_offset 6, -8
+ 1342              		.cfi_offset 14, -4
  174:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** {
- 1349              		.loc 1 174 0
- 1350 0002 0646     		mov	r6, r0
+ 1343              		.loc 1 174 0
+ 1344 0002 0646     		mov	r6, r0
  181:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   status = FLASH_WaitForLastOperation(EraseTimeout);
- 1351              		.loc 1 181 0
- 1352 0004 0F4C     		ldr	r4, .L157
- 1353 0006 40F6FF70 		movw	r0, #4095
- 1354              	.LVL106:
- 1355 000a A047     		blx	r4
- 1356              	.LVL107:
+ 1345              		.loc 1 181 0
+ 1346 0004 0F4C     		ldr	r4, .L151
+ 1347 0006 40F6FF70 		movw	r0, #4095
+ 1348              	.LVL104:
+ 1349 000a A047     		blx	r4
+ 1350              	.LVL105:
  183:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
- 1357              		.loc 1 183 0
- 1358 000c 0428     		cmp	r0, #4
- 1359 000e 00D0     		beq	.L156
- 1360              	.LVL108:
- 1361              	.L152:
+ 1351              		.loc 1 183 0
+ 1352 000c 0428     		cmp	r0, #4
+ 1353 000e 00D0     		beq	.L150
  201:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** }
- 1362              		.loc 1 201 0
- 1363 0010 70BD     		pop	{r4, r5, r6, pc}
- 1364              	.L156:
+ 1354              		.loc 1 201 0
+ 1355 0010 70BD     		pop	{r4, r5, r6, pc}
+ 1356              	.L150:
  186:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->CR|= CR_PER_Set;
- 1365              		.loc 1 186 0
- 1366 0012 4FF40055 		mov	r5, #8192
- 1367 0016 C4F20205 		movt	r5, 16386
- 1368 001a 2B69     		ldr	r3, [r5, #16]
+ 1357              		.loc 1 186 0
+ 1358 0012 4FF40055 		mov	r5, #8192
+ 1359 0016 C4F20205 		movt	r5, 16386
+ 1360 001a 2B69     		ldr	r3, [r5, #16]
  191:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(EraseTimeout);
- 1369              		.loc 1 191 0
- 1370 001c 40F6FF70 		movw	r0, #4095
- 1371              	.LVL109:
+ 1361              		.loc 1 191 0
+ 1362 001c 40F6FF70 		movw	r0, #4095
+ 1363              	.LVL106:
  186:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->CR|= CR_PER_Set;
- 1372              		.loc 1 186 0
- 1373 0020 43F00201 		orr	r1, r3, #2
- 1374 0024 2961     		str	r1, [r5, #16]
+ 1364              		.loc 1 186 0
+ 1365 0020 43F00203 		orr	r3, r3, #2
+ 1366 0024 2B61     		str	r3, [r5, #16]
  187:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->AR = Page_Address; 
- 1375              		.loc 1 187 0
- 1376 0026 6E61     		str	r6, [r5, #20]
+ 1367              		.loc 1 187 0
+ 1368 0026 6E61     		str	r6, [r5, #20]
  188:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     FLASH->CR|= CR_STRT_Set;
- 1377              		.loc 1 188 0
- 1378 0028 2A69     		ldr	r2, [r5, #16]
- 1379 002a 42F04003 		orr	r3, r2, #64
- 1380 002e 2B61     		str	r3, [r5, #16]
+ 1369              		.loc 1 188 0
+ 1370 0028 2B69     		ldr	r3, [r5, #16]
+ 1371 002a 43F04003 		orr	r3, r3, #64
+ 1372 002e 2B61     		str	r3, [r5, #16]
  191:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(EraseTimeout);
- 1381              		.loc 1 191 0
- 1382 0030 A047     		blx	r4
- 1383              	.LVL110:
+ 1373              		.loc 1 191 0
+ 1374 0030 A047     		blx	r4
+ 1375              	.LVL107:
  193:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****     if(status != FLASH_BUSY)
- 1384              		.loc 1 193 0
- 1385 0032 0128     		cmp	r0, #1
- 1386 0034 ECD0     		beq	.L152
+ 1376              		.loc 1 193 0
+ 1377 0032 0128     		cmp	r0, #1
  196:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c ****       FLASH->CR &= CR_PER_Reset;
- 1387              		.loc 1 196 0
- 1388 0036 2969     		ldr	r1, [r5, #16]
- 1389 0038 41F6FD72 		movw	r2, #8189
- 1390 003c 0A40     		ands	r2, r2, r1
- 1391 003e 2A61     		str	r2, [r5, #16]
+ 1378              		.loc 1 196 0
+ 1379 0034 1FBF     		itttt	ne
+ 1380 0036 2A69     		ldrne	r2, [r5, #16]
+ 1381 0038 41F6FD73 		movwne	r3, #8189
+ 1382 003c 1340     		andne	r3, r2, r3
+ 1383 003e 2B61     		strne	r3, [r5, #16]
  201:../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.c **** }
- 1392              		.loc 1 201 0
- 1393 0040 70BD     		pop	{r4, r5, r6, pc}
- 1394              	.L158:
- 1395 0042 00BF     		.align	2
- 1396              	.L157:
- 1397 0044 00000000 		.word	FLASH_WaitForLastOperation
- 1398              		.cfi_endproc
- 1399              	.LFE5:
- 1401              		.text
- 1402              	.Letext0:
- 1403              		.file 2 "../LIB_HW/Core/Hw_Define.h"
- 1404              		.file 3 "../LIB_HW/Driver/LIB_ST32/stm32f10x_map.h"
- 1405              		.file 4 "../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.h"
+ 1384              		.loc 1 201 0
+ 1385 0040 70BD     		pop	{r4, r5, r6, pc}
+ 1386              	.L152:
+ 1387 0042 00BF     		.align	2
+ 1388              	.L151:
+ 1389 0044 00000000 		.word	FLASH_WaitForLastOperation
+ 1390              		.cfi_endproc
+ 1391              	.LFE5:
+ 1393              		.text
+ 1394              	.Letext0:
+ 1395              		.file 2 "../LIB_HW/Core/Hw_Define.h"
+ 1396              		.file 3 "../LIB_HW/Driver/LIB_ST32/stm32f10x_map.h"
+ 1397              		.file 4 "../LIB_HW/Driver/LIB_ST32/stm32f10x_flash.h"
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f10x_flash.c
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:19     .text.FLASH_SetLatency:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:24     .text.FLASH_SetLatency:0000000000000000 FLASH_SetLatency
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:49     .text.FLASH_HalfCycleAccessCmd:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:54     .text.FLASH_HalfCycleAccessCmd:0000000000000000 FLASH_HalfCycleAccessCmd
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:78     .text.FLASH_PrefetchBufferCmd:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:83     .text.FLASH_PrefetchBufferCmd:0000000000000000 FLASH_PrefetchBufferCmd
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:107    .text.FLASH_Unlock:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:112    .text.FLASH_Unlock:0000000000000000 FLASH_Unlock
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:138    .text.FLASH_Lock:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:143    .text.FLASH_Lock:0000000000000000 FLASH_Lock
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:161    .text.FLASH_GetUserOptionByte:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:166    .text.FLASH_GetUserOptionByte:0000000000000000 FLASH_GetUserOptionByte
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:184    .text.FLASH_GetWriteProtectionOptionByte:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:189    .text.FLASH_GetWriteProtectionOptionByte:0000000000000000 FLASH_GetWriteProtectionOptionByte
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:206    .text.FLASH_GetReadOutProtectionStatus:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:211    .text.FLASH_GetReadOutProtectionStatus:0000000000000000 FLASH_GetReadOutProtectionStatus
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:232    .text.FLASH_GetPrefetchBufferStatus:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:237    .text.FLASH_GetPrefetchBufferStatus:0000000000000000 FLASH_GetPrefetchBufferStatus
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:258    .text.FLASH_ITConfig:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:263    .text.FLASH_ITConfig:0000000000000000 FLASH_ITConfig
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:293    .text.FLASH_GetFlagStatus:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:298    .text.FLASH_GetFlagStatus:0000000000000000 FLASH_GetFlagStatus
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:336    .text.FLASH_ClearFlag:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:341    .text.FLASH_ClearFlag:0000000000000000 FLASH_ClearFlag
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:358    .text.FLASH_GetStatus:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:363    .text.FLASH_GetStatus:0000000000000000 FLASH_GetStatus
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:408    .text.FLASH_WaitForLastOperation:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:413    .text.FLASH_WaitForLastOperation:0000000000000000 FLASH_WaitForLastOperation
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:499    .text.FLASH_WaitForLastOperation:0000000000000040 $d
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:504    .text.FLASH_UserOptionByteConfig:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:509    .text.FLASH_UserOptionByteConfig:0000000000000000 FLASH_UserOptionByteConfig
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:592    .text.FLASH_UserOptionByteConfig:0000000000000068 $d
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:597    .text.FLASH_ReadOutProtection:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:602    .text.FLASH_ReadOutProtection:0000000000000000 FLASH_ReadOutProtection
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:722    .text.FLASH_ReadOutProtection:00000000000000a0 $d
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:727    .text.FLASH_EnableWriteProtection:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:732    .text.FLASH_EnableWriteProtection:0000000000000000 FLASH_EnableWriteProtection
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:891    .text.FLASH_EnableWriteProtection:00000000000000b8 $d
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:896    .text.FLASH_ProgramOptionByteData:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:901    .text.FLASH_ProgramOptionByteData:0000000000000000 FLASH_ProgramOptionByteData
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:976    .text.FLASH_ProgramOptionByteData:000000000000004c $d
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:981    .text.FLASH_ProgramHalfWord:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:986    .text.FLASH_ProgramHalfWord:0000000000000000 FLASH_ProgramHalfWord
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:1049   .text.FLASH_ProgramHalfWord:0000000000000038 $d
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:1054   .text.FLASH_ProgramWord:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:1059   .text.FLASH_ProgramWord:0000000000000000 FLASH_ProgramWord
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:1144   .text.FLASH_ProgramWord:000000000000004c $d
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:1149   .text.FLASH_EraseOptionBytes:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:1154   .text.FLASH_EraseOptionBytes:0000000000000000 FLASH_EraseOptionBytes
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:1258   .text.FLASH_EraseOptionBytes:0000000000000080 $d
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:1263   .text.FLASH_EraseAllPages:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:1268   .text.FLASH_EraseAllPages:0000000000000000 FLASH_EraseAllPages
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:1325   .text.FLASH_EraseAllPages:0000000000000040 $d
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:1330   .text.FLASH_ErasePage:0000000000000000 $t
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:1335   .text.FLASH_ErasePage:0000000000000000 FLASH_ErasePage
-/var/folders/bz/nn5481rn5xq59rb0mbj7x0880000gn/T//ccJjx9cO.s:1397   .text.FLASH_ErasePage:0000000000000044 $d
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:19     .text.FLASH_SetLatency:0000000000000000 $t
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:24     .text.FLASH_SetLatency:0000000000000000 FLASH_SetLatency
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:49     .text.FLASH_HalfCycleAccessCmd:0000000000000000 $t
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:54     .text.FLASH_HalfCycleAccessCmd:0000000000000000 FLASH_HalfCycleAccessCmd
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:78     .text.FLASH_PrefetchBufferCmd:0000000000000000 $t
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:83     .text.FLASH_PrefetchBufferCmd:0000000000000000 FLASH_PrefetchBufferCmd
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:107    .text.FLASH_Unlock:0000000000000000 $t
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:112    .text.FLASH_Unlock:0000000000000000 FLASH_Unlock
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:138    .text.FLASH_Lock:0000000000000000 $t
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:143    .text.FLASH_Lock:0000000000000000 FLASH_Lock
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:161    .text.FLASH_GetUserOptionByte:0000000000000000 $t
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:166    .text.FLASH_GetUserOptionByte:0000000000000000 FLASH_GetUserOptionByte
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:184    .text.FLASH_GetWriteProtectionOptionByte:0000000000000000 $t
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:189    .text.FLASH_GetWriteProtectionOptionByte:0000000000000000 FLASH_GetWriteProtectionOptionByte
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:206    .text.FLASH_GetReadOutProtectionStatus:0000000000000000 $t
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:211    .text.FLASH_GetReadOutProtectionStatus:0000000000000000 FLASH_GetReadOutProtectionStatus
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:232    .text.FLASH_GetPrefetchBufferStatus:0000000000000000 $t
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:237    .text.FLASH_GetPrefetchBufferStatus:0000000000000000 FLASH_GetPrefetchBufferStatus
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:258    .text.FLASH_ITConfig:0000000000000000 $t
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:263    .text.FLASH_ITConfig:0000000000000000 FLASH_ITConfig
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:293    .text.FLASH_GetFlagStatus:0000000000000000 $t
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:298    .text.FLASH_GetFlagStatus:0000000000000000 FLASH_GetFlagStatus
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:336    .text.FLASH_ClearFlag:0000000000000000 $t
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:341    .text.FLASH_ClearFlag:0000000000000000 FLASH_ClearFlag
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:358    .text.FLASH_GetStatus:0000000000000000 $t
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:363    .text.FLASH_GetStatus:0000000000000000 FLASH_GetStatus
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:408    .text.FLASH_WaitForLastOperation:0000000000000000 $t
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:413    .text.FLASH_WaitForLastOperation:0000000000000000 FLASH_WaitForLastOperation
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:501    .text.FLASH_WaitForLastOperation:0000000000000058 $d
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:506    .text.FLASH_UserOptionByteConfig:0000000000000000 $t
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:511    .text.FLASH_UserOptionByteConfig:0000000000000000 FLASH_UserOptionByteConfig
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:592    .text.FLASH_UserOptionByteConfig:0000000000000068 $d
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:597    .text.FLASH_ReadOutProtection:0000000000000000 $t
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:602    .text.FLASH_ReadOutProtection:0000000000000000 FLASH_ReadOutProtection
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:720    .text.FLASH_ReadOutProtection:00000000000000a0 $d
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:725    .text.FLASH_EnableWriteProtection:0000000000000000 $t
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:730    .text.FLASH_EnableWriteProtection:0000000000000000 FLASH_EnableWriteProtection
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:892    .text.FLASH_EnableWriteProtection:00000000000000dc $d
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:897    .text.FLASH_ProgramOptionByteData:0000000000000000 $t
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:902    .text.FLASH_ProgramOptionByteData:0000000000000000 FLASH_ProgramOptionByteData
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:975    .text.FLASH_ProgramOptionByteData:000000000000004c $d
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:980    .text.FLASH_ProgramHalfWord:0000000000000000 $t
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:985    .text.FLASH_ProgramHalfWord:0000000000000000 FLASH_ProgramHalfWord
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:1046   .text.FLASH_ProgramHalfWord:0000000000000038 $d
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:1051   .text.FLASH_ProgramWord:0000000000000000 $t
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:1056   .text.FLASH_ProgramWord:0000000000000000 FLASH_ProgramWord
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:1141   .text.FLASH_ProgramWord:000000000000004c $d
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:1146   .text.FLASH_EraseOptionBytes:0000000000000000 $t
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:1151   .text.FLASH_EraseOptionBytes:0000000000000000 FLASH_EraseOptionBytes
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:1254   .text.FLASH_EraseOptionBytes:0000000000000080 $d
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:1259   .text.FLASH_EraseAllPages:0000000000000000 $t
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:1264   .text.FLASH_EraseAllPages:0000000000000000 FLASH_EraseAllPages
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:1319   .text.FLASH_EraseAllPages:0000000000000040 $d
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:1324   .text.FLASH_ErasePage:0000000000000000 $t
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:1329   .text.FLASH_ErasePage:0000000000000000 FLASH_ErasePage
+/var/folders/7z/kps_xzfj7sn5l5gkyq8s9db00000gn/T//ccwLMvZk.s:1389   .text.FLASH_ErasePage:0000000000000044 $d
                      .debug_frame:0000000000000010 $d
 
 NO UNDEFINED SYMBOLS
