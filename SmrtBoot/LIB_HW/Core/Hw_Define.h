@@ -17,6 +17,7 @@
 #define _DEFINE_H_
 
 
+#include <stdint.h>
 
 /*
 typedef long long            	U64;
@@ -95,7 +96,7 @@ typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
 //CHCBARAM
 #define __IO volatile 
 
-
+/*
 typedef unsigned       int uint32_t;
 typedef unsigned short int uint16_t;
 typedef unsigned char      uint8_t;
@@ -103,7 +104,7 @@ typedef unsigned char      uint8_t;
 typedef signed       int    int32_t;
 typedef signed short int    int16_t;
 typedef signed char         int8_t;
-
+*/
 
 
 
